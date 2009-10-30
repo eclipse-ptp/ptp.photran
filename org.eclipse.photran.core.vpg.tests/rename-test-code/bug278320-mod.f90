@@ -1,4 +1,0 @@
-MODULE Mod1
-  IMPLICIT NONE
-  INTEGER, DIMENSION(3) :: module_array  ! 3,28
-END MODULE Mod1
