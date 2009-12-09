@@ -21,7 +21,6 @@ import org.eclipse.photran.internal.core.parser.ASTMainProgramNode;
 import org.eclipse.photran.internal.core.parser.ASTModuleNode;
 import org.eclipse.photran.internal.core.parser.ASTSpecificBindingNode;
 import org.eclipse.photran.internal.core.parser.ASTStmtFunctionStmtNode;
-import org.eclipse.photran.internal.core.parser.ASTSubmoduleNode;
 import org.eclipse.photran.internal.core.parser.ASTSubroutineSubprogramNode;
 import org.eclipse.photran.internal.core.parser.Parser.GenericASTVisitor;
 import org.eclipse.photran.internal.core.parser.Parser.IASTListNode;
@@ -36,7 +35,7 @@ import org.eclipse.photran.internal.core.parser.Parser.IASTNode;
  * Internally, when this visitor encounters a program, module, function, or other entity that should
  * be displayed in the model, it calls back to the {@link FortranModelBuilder} and asks it to add an
  * appropriate node to the model (via {@link FortranModelBuilder#addF90Element(FortranElement)}).
- *
+ * 
  * @author Jeff Overbey
  */
 @SuppressWarnings("restriction")
@@ -117,7 +116,7 @@ public final class FortranModelBuildingVisitor extends GenericASTVisitor
     }
 
     // --VISITOR METHODS-------------------------------------------------
-
+    
     @Override public void visitASTNode(IASTNode node)
     {
         // beginAddingChildrenFor is called in addToModel
@@ -136,7 +135,7 @@ public final class FortranModelBuildingVisitor extends GenericASTVisitor
         }
         return element;
     }
-
+    
     public void visitASTMainProgramNode(ASTMainProgramNode node)
     {
         Token token = node.getProgramStmt() == null
@@ -149,12 +148,6 @@ public final class FortranModelBuildingVisitor extends GenericASTVisitor
     {
         Token token = node.getModuleStmt().getModuleName().getModuleName();
         addToModel(node, setPos(new FortranElement.Module(getCurrentParent(), token), node));
-    }
-
-    public void visitASTSubmoduleNode(ASTSubmoduleNode node)
-    {
-        Token token = node.getSubmoduleStmt().getSubmoduleName().getModuleName();
-        addToModel(node, setPos(new FortranElement.Submodule(getCurrentParent(), token), node));
     }
 
     public void visitASTFunctionSubprogramNode(ASTFunctionSubprogramNode node)
@@ -236,7 +229,7 @@ public final class FortranModelBuildingVisitor extends GenericASTVisitor
         for (int i = 0; i < list.size(); i++)
             addToModel(node, setPos(new FortranElement.Variable(getCurrentParent(), list.get(i).getIntrinsicProcedureName()), node));
     }
-
+    
     public void visitASTStmtFunctionStmtNode(ASTStmtFunctionStmtNode node)
     {
         addToModel(node, setPos(new FortranElement.Variable(getCurrentParent(), node.getName().getName()), node));
