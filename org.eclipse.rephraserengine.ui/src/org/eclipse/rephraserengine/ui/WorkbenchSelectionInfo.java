@@ -45,7 +45,7 @@ import org.eclipse.ui.internal.Workbench;
  * should be created and then immediately used and disposed of.
  *
  * @author Jeff Overbey, Tim Yuvashev
- * 
+ *
  * @since 1.0
  */
 @SuppressWarnings("restriction")
@@ -112,8 +112,8 @@ public class WorkbenchSelectionInfo
         fileInEditor = fileInput.getFile();
         if (!resourceFilter.shouldProcess(fileInEditor))
         {
-            fileInEditor = null;
             errorMsg = resourceFilter.getError(fileInEditor);
+            fileInEditor = null;
         }
 
         if (selection instanceof ITextSelection)
@@ -247,7 +247,7 @@ public class WorkbenchSelectionInfo
     {
         return allFilesInSelectedResources;
     }
-    
+
     /**
      * @return an error message to display to the user, if all of the files in the selection were
      * filtered out, which describes why that happened and possibly what the user can do about it;
