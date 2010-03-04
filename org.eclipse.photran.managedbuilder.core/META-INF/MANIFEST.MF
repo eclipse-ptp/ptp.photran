@@ -14,3 +14,5 @@ Require-Bundle: org.eclipse.cdt.core,
  org.eclipse.photran.cdtinterface
 Eclipse-LazyStart: true
 Bundle-ClassPath: photranmngbuildcore.jar
+Export-Package: org.eclipse.photran.managedbuilder.core,
+ org.eclipse.photran.managedbuilder.core.makegen
