@@ -178,7 +178,7 @@ public class IntelCompilerErrorParser  implements IErrorParser {
 				    fileName2= fileName.substring(i + 1);
 				}
 				IFile file= eoParser.findFileName(fileName2);
-				if (file == null){
+				if (file == null) {
 					file = eoParser.findFileName(fileName);
 				}
 				if (file != null || eoParser.isConflictingName(fileName)) {

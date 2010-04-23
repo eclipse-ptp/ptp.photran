@@ -186,8 +186,7 @@ public class CApplicationLaunchShortcut implements ILaunchShortcut2 {
 	 * @param bin
 	 * @return ILaunchConfiguration
 	 */
-	@SuppressWarnings("deprecation")
-    private ILaunchConfiguration createConfiguration(IBinary bin, ICDebugConfiguration debugConfig, String mode) {
+	private ILaunchConfiguration createConfiguration(IBinary bin, ICDebugConfiguration debugConfig, String mode) {
 		ILaunchConfiguration config = null;
 		try {
 			String projectName = bin.getResource().getProjectRelativePath().toString();

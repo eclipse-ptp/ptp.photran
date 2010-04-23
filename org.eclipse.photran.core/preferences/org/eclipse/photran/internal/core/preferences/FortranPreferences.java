@@ -43,13 +43,10 @@ public final class FortranPreferences
     public static final FortranRGBPreference COLOR_INTRINSICS  = new FortranRGBPreference("intrinsics",  new RGB(96,  0,   192));
     public static final FortranRGBPreference COLOR_KEYWORDS    = new FortranRGBPreference("keywords",    new RGB(127, 0,   85 ));
     public static final FortranRGBPreference COLOR_STRINGS     = new FortranRGBPreference("strings",     new RGB(42,  0,   255));
-    public static final FortranRGBPreference COLOR_CPP         = new FortranRGBPreference("cpp",         new RGB(128, 128, 128));
 
     public static final FortranStringPreference PREFERRED_MODEL_BUILDER = new FortranStringPreference("modelbuilder", "");
     public static final FortranStringPreference PREFERRED_DOM_PARSER = new FortranStringPreference("domparser", "");
 
-    public static final FortranIntegerPreference FIXED_FORM_COMMENT_COLUMN = new FortranIntegerPreference("fixedformcommentcolum", 72, FortranIntegerPreference.NO_LIMIT, 72);
-    
     private FortranPreferences() {}
 
     /** Initializes/resets all Photran-specific preferences to their default values */

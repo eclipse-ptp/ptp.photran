@@ -2,8 +2,10 @@ package org.eclipse.photran.internal.core.lexer;
 
 import java.io.IOException;
 
+import org.eclipse.core.resources.IFile;
+
 /**
- * Common interface implemented by fixed and free form Fortran lexers.
+ * Common interface implemented by fixed and free form Fortran lexers
  * 
  * @author Jeff Overbey
  */
@@ -19,7 +21,7 @@ public interface ILexer
 
     int getLastTokenCol();
     
-    FileOrIFile getLastTokenFile();
+    IFile getLastTokenFile();
     
     int getLastTokenFileOffset();
     

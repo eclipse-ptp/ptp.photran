@@ -6,7 +6,6 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     UIUC Photran modifications
  *     Intel Corporation - initial API and implementation
  *******************************************************************************/
 package org.eclipse.photran.internal.cdtinterface.ui;
@@ -28,7 +27,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.photran.internal.cdtinterface.core.FortranLanguage;
 import org.eclipse.photran.internal.core.FProjectNature;
 
 /**
@@ -144,9 +142,4 @@ public class FortranProjectWizard extends CDTCommonProjectWizard
         }       
         return false;
     }	
-    
-    // This limits the wizard to Fortran project types
-    @Override public String[] getLanguageIDs (){
-        return new String[] { FortranLanguage.LANGUAGE_ID };
-    }
 }

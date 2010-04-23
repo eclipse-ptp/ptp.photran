@@ -50,21 +50,7 @@ public class FixedFormLexerPhase2 implements ILexer
         };
 
         FixedFormLexerPhase1 fixedLexer1 = new FixedFormLexerPhase1(prepassReader, prepass, file, filename, tokenFactory);
-        freeLexer2 = new FreeFormLexerPhase2(fixedLexer1)
-        {
-            @Override
-            protected void modifyPreprocessorDirective(IToken t)
-            {
-                IPreprocessorReplacement ppr = t.getPreprocessorDirective();
-                if(ppr != null && ppr instanceof FixedFormReplacement)
-                {
-                    FixedFormReplacement ffr = (FixedFormReplacement)ppr;
-                    String replStr = ffr.toString();
-                    replStr = replStr.replaceAll("=", "");
-                    ffr.setReplacementText(replStr);
-                }
-            }
-        };
+        freeLexer2 = new FreeFormLexerPhase2(fixedLexer1);
     }
 
     public IToken yylex() throws IOException, LexerException
@@ -109,7 +95,7 @@ public class FixedFormLexerPhase2 implements ILexer
         return freeLexer2.getLastTokenCol();
     }
     
-    public FileOrIFile getLastTokenFile()
+    public IFile getLastTokenFile()
     {
         return freeLexer2.getLastTokenFile();
     }

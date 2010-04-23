@@ -30,7 +30,6 @@ import org.eclipse.cdt.ui.CUIPlugin;
 import org.eclipse.cdt.ui.IWorkingCopyManager;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.source.ISourceViewer;
@@ -39,7 +38,6 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.search.ui.actions.TextSearchGroup;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPartService;
@@ -68,8 +66,6 @@ public abstract class CDTBasedTextEditor extends TextEditor implements ISelectio
     // Utility Methods to Be Called in Subclass Constructors
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    private TextSearchGroup textSearchGroup;
-
     protected void useCDTDocumentProvider()
     {
         // We must use the CUIPlugin's document provider in order for the
@@ -96,8 +92,6 @@ public abstract class CDTBasedTextEditor extends TextEditor implements ISelectio
 
         final ResourceBundle bundle = ConstructedCEditorMessages.getResourceBundle();
 
-        // Add content assist actions
-        
         IAction action = new ContentAssistAction(bundle, "ContentAssistProposal.", this); //$NON-NLS-1$
         action.setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_PROPOSALS);
         setAction("ContentAssistProposal", action); //$NON-NLS-1$
@@ -107,28 +101,6 @@ public abstract class CDTBasedTextEditor extends TextEditor implements ISelectio
         action.setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_CONTEXT_INFORMATION);
         setAction("ContentAssistContextInformation", action); //$NON-NLS-1$
         markAsStateDependentAction("ContentAssistContextInformation", true); //$NON-NLS-1$
-        
-        // Add Search > Text actions to the menu bar (added to context menu in #editorContextMenuAboutToShow(IMenuManager) below)
-        
-        textSearchGroup = new TextSearchGroup(this);
-    }
-    
-    /**
-     * @see org.eclipse.ui.texteditor.AbstractTextEditor#editorContextMenuAboutToShow(org.eclipse.jface.action.IMenuManager)
-     */
-    //@Override
-    public void editorContextMenuAboutToShow(IMenuManager menu)
-    {
-        super.editorContextMenuAboutToShow(menu);
-        
-        textSearchGroup.fillContextMenu(menu);
-    }
-    
-    @Override
-    public void dispose()
-    {
-        textSearchGroup.dispose();
-        super.dispose();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////

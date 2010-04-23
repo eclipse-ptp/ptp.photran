@@ -17,8 +17,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.HashMap;
 
-import org.eclipse.photran.internal.core.preferences.FortranPreferences;
-
 /**
  * Preprocesses the input stream, discarding all whitespaces and comment lines and concatenating
  * continuation lines.  Additionally, it holds a mapping to the character-positions in the file (for
@@ -26,7 +24,6 @@ import org.eclipse.photran.internal.core.preferences.FortranPreferences;
  * 
  * @author Dirk Rossow
  */
-// JO -- Added type parameters to mollify Java 5 compilers
 class FixedFormLexerPrepass {
 	static final int inStart=0;
 	static final int inHollerith=1;
@@ -50,7 +47,7 @@ class FixedFormLexerPrepass {
 	private DynamicIntArray offsetMapping = new DynamicIntArray(1000);
 	
 	//Maps whitespace(string) to position in file (line, col, offset) tuple
-	private HashMap<PositionInFile, String> whiteSpaceMapping = new HashMap<PositionInFile, String>();	
+	private HashMap whiteSpaceMapping = new HashMap();	
 	//Used to accumulate whitespace between lines (multi-line comments, etc) because
 	// the string is processed on per-line basis
 	private String prevWhiteSpace = "";
@@ -146,7 +143,7 @@ class FixedFormLexerPrepass {
 				    actLinePos=0;
 			} 
 			else if(actLinePos==actLine.length() || 
-			        actLinePos==FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue()) 
+			        actLinePos==PreLexerLine.COLWIDTH) 
 			{ //test if continuation-line follows, else send \n
 				prevLine=actLine;
 				actLine=getNextLine();
@@ -163,8 +160,6 @@ class FixedFormLexerPrepass {
 				} 
 				else if(actLine.type==PreLexerLine.COMMENT)
 				{
-				    if(prevLine.type != PreLexerLine.COMMENT && actLine.length() > 0)
-				        markPosition(prevLine.linePos, actLinePos, prevLine.offset+prevLine.length());
 				    prevWhiteSpace=prevWhiteSpace.concat(actLine.getText());
 				    prevWhiteSpace=prevWhiteSpace.concat(in.getFileEOL());
 				    actLinePos = actLine.length();
@@ -174,7 +169,6 @@ class FixedFormLexerPrepass {
 					actLinePos=0;
 					hollerithLength=-2;
 					state=inStart;
-					//TODO: If previous line is a comment, handle this in a special way
 					markPosition(prevLine.linePos,prevLine.length(),prevLine.offset+prevLine.length());
 					return '\n';
 				}
@@ -296,7 +290,7 @@ class FixedFormLexerPrepass {
 	                startWhitespace = charPos;
 	            whiteAgg = whiteAgg.concat(String.valueOf(c));
 	        }
-	        else if(c=='!' || charPos >= FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue()) //It a comment, grab the rest of the line
+	        else if(c=='!' || charPos >= PreLexerLine.COLWIDTH) //It a comment, grab the rest of the line
 	        {
 	            if(startWhitespace == -1)
                     startWhitespace = charPos;
@@ -321,7 +315,7 @@ class FixedFormLexerPrepass {
             prevWhiteSpace = "";
             
             //If we moved into the comments, return -1 since we gobbled those up
-            if(charPos >= FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue())
+            if(charPos >= PreLexerLine.COLWIDTH)
                 charPos = -1;
 	    }
 	    if(charPos >= length) //If we "gobbled up" the entire line, return -1 to
@@ -351,7 +345,7 @@ class FixedFormLexerPrepass {
     			    isWhitespace(c) || 
                     c=='!' || 
                     line.type == PreLexerLine.COMMENT || 
-                    charPos >= FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue() || 
+                    charPos >= PreLexerLine.COLWIDTH || 
                     line.type == PreLexerLine.CONTINUATION
                  ))
             {
@@ -506,6 +500,8 @@ class DynamicIntArray {
 }
 
 class PreLexerLine {
+	static public final int COLWIDTH=72;
+
 	static final int COMMENT=0;
 	static final int CONTINUATION=1;
 	static final int STMT=2;
@@ -549,7 +545,7 @@ class PreLexerLine {
 		else if (trimmedText.startsWith("#")) type=CPPDIRECTIVE;
 		
 //check if line is empty up to COLWIDTH
-		else if (lineText.length()>FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue() && lineText.substring(0,FortranPreferences.FIXED_FORM_COMMENT_COLUMN.getValue()).trim().length()==0) type=COMMENT;
+		else if (lineText.length()>COLWIDTH && lineText.substring(0,COLWIDTH).trim().length()==0) type=COMMENT;
 		
 //check for tab in column 0-5
 		else if (lineText.indexOf('\t')>=0 && lineText.indexOf('\t')<=5) type=STMT;

@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.photran"
       label="%featureName"
-      version="6.0.0.qualifier"
+      version="5.0.1.qualifier"
       provider-name="%providerName">
 
    <description url="http://www.eclipse.org/photran">
@@ -18,13 +18,8 @@
    </license>
 
    <url>
-      <update label="Photran" url="http://download.eclipse.org/tools/ptp/releases/helios"/>
+      <update label="Photran" url="http://download.eclipse.org/tools/ptp/releases/galileo"/>
    </url>
-
-   <includes
-         id="org.eclipse.rephraserengine"
-         version="0.0.0"
-         search-location="both"/>
 
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
@@ -59,8 +54,9 @@
       <import plugin="org.eclipse.rephraserengine.ui.refactoring"/>
       <import plugin="org.eclipse.rephraserengine.ui"/>
       <import plugin="org.eclipse.rephraserengine.ui.vpg"/>
-      <import feature="org.eclipse.cdt" version="7.0" match="equivalent"/>
-      <import plugin="org.eclipse.text"/>
+      <import feature="org.eclipse.cdt" version="6.0.0" match="compatible"/>
+      <import feature="org.eclipse.rephraserengine" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.cdt.managedbuilder.core" version="6.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -121,25 +117,5 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
-   <plugin
-         id="org.eclipse.photran.core.vpg.preprocessor.c"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.photran.ui.vpg.preprocessor.c"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.photran.doc.user"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
 
 </feature>

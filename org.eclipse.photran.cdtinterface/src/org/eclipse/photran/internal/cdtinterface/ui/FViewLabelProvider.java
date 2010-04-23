@@ -13,7 +13,6 @@ import org.eclipse.cdt.internal.ui.cview.CViewLabelProvider;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.photran.internal.cdtinterface.CDTInterfacePlugin;
-import org.eclipse.photran.internal.core.FortranCorePlugin;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -25,7 +24,10 @@ import org.eclipse.swt.graphics.Image;
 @SuppressWarnings("restriction")
 public class FViewLabelProvider extends CViewLabelProvider
 {
-    private Image fortranFileImage;
+    public static final String FIXED_FORM_CONTENT_TYPE = "org.eclipse.photran.core.fixedFormFortranSource";
+    public static final String FREE_FORM_CONTENT_TYPE = "org.eclipse.photran.core.freeFormFortranSource";
+
+    Image fortranFileImage;
 
     public FViewLabelProvider(int textFlags, int imageFlags)
     {
@@ -41,8 +43,8 @@ public class FViewLabelProvider extends CViewLabelProvider
         {
             String fileName = ((TranslationUnit)element).getFile().getName();
             IContentType contentType = Platform.getContentTypeManager().findContentTypeFor(fileName);
-            if (contentType.isKindOf(FortranCorePlugin.fixedFormContentType())
-                || contentType.isKindOf(FortranCorePlugin.freeFormContentType())) {
+            if(contentType.getId().equals(FIXED_FORM_CONTENT_TYPE) || contentType.getId().equals(FREE_FORM_CONTENT_TYPE))
+            {
                 if(fortranFileImage == null) {
                     fortranFileImage = CDTInterfacePlugin.getImageDescriptor("icons/obj16/f_file_obj.gif").createImage();
                 }

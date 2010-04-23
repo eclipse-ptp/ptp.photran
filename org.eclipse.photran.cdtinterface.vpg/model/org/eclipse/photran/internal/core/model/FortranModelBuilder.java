@@ -71,19 +71,17 @@ public class FortranModelBuilder implements IFortranModelBuilder
         try
         {
             IFile file = translationUnit.getFile();
-            SourceForm sourceForm = determineSourceForm(file);
-            String filename = determineFilename(file);
             lexer = LexerFactory.createLexer(
                 new ByteArrayInputStream(translationUnit.getBuffer().getContents().getBytes()),
                 file,
-                filename,
-                sourceForm,
+                determineFilename(file),
+                determineSourceForm(file),
                 true /*false*/);
             // There may be more than one FortranModelBuilder running at once, so, unfortunately, we have to
             // create a new parser each time
             IFortranAST ast = new FortranAST(file, new Parser().parse(lexer), lexer.getTokenList());
 
-            createSourceFormNode(sourceForm.getDescription(filename));
+            createSourceFormNode();
 
             if (isParseTreeModelEnabled())
             {
@@ -109,10 +107,7 @@ public class FortranModelBuilder implements IFortranModelBuilder
         }
         catch (Exception e)
         {
-            String message = e.getMessage();
-            if (!e.getClass().equals(Exception.class))
-                message = e.getClass().getSimpleName() + ": " + message; // Not a legit parser error
-            FortranElement elt = createParseFailureNode(translationUnit, message);
+            FortranElement elt = createParseFailureNode(translationUnit, e.getMessage());
             if (lexer != null)
             {
                 int offset = lexer.getLastTokenFileOffset();
@@ -174,10 +169,10 @@ public class FortranModelBuilder implements IFortranModelBuilder
 
     // --NODE CREATION METHODS-------------------------------------------
 
-    private FortranElement createSourceFormNode(String desc) throws CModelException
+    private FortranElement createSourceFormNode() throws CModelException
     {
-        desc = "<" + desc + ">";
-        FortranElement element = new FortranElement.UnknownNode(translationUnit, desc);
+        String sourceForm = isFixedForm ? "<Fixed Form Source>" : "<Free Form Source>";
+        FortranElement element = new FortranElement.UnknownNode(translationUnit, sourceForm);
         translationUnit.addChild(element);
         this.newElements.put(element, element.getElementInfo());
         return element;
