@@ -1,7 +1,7 @@
 % Additional Information for UIUC Personnel
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id$ $}
+{\scriptsize Revision: \footnotesize \$Id: app-uiuc.ltx-inc,v 1.2 2010/04/28 18:12:52 joverbey Exp $ $}
 
 \begin{center}
 \framebox{\parbox{5.5in}{\textit{The following information is only of interest
@@ -11,19 +11,14 @@ Illinois at Urbana-Champaign.}}}
 
 \section{Photran Subversion Repository at UIUC}
 
+\centerline{\large https://subversion.cs.uiuc.edu/svn/Photran/}
+
 A private Subversion repository for internal testing and research work is
-provided by TSG at the following URL.  \textit{You will only be able to access
+provided by TSG at the above URL.  \textit{You will only be able to access
 this repository if you have specifically been granted access.}  The repository
 requires authentication using your NetID and Kerberos password.
 To access a Subversion repository from Eclipse, you must install an additional
 Eclipse plug-in (either Subclipse or Subversive).
-
-\begin{center}
-\begin{verbatim}
-https://subversion.cs.uiuc.edu/svn/Photran/
-\end{verbatim}
-\end{center}
-
 Currently, this repository contains the following.
 
 \begin{itemize}

@@ -2,10 +2,12 @@
 \vspace{-0.5in}
 
 \emph{BEFORE YOU BEGIN: Make sure you are running \textbf{Eclipse 3.6} (Helios)
-and a \textbf{Java 5} or later JVM. We recommend the
-\href{http://www.eclipse.org/downloads/packages/eclipse-rcpplug-developers/ganymeder}{Eclipse for RCP/Plug-in Developers Package}.}
+and a \textbf{Java 5} or later JVM.
+%We recommend the
+%\href{http://www.eclipse.org/downloads/packages/eclipse-rcpplug-developers/ganymeder}{Eclipse for RCP/Plug-in Developers Package}.
+}
 
-{\scriptsize Revision: \footnotesize \$Id: app-cvs.ltx-inc,v 1.9 2010/04/28 18:12:52 joverbey Exp $ $}
+{\scriptsize Revision: \footnotesize \$Id: app-cvs.ltx-inc,v 1.10 2010/04/28 18:28:08 joverbey Exp $ $}
 
 \vspace{-1em}
 
