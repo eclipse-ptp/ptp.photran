@@ -1,7 +1,7 @@
 % Refactoring
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id: cha-refactoring.ltx-inc,v 1.2 2010/05/25 19:40:03 joverbey Exp $ $ - based on 2008/08/08 nchen}
+{\scriptsize Revision: \footnotesize \$Id: cha-refactoring.ltx-inc,v 1.3 2010/06/02 21:25:28 joverbey Exp $ $ - based on 2008/08/08 nchen}
 
 \section{Introduction}
 
@@ -330,6 +330,9 @@ performed.  The \textit{.result} file will be compared character-by-character wi
 the result of the refactoring, so spaces, tabs, and newlines \textit{do} matter;
 the test will fail even if a single space is incorrect.  (This is because
 a production refactoring tool must produce correctly-indented code and handle
-comments correctly, and this is an easy way to test for this.)
+comments correctly, and this is an easy way to test for this.)  Note that you
+will probably need to include the marker in both the original file and the
+result file, based on how comments are handled by the refactoring (since it is,
+after all, simply another comment in the Fortran code).
 
 \end{enumerate}
