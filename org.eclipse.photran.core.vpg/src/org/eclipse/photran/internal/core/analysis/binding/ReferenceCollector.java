@@ -50,6 +50,7 @@ import org.eclipse.photran.internal.core.parser.ASTEndWhereStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTExitStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTFieldSelectorNode;
 import org.eclipse.photran.internal.core.parser.ASTFinalBindingNode;
+import org.eclipse.photran.internal.core.parser.ASTForallTripletSpecListNode;
 import org.eclipse.photran.internal.core.parser.ASTFunctionArgListNode;
 import org.eclipse.photran.internal.core.parser.ASTFunctionParNode;
 import org.eclipse.photran.internal.core.parser.ASTFunctionStmtNode;
@@ -500,6 +501,17 @@ class ReferenceCollector extends BindingCollector
     {
         super.traverseChildren(node);
         if (node.getEndName() != null) bind(node.getEndName());
+    }
+
+    // # R750
+    // <ForallTripletSpecList> ::=
+    //     | <Name> -:T_EQUALS Lb:<Subscript> -:T_COLON Ub:<Subscript>
+    //     | <Name> -:T_EQUALS Lb:<Subscript> -:T_COLON Ub:<Subscript> -:T_COLON stepExpr:<Expr>
+
+    @Override public void visitASTForallTripletSpecListNode(ASTForallTripletSpecListNode node)
+    {
+        super.traverseChildren(node);
+        bind(node.getName().getName());
     }
 
     // # R753
