@@ -71,7 +71,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.EditorsUI;
+import org.eclipse.ui.internal.editors.text.EditorsPlugin;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.eclipse.ui.texteditor.ChainedPreferenceStore;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
 import org.eclipse.ui.texteditor.IDocumentProvider;
@@ -84,7 +86,7 @@ import org.eclipse.ui.texteditor.WorkbenchChainedTextFontFieldEditor;
  * @author Jeff Overbey
  * @author Kurt Hendle - folding support
  */
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "restriction"})
 public class FortranEditor extends CDTBasedTextEditor implements ISelectionChangedListener
 {
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -526,6 +528,15 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
             super(editor);
         }
 
+        /**
+         * Determines the tab width by looking at the workspace-wide text editor preference.
+         */
+        @Override public int getTabWidth(ISourceViewer sourceViewer)
+        {
+            return EditorsPlugin.getDefault().getPreferenceStore().getInt(
+                AbstractDecoratedTextEditorPreferenceConstants.EDITOR_TAB_WIDTH);
+        }
+        
         /**
          * Returns a list of the possible partitions' content types.
          * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getConfiguredContentTypes(org.eclipse.jface.text.source.ISourceViewer)
