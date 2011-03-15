@@ -37,6 +37,8 @@ public class Messages extends NLS
 
     public static String EditorPreferencePage_KeywordsFieldLabel;
 
+    public static String EditorPreferencePage_NumbersPunctuationLabel;
+
     public static String EditorPreferencePage_StringsFieldLabel;
 
     public static String MainFortranPreferencePage_0;
