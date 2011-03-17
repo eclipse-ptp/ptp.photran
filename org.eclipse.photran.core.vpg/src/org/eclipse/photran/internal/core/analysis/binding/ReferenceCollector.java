@@ -51,6 +51,7 @@ import org.eclipse.photran.internal.core.parser.ASTExitStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTFieldSelectorNode;
 import org.eclipse.photran.internal.core.parser.ASTFinalBindingNode;
 import org.eclipse.photran.internal.core.parser.ASTForallTripletSpecListNode;
+import org.eclipse.photran.internal.core.parser.ASTFormatStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTFunctionArgListNode;
 import org.eclipse.photran.internal.core.parser.ASTFunctionParNode;
 import org.eclipse.photran.internal.core.parser.ASTFunctionStmtNode;
@@ -102,6 +103,13 @@ import org.eclipse.photran.internal.core.vpg.PhotranVPG;
  */
 class ReferenceCollector extends BindingCollector
 {
+    @Override public void visitASTFormatStmtNode(ASTFormatStmtNode node)
+    {
+        // There are no identifiers in FORMAT statements, and Photran
+        // doesn't parse FORMAT statements completely correctly, so
+        // don't traverse children of this node
+    }
+
     @Override public void visitASTSFDataRefNode(ASTSFDataRefNode node)
     {
         super.traverseChildren(node);
