@@ -333,8 +333,8 @@
    </extension>
 
    <!-- Show the release notes in a Web browser on first load -->
-   <extension point="org.eclipse.ui.startup">
+   <!--extension point="org.eclipse.ui.startup">
      <startup class="org.eclipse.photran.internal.ui.startup.ShowReleaseNotes" />
-  </extension>
+  </extension-->
 
 </plugin>
