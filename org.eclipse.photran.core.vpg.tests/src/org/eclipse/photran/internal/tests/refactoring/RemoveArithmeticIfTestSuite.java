@@ -12,6 +12,7 @@ package org.eclipse.photran.internal.tests.refactoring;
 
 import junit.framework.Test;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.photran.internal.core.refactoring.RemoveArithmeticIfRefactoring;
 import org.eclipse.photran.internal.tests.Activator;
 import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers;
@@ -20,8 +21,8 @@ import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers
  * Unit tests for the Remove Arithmetic If Statement refactoring.
  *
  * @author Matthew Fotzler
+ * @author Jeff Overbey - added {@link #shouldCompile(IFile)}
  */
-
 public class RemoveArithmeticIfTestSuite
      extends PhotranRefactoringTestSuiteFromMarkers<RemoveArithmeticIfRefactoring>
 {
@@ -38,5 +39,10 @@ public class RemoveArithmeticIfTestSuite
               "Running Remove Arithmetic If Statements Refactoring in",
               DIR,
               RemoveArithmeticIfRefactoring.class);
+    }
+
+    @Override protected boolean shouldCompile(IFile fileContainingMarker)
+    {
+        return !fileContainingMarker.getName().equalsIgnoreCase("bug335794.f90");
     }
 }

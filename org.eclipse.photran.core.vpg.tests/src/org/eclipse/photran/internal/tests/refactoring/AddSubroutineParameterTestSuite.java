@@ -19,8 +19,10 @@ import org.eclipse.photran.internal.tests.Activator;
 import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers;
 
 /**
+ * Tests for the Add Subroutine Parameter refactoring.
  * 
  * @author Marc Celani, Joe Handzik, Joe Gonzalez, Jason Patel
+ * @author Jeff Overbey - added {@link #shouldCompile(IFile)}
  */
 public class AddSubroutineParameterTestSuite extends
     PhotranRefactoringTestSuiteFromMarkers<AddSubroutineParameterRefactoring>
@@ -49,5 +51,10 @@ public class AddSubroutineParameterTestSuite extends
         if (!markerText[6].equals("_dont_call")) refactoring.setDefaultValue(markerText[6]);
 
         return shouldSucceed;
+    }
+
+    @Override protected boolean shouldCompile(IFile fileContainingMarker)
+    {
+        return !fileContainingMarker.getName().equalsIgnoreCase("add_subroutine_parameter_11.f90");
     }
 }

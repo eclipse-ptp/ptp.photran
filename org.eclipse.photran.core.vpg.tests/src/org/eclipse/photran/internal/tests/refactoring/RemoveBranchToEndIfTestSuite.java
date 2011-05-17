@@ -16,6 +16,7 @@ package org.eclipse.photran.internal.tests.refactoring;
 
 import junit.framework.Test;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.photran.internal.core.refactoring.RemoveBranchToEndIfRefactoring;
 import org.eclipse.photran.internal.tests.Activator;
 import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers;
@@ -25,6 +26,7 @@ import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers
  * 
  * @author Rita Chow (chow15), Jerry Hsiao (jhsiao2), Mark Mozolewski (mozolews), Chamil Wijenayaka
  *         (wijenay2), Nicola Hall (nfhall2)
+ * @author Jeff Overbey - added {@link #shouldCompile(IFile)}
  */
 public class RemoveBranchToEndIfTestSuite extends
     PhotranRefactoringTestSuiteFromMarkers<RemoveBranchToEndIfRefactoring>
@@ -42,4 +44,13 @@ public class RemoveBranchToEndIfTestSuite extends
             RemoveBranchToEndIfRefactoring.class);
     }
 
+    @Override protected boolean shouldCompile(IFile fileContainingMarker)
+    {
+        String name = fileContainingMarker.getName();
+        return
+            !name.equalsIgnoreCase("branch_from_inside_and_outside_if_block_no_do_loop.f90") &&
+            !name.equalsIgnoreCase("nested_if_block_basic.f90") &&
+            !name.equalsIgnoreCase("test-branch_end_if_label.f90") &&
+            !name.equalsIgnoreCase("test-end_if_label_between_branch_to_end_if.f90");
+    }
 }

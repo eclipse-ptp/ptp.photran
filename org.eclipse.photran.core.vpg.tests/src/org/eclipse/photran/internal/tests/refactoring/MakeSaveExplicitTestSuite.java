@@ -15,6 +15,7 @@ package org.eclipse.photran.internal.tests.refactoring;
 
 import junit.framework.Test;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.photran.internal.core.refactoring.MakeSaveExplicitRefactoring;
 import org.eclipse.photran.internal.tests.Activator;
 import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers;
@@ -27,6 +28,7 @@ import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers
  * @author Kevin Schilling
  * @author Jon Woolwine
  * @author Chad Zamzow
+ * @author Jeff Overbey - added {@link #shouldCompile(IFile)}
  */
 public class MakeSaveExplicitTestSuite
      extends PhotranRefactoringTestSuiteFromMarkers<MakeSaveExplicitRefactoring>
@@ -44,5 +46,13 @@ public class MakeSaveExplicitTestSuite
               "Running Make Save Attribute Explicit refactoring in",
               DIR,
               MakeSaveExplicitRefactoring.class);
+    }
+
+    @Override protected boolean shouldCompile(IFile fileContainingMarker)
+    {
+        String name = fileContainingMarker.getName();
+        return
+            !name.equalsIgnoreCase("make_save_7_1.f90") &&
+            !name.equalsIgnoreCase("make_save_7_3.f90");
     }
 }

@@ -236,6 +236,7 @@ public abstract class PhotranWorkspaceTestCase extends PhotranTestCase {
         args.add(compiler);
 
         args.add("-falign-functions");
+        args.add("-w"); // Suppress all warnings (notably, use of assigned gotos)
         
         args.add("-o");
         args.add(exe);

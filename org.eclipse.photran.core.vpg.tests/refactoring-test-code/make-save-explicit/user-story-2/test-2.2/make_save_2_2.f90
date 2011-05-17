@@ -18,7 +18,7 @@ SUBROUTINE MySubOne
   i = i + 1
   j = j + 5
   PRINT *, 'i=', i, ', j=', j
-END SUBROUTINE MySub
+END SUBROUTINE MySubOne
 
 SUBROUTINE MySubTwo
   INTEGER :: m
@@ -26,4 +26,4 @@ SUBROUTINE MySubTwo
   m = m + 1
   n = n + 5
   PRINT *, 'm=', m, ', n=', n
-END SUBROUTINE MySub
+END SUBROUTINE MySubTwo

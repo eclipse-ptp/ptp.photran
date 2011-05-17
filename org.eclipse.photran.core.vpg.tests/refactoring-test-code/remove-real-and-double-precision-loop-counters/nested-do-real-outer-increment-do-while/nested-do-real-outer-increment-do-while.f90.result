@@ -16,4 +16,4 @@ PROGRAM NestedDoRealOuterIncrement
     counter = counter + 0.1
   END DO
   PRINT *, sum
-END PROGRAM NestedDoRalOuterIncrement
+END PROGRAM NestedDoRealOuterIncrement

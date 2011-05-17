@@ -16,6 +16,7 @@ package org.eclipse.photran.internal.tests.refactoring;
 
 import junit.framework.Test;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.photran.internal.core.refactoring.RemovePauseStmtRefactoring;
 import org.eclipse.photran.internal.tests.Activator;
 import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers;
@@ -25,6 +26,7 @@ import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers
  * 
  * @author Rita Chow (chow15), Jerry Hsiao (jhsiao2), Mark Mozolewski (mozolews), Chamil Wijenayaka
  *         (wijenay2), Nicola Hall (nfhall2)
+ * @author Jeff Overbey - added {@link #shouldCompile(IFile)}
  */
 public class RemovePauseStmtTestSuite extends
     PhotranRefactoringTestSuiteFromMarkers<RemovePauseStmtRefactoring>
@@ -42,4 +44,8 @@ public class RemovePauseStmtTestSuite extends
             RemovePauseStmtRefactoring.class);
     }
 
+    @Override protected boolean shouldCompile(IFile fileContainingMarker)
+    {
+        return false;
+    }
 }

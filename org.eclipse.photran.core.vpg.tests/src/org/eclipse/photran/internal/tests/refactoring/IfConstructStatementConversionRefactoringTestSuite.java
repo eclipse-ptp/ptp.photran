@@ -30,6 +30,7 @@ import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers
  * @author Mumtaz Vauhkonrn
  * @author Burim Isai
  * @author Waseem Sheikh
+ * @author Jeff Overbey - added {@link #shouldCompile(IFile)}
  */
 public class IfConstructStatementConversionRefactoringTestSuite extends
     PhotranRefactoringTestSuiteFromMarkers<IfConstructStatementConversionRefactoring>
@@ -64,5 +65,13 @@ public class IfConstructStatementConversionRefactoringTestSuite extends
         }
         
         return shouldSucceed;
+    }
+
+    @Override protected boolean shouldCompile(IFile fileContainingMarker)
+    {
+        String name = fileContainingMarker.getName();
+        return
+            !name.equalsIgnoreCase("convert_ifConstruct.f90") &&
+            !name.equalsIgnoreCase("ifStmtComplexBoolean_2.f90");
     }
 }

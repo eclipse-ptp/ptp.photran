@@ -18,4 +18,4 @@ PROGRAM NestedDoRealOuterIncrement
     END IF
   END DO
   PRINT *, sum
-END PROGRAM NestedDoRalOuterIncrement
+END PROGRAM NestedDoRealOuterIncrement

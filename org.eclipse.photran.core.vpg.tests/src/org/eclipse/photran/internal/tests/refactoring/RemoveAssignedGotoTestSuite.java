@@ -24,11 +24,12 @@ import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers
 /**
  * Unit tests for the Remove Assigned Goto refactoring.
  *
- * * @author Andrea Dranberg
+ * @author Andrea Dranberg
  * @author John Hammonds
  * @author Rajashekhar Arasanal
  * @author Balaji Ambresh Rajkumar
  * @author Paramvir Singh
+ * @author Jeff Overbey - updated {@link #shouldCompile(IFile)}
  */
 public class RemoveAssignedGotoTestSuite
      extends PhotranRefactoringTestSuiteFromMarkers<RemoveAssignedGotoRefactoring>
@@ -69,11 +70,16 @@ public class RemoveAssignedGotoTestSuite
     }
     
     /**
-     * Method that prevents compilation of test files we know aren't supposed to compile
+     * Method that prevents compilation of test files we know aren't supposed to compile or run
      */
     @Override protected boolean shouldCompile(IFile fileContainingMarker)
     {
-        return ! (fileContainingMarker.getName().equalsIgnoreCase("one_label_no_goto_no_address.f90") ||
-        fileContainingMarker.getName().equalsIgnoreCase("integer_label_assign_and_assignment.f90"));
+        String name = fileContainingMarker.getName();
+        return
+            !name.equalsIgnoreCase("one_label_no_goto_no_address.f90") &&
+            !name.equalsIgnoreCase("integer_label_assign_and_assignment.f90") &&
+            !name.equalsIgnoreCase("use_label_in_write.f90") &&
+            !name.equalsIgnoreCase("two_assign_same_label_withgotos.f90") &&
+            !name.equalsIgnoreCase("one_goto_with_statement_label.f90");
     }
 }
