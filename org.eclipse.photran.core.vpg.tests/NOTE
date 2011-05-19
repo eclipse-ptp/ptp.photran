@@ -1,9 +1,0 @@
-Due to licensing restrictions, some of the Fortran code used for testing
-the parser cannot be made publicly available.  The corresponding JUnit
-tests will display an informational message if these directories do not
-exist, but no tests should fail.  (See ParseIBEAMCppMod.java for one
-example of such a test.)
-
-See the Photran Developer's Guide for more information.
-
---Jeff Overbey (23 Sept 06, updated 16 May 10)

@@ -1,5 +1,0 @@
-node1: null
-    => node3
-node3: print *, "1"
-    => node4
-node4: stop
