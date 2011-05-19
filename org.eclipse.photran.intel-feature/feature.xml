@@ -4,6 +4,7 @@
       label="%featureName"
       version="7.0.0.qualifier"
       provider-name="%providerName"
+      plugin="org.eclipse.photran.core.intel"
       os="linux">
 
    <description>

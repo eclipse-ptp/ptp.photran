@@ -3,7 +3,8 @@
       id="org.eclipse.photran.xlf"
       label="%featureName"
       version="7.0.0.qualifier"
-      provider-name="%providerName">
+      provider-name="%providerName"
+      plugin="org.eclipse.photran.errorparsers.xlf">
 
    <description>
       %description

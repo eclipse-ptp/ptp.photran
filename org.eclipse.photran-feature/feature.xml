@@ -3,7 +3,8 @@
       id="org.eclipse.photran"
       label="%featureName"
       version="7.0.0.qualifier"
-      provider-name="%providerName">
+      provider-name="%providerName"
+      plugin="org.eclipse.photran.core">
 
    <description url="http://www.eclipse.org/photran">
       %description
