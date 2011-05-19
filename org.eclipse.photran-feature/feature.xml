@@ -3,8 +3,10 @@
       id="org.eclipse.photran"
       label="%featureName"
       version="7.0.0.qualifier"
+      plugin="org.eclipse.photran.core"
       provider-name="%providerName"
-      plugin="org.eclipse.photran.core">
+      license-feature="org.eclipse.ptp.license"
+      license-feature-version="1.0.0.qualifier">
 
    <description url="http://www.eclipse.org/photran">
       %description

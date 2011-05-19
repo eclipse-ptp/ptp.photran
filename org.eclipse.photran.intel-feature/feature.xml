@@ -5,7 +5,9 @@
       version="7.0.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.photran.core.intel"
-      os="linux">
+      os="linux"
+      license-feature="org.eclipse.ptp.license"
+      license-feature-version="1.0.0.qualifier">
 
    <description>
       %description

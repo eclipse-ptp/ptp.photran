@@ -4,7 +4,9 @@
       label="%featureName"
       version="7.0.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.photran.errorparsers.xlf">
+      plugin="org.eclipse.photran.errorparsers.xlf"
+      license-feature="org.eclipse.ptp.license"
+      license-feature-version="1.0.0.qualifier">
 
    <description>
       %description
