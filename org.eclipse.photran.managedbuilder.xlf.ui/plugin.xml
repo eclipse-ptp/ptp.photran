@@ -567,11 +567,7 @@
 				  </targetPlatform>
 			  	  <builder
 					  superClass="cdt.managedbuild.target.gnu.builder"
-					  id="photran.managedbuild.target.xlf.builder.macosx.exe.debug"
-					  name="%BuilderName.Dbg"
-					  command="make"
-					  arguments="-k"
-					  buildfileGenerator="org.eclipse.cdt.managedbuilder.makegen.gnu.GnuMakefileGenerator">		              
+					  id="photran.managedbuild.target.xlf.builder.macosx.exe.debug">
 			      </builder>               		         
                   <tool
                       id="photran.managedbuild.tool.xlf.c.compiler.macosx.exe.debug"
@@ -632,11 +628,7 @@
 				  </targetPlatform>
 			  	  <builder
 					  superClass="cdt.managedbuild.target.gnu.builder"
-					  id="photran.managedbuild.target.xlf.builder.macosx.exe.release"
-					  name="%BuilderName.Rel"
-					  command="make"
-					  arguments="-k"
-					  buildfileGenerator="org.eclipse.cdt.managedbuilder.makegen.gnu.GnuMakefileGenerator">		              
+					  id="photran.managedbuild.target.xlf.builder.macosx.exe.release">
 			      </builder>               		         
                   <tool
                       id="photran.managedbuild.tool.xlf.c.compiler.macosx.exe.release"
