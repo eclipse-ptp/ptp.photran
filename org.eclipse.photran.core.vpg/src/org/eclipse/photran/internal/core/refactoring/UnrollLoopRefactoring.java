@@ -40,6 +40,7 @@ import org.eclipse.rephraserengine.core.refactorings.UserInputString;
  * Refactoring used to unroll a loop a certain number of times or completely.
  * 
  * @author Ashley Kasza
+ * @author Jeff Overbey - corrected handling of nested loops
  */
 public class UnrollLoopRefactoring extends FortranEditorRefactoring
 {
@@ -294,16 +295,17 @@ public class UnrollLoopRefactoring extends FortranEditorRefactoring
     @SuppressWarnings("unchecked")
     private void evalExpressionBeforeLoop()
     {
-
         ScopingNode scope = ScopingNode.getLocalScope(doLoop);
         IASTListNode<IASTNode> body = (IASTListNode<IASTNode>)scope.getOrCreateBody();
+        String declarationString = "integer :: " + LOOP_UPPER_BOUND; //$NON-NLS-1$
+        int insertionIndex = findIndexToInsertTypeDeclaration(body);
+        body.add(insertionIndex, parseLiteralStatement(declarationString));
+
+        body = doLoop.findNearestAncestor(IASTListNode.class);
         String upperBound = LOOP_UPPER_BOUND + " = " + doLoop.getUpperBoundIExpr().toString(); //$NON-NLS-1$
         int upperBoundIndx = (body).indexOf(doLoop);
         IASTNode upperBoundNode = parseLiteralStatement(upperBound);
         body.add(upperBoundIndx, upperBoundNode);
-        String declarationString = "integer :: " + LOOP_UPPER_BOUND; //$NON-NLS-1$
-        int insertionIndex = findIndexToInsertTypeDeclaration(body);
-        body.add(insertionIndex, parseLiteralStatement(declarationString));
     }
 
     /**
