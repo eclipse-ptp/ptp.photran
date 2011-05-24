@@ -36,7 +36,9 @@ import org.eclipse.rephraserengine.core.refactorings.UserInputString;
 
 /**
  * Loop refactoring to take a nested loop and change the data accesses to a tiled form.
+ * 
  * @author Ashley Kasza
+ * @author Jeff Overbey - added trim() before parseInt() calls
  */
 public class TileLoopRefactoring extends FortranEditorRefactoring
 {
@@ -258,7 +260,7 @@ public class TileLoopRefactoring extends FortranEditorRefactoring
     
     private String getNewBoundsString(IExpr expr){
         if(expr instanceof ASTIntConstNode){
-            int loopBoundInt = Integer.parseInt(expr.toString());
+            int loopBoundInt = Integer.parseInt(expr.toString().trim());
             int newBound = (int)Math.floor((double)(loopBoundInt-tilingOffset)/tilingSize);
             newBound = (newBound * tilingSize)+tilingOffset;
             return Integer.toString(newBound);
@@ -284,7 +286,7 @@ public class TileLoopRefactoring extends FortranEditorRefactoring
     @UserInputString(label = "Enter tile size ", defaultValueMethod= "getSuggestedTilingSize")
     public void setLoopTilingStepNumber(String input)
     {
-        tilingSize = Integer.parseInt(input);
+        tilingSize = Integer.parseInt(input.trim());
     }
     public String getSuggestedTilingSize()
     {
@@ -293,7 +295,7 @@ public class TileLoopRefactoring extends FortranEditorRefactoring
     @UserInputString(label = "Enter tile offset ", defaultValueMethod = "getSuggestedTilingOffset")
     public void setLoopTilingOffsetNumber(String input)
     {
-        tilingOffset = Integer.parseInt(input);
+        tilingOffset = Integer.parseInt(input.trim());
     }
     public String getSuggestedTilingOffset()
     {
