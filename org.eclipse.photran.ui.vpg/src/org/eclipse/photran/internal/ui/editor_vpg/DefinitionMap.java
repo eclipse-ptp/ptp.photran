@@ -93,6 +93,12 @@ public abstract class DefinitionMap<T>
     
     protected abstract T map(String qualifiedName, Definition def);
 
+    public String getSelectedIdentifier(TextSelection selection, TokenList tokenList)
+    {
+        Token token = findTokenEnclosing(selection, tokenList);
+        return token == null ? "" : token.getText(); //$NON-NLS-1$
+    }
+
     public T lookup(TextSelection selection, TokenList tokenList)
     {
         return lookup(findTokenEnclosing(selection, tokenList));

@@ -87,15 +87,32 @@ public class OpenDeclaration extends FortranEditorASTActionDelegate
                            TokenList tokenList,
                            DefinitionMap<Definition> defMap)
         {
+            PhotranVPG vpg = PhotranVPG.getInstance();
+
             // If defMap has not been created, we can't do this now, so we'll run this task the next
             // time the editor is reconciled; hopefully the defMap will have been created by then
             if (defMap == null) return true;
             
+            String ident = defMap.getSelectedIdentifier(selection, tokenList);
             Definition def = defMap.lookup(selection, tokenList);
             if (def == null)
-                def = chooseExternalDef(PhotranVPG.getInstance().findAllExternalSubprogramsNamed(PhotranVPG.canonicalizeIdentifier(selection.getText())));
+            {
+                // See if this is a module name
+                ArrayList<Definition> modules = vpg.findAllModulesNamed(PhotranVPG.canonicalizeIdentifier(ident));
+                if (!modules.isEmpty())
+                {
+                    def = chooseExternalDef(modules);
+                }
+                else
+                {
+                    // If this isn't a module name, look for an external subprogram
+                    def = chooseExternalDef(vpg.findAllExternalSubprogramsNamed(PhotranVPG.canonicalizeIdentifier(ident)));
+                }
+            }
             else if (def.isExternal() || def.isImplicitExternalSubprogram())
-                def = chooseExternalDef(PhotranVPG.getInstance().findAllExternalSubprogramsNamed(def.getCanonicalizedName()));
+            {
+                def = chooseExternalDef(vpg.findAllExternalSubprogramsNamed(def.getCanonicalizedName()));
+            }
 
             showDeclInUIThread(def);
 

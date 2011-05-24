@@ -23,6 +23,7 @@ import org.eclipse.photran.internal.core.parser.ASTExternalNameListNode;
 import org.eclipse.photran.internal.core.parser.ASTExternalStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTFunctionStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTFunctionSubprogramNode;
+import org.eclipse.photran.internal.core.parser.ASTModuleStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTNodeWithErrorRecoverySymbols;
 import org.eclipse.photran.internal.core.parser.ASTSubroutineStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTSubroutineSubprogramNode;
@@ -101,6 +102,37 @@ public class PhotranVPG extends EclipseVPG<IFortranAST, Token, PhotranTokenRef>
 
 
 
+
+    public ArrayList<Definition> findAllModulesNamed(String name)
+    {
+        ArrayList<Definition> result = new ArrayList<Definition>();
+        for (IFile file : findFilesThatExportModule(name))
+            result.addAll(findModules(name, file));
+        return result;
+    }
+
+    private ArrayList<Definition> findModules(String name, IFile file)
+    {
+        ArrayList<Definition> result = new ArrayList<Definition>();
+        String cname = canonicalizeIdentifier(name);
+
+        IFortranAST ast = PhotranVPG.getInstance().acquireTransientAST(file);
+        if (ast != null)
+        {
+            for (ASTModuleStmtNode module : ast.getRoot().findAll(ASTModuleStmtNode.class))
+            {
+                Token moduleNameToken = module.getModuleName().getModuleName();
+                String moduleName = canonicalizeIdentifier(moduleNameToken.getText());
+                if (moduleName.equals(cname))
+                {
+                    Definition d = getDefinitionFor(moduleNameToken.getTokenRef());
+                    if (d != null) result.add(d);
+                }
+            }
+        }
+
+        return result;
+    }
 
     public ArrayList<Definition> findAllExternalSubprogramsNamed(String name)
     {
