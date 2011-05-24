@@ -35,6 +35,7 @@ import org.eclipse.photran.internal.core.reindenter.Reindenter.Strategy;
  * @author Mumtaz Vauhkonrn
  * @author Burim Isai
  * @author Waseem Sheikh
+ * @author Jeff Overbey - corrected reindentation and handling of line continuations
  */
 public class IfConstructStatementConversionRefactoring extends FortranEditorRefactoring
 {
@@ -126,9 +127,9 @@ public class IfConstructStatementConversionRefactoring extends FortranEditorRefa
         OperationCanceledException
     {
         if (selectedNode instanceof ASTIfStmtNode)
-            refactorIfStmt();
+            selectedNode = refactorIfStmt();
         else if (selectedNode instanceof ASTIfConstructNode)
-            refactorIfConstruct();
+            selectedNode = refactorIfConstruct();
         else
             throw new IllegalStateException();
 
@@ -137,16 +138,20 @@ public class IfConstructStatementConversionRefactoring extends FortranEditorRefa
 
     }
 
-    protected void refactorIfStmt()
+    protected ASTIfConstructNode refactorIfStmt()
     {
         ASTIfStmtNode ifStmtNode = (ASTIfStmtNode)selectedNode;
-        ifStmtNode.replaceWith(createNewIfConstruct(ifStmtNode));
+        ASTIfConstructNode ifConstruct = createNewIfConstruct(ifStmtNode);
+        ifStmtNode.replaceWith(ifConstruct);
+        return ifConstruct;
     }
 
-    protected void refactorIfConstruct()
+    protected ASTIfStmtNode refactorIfConstruct()
     {
         ASTIfConstructNode ifConstructNode = (ASTIfConstructNode)selectedNode;
-        ifConstructNode.replaceWith(createNewIfStmt(ifConstructNode));
+        ASTIfStmtNode ifStmt = createNewIfStmt(ifConstructNode);
+        ifConstructNode.replaceWith(ifStmt);
+        return ifStmt;
     }
 
     /**
@@ -201,7 +206,10 @@ public class IfConstructStatementConversionRefactoring extends FortranEditorRefa
         sb.append(ifStmtNode.getGuardingExpression().toString());
         sb.append(") then"); //$NON-NLS-1$
         sb.append("\n        "); //$NON-NLS-1$
-        sb.append(ifStmtNode.getActionStmt().toString().trim());
+        String actionStmt = ifStmtNode.getActionStmt().toString().trim();
+        if (actionStmt.startsWith("&")) //$NON-NLS-1$
+            actionStmt = actionStmt.substring(1).trim();
+        sb.append(actionStmt);
         sb.append("\n        !can add more statements here"); //$NON-NLS-1$
         if (shouldAddEmptyElseBlock)
         {
