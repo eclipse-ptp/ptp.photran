@@ -33,7 +33,9 @@ import org.eclipse.photran.internal.core.reindenter.Reindenter.Strategy;
 /**
  * Aligns the bounds of two loops, and then fuses them into a single loop. Only applies to loops with integer values as bounds. Also, be
  * aware of using the iteration variable for reads, writes, or parameters.
+ * 
  * @author Ashley Kasza
+ * @author Jeff Overbey -- Corrected determination of second loop
  */
 public class FuseLoopsRefactoring extends FortranEditorRefactoring
 {
@@ -93,9 +95,10 @@ public class FuseLoopsRefactoring extends FortranEditorRefactoring
     @SuppressWarnings("unchecked")
     private ASTProperLoopConstructNode getSecondLoopToAlign(ASTProperLoopConstructNode loop)
     {
-        ScopingNode scope = ScopingNode.getLocalScope(loop);
-        IASTListNode<IExecutionPartConstruct> body = (IASTListNode<IExecutionPartConstruct>)scope
-            .getOrCreateBody();
+        //ScopingNode scope = ScopingNode.getLocalScope(loop);
+        //IASTListNode<IExecutionPartConstruct> body = (IASTListNode<IExecutionPartConstruct>)scope.getOrCreateBody();
+        ScopingNode.getLocalScope(loop).getOrCreateBody();
+        IASTListNode<IASTNode> body = loop.findNearestAncestor(IASTListNode.class);
         findAllLoopsInScope(body);
         int i = loopList.indexOf(loop);
         return loopList.get(i + 1);
