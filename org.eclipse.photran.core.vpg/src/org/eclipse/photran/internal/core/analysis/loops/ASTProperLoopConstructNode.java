@@ -169,7 +169,7 @@ public class ASTProperLoopConstructNode extends ASTNode implements IExecutableCo
         IExpr expr = node.getLb();
         if (expr instanceof ASTIntConstNode)
         {
-            return Integer.parseInt(expr.findFirstToken().getText());
+            return Integer.parseInt(expr.findFirstToken().getText().trim());
         }
         else
         {
@@ -187,7 +187,7 @@ public class ASTProperLoopConstructNode extends ASTNode implements IExecutableCo
         IExpr expr = node.getUb();
         if (expr instanceof ASTIntConstNode)
         {
-            return Integer.parseInt(expr.findFirstToken().getText());
+            return Integer.parseInt(expr.findFirstToken().getText().trim());
         }
         else
         {
@@ -201,7 +201,7 @@ public class ASTProperLoopConstructNode extends ASTNode implements IExecutableCo
         IExpr expr = node.getStep();
         if (expr instanceof ASTIntConstNode
             || (expr instanceof ASTUnaryExprNode && ((ASTUnaryExprNode)expr).getOperand() instanceof ASTIntConstNode))
-            return Integer.parseInt(expr.toString());
+            return Integer.parseInt(expr.toString().trim());
         else if (expr == null)
             return 1;
         else
