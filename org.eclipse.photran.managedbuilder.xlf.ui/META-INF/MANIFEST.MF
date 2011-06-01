@@ -5,6 +5,5 @@ Bundle-SymbolicName: org.eclipse.photran.managedbuilder.xlf.ui;singleton:=true
 Bundle-Version: 7.0.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
 Require-Bundle: org.eclipse.photran.managedbuilder.core,
  org.eclipse.cdt.managedbuilder.core
