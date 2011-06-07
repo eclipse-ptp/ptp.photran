@@ -19,7 +19,7 @@
 </td><td> Fixed source form
 </td></tr><tr><td> .f08, .f03, .f95, .f90
 </td><td> Free source form with INCLUDE lines<br>
-</td><td> .F08, .F03, .F95, .F90
+</td></tr><tr><td> .F08, .F03, .F95, .F90
 </td><td> Free source form with C preprocessor directives
 </td></tr></table></p><h2> Configuring Source Form/Filename Extension Associations  
 </h2><p>The filename extensions listed above are the defaults for new Fortran projects.&nbsp; To change them:
@@ -75,7 +75,7 @@ By default, the Fortran perspective contains a central area for editing code, as
 </li><li>The 
 <b>Fortran Declaration
 </b> view is described in the 
-<a href="photran6advanced">Photran Advanced Features manual</img>.
+<a href="http://wiki.eclipse.org/PTP/photran/documentation/photran7advanced">Photran Advanced Features manual</a>.
 </li><li>The 
 <b>Outline
 </b> view shows the high-level structure of your program, i.e., the subprograms, modules, derived types, etc. comprising it.
@@ -96,7 +96,7 @@ By default, the Fortran perspective contains a central area for editing code, as
 </li><li>Browse the high-level structures in Fortran files
 </li><li>Open projects in a new window
 </li><li>Perform some multi-file refactorings (such as Introduce Implicit None; see the 
-<a href="photran6advanced">Photran Advanced Features Manual</a>)
+<a href="http://wiki.eclipse.org/PTP/photran/documentation/photran7advanced">Photran Advanced Features Manual</a>)
 </li></ul><p>Files can be opened by double-clicking on the filename or by right-clicking on the file and choosing &quot;Open With&quot; from the context menu. Most other actions are performed by right-clicking on the file and choosing an action from the context menu.
 The Fortran projects view is similar to the C/C++ Projects View. 
 <b>For more information on the Fortran Projects view,
@@ -125,7 +125,7 @@ The
 The editors also support 
 <b>syntax highlighting.
 </b> As you write programs in Fortran, you will notice that different colors are applied to comments, identifiers, intrinsics, keywords, and strings to make code more readable. It is possible to change the colors for each of the previously mentioned code components in the Fortran editor preferences (this is discussed in the section &quot;Configuring the Editor,&quot; below). Often, the editor can even distinguish between, for example, the keyword &quot;if&quot; and a variable named &quot;if.&quot; However, it is not perfect; it uses a faster, but less reliable, heuristic than the actual Fortran parser that drives the Outline view and all of the 
-<a href="photran6advanced">Advanced Features</a>.
+<a href="http://wiki.eclipse.org/PTP/photran/documentation/photran7advanced">Advanced Features</a>.
 </p><h2> Comment/uncomment  
 </h2><p>Photran can comment or uncomment a block of Fortran statements, placing an exclamation point (!) before the statements or removing it, respectively. Select the statements in the Fortran editor. Then right-click the selection, and choose Comment/Uncomment from the context menu.
 <center>
@@ -136,7 +136,9 @@ Bookmarks can then be viewed in the Bookmarks view (Window &gt; Show View &gt; O
 </p><h2> Go to line (Ctrl+L)  
 </h2><p>The &quot;Go To Line...&quot; feature allows you to jump to a specific line number in a file when it is open in a Fortran editor. In the menu bar, go to Navigate &gt; Go To Line... (or press the hotkey, Ctrl+L on Windows/Linux or Command+L on Mac) to open the Go To Line dialog box. Typing in the line you wish to navigate to, and clickg OK. The cursor will be moved to the beginning of the specified line.
 </p><h2> Configuring The Editor  
-</h2><h3> Selecting horizontal ruler vs. folding  
+</h2><p><center>
+<img src="../images/TheEditor.png"></center>
+</p><h3> Selecting horizontal ruler vs. folding  
 </h3><p>Fortran editors can either display the horizontal ruler, or they can have code folding enabled, but not both. To determine which will be enabled, go to Window &gt; Preferences in the menu bar. Expand Fortran and select Editor. Check the appropriate box(es) to enable folding in the free-form and/or fixed-form Fortran editor.
 </p><h3> Setting colors for syntax highlighting  
 </h3><p>The colors for Fortran syntax highlighting can be modified in the Fortran editor preferences. To modify the color settings, go to Window &gt; Preferences in the menu bar. Expand Fortran and select Editor. The color choosers for Comments, Identifiers, Intrinsics, Keywords, and Strings are available on this page.
@@ -153,9 +155,17 @@ Note that this will only apply to
 </blockquote><h3> Show whitespace  
 </h3><p>Whitespace characters can be displayed by going to Window &gt; Preferences. Under General &gt; Editors &gt; Text Editors, check the box next to &quot;Show whitespace characters&quot; and click Apply. Spaces, tabs, and newlines will now be shown as light gray double-angle quotes (&raquo;), dots (&middot;), and paragraph symbols (&para;), respectively.
 </p><h3> Set Font  
-</h3><p>Photran uses the same font as the basic Eclipse text editor. To change it, click on Window &gt; Preferences in the menu bar. Under General, expand Appearance, and select Colors and Fonts. In the list on the right, select Text Font. Click the &quot;Change...&quot; button to change the font.
+</h3><p>Photran uses the same font as the basic Eclipse text editor. To change it, click on Window &gt; Preferences in the menu bar. Under General, expand Appearance, and select Colors and Fonts. Search for the font you want.
+<center>
+<img src="../images/fonts.png"></center>
 </p><h3> Show line numbers  
 </h3><p>Line numbers can be displayed in the editor in the Text Editor preferences page. Go to Window &gt; Preferences. Under General &gt; Editors &gt; Text Editors, check the box &quot;Show line numbers&quot; and click Apply.
+<center>
+<img src="../images/Text_Editors.png"></center>
+</p><h3> Code Templates 
+</h3><p>Code templates are used to make coding faster and easier.  After typing the first letter of whatever you are typing, press Ctrl+Space and a list of choices will appear.  Go to Windows &gt; Preferences &gt; Fortran &gt; Templates to manage which templates you want available.
+<center>
+<img src="../images/Code_Templates.png"></center>
 </p></div>
 </body>
 </html>

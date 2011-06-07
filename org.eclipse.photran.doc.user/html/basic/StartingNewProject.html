@@ -37,7 +37,7 @@
 </li><li>Type the standard &quot;Hello, World&quot; program shown below, and click File &gt; Save.
 </li><li>Open the Console view, and make sure &quot;make&quot; ran OK and compiled your program
 </li><li>In the Fortran Projects view, expand the Binaries entry, and click on your executable (e.g., &quot;HelloFortran.exe - 
-<a href="x86le">x86le</a>&quot;)
+x86le&quot;)
 </li><li>Run | Run As | Run Local Fortran Application
 </li><li>Choose GDB Debugger (Cygwin GDB Debugger if you're under Windows)
 </li><li>Check the Console view, and make sure &quot;Hello World&quot; appeared.
@@ -47,8 +47,8 @@
 print *, &quot;Hello World&quot;
 end program</pre>
 </p><h1> Starting a Project with a Hand-Written Makefile  
-</h1><p>The following is a typical procedure for starting a new project using a hand-written Makefile.  The following example uses the GNU Fortran (gfortran) compiler, but any Fortran compiler can be used instead.  We will assume that you are familiar with how to write a Makefile.  If not, there are plenty of resources on the Web, including a tutorial from an introductory Computer Science course at UIUC 
-<a href="http://www-courses.cs.uiuc.edu/%7Ecs225/cs225/_resources/_tutorials/makeTut.pdf">http://www-courses.cs.uiuc.edu/%7Ecs225/cs225/_resources/_tutorials/makeTut.pdf</a> and another from the University of Hawaii 
+</h1><p>The following is a typical procedure for starting a new project using a hand-written Makefile.  The following example uses the GNU Fortran (gfortran) compiler, but any Fortran compiler can be used instead.  We will assume that you are familiar with how to write a Makefile.  If not, there are plenty of resources on the Web, including a tutorial from 
+the University of Hawaii 
 <a href="http://www.eng.hawaii.edu/Tutor/Make/">http://www.eng.hawaii.edu/Tutor/Make/</a>... and, of course, you can always read the entire manual for GNU Make 
 <a href="http://www.gnu.org/software/make/manual/make.html">http://www.gnu.org/software/make/manual/make.html</a>.
 </p><ol><li>Click File &gt; New &gt; Fortran Project
@@ -74,7 +74,7 @@ end program</pre>
 </li><li>Click Project &gt; Clean, then click OK
 </li><li>Open the Console view, and make sure &quot;make&quot; ran OK and compiled your program
 </li><li>In the Fortran Projects view, expand the Binaries entry, and click on your executable (e.g., &quot;hello.exe - 
-<a href="x86le">x86le</a>&quot;)
+x86le&quot;)
 </li><li>Click Run &gt; Run As &gt; Local Fortran Application
 </li><li>Choose GDB Debugger (Cygwin GDB Debugger if you're under Windows)
 </li><li>Check the Console view, and make sure &quot;Hello World&quot; appeared.
@@ -88,9 +88,10 @@ end program</pre>
 </i> 
 <b>(You MUST replace the spaces beginning the gfortran and rm lines with a tab character!)
 </b><pre>all:
-gfortran -o hello.exe -g hello.f90
+&nbsp;&nbsp;&nbsp;&nbsp;gfortran -o hello.exe -g hello.f90
+
 clean:
-rm -f hello.exe
+&nbsp;&nbsp;&nbsp;&nbsp;rm -f hello.exe
 </pre>
 </p><h1> Converting C/C++ Projects to Fortran Projects  
 </h1><p>Every Fortran project is also a C project, so CDT's functionality will work as expected on Fortran projects.&nbsp; However, a C/C++ is 
