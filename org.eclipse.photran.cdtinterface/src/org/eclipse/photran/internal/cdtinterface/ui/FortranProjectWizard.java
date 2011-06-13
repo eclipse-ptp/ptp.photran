@@ -42,7 +42,12 @@ public class FortranProjectWizard extends CDTCommonProjectWizard
 {
     public FortranProjectWizard()
     {
-        super(Messages.FortranProjectWizard_Title, Messages.FortranProjectWizard_Description);
+        this(Messages.FortranProjectWizard_Title, Messages.FortranProjectWizard_Description);
+    }
+
+    public FortranProjectWizard(String title, String desc)
+    {
+        super(title, desc);
     }
 
     @Override
@@ -83,8 +88,9 @@ public class FortranProjectWizard extends CDTCommonProjectWizard
 
     /**
      * This method is called within the performFinish() method of the {@link CDTCommonProjectWizard}
-     * class.  Among other things, it sets the Photran nature first in the project's nature list.
-     * This ensures that the project will be displayed as a Fortran project in the Photran navigator.
+     * class. Among other things, it sets the Photran nature first in the project's nature list.
+     * This ensures that the project will be displayed as a Fortran project in the Photran
+     * navigator.
      */
     @Override
     protected boolean setCreated() throws CoreException
@@ -106,7 +112,8 @@ public class FortranProjectWizard extends CDTCommonProjectWizard
     private void setFortranNatureFirst()
     {
         // Access the .project file in the recently-created project
-        final IFile projFile = (IFile)newProject.findMember(IProjectDescription.DESCRIPTION_FILE_NAME);
+        final IFile projFile = (IFile)newProject
+            .findMember(IProjectDescription.DESCRIPTION_FILE_NAME);
         if (projFile.exists() && projFile.getLocation() != null) // JO: Prevent NPE on remote
                                                                  // projects
         {
@@ -118,7 +125,9 @@ public class FortranProjectWizard extends CDTCommonProjectWizard
                 ArrayList lineList = new ArrayList();
                 String line;
                 while ((line = raFile.readLine()) != null)
+                {
                     lineList.add(line);
+                }
                 raFile.close();
 
                 // Find the natures in the list
@@ -128,9 +137,13 @@ public class FortranProjectWizard extends CDTCommonProjectWizard
                 {
                     line = (String)itr.next();
                     if (line.trim().equals("<natures>")) //$NON-NLS-1$
+                    {
                         first_index = lineList.indexOf(line) + 1;
+                    }
                     else if (line.contains("photran")) //$NON-NLS-1$
+                    {
                         phot_index = lineList.indexOf(line);
+                    }
                 }
 
                 // Swap the photran nature with the first nature
