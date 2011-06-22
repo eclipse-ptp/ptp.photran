@@ -1,25 +1,27 @@
 % Getting the Photran Sources from CVS
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id: app-cvs.ltx-inc,v 1.15 2010/05/25 19:40:03 joverbey Exp $ $}
+{\scriptsize Revision: \footnotesize \$Id: app-cvs.ltx-inc,v 1.16 2010/06/24 13:21:41 joverbey Exp $ $}
+
+As of June, 2011, the current stable release of Photran is 7.0.
+This appendix describes how to check out the current development code,
+which will become the \textit{next} release in June, 2012.
+
+\textbf{IMPORTANT:} These instructions will change in the near future as
+the June, 2012 release will be based on Eclipse 4.2, and both CDT and PTP
+are moving from CVS to Git.
 
 \textbf{Before you begin\dots}
 
 \vspace{-1em}
 
 \begin{enumerate}
-\item You will need to be running \textbf{Eclipse 3.6 (Helios)} on a Java 5 or later JVM.
-      You should install \textit{Eclipse Classic 3.6} (also called the \textit{Eclipse SDK),}
+\item You will need to be running \textbf{Eclipse 3.7 (Indigo)} on a Java 5 or later JVM.
+      You should install \textit{Eclipse Classic 3.7} (also called the \textit{Eclipse SDK),}
       which includes the Eclipse Platform,
       Java development tools, and Plug-in Development Environment.  (Since Photran is a
       set of Eclipse plug-ins, you need a version of Eclipse that includes the Plug-in
       Development Environment.)
-      %\begin{itemize}
-      %\item As of May, 2010, Eclipse 3.6 \textit{has not yet been released.}  You can download a
-      %release candidate of the Eclipse SDK from
-      %\url{http://download.eclipse.org/eclipse/downloads/drops/S-3.6RC2-201005201744/}.
-      %The file you download should be named \textit{eclipse-SDK-3.6RC2-win32.zip} or something similar.
-      %\end{itemize}
 \item \textit{(Optional)} We also recommend that you install the following Eclipse plug-ins:
       \begin{enumerate}
       \item \href{http://subclipse.tigris.org/}{\textbf{Subclipse}} --
@@ -38,7 +40,7 @@
 \end{enumerate}
 
 \newcounter{running_counter}
-\textbf{Part~I.  Check out the CDT 7.0 sources from CVS}
+\textbf{Part~I.  Check out the CDT sources from CVS HEAD}
 
 \begin{enumerate}
 	\item  In Eclipse, switch to the CVS Repository Exploring perspective.

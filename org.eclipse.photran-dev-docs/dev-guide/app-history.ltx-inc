@@ -1,7 +1,7 @@
 % Photran Release History
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id: app-history.ltx-inc,v 1.6 2010/04/28 18:12:52 joverbey Exp $ $}
+{\scriptsize Revision: \footnotesize \$Id: app-history.ltx-inc,v 1.7 2010/05/25 19:40:03 joverbey Exp $ $}
 
 {\footnotesize
 \begin{tabular}{clccl}
@@ -22,8 +22,9 @@ Photran & Date & Platform & CDT & Notes \\
       & Mar 2009 & 3.4     & 5.0.1 & First automated integration build under PTP \\
       & Sep 2009 & 3.5     & 6.0.0 & \\
 5.0.0 & Dec 2009 & 3.5     & 6.0.1 & First official release at eclipse.org \\
-6.0.0 & Jun 2010 & 3.6     & 7.0.0 & Part of the Helios release train \\
-7.0.0 & Jun 2011 &         &       & (Tentative) \\
+6.0.0 & Jun 2010 & 3.6     & 7.0.0 & First release as part of the train (Helios) \\
+7.0.0 & Jun 2011 & 3.7     & 8.0.0 & Indigo release train \\
+8.0.0 & Jun 2012 & 4.2     &   ?   & (Tentative) \\
 %Vers & Mon Year & Platfrm & CDT   & \\
 \end{tabular}
 }
