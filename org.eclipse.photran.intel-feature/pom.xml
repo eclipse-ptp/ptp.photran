@@ -10,7 +10,7 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
+  <groupId>org.eclipse.ptp.features</groupId>
   <artifactId>org.eclipse.photran.intel</artifactId>
-  <version>7.0.0-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
 </project>
