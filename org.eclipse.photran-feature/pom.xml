@@ -13,5 +13,5 @@
   <groupId>org.eclipse.ptp.features</groupId>
   <artifactId>org.eclipse.photran</artifactId>
   <packaging>eclipse-feature</packaging>
-  <version>7.0.0-SNAPSHOT</version>
+  <version>7.1.0-SNAPSHOT</version>
 </project>
