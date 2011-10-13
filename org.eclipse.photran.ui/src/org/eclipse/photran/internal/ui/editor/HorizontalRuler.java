@@ -228,7 +228,10 @@ public final class HorizontalRuler extends Composite implements PaintListener, C
 
     public void propertyChange(PropertyChangeEvent event)
     {
-        redraw();
+        if (!isDisposed() && getDisplay().getThread() == Thread.currentThread())
+        {
+            redraw();
+        }
     }
     
     @Override
