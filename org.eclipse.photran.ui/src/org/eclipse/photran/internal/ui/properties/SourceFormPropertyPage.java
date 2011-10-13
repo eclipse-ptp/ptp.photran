@@ -33,6 +33,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 
@@ -50,7 +51,14 @@ public class SourceFormPropertyPage extends FortranPropertyPage
     @Override
     protected Control createContents(Composite parent)
     {
-        IProject proj = (IProject)getElement();
+        IProject proj = getProjectFromElement();
+        if (proj == null)
+        {
+            Label lbl = new Label(parent, SWT.NONE);
+            lbl.setText(UIMessages.SourceFormPropertyPage_SettingsNotAvailable);
+            return lbl;
+        }
+
         properties = new SourceFormProperties(proj);
         IPreferenceStore scopedStore = properties.getPropertyStore();
         scopedStore.addPropertyChangeListener(new IPropertyChangeListener()
@@ -132,7 +140,7 @@ public class SourceFormPropertyPage extends FortranPropertyPage
     {
         try
         {
-            IProject proj = (IProject)getElement();
+            IProject proj = getProjectFromElement();
             proj.accept(new IResourceVisitor()
             {
                 public boolean visit(IResource resource) throws CoreException

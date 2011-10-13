@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.photran.internal.ui.properties;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.dialogs.PropertyPage;
 
@@ -61,4 +63,25 @@ public abstract class FortranPropertyPage extends PropertyPage
     }
     
     protected abstract boolean doPerformOk();
+
+    // Utility Method
+
+    protected IProject getProjectFromElement()
+    {
+        Object element = getElement();
+        IProject proj = null;
+
+        if (element instanceof IProject)
+        {
+            proj = (IProject)getElement();
+        }
+        else
+        {
+            if (element instanceof IAdaptable)
+            {
+                proj = (IProject)((IAdaptable)element).getAdapter(IProject.class);
+            }
+        }
+        return proj;
+    }
 }

@@ -50,7 +50,14 @@ public class SearchPathsPropertyPage extends FortranPropertyPage
      */
     @Override protected Control createContents(Composite parent)
     {
-        IProject proj = (IProject)getElement();
+        IProject proj = getProjectFromElement();
+        if (proj == null)
+        {
+            Label lbl = new Label(parent, SWT.NONE);
+            lbl.setText(Messages.SearchPathsPropertyPage_SettingsNotAvailable);
+            return lbl;
+        }
+
         properties = new SearchPathProperties(proj);
         IPreferenceStore scopedStore = properties.getPropertyStore();
         scopedStore.addPropertyChangeListener(new IPropertyChangeListener()
@@ -128,7 +135,7 @@ public class SearchPathsPropertyPage extends FortranPropertyPage
         l.setText(Messages.SearchPathsPropertyPage_PathsDescription);
         l.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
-        modulePathEditor = new WorkspacePathEditor((IProject)getElement(),
+        modulePathEditor = new WorkspacePathEditor(getProjectFromElement(),
                                              SearchPathProperties.MODULE_PATHS_PROPERTY_NAME,
                                              Messages.SearchPathsPropertyPage_FoldersToBeSearchedForModules,
                                              Messages.SearchPathsPropertyPage_SelectAFolderToBeSearchedForModules,
@@ -136,7 +143,7 @@ public class SearchPathsPropertyPage extends FortranPropertyPage
         modulePathEditor.setPreferenceStore(scopedStore);
         modulePathEditor.load();
 
-        includePathEditor = new WorkspacePathEditor((IProject)getElement(),
+        includePathEditor = new WorkspacePathEditor(getProjectFromElement(),
                                                     SearchPathProperties.INCLUDE_PATHS_PROPERTY_NAME,
                                              Messages.SearchPathsPropertyPage_FoldersToBeSearchedForIncludes,
                                              Messages.SearchPathsPropertyPage_SelectAFolderToBeSearchedForIncludes,

@@ -10,28 +10,64 @@
  *******************************************************************************/
 package org.eclipse.photran.internal.ui.views.vpgproblems;
 
-import org.eclipse.cdt.internal.ui.CPluginImages;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.photran.internal.ui.views.vpgproblems.VPGProblemView.VPGViewColumn;
+import org.eclipse.photran.internal.ui.vpg.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * Label provider for the VPG Problems view.
  * <p>
- * Based on samples provided in Java Developer’s Guide to Eclipse,
- * Chapter 18 (http://www.jdg2e.com/ch18.views/doc/index.htm);
- * © Copyright International Business Machines Corporation, 2003, 2004, 2006.
- * All Rights Reserved.
- * Code or samples provided therein are provided without warranty of any kind.
- *
+ * Based on samples provided in Java Developer’s Guide to Eclipse, Chapter 18
+ * (http://www.jdg2e.com/ch18.views/doc/index.htm); © Copyright International Business Machines
+ * Corporation, 2003, 2004, 2006. All Rights Reserved. Code or samples provided therein are provided
+ * without warranty of any kind.
+ * 
  * @author Timofey Yuvashev
  */
 @SuppressWarnings("restriction")
 public class VPGProblemLabelProvider implements ITableLabelProvider
 {
+    private static final String NAME_PREFIX = "icons/full/obj16/";
+
+    private static final String IMG_OBJS_REFACTORING_FATAL = NAME_PREFIX + "fatalerror_obj.gif"; //$NON-NLS-1$
+
+    private static final String IMG_OBJS_REFACTORING_ERROR = NAME_PREFIX + "error_obj.gif"; //$NON-NLS-1$
+
+    private static final String IMG_OBJS_REFACTORING_WARNING = NAME_PREFIX + "warning_obj.gif"; //$NON-NLS-1$
+
+    private static final String IMG_OBJS_REFACTORING_INFO = NAME_PREFIX + "info_obj.gif"; //$NON-NLS-1$
+
+    private static final Map<String, Image> images = new HashMap<String, Image>();
+
+    private static Image getImage(String key)
+    {
+        if (!images.containsKey(key))
+        {
+            IPath projectRelativePath = new Path(key);
+            URL url = FileLocator.find(Activator.getDefault().getBundle(), projectRelativePath,
+                null);
+            if (url == null)
+            {
+                Exception e = new Exception("Missing image: " + key); //$NON-NLS-1$
+                Activator.log(e.getMessage(), e);
+            }
+            images.put(key, ImageDescriptor.createFromURL(url).createImage());
+        }
+        return images.get(key);
+    }
+
     public Image getColumnImage(Object obj, int colIndex)
     {
         // Only put images in the first column
@@ -40,11 +76,11 @@ public class VPGProblemLabelProvider implements ITableLabelProvider
         switch (MarkerUtilities.getSeverity((IMarker)obj))
         {
             case IMarker.SEVERITY_INFO:
-                return CPluginImages.get(CPluginImages.IMG_OBJS_REFACTORING_INFO);
+                return getImage(IMG_OBJS_REFACTORING_INFO);
             case IMarker.SEVERITY_WARNING:
-                return CPluginImages.get(CPluginImages.IMG_OBJS_REFACTORING_WARNING);
+                return getImage(IMG_OBJS_REFACTORING_WARNING);
             case IMarker.SEVERITY_ERROR:
-                return CPluginImages.get(CPluginImages.IMG_OBJS_REFACTORING_ERROR);
+                return getImage(IMG_OBJS_REFACTORING_ERROR);
             default:
                 return null;
         }
@@ -52,31 +88,46 @@ public class VPGProblemLabelProvider implements ITableLabelProvider
 
     public String getColumnText(Object item, int index)
     {
-        if(item instanceof IMarker)
+        if (item instanceof IMarker)
         {
             IMarker marker = (IMarker)item;
             switch (VPGViewColumn.values()[index])
             {
-                case DESCRIPTION: return MarkerUtilities.getMessage(marker);
-                case RESOURCE:    return marker.getResource().getName().toString();
-                case PATH:        return marker.getResource().getProjectRelativePath().toString();
-                //case 3: return getLineWithNumber(m);
-                //case 4: return MarkerUtilities.getMarkerType(m);
+                case DESCRIPTION:
+                    return MarkerUtilities.getMessage(marker);
+                case RESOURCE:
+                    return marker.getResource().getName().toString();
+                case PATH:
+                    return marker.getResource().getProjectRelativePath().toString();
+                    // case 3: return getLineWithNumber(m);
+                    // case 4: return MarkerUtilities.getMarkerType(m);
             }
         }
         return null;
     }
 
-//    private static String getLineWithNumber(IMarker marker)
-//    {
-//        int lineNum = MarkerUtilities.getLineNumber(marker);
-//        if(lineNum >= 0)
-//            return Messages.bind(Messages.VPGProblemLabelProvider_LineN, lineNum);
-//        return ""; //$NON-NLS-1$
-//    }
+    // private static String getLineWithNumber(IMarker marker)
+    // {
+    // int lineNum = MarkerUtilities.getLineNumber(marker);
+    // if(lineNum >= 0)
+    // return Messages.bind(Messages.VPGProblemLabelProvider_LineN, lineNum);
+    //        return ""; //$NON-NLS-1$
+    // }
 
-    public boolean isLabelProperty(Object arg0, String arg1) { return false; }
-    public void addListener(ILabelProviderListener arg0) {}
-    public void removeListener(ILabelProviderListener arg0) {}
-    public void dispose() {}
+    public boolean isLabelProperty(Object arg0, String arg1)
+    {
+        return false;
+    }
+
+    public void addListener(ILabelProviderListener arg0)
+    {
+    }
+
+    public void removeListener(ILabelProviderListener arg0)
+    {
+    }
+
+    public void dispose()
+    {
+    }
 }

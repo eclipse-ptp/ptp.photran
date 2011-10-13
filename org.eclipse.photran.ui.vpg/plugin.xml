@@ -296,8 +296,6 @@
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
-            objectClass="org.eclipse.core.resources.IProject"
-            adaptable="true"
             name="%page.name"
             class="org.eclipse.photran.internal.ui.properties.SearchPathsPropertyPage"
             id="org.eclipse.photran.ui.SearchPathsPropertyPage"
@@ -305,12 +303,11 @@
          <filter
                name="projectNature"
                value="org.eclipse.photran.core.fnature">
-         </filter>            
+         </filter>
          <enabledWhen>
-            <or>
-              <instanceof value="org.eclipse.core.resources.IProject"/>
-              <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-            </or>          
+             <adapt
+                   type="org.eclipse.core.resources.IProject">
+             </adapt>
          </enabledWhen>
       </page>
    </extension>

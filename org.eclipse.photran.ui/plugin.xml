@@ -130,7 +130,7 @@
       </editorContribution>
    </extension>
    <!-- Enable CDT breakpoint toggle for Photran's editors and model elements -->
-   <extension point="org.eclipse.debug.ui.toggleBreakpointsTargetFactories">
+   <!--extension point="org.eclipse.debug.ui.toggleBreakpointsTargetFactories">
       <toggleTargetFactory
             id="ToggleFortranBreakpointsTargetFactory"
             class="org.eclipse.cdt.debug.internal.ui.actions.ToggleCBreakpointsTargetFactory">
@@ -140,7 +140,7 @@
             </or>
          </enablement>
       </toggleTargetFactory>
-   </extension>
+   </extension-->
    <!-- Also support PTP parallel breakpoints -->
    <!--extension point="org.eclipse.core.runtime.adapters">
       <factory 
@@ -265,23 +265,14 @@
          <filter
                name="projectNature"
                value="org.eclipse.photran.core.fnature">
-         </filter>            
+         </filter>
          <enabledWhen>
-            <or>
-             <instanceof value="org.eclipse.core.resources.IProject"/>
-             <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-             
-             <instanceof value="org.eclipse.core.resources.IFolder"/>
-             <instanceof value="org.eclipse.cdt.core.model.ICContainer"/>
-
-             <instanceof value="org.eclipse.core.resources.IFile"/>
-              <instanceof value="org.eclipse.cdt.core.model.ITranslationUnit"/>
-            </or>          
+             <adapt
+                   type="org.eclipse.core.resources.IProject">
+             </adapt>
          </enabledWhen>
       </page>
-          <page
-            objectClass="org.eclipse.core.resources.IProject"
-            adaptable="true"
+      <page
             name="%page.name.3"
             class="org.eclipse.photran.internal.ui.properties.SourceFormPropertyPage"
             id="org.eclipse.photran.ui.SourceFormPropertyPage"
@@ -289,12 +280,11 @@
          <filter
                name="projectNature"
                value="org.eclipse.photran.core.fnature">
-         </filter>            
+         </filter>
          <enabledWhen>
-            <or>
-              <instanceof value="org.eclipse.core.resources.IProject"/>
-              <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-            </or>          
+             <adapt
+                   type="org.eclipse.core.resources.IProject">
+             </adapt>
          </enabledWhen>
       </page>
    </extension>

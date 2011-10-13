@@ -14,7 +14,6 @@
  *******************************************************************************/
 package org.eclipse.photran.internal.ui.editor;
 
-import org.eclipse.cdt.internal.ui.editor.IndentUtil;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DocumentRewriteSession;
 import org.eclipse.jface.text.DocumentRewriteSessionType;
@@ -44,7 +43,6 @@ import org.eclipse.swt.widgets.Composite;
  * 
  * @author Jeff Overbey based on CSourceViewer (see attributions in copyright header)
  */
-@SuppressWarnings("restriction")
 public class FortranSourceViewer extends ProjectionViewer
 {
     //private static final int TAB_WIDTH = 4;

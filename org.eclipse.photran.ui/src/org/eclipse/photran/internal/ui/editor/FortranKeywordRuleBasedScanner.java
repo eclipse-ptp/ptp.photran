@@ -33,8 +33,6 @@ import org.eclipse.photran.internal.core.preferences.FortranPreferences;
 import org.eclipse.photran.internal.core.preferences.FortranRGBPreference;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.RGB;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * Scans for Fortran keywords to perform syntax highlighting.

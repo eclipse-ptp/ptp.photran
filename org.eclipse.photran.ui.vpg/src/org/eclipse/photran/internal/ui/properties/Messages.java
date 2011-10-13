@@ -43,6 +43,8 @@ public class Messages extends NLS
 
     public static String SearchPathsPropertyPage_SelectAFolderToBeSearchedForModules;
 
+    public static String SearchPathsPropertyPage_SettingsNotAvailable;
+
     static
     {
         // initialize resource bundle

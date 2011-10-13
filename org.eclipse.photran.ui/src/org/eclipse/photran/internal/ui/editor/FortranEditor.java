@@ -13,8 +13,6 @@ package org.eclipse.photran.internal.ui.editor;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.eclipse.cdt.internal.ui.editor.CDocumentProvider;
-import org.eclipse.cdt.internal.ui.text.TabsToSpacesConverter;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -78,7 +76,7 @@ import org.eclipse.ui.texteditor.WorkbenchChainedTextFontFieldEditor;
  * @author Jeff Overbey
  * @author Kurt Hendle - folding support
  */
-@SuppressWarnings({ "deprecation", "restriction" })
+@SuppressWarnings("deprecation")
 public class FortranEditor extends CDTBasedTextEditor implements ISelectionChangedListener, IPropertyChangeListener
 {
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -192,13 +190,7 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
             int tabWidth= config.getTabWidth(sourceViewer);
             tabToSpacesConverter= new TabsToSpacesConverter();
             tabToSpacesConverter.setNumberOfSpacesPerTab(tabWidth);
-            IDocumentProvider provider= getDocumentProvider();
-            if (provider instanceof CDocumentProvider) {
-                CDocumentProvider cProvider= (CDocumentProvider) provider;
-                tabToSpacesConverter.setLineTracker(cProvider.createLineTracker(getEditorInput()));
-            } else {
-                tabToSpacesConverter.setLineTracker(new DefaultLineTracker());
-            }
+            tabToSpacesConverter.setLineTracker(new DefaultLineTracker());
             tabToSpacesConverter.setNumberOfSpacesPerTab(FortranPreferences.TAB_WIDTH.getValue());
             ((ITextViewerExtension7) sourceViewer).setTabsToSpacesConverter(tabToSpacesConverter);
             //updateIndentationMode();

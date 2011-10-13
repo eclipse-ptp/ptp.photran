@@ -37,6 +37,8 @@ public class UIMessages extends NLS
 
     public static String SourceFormPropertyPage_PropertiesCouldNotBeSaved;
 
+    public static String SourceFormPropertyPage_SettingsNotAvailable;
+
     public static String SourceFormPropertyPage_SourceFormFilenameAssocsLabel;
 
     public static String WorkspacePathEditor_ErrorTitle;
