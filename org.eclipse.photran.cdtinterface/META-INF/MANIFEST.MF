@@ -10,6 +10,7 @@ Bundle-Localization: plugin
 Export-Package: org.eclipse.photran.internal.cdtinterface,
  org.eclipse.photran.internal.cdtinterface.core,
  org.eclipse.photran.internal.cdtinterface.dom,
+ org.eclipse.photran.internal.cdtinterface.errorparsers,
  org.eclipse.photran.internal.cdtinterface.launch,
  org.eclipse.photran.internal.cdtinterface.templates,
  org.eclipse.photran.internal.cdtinterface.ui,

@@ -8,13 +8,11 @@ Bundle-Activator: org.eclipse.photran.internal.core.FortranCorePlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.photran.internal.core,
- org.eclipse.photran.internal.core.errorparsers,
  org.eclipse.photran.internal.core.intrinsics,
  org.eclipse.photran.internal.core.preferences,
  org.eclipse.photran.internal.core.properties,
  org.eclipse.photran.internal.core.sourceform
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.cdt.core,
  org.eclipse.core.resources,
  org.eclipse.jface,
  org.eclipse.ui.workbench,

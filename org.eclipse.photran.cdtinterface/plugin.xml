@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+<!-- ==============-->
+<!-- Error Parsers -->
+<!-- ==============-->
+<!-- Error parser IDs are qualified with org.eclipse.photran.core for backward
+     compatibility.  In previous versions of Photran, they were located in the
+     photran.core plug-in, so users' projects have their error parser settings
+     stored with that qualifier.  They were moved into photran.cdtinterface in
+     order to remove photran.core's dependency on CDT; now, all CDT-dependent
+     functionality is located in photran.cdtinterface. -->
+   <extension
+         id="org.eclipse.photran.core.AbsoftErrorParser"
+         name="Photran Error Parser for Absoft Fortran"
+         point="org.eclipse.cdt.core.ErrorParser">
+      <errorparser
+            class="org.eclipse.photran.internal.cdtinterface.errorparsers.AbsoftErrorParser">
+      </errorparser>
+   </extension>
+   <!--extension
+         id="org.eclipse.photran.core.XLFErrorParser"
+         name="%FDTXLFErrorParser.name"
+         point="org.eclipse.cdt.core.ErrorParser">
+      <errorparser
+            class="org.eclipse.photran.internal.errorparsers.XLFErrorParser">
+      </errorparser>
+   </extension-->
+   <extension
+         id="org.eclipse.photran.core.GFortranErrorParser"
+         name="%FDTGFortranErrorParser.name"
+         point="org.eclipse.cdt.core.ErrorParser">
+      <errorparser
+            class="org.eclipse.photran.internal.cdtinterface.errorparsers.GFortranErrorParser">
+      </errorparser>
+   </extension>
+   <extension
+         id="org.eclipse.photran.core.IntelFortranErrorParser"
+         name="Photran Error Parser for Intel Fortran 8.1"
+         point="org.eclipse.cdt.core.ErrorParser">
+      <errorparser
+            class="org.eclipse.photran.internal.cdtinterface.errorparsers.IntelFortranErrorParser">
+      </errorparser>
+   </extension>
+   <extension
+         id="org.eclipse.photran.core.LaheyFortranErrorParser"
+         name="Photran Error Parser for Lahey/Fujitsu Fortran 7.1"
+         point="org.eclipse.cdt.core.ErrorParser">
+      <errorparser
+            class="org.eclipse.photran.internal.cdtinterface.errorparsers.LaheyFortranErrorParser">
+      </errorparser>
+   </extension>
+   <extension
+         id="org.eclipse.photran.core.G95FortranErrorParser"
+         name="Photran Error Parser for G95 Fortran"
+         point="org.eclipse.cdt.core.ErrorParser">
+      <errorparser
+            class="org.eclipse.photran.internal.cdtinterface.errorparsers.G95FortranErrorParser">
+      </errorparser>
+   </extension>
+   <extension
+         id="org.eclipse.photran.core.NAGErrorParser"
+         name="Photran Error Parser for NAG Fortran"
+         point="org.eclipse.cdt.core.ErrorParser">
+      <errorparser
+            class="org.eclipse.photran.internal.cdtinterface.errorparsers.NAGErrorParser">
+      </errorparser>
+   </extension>
+   <extension
+         id="org.eclipse.photran.core.PGIErrorParser"
+         name="Photran Error Parser for PGI Fortran"
+         point="org.eclipse.cdt.core.ErrorParser">
+      <errorparser
+            class="org.eclipse.photran.internal.cdtinterface.errorparsers.PGIErrorParser">
+      </errorparser>
+   </extension>
+
    <!--======================-->
    <!-- CDT Core Integration -->
    <!--======================-->

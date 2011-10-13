@@ -8,7 +8,7 @@
  * Contributors:
  *     WB - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.internal.core.errorparsers;
+package org.eclipse.photran.internal.cdtinterface.errorparsers;
 
 import org.eclipse.cdt.core.ErrorParserManager;
 import org.eclipse.cdt.core.IErrorParser;

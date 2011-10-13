@@ -8,7 +8,7 @@
  * Contributors:
  *     LANL - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.internal.core.errorparsers;
+package org.eclipse.photran.internal.cdtinterface.errorparsers;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

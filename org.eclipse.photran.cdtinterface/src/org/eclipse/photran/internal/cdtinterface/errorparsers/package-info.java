@@ -6,4 +6,4 @@
  * <p>
  * These are all contributed via plugin.xml.
  */
-package org.eclipse.photran.internal.core.errorparsers;
+package org.eclipse.photran.internal.cdtinterface.errorparsers;
