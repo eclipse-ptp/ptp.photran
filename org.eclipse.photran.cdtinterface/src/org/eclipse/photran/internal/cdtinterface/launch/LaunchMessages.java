@@ -24,11 +24,11 @@ public class LaunchMessages {
 	}
 
 	public static String getFormattedString(String key, String arg) {
-		return MessageFormat.format(getString(key), new String[]{arg});
+		return MessageFormat.format(getString(key), arg);
 	}
 
 	public static String getFormattedString(String key, String[] args) {
-		return MessageFormat.format(getString(key), args);
+		return MessageFormat.format(getString(key), (Object[])args);
 	}
 
 	public static String getString(String key) {

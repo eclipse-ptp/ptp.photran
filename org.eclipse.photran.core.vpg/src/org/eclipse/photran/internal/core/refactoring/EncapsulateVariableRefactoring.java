@@ -575,8 +575,8 @@ public class EncapsulateVariableRefactoring extends FortranEditorRefactoring
         String valueName = "value"; //$NON-NLS-1$
         String setterFunction = "subroutine " + getSetterName() + "(" + valueName + ")" + EOL + //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                                 defaultIndentation() + "implicit none" + EOL + //$NON-NLS-1$
-                                defaultIndentation() + type + ", intent(in) :: " + valueName + EOL + //$NON-NLS-1$ //$NON-NLS-2$
-                                defaultIndentation() + def.getTokenRef().getText() +" = " + valueName + EOL + //$NON-NLS-1$ //$NON-NLS-2$
+                                defaultIndentation() + type + ", intent(in) :: " + valueName + EOL + //$NON-NLS-1$
+                                defaultIndentation() + def.getTokenRef().getText() +" = " + valueName + EOL + //$NON-NLS-1$
                                 "end subroutine" + EOL; //$NON-NLS-1$
         ASTSubroutineSubprogramNode newSubNode = (ASTSubroutineSubprogramNode)parseLiteralProgramUnit(setterFunction);
         return newSubNode;

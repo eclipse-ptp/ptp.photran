@@ -14,8 +14,6 @@ import java.lang.reflect.Field;
 
 import org.eclipse.photran.internal.core.FortranCorePlugin;
 import org.eclipse.swt.graphics.RGB;
-import org.eclipse.ui.internal.editors.text.EditorsPlugin;
-import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 
 /**
  * Provides access to all of the workspace-wide preferences for Photran.
@@ -31,7 +29,7 @@ import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
  *
  * TODO: Jeff: Make sure we call <code>FortranPreferences.initializeDefaults(getPluginPreferences());</code>
  */
-@SuppressWarnings({"deprecation", "restriction"})
+@SuppressWarnings("deprecation")
 public final class FortranPreferences
 {
     public static final FortranStringPreference RELEASE_NOTES_SHOWN = new FortranStringPreference("releasenotesversionshown", ""); //$NON-NLS-1$ //$NON-NLS-2$

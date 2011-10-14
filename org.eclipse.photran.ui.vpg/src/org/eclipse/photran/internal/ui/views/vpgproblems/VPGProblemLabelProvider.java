@@ -29,18 +29,19 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 /**
  * Label provider for the VPG Problems view.
  * <p>
- * Based on samples provided in Java Developer’s Guide to Eclipse, Chapter 18
- * (http://www.jdg2e.com/ch18.views/doc/index.htm); © Copyright International Business Machines
+ * Based on samples provided in Java Developer's Guide to Eclipse, Chapter 18
+ * (http://www.jdg2e.com/ch18.views/doc/index.htm); (C) Copyright International Business Machines
  * Corporation, 2003, 2004, 2006. All Rights Reserved. Code or samples provided therein are provided
  * without warranty of any kind.
  * 
  * @author Timofey Yuvashev
+ * @author Jeff Overbey - removed references to <code>CSharedImages</code>
  */
-@SuppressWarnings("restriction")
 public class VPGProblemLabelProvider implements ITableLabelProvider
 {
-    private static final String NAME_PREFIX = "icons/full/obj16/";
+    private static final String NAME_PREFIX = "icons/full/obj16/"; //$NON-NLS-1$
 
+    @SuppressWarnings("unused")
     private static final String IMG_OBJS_REFACTORING_FATAL = NAME_PREFIX + "fatalerror_obj.gif"; //$NON-NLS-1$
 
     private static final String IMG_OBJS_REFACTORING_ERROR = NAME_PREFIX + "error_obj.gif"; //$NON-NLS-1$

@@ -301,6 +301,7 @@ public class PhotranVPGWriter extends EclipseVPGWriter<IFortranAST, Token, Photr
         }
     }
 
+    @SuppressWarnings("unused")
     private void computeDependenciesUsingLexer(final String filename)
     {
         ISourceForm sourceForm = determineSourceForm(filename);
