@@ -4,13 +4,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.eclipse.cdt.core.tests.BaseTestFramework;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.photran.internal.tests.Activator;
+import org.eclipse.photran.internal.tests.BaseTestFramework;
 import org.eclipse.photran.internal.ui.search.FortranSearchQuery;
 import org.eclipse.rephraserengine.ui.search.SearchMatch;
 import org.eclipse.rephraserengine.ui.search.SearchPage;
