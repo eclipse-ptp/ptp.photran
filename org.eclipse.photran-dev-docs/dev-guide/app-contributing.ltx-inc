@@ -1,7 +1,7 @@
 % Contributing a New Feature or Bug Fix
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id: app-contributing.ltx-inc,v 1.2 2010/04/28 18:12:52 joverbey Exp $ $}
+{\scriptsize Revision: \footnotesize \$Id: app-contributing.ltx-inc,v 1.3 2010/04/28 21:05:45 joverbey Exp $ $}
 
 %\begin{list}{$\bigcirc$}{}
 \begin{enumerate}
@@ -17,7 +17,7 @@
       If you copied code from books, mailing lists, Web sites, any other open
       source projects, other projects at your company, etc., \textbf{stop}
       and ask for further instructions.  (If you do not know a Photran
-      committer personally, ask on the photran-dev mailing list.)  It may
+      committer personally, ask on the ptp-dev mailing list.)  It may
       or may not be possible to contribute your code.
 
 \item Determine who owns the copyright to your code.  Generally,

@@ -1,7 +1,7 @@
 % Checklist for New Developers
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id: cha-checklist.ltx-inc,v 1.1 2010/05/21 20:12:20 joverbey Exp $ $}
+{\scriptsize Revision: \footnotesize \$Id: cha-checklist.ltx-inc,v 1.2 2011/06/22 19:29:48 joverbey Exp $ $}
 
 \begin{list}{$\bigcirc$}{}
 
@@ -14,9 +14,8 @@ See Appendices~\ref{app:cvs} and~\ref{app:testsuite}.
 \item \textbf{Join the \href{https://dev.eclipse.org/mailman/listinfo/ptp-dev}{ptp-dev mailing list}.}
 Photran is a component of the Parallel Tools Platform (PTP); this is where discussions about PTP
 development (including Photran) take place.  Questions from developers (like you), release planning,
-discussions about API changes, etc.~all take place here.
-
-\item \textbf{Join the \href{https://dev.eclipse.org/mailman/listinfo/photran-dev}{photran-dev mailing list}.}
+discussions about API changes, etc.~all take place here.  If you have questions that are not answered
+by the Photran Developer's Guide, you may ask them on the ptp-dev list.
 
 \item \textbf{Join the \href{https://dev.eclipse.org/mailman/listinfo/photran}{photran users' mailing list}.}
 It is good to keep track of what Photran's users are discussing, and as a Photran developer you will probably be able to answer many of their questions as well.

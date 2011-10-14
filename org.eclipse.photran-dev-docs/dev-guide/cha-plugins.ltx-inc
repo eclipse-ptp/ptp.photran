@@ -1,7 +1,7 @@
 % Plug-in Decomposition
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id$ $ - based on 2008/08/08 nchen}
+{\scriptsize Revision: \footnotesize \$Id: cha-plugins.ltx-inc,v 1.1 2010/05/21 20:12:20 joverbey Exp $ $ - based on 2008/08/08 nchen}
 
 \section{Introduction}
 
@@ -30,7 +30,7 @@ dependencies in this diagram.}  If you are implementing a feature but need to
 introduce a dependency that is not present, you are probably implementing the
 feature in the wrong component.  It may be necessary to add an extension point
 to add your feature in the ``correct'' way.  This should be discussed on the
-photran-dev mailing list.
+ptp-dev mailing list.
 
 The following sections are grouped by feature. A feature is a collection of
 related Eclipse plug-ins that the user can install as a whole.

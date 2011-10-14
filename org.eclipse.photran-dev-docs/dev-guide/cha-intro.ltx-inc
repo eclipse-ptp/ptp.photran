@@ -1,7 +1,7 @@
 % Introduction
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id$ $ - based on 2008/08/08 nchen}
+{\scriptsize Revision: \footnotesize \$Id: cha-intro.ltx-inc,v 1.1 2010/05/21 20:12:20 joverbey Exp $ $ - based on 2008/08/08 nchen}
 
 Photran is an IDE for Fortran 77--2008 that is built on top of
 Eclipse. It is structured as an Eclipse feature, in other words, as a set of
@@ -49,7 +49,7 @@ you want to work on.
 
 If you have not already, work through the items on the ``Checklist for New
 Developers'' at the beginning of this manual.
-In particular, \textit{please} join the photran-dev mailing list, and use it to
+In particular, \textit{please} join the ptp-dev mailing list, and use it to
 ask for help!  Although Photran is better documented than many projects,
 you will probably encounter problems that you cannot resolve simply by reading
 the documentation or reverse engineering the code.

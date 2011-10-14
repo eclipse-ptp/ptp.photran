@@ -1,7 +1,7 @@
 % Release and Deployment Procedure
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id$ $}
+{\scriptsize Revision: \footnotesize \$Id: app-deploy.ltx-inc,v 1.6 2010/04/28 18:12:52 joverbey Exp $ $}
 
 \textit{Most contributors/committers do not need to read this.  This explains
 our entire release and deployment procedure: setting the Photran version
@@ -91,7 +91,7 @@ For example, in Photran 4.0 beta 5, the database filename was ``photran40b5vpg''
     \item Update the Report a Bug URL in the nav bar to default to the new release version
     \end{enumerate}
 
-\item Announce the release, e-mailing the photran, photran-dev, and ptp-announce mailing lists
+\item Announce the release, e-mailing the photran, ptp-dev, and ptp-announce mailing lists
 
 \item Copy the Documentation pages on the wiki and update the version numbers for the next expected release
 
