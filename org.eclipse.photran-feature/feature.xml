@@ -3,8 +3,8 @@
       id="org.eclipse.photran"
       label="%featureName"
       version="7.1.0.qualifier"
-      plugin="org.eclipse.photran.core"
       provider-name="%providerName"
+      plugin="org.eclipse.photran.core"
       license-feature="org.eclipse.ptp.license"
       license-feature-version="1.0.0.qualifier">
 
@@ -62,7 +62,7 @@
       <import plugin="org.eclipse.rephraserengine.ui.refactoring"/>
       <import plugin="org.eclipse.rephraserengine.ui"/>
       <import plugin="org.eclipse.rephraserengine.ui.vpg"/>
-      <import feature="org.eclipse.cdt" version="8.0" match="equivalent"/>
+      <import feature="org.eclipse.cdt" version="8.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.text"/>
    </requires>
 
