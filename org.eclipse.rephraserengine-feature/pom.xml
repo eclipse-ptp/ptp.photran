@@ -11,6 +11,6 @@
   </parent>
 
   <artifactId>org.eclipse.rephraserengine</artifactId>
-  <version>7.1.0-SNAPSHOT</version>
+  <version>8.0.0-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
 </project>
