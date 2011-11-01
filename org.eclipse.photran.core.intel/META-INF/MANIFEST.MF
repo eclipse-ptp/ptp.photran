@@ -2,16 +2,16 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.photran.core.intel; singleton:=true
-Bundle-Version: 7.0.0.qualifier
+Bundle-Version: 8.0.0.qualifier
 Bundle-ClassPath: photranIntel.jar
-Bundle-Activator: org.eclipse.photran.core.intel.IntelPlugin
+Bundle-Activator: org.eclipse.photran.internal.core.intel.IntelPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.photran.core.intel,
- org.eclipse.photran.intel.internal.errorparsers
+Export-Package: org.eclipse.photran.internal.core.intel;x-internal:=true,
+ org.eclipse.photran.intel.internal.errorparsers;x-internal:=true
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.cdt.core
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

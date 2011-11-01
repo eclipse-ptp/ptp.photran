@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.photran.intel"
       label="%featureName"
-      version="7.1.0.qualifier"
+      version="8.0.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.photran.core.intel"
       os="linux"
@@ -33,7 +33,7 @@
       <import plugin="org.eclipse.photran.core"/>
       <import plugin="org.eclipse.photran.managedbuilder.core"/>
       <import plugin="org.eclipse.core.resources"/>
-      <import feature="org.eclipse.photran" version="7.0.0" match="compatible"/>
+      <import feature="org.eclipse.photran" version="8.0.0" match="compatible"/>
    </requires>
 
    <plugin

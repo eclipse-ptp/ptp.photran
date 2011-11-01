@@ -47,6 +47,7 @@ import org.eclipse.photran.internal.cdtinterface.core.FortranLanguage;
  *  @author Timofey Yuvashev 2009
  *  @author Jeff Overbey -- files were not being closed (Bug 334796)
  */
+@SuppressWarnings({ "deprecation", "rawtypes", "unchecked", "unused" })
 public class DefaultFortranDependencyCalculator implements IManagedDependencyGenerator,
 														   IManagedOutputNameProvider
 {

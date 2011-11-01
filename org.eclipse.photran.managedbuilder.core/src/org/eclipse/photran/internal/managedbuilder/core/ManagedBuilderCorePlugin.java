@@ -1,4 +1,4 @@
-package org.eclipse.photran.managedbuilder.core;
+package org.eclipse.photran.internal.managedbuilder.core;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
@@ -21,6 +21,7 @@ public class ManagedBuilderCorePlugin extends Plugin {
 	/**
 	 * This method is called upon plug-in activation
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 	}
@@ -28,6 +29,7 @@ public class ManagedBuilderCorePlugin extends Plugin {
 	/**
 	 * This method is called when the plug-in is stopped
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		super.stop(context);
 		plugin = null;

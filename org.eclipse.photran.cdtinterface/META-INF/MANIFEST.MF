@@ -2,19 +2,19 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.photran.cdtinterface; singleton:=true
-Bundle-Version: 7.0.0.qualifier
+Bundle-Version: 8.0.0.qualifier
 Bundle-ClassPath: cdtinterface.jar
 Bundle-Activator: org.eclipse.photran.internal.cdtinterface.CDTInterfacePlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.photran.internal.cdtinterface,
- org.eclipse.photran.internal.cdtinterface.core,
- org.eclipse.photran.internal.cdtinterface.dom,
- org.eclipse.photran.internal.cdtinterface.errorparsers,
- org.eclipse.photran.internal.cdtinterface.launch,
- org.eclipse.photran.internal.cdtinterface.templates,
- org.eclipse.photran.internal.cdtinterface.ui,
- org.eclipse.photran.internal.cdtinterface.ui.editor,
+Export-Package: org.eclipse.photran.internal.cdtinterface;x-internal:=true,
+ org.eclipse.photran.internal.cdtinterface.core;x-friends:="org.eclipse.photran.ui,org.eclipse.photran.managedbuilder.core",
+ org.eclipse.photran.internal.cdtinterface.dom;x-internal:=true,
+ org.eclipse.photran.internal.cdtinterface.errorparsers;x-internal:=true,
+ org.eclipse.photran.internal.cdtinterface.launch;x-internal:=true,
+ org.eclipse.photran.internal.cdtinterface.templates;x-internal:=true,
+ org.eclipse.photran.internal.cdtinterface.ui;x-internal:=true,
+ org.eclipse.photran.internal.cdtinterface.ui.editor;x-friends:="org.eclipse.photran.ui",
  org.eclipse.photran.internal.core.model
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -41,4 +41,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.cdt.managedbuilder.core,
  org.eclipse.ui.navigator.resources
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -8,7 +8,7 @@
  * Contributors:
  * Intel Corporation - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.core.intel;
+package org.eclipse.photran.internal.core.intel;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;

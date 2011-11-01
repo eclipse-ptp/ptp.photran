@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Rephraser Engine Text File Manipulation Example
 Bundle-SymbolicName: org.eclipse.rephraserengine.examples.text;singleton:=true
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 8.0.0.qualifier
 Bundle-Vendor: Eclipse.org - Photran
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -14,5 +14,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.text,
  org.eclipse.ltk.core.refactoring,
  org.eclipse.search
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

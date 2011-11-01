@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.rephraserengine.core.vpg
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 8.0.0.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Export-Package: org.eclipse.rephraserengine.core.analysis.flow,
  org.eclipse.rephraserengine.core.preservation,
@@ -29,4 +29,4 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.rephraserengine.core.refactoring,
  org.eclipse.ui.workbench,
  org.eclipse.core.commands
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

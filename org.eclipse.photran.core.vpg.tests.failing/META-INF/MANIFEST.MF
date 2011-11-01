@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Photran VPG Failing Unit Tests
 Bundle-SymbolicName: org.eclipse.photran.core.vpg.tests.failing;singleton:=true
-Bundle-Version: 7.0.0.qualifier
+Bundle-Version: 8.0.0.qualifier
 Bundle-Vendor: Eclipse.org
 Require-Bundle: org.eclipse.photran.core.vpg.tests,
  org.eclipse.photran.ui.vpg,
@@ -18,6 +18,6 @@ Require-Bundle: org.eclipse.photran.core.vpg.tests,
  org.eclipse.rephraserengine.core,
  org.eclipse.rephraserengine.core.refactoring,
  org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Activator: org.eclipse.photran.internal.tests.failing.Activator
 Bundle-ActivationPolicy: lazy

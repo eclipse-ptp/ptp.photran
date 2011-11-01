@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.photran.cdtinterface" version="2">
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement">
+        <filter id="576720909">
+            <message_arguments>
+                <message_argument value="SourceManipulation"/>
+                <message_argument value="FortranElement"/>
+            </message_arguments>
+        </filter>
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="FortranElement"/>
+                <message_argument value="FortranElement(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$BlockData">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="BlockData"/>
+                <message_argument value="BlockData(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$DerivedType">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="DerivedType"/>
+                <message_argument value="DerivedType(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$ErrorNode">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="ErrorNode"/>
+                <message_argument value="ErrorNode(Parent, String)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$Function">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="Function"/>
+                <message_argument value="Function(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$Interface">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="Interface"/>
+                <message_argument value="Interface(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$MainProgram">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="MainProgram"/>
+                <message_argument value="MainProgram(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$Module">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="Module"/>
+                <message_argument value="Module(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$Submodule">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="Submodule"/>
+                <message_argument value="Submodule(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$Subprogram">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="Subprogram"/>
+                <message_argument value="Subprogram(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$Subroutine">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="Subroutine"/>
+                <message_argument value="Subroutine(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$UnknownNode">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="UnknownNode"/>
+                <message_argument value="UnknownNode(Parent, String)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/model/FortranElement.java" type="org.eclipse.photran.internal.core.model.FortranElement$Variable">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="Parent"/>
+                <message_argument value="Variable"/>
+                <message_argument value="Variable(Parent)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

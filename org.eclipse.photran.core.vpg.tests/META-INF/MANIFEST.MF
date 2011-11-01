@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Photran Virtual Program Graph Tests Plug-in
 Bundle-SymbolicName: org.eclipse.photran.core.vpg.tests
-Bundle-Version: 7.0.0.qualifier
+Bundle-Version: 8.0.0.qualifier
 Bundle-Vendor: Eclipse.org
 Require-Bundle: org.eclipse.photran.core.vpg,
  org.eclipse.photran.ui.vpg,
@@ -22,15 +22,15 @@ Require-Bundle: org.eclipse.photran.core.vpg,
  org.eclipse.photran.core
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.photran.internal.tests.Activator
-Export-Package: org.eclipse.photran.internal.tests,
- org.eclipse.photran.internal.tests.analysis.dependence,
- org.eclipse.photran.internal.tests.analysis.types,
- org.eclipse.photran.internal.tests.parser,
- org.eclipse.photran.internal.tests.patternmatching,
- org.eclipse.photran.internal.tests.refactoring,
- org.eclipse.photran.internal.tests.refactoring.extractprocedure,
- org.eclipse.photran.internal.tests.refactoring.infrastructure,
- org.eclipse.photran.internal.tests.refactoring.rename,
- org.eclipse.photran.internal.tests.search,
- org.eclipse.photran.internal.tests.vpg
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.photran.internal.tests;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.photran.internal.tests.analysis.dependence;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.photran.internal.tests.analysis.types;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.photran.internal.tests.parser;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.photran.internal.tests.patternmatching;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.photran.internal.tests.refactoring;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.photran.internal.tests.refactoring.extractprocedure;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.photran.internal.tests.refactoring.infrastructure;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.photran.internal.tests.refactoring.rename;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.photran.internal.tests.search;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.photran.internal.tests.vpg;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

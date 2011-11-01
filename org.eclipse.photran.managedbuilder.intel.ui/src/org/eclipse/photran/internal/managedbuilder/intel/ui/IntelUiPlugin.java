@@ -8,7 +8,7 @@
  * Contributors:
  * Intel Corporation - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.managedbuilder.intel.ui;
+package org.eclipse.photran.internal.managedbuilder.intel.ui;
 
 import org.eclipse.ui.plugin.*;
 import org.eclipse.jface.resource.ImageDescriptor;
