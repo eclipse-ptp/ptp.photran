@@ -31,7 +31,7 @@ import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers
 public class RemoveRealAndDoublePrecisionLoopCountersTestSuite extends
     PhotranRefactoringTestSuiteFromMarkers<RemoveRealAndDoublePrecisionLoopCountersRefactoring>
 {
-    private static final String DIR = "refactoring-test-code/remove-real-and-double-precision-loop-counters";
+    private static final String DIR = "refactoring-test-code/remove-real-dbl-loop-counters";
 
     public static Test suite() throws Exception
     {
