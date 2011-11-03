@@ -12,7 +12,7 @@ as a guide for contributers on \emph{where} to put their contributions.
 
 \section{The Rephraser Engine}
 
-There are two major components in Photran's CVS repository: Photran itself, and another project called the Rephraser Engine.  For the most part, you will probably be able to ignore the Rephraser Engine, but it is helpful to know what it is.
+There are two major components in Photran's Git repository: Photran itself, and another project called the Rephraser Engine.  For the most part, you will probably be able to ignore the Rephraser Engine, but it is helpful to know what it is.
 (The Rephraser Engine will contribute a Rephraser Engine Plug-in Developer Guide to the runtime
 workbench; this provides more information about these plug-ins.  Its sources are in the
 org.eclipse.rephraserengine.doc.isv project.)
@@ -204,14 +204,14 @@ Hilliard at Intel.
 
 \section{Non-plug-in projects}
 
-The following projects are in CVS but are not distributed to users:
+The following projects are in Git but are not distributed to users:
 
 \begin{itemize}
 
 \item \textbf{org.eclipse.photran-dev-docs}
 
-Developer documentation, including this document (\texttt{dev-guide/*}), CVS
-instructions (\texttt{dev-guide/cvs-instructions.pdf}), the materials from our
+Developer documentation, including this document (\texttt{dev-guide/*}), Git
+instructions (\texttt{dev-guide/git-instructions.pdf}), the materials from our
 presentation at EclipseCon 2006 on adding a new language to the CDT, and a
 spreadsheet mapping features in the Fortran language to JUnit tests
 (\texttt{language-coverage/*}).

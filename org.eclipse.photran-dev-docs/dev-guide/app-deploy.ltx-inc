@@ -1,7 +1,7 @@
 % Release and Deployment Procedure
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id: app-deploy.ltx-inc,v 1.6 2010/04/28 18:12:52 joverbey Exp $ $}
+{\scriptsize Last modified April 28, 2010}
 
 \textit{Most contributors/committers do not need to read this.  This explains
 our entire release and deployment procedure: setting the Photran version
@@ -78,9 +78,9 @@ For example, in Photran 4.0 beta 5, the database filename was ``photran40b5vpg''
 \item Update the timeline in this guide's Release History appendix
 (org.eclipse.photran-dev-docs/dev-guide/app-history.ltx-inc)
 
-\item Create a maintenance branch for the org.eclipse.photran module in CVS.
-      For example, a photran\_5\_0 branch was created after the Photran 5.0.0 release
-      and was subsequently used to build Photran 5.0.1, etc.
+\item The PTP release engineering team will create a maintenance branch in Git.
+      For example, a ptp\_5\_0 branch was created after the Photran 7/PTP 5 release
+      and was subsequently used to build Photran 7.0.1, etc.
 
 \item Add a Bugzilla version for the release and a target for the next expected release
 

@@ -1,7 +1,7 @@
 % Contributing a New Feature or Bug Fix
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id: app-contributing.ltx-inc,v 1.3 2010/04/28 21:05:45 joverbey Exp $ $}
+{\scriptsize Last modified April 28, 2010}
 
 %\begin{list}{$\bigcirc$}{}
 \begin{enumerate}
@@ -154,7 +154,7 @@ directly; change the first statement to note this explicitly.
 Eclipse Foundation for a legal review.  If there are any questions or concerns
 about the code, a member of the Eclipse IP team will contact you.
 
-\item Once it passes IP review, the committer will commit your code to Photran's CVS repository.
+\item Once it passes IP review, the committer will commit your code to Photran's Git repository.
 
 \item The committer will add your name to the ``Contributors'' page of the Photran Web site.
 

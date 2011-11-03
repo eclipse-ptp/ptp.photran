@@ -1,7 +1,7 @@
 % Running Photran's Automated Test Suite
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id: app-tests.ltx-inc,v 1.4 2010/04/28 21:05:43 joverbey Exp $ $}
+{\scriptsize Last modified April 28, 2010}
 
 \begin{enumerate}
 	\setcounter{enumi}{\value{running_counter}}

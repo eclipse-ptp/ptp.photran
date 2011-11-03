@@ -1,0 +1,114 @@
+% Getting the Photran Sources from Git
+\vspace{-0.5in}
+
+{\scriptsize Last modified November 3, 2011}
+
+The June, 2011 stable release of Photran is 7.0, released alongside
+PTP~5.0 as part of the Eclipse Indigo release train.
+This appendix describes how to check out the current \textit{development} code
+(Photran~8.0), which will become part of the Juno release train in
+June, 2012.
+
+\textbf{Before you begin\dots}
+
+\vspace{-1em}
+
+\begin{enumerate}
+\item You will need to be running \textbf{Eclipse 3.7 (Indigo)} on a Java 6 or later JVM.
+      You should install \textit{Eclipse Classic 3.7} (also called the \textit{Eclipse SDK),}
+      which includes the Eclipse Platform,
+      Java development tools, and Plug-in Development Environment.  (Since Photran is a
+      set of Eclipse plug-ins, you need a version of Eclipse that includes the Plug-in
+      Development Environment.)
+\item \textit{(Optional)} You may want to install the following Eclipse plug-ins, although none of them are necessary:
+      \begin{enumerate}
+      \item \href{http://subclipse.tigris.org/}{\textbf{Subclipse}} --
+            provides Subversion support
+      \item \href{http://findbugs.sourceforge.net/}{\textbf{FindBugs}} --
+            a static analysis tool for Java
+      \item \href{http://www.eclemma.org/}{\textbf{EclEmma}} --
+            a Java code coverage tool
+      \item \href{http://metrics.sourceforge.net/}{\textbf{Metrics}} --
+            provides code metrics for Java code
+      \end{enumerate}
+\end{enumerate}
+
+\newcounter{running_counter}
+\textbf{Part~I.  Install the CDT SDK, EGit, and Photran}
+
+First, you will need to install the C/C++ Development Tools Software Development Kit (CDT SDK),
+EGit, and the most recent stable release of Photran itself.  Photran reuses some parts of CDT, and the
+CDT SDK is required to view the source code for CDT.  EGit provides support for the Git distributed
+version control system in Eclipse; it is required to check out Photran's source code from the Git
+repository at the Eclipse Foundation.  Installing the latest release of Photran ensures that Fortran
+files will be properly syntax highlighted (among other things), which is helpful when writing tests.
+It is also required when setting an API baseline in Part~II below.
+
+\begin{enumerate}
+      \item Start Eclipse.  Inside Eclipse, click on the ``Help'' menu, and choose ``Install New Software...''
+      \item In the ``Work with:'' combo box, choose ``Indigo -- http://download.eclipse.org/releases/indigo''
+      \item Expand the ``Collaboration'' category
+      \item Under ``Collaboration,'' check the box next to ``Eclipse EGit''
+      \item Expand the ``Programming Languages'' category
+      \item Under ``Programming Languages,'' check the box next to ``C/C++ Development Tools SDK'' (Be sure the name ends with ``SDK''!)
+      \item Under ``Programming Languages,'' check the box next to ``Fortran Development Tools (Photran)''
+      \item Click ``Next''
+      \item The wizard will show the complete list of plug-ins to be installed; click ``Next''
+      \item Accept the terms of the license agreement, and click ``Finish''
+      \item Installation may take several minutes. Restart Eclipse when prompted.
+	\setcounter{running_counter}{\value{enumi}}
+\end{enumerate}
+
+\vspace{1em}
+\textbf{Part~II.  Set an API Baseline}
+
+Eclipse plug-ins are required to follow very strict rules when making changes to their application
+programming interface (API).  The Eclipse Plug-in Development Environment's API Tooling component enforces
+these rules.  You must configure it with an API baseline so it can compare the current source code
+with the latest stable release, in order to detect API changes.
+
+\begin{enumerate}
+	\setcounter{enumi}{\value{running_counter}}
+	\item In Eclipse, if you are running Windows or Linux, click on the ``Window'' menu; if you are running Mac OS X, click on the ``Eclipse'' menu.
+	      Choose ``Preferences'' from the menu.
+	\item Expand the ``Plug-in Development'' category, and choose ``API Baselines''
+	\item Click ``Add Baseline...''
+	\item Enter ``Indigo'' for the name
+	\item Click ``Reset''
+	\item Click ``Finish''
+	\item Click ``OK''
+	\item If prompted to ``Do a full build now?'', click ``Yes''
+	
+	\setcounter{running_counter}{\value{enumi}}
+\end{enumerate}
+
+\vspace{1em}
+\textbf{Part~III.  Clone the Photran Git repository and check out the source code}
+
+\textit{\textbf{Important:} If you already have an earlier version of the Photran source code (e.g., if you checked it out from CVS before we moved to Git),
+you must \textit{delete} the existing projects from your workspace.  The Git import wizard will not overwrite them; it will give an error message and fail.}
+
+\begin{enumerate}
+	\setcounter{enumi}{\value{running_counter}}
+	\item Switch to the ``Git Repository Exploring'' perspective.  (From the ``Window'' menu, choose ``Open Perspective'', and ``Other...''; choose ``Git Repository Exploring'', and click ``OK.'')
+	\item From the ``File'' menu, choose ``Import...''
+	\item Under ``Git'', choose ``Projects from Git'', and click ``OK''
+	\item Click ``Clone...''
+	\item For the URI, enter one of the following.
+	    \begin{itemize}
+	    \item Most people will enter \\
+	      \centerline{\texttt{git://git.eclipse.org/gitroot/ptp/org.eclipse.photran.git}}
+	    \item If you are a committer at the Eclipse Foundation, enter \\
+	      \centerline{\texttt{ssh://username@git.eclipse.org/gitroot/ptp/org.eclipse.photran.git}}
+	      replacing \texttt{username} with your committer username.
+	    \end{itemize}
+	\item Click ``Next''
+	\item All branches will be selected by default; click ``Next''
+	\item Make sure the local directory is OK (or change it if you want your local Git repository stored somewhere else); then click ``Next''
+	\item The repository will be downloaded (it may spend several minutes ``receiving objects'').
+	\item Select the (newly-added) org.eclipse.photran repository in the list, and click ``Next''
+	\item The defaults (``Import Existing Projects'') are OK; click ``Next''
+	\item All projects are selected by default; click ``Finish''
+	\item Switch back to the Java perspective.  The Package Explorer view should now contain several new projects with Photran's source code.  There should be no compilation errors (although there will be a few warnings).
+	\setcounter{running_counter}{\value{enumi}}
+\end{enumerate}

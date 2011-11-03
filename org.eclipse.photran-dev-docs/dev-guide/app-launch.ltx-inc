@@ -1,7 +1,7 @@
 % Creating a Photran Launch Configuration
 \vspace{-0.5in}
 
-{\scriptsize Revision: \footnotesize \$Id: app-launch.ltx-inc,v 1.1 2010/05/19 15:05:36 joverbey Exp $ $}
+{\scriptsize Last modified May 19, 2010}
 
 \begin{enumerate}
 	\setcounter{enumi}{\value{running_counter}}

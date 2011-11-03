@@ -37,11 +37,6 @@ The sample refactoring described in Appendix~\ref{app:obfuscate_refactoring}.
 \textbf{Refactoring tools for PHP, Lua, and BC.}
 Prototype Eclipse-based refactoring tools based on the Rephraser Engine.
 
-%\item
-%\textbf{C preprocessor support (c-preprocessor).}
-%C preprocessor support, based on the C preprocessor in CDT 5.  This will
-%eventually be moved into the public CVS repository.
-
 \end{itemize}
 
 \section{Photran Web Site at UIUC}
