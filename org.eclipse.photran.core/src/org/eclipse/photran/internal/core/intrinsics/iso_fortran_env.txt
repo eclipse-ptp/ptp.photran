@@ -1,0 +1,8 @@
+CHARACTER_STORAGE_SIZE		Size of a character in bits.
+ERROR_UNIT		Unit number for standard error.
+FILE_STORAGE_SIZE		Size of the file storage unit in bits.
+INPUT_UNIT		Unit number for standard input.
+IOSTAT_END		Value assigned to IOSTAT variables at end-of-file.
+IOSTAT_EOR		Value assigned to IOSTAT variables at end-of-record.
+NUMERIC_STORAGE_SIZE		Size of the numeric storage unit in bits.
+OUTPUT_UNIT		Unit number for standard output.

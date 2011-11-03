@@ -29,6 +29,8 @@ import org.eclipse.photran.internal.core.FortranCorePlugin;
 public class Intrinsics
 {
     private static final String INTRINSIC_PROCEDURE_LIST = "org/eclipse/photran/internal/core/intrinsics/intrinsic-procedures.txt"; //$NON-NLS-1$
+    private static final String ISO_C_BINDING_LIST = "org/eclipse/photran/internal/core/intrinsics/iso_c_binding.txt"; //$NON-NLS-1$
+    private static final String ISO_FORTRAN_ENV_LIST = "org/eclipse/photran/internal/core/intrinsics/iso_fortran_env.txt"; //$NON-NLS-1$
     
     private Intrinsics() {;}
     
@@ -55,8 +57,14 @@ public class Intrinsics
     private static void loadData()
     {
         intrinsicProcedures = new TreeSet<IntrinsicProcDescription>();
+        addIntrinsicsFrom(INTRINSIC_PROCEDURE_LIST, null);
+        addIntrinsicsFrom(ISO_C_BINDING_LIST, "ISO_C_BINDING"); //$NON-NLS-1$
+        addIntrinsicsFrom(ISO_FORTRAN_ENV_LIST, "ISO_FORTRAN_ENV"); //$NON-NLS-1$
+    }
 
-        for (String line : readIntrinsicProceduresFile())
+    private static void addIntrinsicsFrom(String file, String moduleName) throws Error
+    {
+        for (String line : readIntrinsicProceduresFile(file))
         {
             String[] fields = line.split("\t"); //$NON-NLS-1$
             if (fields.length != 3) throw new Error("Malformed input"); //$NON-NLS-1$
@@ -65,14 +73,14 @@ public class Intrinsics
             String args = fields[1];
             String description = fields[2];
             
-            intrinsicProcedures.add(new IntrinsicProcDescription(name, args, description));
+            intrinsicProcedures.add(new IntrinsicProcDescription(moduleName, name, args, description));
         }
     }
 
-    private static List<String> readIntrinsicProceduresFile()
+    private static List<String> readIntrinsicProceduresFile(String file)
     {
-        URL url = FortranCorePlugin.getDefault().getBundle().getResource(INTRINSIC_PROCEDURE_LIST);
-        if (url == null) throw new Error("Unable to locate " + INTRINSIC_PROCEDURE_LIST); //$NON-NLS-1$
+        URL url = FortranCorePlugin.getDefault().getBundle().getResource(file);
+        if (url == null) throw new Error("Unable to locate " + file); //$NON-NLS-1$
         return readLinesFrom(url);
     }
 
