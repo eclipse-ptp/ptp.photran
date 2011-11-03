@@ -22,16 +22,23 @@ import java.util.List;
  */
 public final class IntrinsicProcDescription implements Comparable<IntrinsicProcDescription>
 {
+    public final String moduleName;
     public final String genericName;
     public final String args;
     public final String description;
 
-    IntrinsicProcDescription(String name, String args, String description)
+    IntrinsicProcDescription(String moduleName, String name, String args, String description)
     {
         super();
+        this.moduleName = moduleName;
         this.genericName = name;
         this.args = args;
         this.description = description;
+    }
+
+    public boolean isFromIntrinsicModule()
+    {
+        return moduleName != null;
     }
 
     public int compareTo(IntrinsicProcDescription that)
@@ -142,6 +149,9 @@ public final class IntrinsicProcDescription implements Comparable<IntrinsicProcD
 
     private String proposalFor(String args)
     {
-        return genericName + "(" + args + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+        if (args.equals("")) //$NON-NLS-1$
+            return genericName;
+        else
+            return genericName + "(" + args + ")"; //$NON-NLS-1$ //$NON-NLS-2$
     }
 }

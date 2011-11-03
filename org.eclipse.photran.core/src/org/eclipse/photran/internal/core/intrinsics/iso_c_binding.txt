@@ -1,0 +1,45 @@
+C_INT		int
+C_SHORT		short int
+C_LONG		long int
+C_LONG_LONG		long long int
+C_SIGNED_CHAR		signed char/unsigned char
+C_SIZE_T		size_t
+C_INT8_T		int8_t
+C_INT16_T		int16_t
+C_INT32_T		int32_t
+C_INT64_T		int64_t
+C_INT_LEAST8_T		int_least8_t
+C_INT_LEAST16_T		int_least16_t
+C_INT_LEAST32_T		int_least32_t
+C_INT_LEAST64_T		int_least64_t
+C_INT_FAST8_T		int_fast8_t
+C_INT_FAST16_T		int_fast16_t
+C_INT_FAST32_T		int_fast32_t
+C_INT_FAST64_T		int_fast64_t
+C_INTMAX_T		intmax_t
+C_INTPTR_T		intptr_t
+C_FLOAT		float
+C_DOUBLE		double
+C_LONG_DOUBLE		long double
+C_FLOAT_COMPLEX		float _Complex
+C_DOUBLE_COMPLEX		double _Complex
+C_LONG_DOUBLE_COMPLEX		long double _Complex
+C_BOOL		_Bool
+C_CHAR		char
+C_NULL_CHAR		'\0'
+C_ALERT		'\a'
+C_BACKSPACE		'\b'
+C_FORM_FEED		'\f'
+C_NEW_LINE		'\n'
+C_CARRIAGE_RETURN		'\r'
+C_HORIZONTAL_TAB		'\t'
+C_VERTICAL_TAB		'\v'
+C_PTR		C pointer
+C_FUNPTR		C function pointer
+C_NULL_PTR		Null C pointer
+C_NULL_FUNPTR		Null C function pointer
+C_ASSOCIATED	(C_PTR_1 [, C_PTR_2])	C pointer association status.
+C_F_POINTER	(CPTR, FPTR [, SHAPE])	Sets a Fortran pointer.
+C_F_PROCPOINTER	(CPTR, FPTR)	Sets a Fortran procedure pointer.
+C_FUNLOC	(X)	Returns a C function pointer for the given procedure.
+C_LOC	(X)	Returns a C pointer for the given variable.

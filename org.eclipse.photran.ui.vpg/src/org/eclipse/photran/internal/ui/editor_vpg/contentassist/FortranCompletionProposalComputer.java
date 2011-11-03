@@ -111,7 +111,7 @@ class FortranCompletionProposalComputer extends CompletionComputer
 
                 for (String proposal : proc.getAllForms())
                 {
-                    proposals.add(createProposal(proposal.toLowerCase(), proc.description));
+                    proposals.add(createProposal(proposal.toLowerCase(), proc.description, proc.moduleName));
                 }
             }
         }
@@ -168,28 +168,28 @@ class FortranCompletionProposalComputer extends CompletionComputer
 //        return createProposal(identifier, null, null);
 //    }
 
-    private FortranCompletionProposal createProposal(String identifier, String description)
+    private FortranCompletionProposal createProposal(String identifier, String description, String moduleName)
     {
-        return createProposal(identifier, description, null);
+        return createProposal(identifier, description, moduleName, null);
     }
 
     private FortranCompletionProposal createProposal(String identifier, String description, Image image)
     {
-//        return new FortranCompletionProposal(
-//            identifier,
-//            new CompletionProposal(identifier,
-//                                   replOffset,
-//                                   replLen,
-//                                   identifier.length(),
-//                                   image,
-//                                   displayString(identifier, description),
-//                                   null,
-//                                   null));
+        return createProposal(identifier, description, null, image);
+    }
+
+    private FortranCompletionProposal createProposal(String identifier, String description, String moduleName, Image image)
+    {
+        if (description == null)
+            description = ""; //$NON-NLS-1$
+        if (moduleName != null)
+            description += " - " + moduleName; //$NON-NLS-1$
+
         return new FortranCompletionProposal(
             identifier,
             new TemplateProposal(new Template(
                                     identifier,
-                                    description == null ? "" : description, //$NON-NLS-1$
+                                    description,
                                     FortranTemplateContext.ID,
                                     replaceArgumentsWithTemplateVariables(identifier),
                                     true),
