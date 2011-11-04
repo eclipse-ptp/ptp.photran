@@ -14,3 +14,4 @@ Require-Bundle: org.eclipse.photran.core,
 Export-Package: org.eclipse.photran.internal.core.lexer;x-friends:="org.eclipse.photran.core.vpg.preprocessor.c.tests",
  org.eclipse.photran.internal.core.lexer.sourceform;x-friends:="org.eclipse.photran.core.vpg.preprocessor.c.tests",
  org.eclipse.photran.internal.core.preprocessor.c;x-friends:="org.eclipse.photran.core.vpg.preprocessor.c.tests"
+Bundle-Localization: plugin

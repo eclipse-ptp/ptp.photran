@@ -40,4 +40,4 @@ Export-Package: org.eclipse.photran.internal.ui.actions;x-internal:=true,
  org.eclipse.photran.internal.ui.views.vpgproblems;x-internal:=true,
  org.eclipse.photran.internal.ui.vpg;x-internal:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Localization: OSGI-INF/l10n/bundle
+Bundle-Localization: plugin
