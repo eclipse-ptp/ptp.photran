@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.photran.core" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter id="924844039">
+            <message_arguments>
+                <message_argument value="7.0.0"/>
+                <message_argument value="7.0.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/photran/internal/core/intrinsics/IntrinsicProcDescription.java" type="org.eclipse.photran.internal.core.intrinsics.IntrinsicProcDescription">
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="isFromIntrinsicModule()"/>
+            </message_arguments>
+        </filter>
+        <filter id="1143996420">
+            <message_arguments>
+                <message_argument value="moduleName"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>
