@@ -348,10 +348,10 @@
    <!--============================================-->
    <!-- Convert C/C++ Projects to Photran Projects -->
    <!--============================================-->
-   <extension point="org.eclipse.ui.popupMenus">
+    <extension point="org.eclipse.ui.popupMenus">
       <viewerContribution
          id="org.eclipse.photran.ui.ViewActions"
-         targetID="org.eclipse.photran.ui.FortranView">
+        targetID="org.eclipse.photran.ui.FortranView">
          <visibility>
             <objectState name="nature" value="org.eclipse.cdt.core.cnature" />
          </visibility>
@@ -362,6 +362,118 @@
             icon="icons/obj16/f_file_obj.gif"
             class="org.eclipse.photran.internal.cdtinterface.ui.ProjectConversionAction" />
       </viewerContribution>
+      <objectContribution
+         id="org.eclipse.photran.ui.ViewActions"
+        objectClass="org.eclipse.core.resources.IProject">
+        <visibility>
+           <and>
+               <objectState name="nature" value="org.eclipse.cdt.core.cnature" />
+               <not>
+                   <objectState name="nature" value="org.eclipse.photran.core.fnature" />
+               </not>
+           </and>
+        </visibility>
+        <action
+            id="org.eclipse.photran.cdtinterface.ui.ProjectConversionAction"
+            label="%action.label.2"
+            menubarPath="additions"
+            icon="icons/obj16/f_file_obj.gif"
+            class="org.eclipse.photran.internal.cdtinterface.ui.ProjectConversionAction" />
+      </objectContribution>
+   </extension>
+
+  <extension
+       point="org.eclipse.ui.navigator.viewer">
+    <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+       <includes>
+          <contentExtension pattern="org.eclipse.photran.ui.navigator.content"/>
+       </includes>
+    </viewerContentBinding>
+  </extension>
+  
+  <extension
+       point="org.eclipse.ui.navigator.navigatorContent">
+    <navigatorContent
+          activeByDefault="true"
+          id="org.eclipse.photran.ui.navigator.content"
+          contentProvider="org.eclipse.cdt.internal.ui.navigator.CNavigatorContentProvider"
+          labelProvider="org.eclipse.cdt.internal.ui.navigator.CNavigatorLabelProvider"
+          name="Fortran Elements"
+          priority="high">
+         <triggerPoints>
+            <or>
+               <adapt
+                     type="org.eclipse.core.resources.IProject">
+                  <test
+                        property="org.eclipse.core.resources.projectNature"
+                        value="org.eclipse.cdt.core.cnature">
+                  </test>
+               </adapt>
+               <instanceof
+                     value="org.eclipse.cdt.ui.CElementGrouping">
+               </instanceof>
+               <instanceof
+                     value="org.eclipse.cdt.core.model.ICElement">
+               </instanceof>
+               <instanceof
+                     value="org.eclipse.core.resources.IResource">
+               </instanceof>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+               <instanceof
+                     value="org.eclipse.core.resources.IResource">
+               </instanceof>
+               <instanceof
+                     value="org.eclipse.cdt.core.model.ICElement">
+               </instanceof>
+               <instanceof
+                     value="org.eclipse.cdt.ui.CElementGrouping">
+               </instanceof>
+            </or>
+         </possibleChildren>
+       <override
+             policy="InvokeAlwaysRegardlessOfSuppressedExt"
+             suppressedExtensionId="org.eclipse.cdt.ui.navigator.content"/>
+	   <commonWizard
+	         associatedExtensionId="org.eclipse.photran.ui.navigator.content"
+	         menuGroupId="org.eclipse.cdt.ui.newProject"
+	         type="new"
+	         wizardId="org.eclipse.photran.ui.wizards.CDT4FortranProjectWizard">
+		 <enablement/>
+	   </commonWizard>
+	   <commonWizard
+	         associatedExtensionId="org.eclipse.photran.ui.navigator.content"
+	         menuGroupId="org.eclipse.cdt.ui"
+	         type="new"
+	         wizardId="org.eclipse.photran.ui.wizards.NewSourceFileCreationWizard">
+		 <enablement>
+			<or>
+				<instanceof value="org.eclipse.cdt.core.model.ICElement" />	
+		        <and>
+		            <instanceof value="org.eclipse.core.resources.IContainer"/>
+		            <test property="org.eclipse.core.resources.projectNature" value="org.eclipse.photran.core.fnature"/>
+		        </and>
+			</or>
+         </enablement>
+	   </commonWizard>    
+	   <commonWizard
+	         associatedExtensionId="org.eclipse.photran.ui.navigator.content"
+	         menuGroupId="org.eclipse.cdt.ui"
+	         type="new"
+	         wizardId="org.eclipse.photran.ui.wizards.NewSourceFolderCreationWizard">
+		 <enablement>
+			<or>
+				<instanceof value="org.eclipse.cdt.core.model.ICElement" />	
+		        <and>
+		            <instanceof value="org.eclipse.core.resources.IContainer"/>
+		            <test property="org.eclipse.core.resources.projectNature" value="org.eclipse.photran.core.fnature"/>
+		        </and>
+			</or>
+         </enablement>
+	   </commonWizard>    
+	 </navigatorContent>
    </extension>
 
 </plugin>
