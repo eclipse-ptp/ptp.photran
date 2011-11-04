@@ -44,7 +44,7 @@ public class FortranPerspectiveFactory implements IPerspectiveFactory
         IFolderLayout folder1 = layout.createFolder(
             "topLeft", IPageLayout.LEFT, (float)0.25, editorArea); //$NON-NLS-1$
         folder1.addView(ProjectExplorer.VIEW_ID);
-        // folder1.addView(FortranView.FORTRAN_VIEW_ID);
+        folder1.addPlaceholder(FortranView.FORTRAN_VIEW_ID);
         // folder1.addView(IPageLayout.ID_RES_NAV);
         // folder1.addPlaceholder(IPageLayout.ID_BOOKMARKS);
 
@@ -81,7 +81,6 @@ public class FortranPerspectiveFactory implements IPerspectiveFactory
         layout.addShowViewShortcut(IPageLayout.ID_OUTLINE);
         layout.addShowViewShortcut(IPageLayout.ID_PROBLEM_VIEW);
         layout.addShowViewShortcut(FortranView.FORTRAN_VIEW_ID);
-        layout.addShowViewShortcut(IPageLayout.ID_RES_NAV);
         layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
 
         // link - things we should do
