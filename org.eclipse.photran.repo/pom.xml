@@ -49,14 +49,9 @@
 										<mkdir dir="${ptp-install}" />
 										<delete includeemptydirs="true">
 											<fileset dir="${ptp-install}">
-												<include name="**/*" />
-											</fileset>
-										</delete>
-										<copy includeemptydirs="false" todir="${ptp-install}">
-											<fileset dir="${project.build.directory}/checksumFix">
 												<include name="**" />
 											</fileset>
-										</copy>
+										</delete>
 										<copy file="target/org.eclipse.photran.repo.zip" tofile="${ptp-install}/org.eclipse.photran.repo.${unqualifiedVersion}.${buildQualifier}.zip"/>
 										<unzip src="target/org.eclipse.photran.repo.zip" dest="${ptp-install}"/>
 									</tasks>
