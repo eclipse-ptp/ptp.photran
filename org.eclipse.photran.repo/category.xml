@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.photran_0.0.0.jar" id="org.eclipse.photran" version="0.0.0"/>
+   <feature url="features/org.eclipse.photran.intel_0.0.0.jar" id="org.eclipse.photran.intel" version="0.0.0" os="linux"/>
+   <feature url="features/org.eclipse.photran.xlf_0.0.0.jar" id="org.eclipse.photran.xlf" version="0.0.0"/>
+   <feature url="features/org.eclipse.rephraserengine_0.0.0.jar" id="org.eclipse.rephraserengine" version="0.0.0"/>
+</site>
