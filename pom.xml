@@ -62,6 +62,7 @@
 		<module>org.eclipse.rephraserengine.ui</module>
 		<module>org.eclipse.rephraserengine.ui.refactoring</module>
 		<module>org.eclipse.rephraserengine.ui.vpg</module>
+		<module>org.eclipse.photran.repo</module>
 	</modules>
 
 	<repositories>
