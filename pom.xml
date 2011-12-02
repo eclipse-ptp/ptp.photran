@@ -46,10 +46,9 @@
 		<module>org.eclipse.photran.core</module>
 		<module>org.eclipse.photran.core.intel</module>
 		<module>org.eclipse.photran.core.vpg</module>
+		<module>org.eclipse.photran.core.vpg.preprocessor.c</module>
 		<module>org.eclipse.photran.doc.user</module>
 		<module>org.eclipse.photran.errorparsers.xlf</module>
-		<module>org.eclipse.photran-feature</module>
-		<module>org.eclipse.photran.intel-feature</module>
 		<module>org.eclipse.photran.managedbuilder.core</module>
 		<module>org.eclipse.photran.managedbuilder.gnu.ui</module>
 		<module>org.eclipse.photran.managedbuilder.intel.ui</module>
@@ -57,14 +56,17 @@
 		<module>org.eclipse.photran.managedbuilder.xlf.ui</module>
 		<module>org.eclipse.photran.ui</module>
 		<module>org.eclipse.photran.ui.vpg</module>
-		<module>org.eclipse.photran.xlf-feature</module>
+		<module>org.eclipse.photran.ui.vpg.preprocessor.c</module>
 		<module>org.eclipse.rephraserengine.core</module>
 		<module>org.eclipse.rephraserengine.core.refactoring</module>
 		<module>org.eclipse.rephraserengine.core.vpg</module>
-		<module>org.eclipse.rephraserengine-feature</module>
 		<module>org.eclipse.rephraserengine.ui</module>
 		<module>org.eclipse.rephraserengine.ui.refactoring</module>
 		<module>org.eclipse.rephraserengine.ui.vpg</module>
+		<module>org.eclipse.photran-feature</module>
+		<module>org.eclipse.photran.intel-feature</module>
+		<module>org.eclipse.photran.xlf-feature</module>
+		<module>org.eclipse.rephraserengine-feature</module>
 		<module>org.eclipse.photran.repo</module>
 	</modules>
 
