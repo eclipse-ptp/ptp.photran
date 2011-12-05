@@ -351,14 +351,6 @@
 				  id="gnu.fortran.underscoring.notwo">
 		  </enumeratedOptionValue>
 		  </option>
-		  <option
-			  defaultValue="false"
-			  name="%Option.Posix.Warn.Syntax"
-			  category="gnu.fortran.compiler.category.symbols"
-			  command="-fcase-lower"
-			  id="gnu.fortran.compiler.symbols.lowercase"
-			  valueType="boolean">
-		  </option>
 		  <optionCategory
 			  owner="photran.managedbuild.tool.gnu.fortran.compiler"
 			  name="%OptionCategory.Dirs"
