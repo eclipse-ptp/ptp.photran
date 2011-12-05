@@ -549,7 +549,7 @@
          <configuration
                name="%ConfigName.Dbg"
                cleanCommand="rm -rf"
-			   errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.photran.core.XLFErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"               
+			   errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.photran.errorparsers.xlf.XLFCompilerErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"               
                id="photran.managedbuild.config.xlf.fortran.macosx.exe.debug">
                <toolChain
                      archList="all"
@@ -610,7 +610,7 @@
          <configuration
                name="%ConfigName.Rel"
                cleanCommand="rm -rf"               
-			   errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.photran.core.XLFErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"                              
+			   errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.photran.errorparsers.xlf.XLFCompilerErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"                              
                id="photran.managedbuild.config.xlf.fortran.macosx.exe.release">
                <toolChain
                      archList="all"

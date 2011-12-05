@@ -11,7 +11,7 @@
 			<arguments>
 				<dictionary>
 					<key>org.eclipse.cdt.core.errorOutputParser</key>
-					<value>org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.VCErrorParser;org.eclipse.photran.core.intel.IntelCompilerErrorParser;org.eclipse.photran.core.AbsoftErrorParser;org.eclipse.photran.core.XLFErrorParser;org.eclipse.photran.core.GFortranErrorParser;org.eclipse.photran.core.IntelFortranErrorParser;org.eclipse.photran.core.LaheyFortranErrorParser;org.eclipse.photran.core.G95FortranErrorParser;org.eclipse.photran.core.NAGErrorParser;org.eclipse.photran.core.PGIErrorParser;org.eclipse.photran.errorparsers.xlf.XLFCompilerErrorParser;</value>
+					<value>org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.VCErrorParser;org.eclipse.photran.core.intel.IntelCompilerErrorParser;org.eclipse.photran.core.AbsoftErrorParser;org.eclipse.photran.errorparsers.xlf.XLFCompilerErrorParser;org.eclipse.photran.core.GFortranErrorParser;org.eclipse.photran.core.IntelFortranErrorParser;org.eclipse.photran.core.LaheyFortranErrorParser;org.eclipse.photran.core.G95FortranErrorParser;org.eclipse.photran.core.NAGErrorParser;org.eclipse.photran.core.PGIErrorParser;org.eclipse.photran.errorparsers.xlf.XLFCompilerErrorParser;</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.append_environment</key>
