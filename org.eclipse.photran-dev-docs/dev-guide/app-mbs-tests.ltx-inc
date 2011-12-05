@@ -1,0 +1,111 @@
+% Manual Tests for the GNU Managed Build Toolchain
+\vspace{-0.5in}
+
+{\scriptsize Last modified December 5, 2011}
+
+\textit{This appendix describes the procedure for manually validating support
+for the GNU Fortran toolchain in the managed build system.}
+
+\begin{enumerate}
+
+\item[] \textbf{Setup}
+
+\item Create a new managed build Fortran project using the ``Executable (Gnu Fortran on [your platform])'' project type.
+
+\item  In the project properties, under Fortran Build $>$ Settings, check the following.
+  \begin{enumerate}
+  \item In the Tool Settings tab, ensure that ``GNU Fortran Compiler'' and ``GNU Fortran Linker'' are listed.
+  \item In the Error Parsers tab, ensure that the ``Photran Error Parser for GNU Fortran'' is checked.
+  \item In the Binary Parsers tab, ensure that the correct binary parser is checked: PE Windows Parser for Windows, Elf Parser for Linux, or Mach-O 64 for Mac OS X.
+  \end{enumerate}
+
+\item[] \textbf{Basic Free Form Compilation Test}
+
+\item Add a file named \texttt{hello.f90} to the project root with the following contents. \\
+\begin{minipage}{3in}
+\begin{verbatim}
+print *, "Hello"
+end program
+\end{verbatim}
+\end{minipage}
+
+\item Build the program.  Ensure that the build completes successfully and that both of the following lines are present in the Console view. \\
+{\footnotesize \verb!gfortran -funderscoring -O0 -g -Wall -c -fmessage-length=0 -o "hello.o" "../hello.f90"!} \\
+{\footnotesize \verb!gfortran  -o "Test"  ./hello.o!}
+
+\item Select the Debug/Test binary in the Project Explorer, and run it via Run $>$ Run As $>$ Local Fortran Application.  Ensure that the Console view contains the output ``Hello''.
+
+\item[] \textbf{Basic Error Parser Test}
+
+\item Change the second line of hello.f90 to the following. \\
+\verb*!end program thisisincorrect!
+
+\item Save the file and build the project.  Ensure that an error marker appears next to line 2 and that the Problems view contains ``../hello.f90:2.27: Error: Syntax error in END PROGRAM statement at (1)''
+
+\item[] \textbf{Basic Fixed Form Compilation and Error Parser Test}
+
+\item If hello.f90 is open in an editor, close that editor.
+
+\item Rename the file \texttt{hello.f90} to \texttt{hello.f} and change its contents to the following.  Spacing must be exact: the second line must begin in column 7 and the third in column 6. \\
+\begin{minipage}{3in}
+\begin{verbatim*}
+c Testing
+      print *,
+     * "Testing"
+99999 end
+\end{verbatim*}
+\end{minipage}
+
+\item Build the project.  Ensure that a warning marker appears next to line 4 with ``Warning: Label 99999 at (1) defined but not used''
+
+\item Ensure that the program runs and produces the output ``Testing'' in the Console view.
+
+\item[] \textbf{Compilation Options Test}
+
+\item In the project properties, under Fortran Build $>$ Settings, switch to the Tool Settings tab, and change settings as follows.
+  \begin{enumerate}
+  \item Under GNU Fortran Compiler $>$ Symbols, change Symbol Underscoring to ``None (-fno-underscoring)''.
+  \item Under GNU Fortran Compiler $>$ Directories, add ``/home'' to the list of Include paths.
+  \item Under GNU Fortran Compiler $>$ Optimization, change the Optimization Level to ``Optimize most (-O3)''.
+  \item Under GNU Fortran Compiler $>$ Debugging, change Debug Level to ``None''.
+  \item Under GNU Fortran Compiler $>$ Debugging, check the ``Generate gprof information (-pg)'' checkbox.
+  \item Under GNU Fortran Compiler $>$ Warnings, check the ``Pedantic (-pedantic)'' checkbox.
+  \item Under GNU Fortran Compiler $>$ Warnings, check the ``Warnings as errors (-Werror)'' checkbox.
+  \end{enumerate}
+
+\item Build the project.  Ensure that the Console view includes the following line. \\
+{\footnotesize \verb!gfortran -fno-underscoring -I/home -O3 -pg -pedantic -Wall -Werror -c -fmessage-length=0 -o "hello.o" "../hello.f"!}
+
+\end{enumerate}
+
+% THESE TESTS DO NOT WORK AT THE PRESENT TIME
+%
+%Nonstandard Filename Extension Test
+%
+%12. In the workbench preferences, navigate to General > Content Types.  Under the Text > Fortran Source File content type, add "*.ftest" (if it is not already there).
+%
+%13. In the project properties, navigate to the Fortran General > Source Form category.  Ensure that *.FTEST and *.ftest are listed.  Change the source form for "*.ftest" (note the lowercase filename extension) to "Fixed Form - INCLUDE lines ignored"
+%
+%14. If hello.f is open in an editor, close that editor.
+%
+%15. Rename hello.f to hello.ftest.
+%
+%16. Double-click hello.ftest in the Project Explorer.  It should open in the fixed form editor.
+%
+%17. Build the project.  The build should fail with an error: "hello.ftest: linker input file unused because linking not done"
+%
+%
+%Dependency Test
+%
+%5. Change "hello.f" to the following…
+%c Testing
+%      use module
+%      call hello
+%99999 end
+%…and create a second file "module.f90" in the project root with the following contents.
+%module module
+%contains
+%  subroutine hello
+%    print *, "Hello from module"
+%  end subroutine
+%end module

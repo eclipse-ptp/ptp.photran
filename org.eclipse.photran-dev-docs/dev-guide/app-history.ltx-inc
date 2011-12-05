@@ -1,7 +1,7 @@
 % Photran Release History
 \vspace{-0.5in}
 
-{\scriptsize Last modified May 25, 2010}
+{\scriptsize Last modified December 5, 2011}
 
 {\footnotesize
 \begin{tabular}{clccl}
@@ -24,7 +24,7 @@ Photran & Date & Platform & CDT & Notes \\
 5.0.0 & Dec 2009 & 3.5     & 6.0.1 & First official release at eclipse.org \\
 6.0.0 & Jun 2010 & 3.6     & 7.0.0 & First release as part of the train (Helios) \\
 7.0.0 & Jun 2011 & 3.7     & 8.0.0 & Indigo release train \\
-8.0.0 & Jun 2012 & 4.2     &   ?   & (Tentative) \\
+8.0.0 & Jun 2012 & 4.2     &   ?   & Juno release train -- PLANNED \\
 %Vers & Mon Year & Platfrm & CDT   & \\
 \end{tabular}
 }
