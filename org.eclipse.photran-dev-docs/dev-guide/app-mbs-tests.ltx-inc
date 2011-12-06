@@ -76,7 +76,36 @@ c Testing
 \item Build the project.  Ensure that the Console view includes the following line. \\
 {\footnotesize \verb!gfortran -fno-underscoring -I/home -O3 -pg -pedantic -Wall -Werror -c -fmessage-length=0 -o "hello.o" "../hello.f"!}
 
+\item[] \textbf{Dependency Test}
+
+\item Change the contents of \texttt{hello.f} to the following. \\
+\begin{minipage}{3in}
+\begin{verbatim*}
+c Testing
+      use module
+      call hello
+99999 end
+\end{verbatim*}
+\end{minipage}
+
+\item Create a second file named \texttt{module.f90} in the project root with the following contents. \\
+\begin{minipage}{3in}
+\begin{verbatim*}
+module module
+contains
+  subroutine hello
+    print *, "Hello from module"
+  end subroutine
+end module
+\end{verbatim*}
+\end{minipage}
+
+\item Build the project.  In the Console view, ensure that \texttt{module.f90} is compiled \textit{before}
+\texttt{hello.f}.  Ensure that the build completes successfully and the resulting executable produces the
+output ``Hello from module''.
+
 \end{enumerate}
+
 
 % THESE TESTS DO NOT WORK AT THE PRESENT TIME
 %
@@ -93,19 +122,3 @@ c Testing
 %16. Double-click hello.ftest in the Project Explorer.  It should open in the fixed form editor.
 %
 %17. Build the project.  The build should fail with an error: "hello.ftest: linker input file unused because linking not done"
-%
-%
-%Dependency Test
-%
-%5. Change "hello.f" to the following…
-%c Testing
-%      use module
-%      call hello
-%99999 end
-%…and create a second file "module.f90" in the project root with the following contents.
-%module module
-%contains
-%  subroutine hello
-%    print *, "Hello from module"
-%  end subroutine
-%end module
