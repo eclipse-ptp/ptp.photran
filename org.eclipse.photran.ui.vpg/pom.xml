@@ -4,10 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.eclipse.ptp</groupId>
-    <artifactId>ptp-parent</artifactId>
+    <groupId>org.eclipse.photran</groupId>
+    <artifactId>photran-parent</artifactId>
     <version>6.0.0-SNAPSHOT</version>
-    <relativePath>../../pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>org.eclipse.photran.ui.vpg</artifactId>
