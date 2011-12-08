@@ -410,7 +410,7 @@
          <configuration
                name="%ConfigName.Dbg"
                cleanCommand="rm -rf"
-			   errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.photran.errorparsers.xlf.XLFCompilerErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"               
+			   errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.photran.errorparsers.xlf.XLFCompilerErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"               
                id="photran.managedbuild.config.xlf.fortran.macosx.exe.debug">
                <toolChain
                      archList="all"
@@ -419,13 +419,13 @@
                      targetTool="photran.managedbuild.tool.macosx.fortran.xlf.linker.macosx.exe.debug"
                      scannerConfigDiscoveryProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile"
                      id="photran.managedbuild.toolchain.xlf.fortran.macosx.exe.debug">
-                  <targetPlatform
+                  <!--targetPlatform
 					  id="photran.managedbuild.target.xlf.platform.macosx.exe.debug"
 				 	  name="%PlatformName.Dbg"
-                      binaryParser="org.eclipse.cdt.core.MachO"
-					  osList="macosx"					  
+                      binaryParser="org.eclipse.cdt.core.ELF"
+		              osList="linux,aix"					  
 					  archList="all">
-				  </targetPlatform>
+				  </targetPlatform-->
 			  	  <builder
 					  superClass="cdt.managedbuild.target.gnu.builder"
 					  id="photran.managedbuild.target.xlf.builder.macosx.exe.debug">
@@ -471,7 +471,7 @@
          <configuration
                name="%ConfigName.Rel"
                cleanCommand="rm -rf"               
-			   errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.photran.errorparsers.xlf.XLFCompilerErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"                              
+			   errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.photran.errorparsers.xlf.XLFCompilerErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"                              
                id="photran.managedbuild.config.xlf.fortran.macosx.exe.release">
                <toolChain
                      archList="all"
@@ -480,13 +480,13 @@
                      targetTool="photran.managedbuild.tool.macosx.fortran.xlf.linker.macosx.exe.release"
                      scannerConfigDiscoveryProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile"
                      id="photran.managedbuild.toolchain.xlf.fortran.macosx.exe.release">
-                  <targetPlatform
+                  <!--targetPlatform
 					  id="photran.managedbuild.target.xlf.platform.fortran.macosx.exe.release"
 				 	  name="%PlatformName.Rel"
-                      binaryParser="org.eclipse.cdt.core.MachO"
-					  osList="macosx"					  
+                      binaryParser="org.eclipse.cdt.core.ELF"
+		              osList="linux,aix"					  
 					  archList="all">
-				  </targetPlatform>
+				  </targetPlatform-->
 			  	  <builder
 					  superClass="cdt.managedbuild.target.gnu.builder"
 					  id="photran.managedbuild.target.xlf.builder.macosx.exe.release">
