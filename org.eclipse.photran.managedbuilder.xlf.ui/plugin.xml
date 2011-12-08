@@ -13,169 +13,9 @@
 
       <tool
             natureFilter="cnature"
-            name="%ToolName.linker.xlf.fortran"
+            name="%ToolName.linker.xlf"
             outputFlag="-o"
-            command="xlf95"
-            id="photran.managedbuild.tool.xlf.fortran.linker">
-         <envVarBuildPath 
-         	pathType="buildpathLibrary"
-         	variableList="LIBRARY_PATH">
-         </envVarBuildPath>
-         
-         <optionCategory
-               owner="photran.managedbuild.tool.xlf.fortran.linker"
-               name="%OptionCategory.General"
-               id="xlf.fortran.link.category.general">
-         </optionCategory>
-         <option
-               defaultValue="false"
-               name="%Option.Posix.Linker.NoStartFiles"
-               category="xlf.fortran.link.category.general"
-               command="-nostartfiles"
-               id="xlf.fortran.link.option.nostart"
-               valueType="boolean">
-         </option>
-         <option
-               defaultValue="false"
-               name="%Option.Posix.Linker.NoDefLibs"
-               category="xlf.fortran.link.category.general"
-               command="-nodefaultlibs"
-               id="xlf.fortran.link.option.nodeflibs"
-               valueType="boolean">
-         </option>
-         <option
-               defaultValue="false"
-               name="%Option.Posix.Linker.NoStdLibs"
-               category="xlf.fortran.link.category.general"
-               command="-nostdlib"
-               id="xlf.fortran.link.option.nostdlibs"
-               valueType="boolean">
-         </option>
-         <option
-               defaultValue="false"
-               name="%Option.Posix.Linker.Strip"
-               category="xlf.fortran.link.category.general"
-               command="--strip-all"
-               id="xlf.fortran.link.option.strip"
-               valueType="boolean">
-         </option>
-         <option
-               defaultValue="false"
-               name="%Option.Posix.Linker.Static"
-               category="xlf.fortran.link.category.general"
-               command="-static"
-               id="xlf.fortran.link.option.noshared"
-               valueType="boolean">
-         </option>
-         <optionCategory
-               owner="photran.managedbuild.tool.xlf.fortran.linker"
-               name="%OptionCategory.Libs"
-               id="xlf.fortran.link.category.libs">
-         </optionCategory>
-         <option
-               name="%Option.Posix.Libs"
-               category="xlf.fortran.link.category.libs"
-               command="-l"
-               id="xlf.fortran.link.option.libs"
-               browseType="file"
-               valueType="libs">
-         </option>
-         <option
-               name="%Option.Posix.Libsearch"
-               category="xlf.fortran.link.category.libs"
-               command="-L"
-               id="xlf.fortran.link.option.paths"
-               browseType="directory"
-               valueType="stringList">
-         </option>
-         <optionCategory
-               owner="photran.managedbuild.tool.xlf.fortran.linker"
-               name="%OptionCategory.Misc"
-               id="xlf.fortran.link.category.other">
-         </optionCategory>
-         <option
-               name="%Option.Posix.Linker.Flags"
-               category="xlf.fortran.link.category.other"
-               valueType="string"
-               id="xlf.fortran.link.option.ldflags">
-         </option>
-         <option
-               name="%Option.Posix.Linker.XLinker"
-               category="xlf.fortran.link.category.other"
-               command="-Xlinker ${VALUE}"
-               valueType="stringList"
-               id="xlf.fortran.link.option.other">
-         </option>
-         <option
-               name="%Option.Posix.UserObjs"
-               category="xlf.fortran.link.category.other"
-               browseType="file"
-               valueType="userObjs"
-               id="xlf.fortran.link.option.userobjs">
-         </option>
-         <optionCategory
-               owner="photran.managedbuild.tool.xlf.fortran.linker"
-               name="%OptionCategory.Shared.Settings"
-               id="xlf.fortran.link.category.shared">
-         </optionCategory>
-         <option
-               defaultValue="false"
-               name="%Option.Posix.Linker.Shared"
-               category="xlf.fortran.link.category.shared"
-               command="-shared"
-               id="xlf.fortran.link.option.shared"
-               valueType="boolean">
-         </option>
-         <option
-               name="%Option.Posix.Linker.SOName"
-               category="xlf.fortran.link.category.shared"
-               command="-Wl,-soname="
-               id="xlf.fortran.link.option.soname"
-               valueType="string">
-         </option>
-         <option
-               name="%Option.Posix.Linker.Implib"
-               category="xlf.fortran.link.category.shared"
-               command="-Wl,--out-implib="
-               id="xlf.fortran.link.option.implname"
-               valueType="string">
-         </option>
-         <option
-               name="%Option.Posix.Linker.Defname"
-               category="xlf.fortran.link.category.shared"
-               command="-Wl,--output-def="
-               id="xlf.fortran.link.option.defname"
-               valueType="string">
-         </option>
-         <inputType
-            sourceContentType="org.eclipse.cdt.managedbuilder.core.compiledObjectFile"
-            sources="o"
-			multipleOfType="true"
-            dependencyCalculator="org.eclipse.cdt.managedbuilder.makegen.internal.DefaultNoDependencyCalculator"
-            buildVariable="OBJS"
-            id="photran.managedbuild.tool.xlf.fortran.linker.input">
-            <additionalInput
-            	paths="$(USER_OBJS)"
-            	kind="additionalinputdependency">
-            </additionalInput>
-            <additionalInput
-            	paths="$(LIBS)"
-            	kind="additionalinput">
-            </additionalInput>
-         </inputType>
-         <outputType
-			outputs=""
-            buildVariable="EXECUTABLES"
-            nameProvider="org.eclipse.cdt.managedbuilder.makegen.gnu.GnuLinkOutputNameProvider"
-            id="photran.managedbuild.tool.xlf.fortran.linker.output">
-         </outputType>
-      </tool>
-
-      <tool
-            natureFilter="cnature"
-            name="%ToolName.linker.macosx.xlf.fortran"
-            outputFlag="-o"
-            command="xlf95"
+            command="xlf"
             commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}"
             id="photran.managedbuild.tool.macosx.fortran.xlf.linker">
          <envVarBuildPath 
@@ -274,7 +114,7 @@
                valueType="userObjs"
                id="macosx.fortran.xlf.link.option.userobjs">
          </option>
-         <optionCategory
+         <!--optionCategory
                owner="photran.managedbuild.tool.macosx.fortran.xlf.linker"
                name="%OptionCategory.Shared.Settings"
                id="macosx.fortran.xlf.link.category.shared">
@@ -286,7 +126,7 @@
                command="-Wl,-dylib"
                id="macosx.fortran.xlf.link.option.shared"
                valueType="boolean">
-         </option>
+         </option-->
          <inputType
             sourceContentType="org.eclipse.cdt.managedbuilder.core.compiledObjectFile"
             sources="o"
@@ -312,10 +152,10 @@
       </tool>
     
       <tool
-		  name="%ToolName.compiler.xlf.fortran"
+		  name="%ToolName.compiler.xlf"
 		  id="photran.managedbuild.tool.xlf.fortran.compiler"
 		  isAbstract="true"
-		  command="xlf95"
+		  command="xlf"
 		  natureFilter="both"
 		  outputFlag="-o">
          <envVarBuildPath 
@@ -328,7 +168,7 @@
                name="%OptionCategory.Source"
                id="xlf.fortran.compiler.category.source">
 		  </optionCategory>
-		  <option
+		  <!--option
                name="%Option.XLF.Source.extension"
                category="xlf.fortran.compiler.category.source"
                id="xlf.fortran.compiler.option.source.extention"
@@ -351,7 +191,7 @@
                  command="-qsuffix=f=f95"
                  id="xlf.fortran.source.extention.f95">
 			</enumeratedOptionValue>
-		  </option>
+		  </option-->
 		  <option
                defaultValue=""
                name="%Option.OtherFlags"
@@ -359,7 +199,7 @@
                id="xlf.fortran.compiler.option.source.other"
                valueType="string">
 		  </option>
-		  <option
+		  <!--option
                name="%Option.XLF.Source.free"
                category="xlf.fortran.compiler.category.source"
                command="-qfree=f90"
@@ -372,7 +212,7 @@
                command="-qfree=ibm"
                id="xlf.fortran.compiler.option.source.free.ibm"
                valueType="boolean">
-		  </option>
+		  </option-->
 		  <optionCategory
 			  owner="photran.managedbuild.tool.xlf.fortran.compiler"
 			  name="%OptionCategory.Symbols"
@@ -542,7 +382,7 @@
 	  </tool>  
 
 	  <projectType 
-            name="%TargetName.xlf.fortran.macosx.exe"
+            name="%TargetName.xlf.exe"
             id="photran.managedbuild.target.xlf.fortran.macosx.exe"
             isTest="false"
             isAbstract="false">
