@@ -68,6 +68,27 @@
                id="macosx.fortran.xlf.link.option.noshared"
                valueType="boolean">
          </option>
+		 <optionCategory
+			   owner="photran.managedbuild.tool.macosx.fortran.xlf.linker"
+			   name="%OptionCategory.Debug"
+			   id="xlf.fortran.link.category.debug">
+		 </optionCategory>
+		 <option
+			   defaultValue="false"
+			   name="%Option.Posix.Debug.gprof"
+			   category="xlf.fortran.link.category.debug"
+			   command="-pg"
+			   id="xlf.fortran.link.option.debugging.gprof"
+			   valueType="boolean">
+		 </option>
+		 <option
+			   defaultValue="false"
+			   name="%Option.Posix.Debug.prof"
+			   category="xlf.fortran.link.category.debug"
+			   command="-p"
+			   id="xlf.fortran.link.option.debugging.prof"
+			   valueType="boolean">
+		 </option>
          <optionCategory
                owner="photran.managedbuild.tool.macosx.fortran.xlf.linker"
                name="%OptionCategory.Libs"

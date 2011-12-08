@@ -67,6 +67,27 @@
                id="gnu.fortran.link.option.noshared"
                valueType="boolean">
          </option>
+		 <optionCategory
+			   owner="photran.managedbuild.tool.gnu.fortran.linker"
+			   name="%OptionCategory.Debug"
+			   id="gnu.fortran.link.category.debug">
+		 </optionCategory>
+		 <option
+			   defaultValue="false"
+			   name="%Option.Posix.Debug.gprof"
+			   category="gnu.fortran.link.category.debug"
+			   command="-pg"
+			   id="gnu.fortran.link.option.debugging.gprof"
+			   valueType="boolean">
+		 </option>
+		 <option
+			   defaultValue="false"
+			   name="%Option.Posix.Debug.prof"
+			   category="gnu.fortran.link.category.debug"
+			   command="-p"
+			   id="gnu.fortran.link.option.debugging.prof"
+			   valueType="boolean">
+		 </option>
          <optionCategory
                owner="photran.managedbuild.tool.gnu.fortran.linker"
                name="%OptionCategory.Libs"
