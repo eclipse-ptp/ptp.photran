@@ -34,6 +34,6 @@ for feature in $PHOTRAN_FEATURES; do
 	update_feature $feature $photran_version
 done
 
-ant -DnewVersion="$1" -f org.eclipse.photran.repo/fixModules.xml
+(cd org.eclipse.photran.repo && ant -DnewVersion="$1" -f fixModules.xml)
 
 exit 0
