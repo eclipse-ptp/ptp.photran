@@ -9,7 +9,8 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
+  <groupId>org.eclipse.ptp.features</groupId>
   <artifactId>org.eclipse.rephraserengine</artifactId>
-  <version>7.0.4-SNAPSHOT</version>
+  <version>7.0.5-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
 </project>
