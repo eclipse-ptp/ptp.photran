@@ -28,4 +28,8 @@
 	    </xsl:element>
 	</xsl:template>
 	
+	<xsl:template match="comment()">
+   		<xsl:copy/>
+	</xsl:template>
+	
 </xsl:stylesheet>
