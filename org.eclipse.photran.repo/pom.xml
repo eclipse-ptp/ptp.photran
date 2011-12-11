@@ -9,8 +9,8 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<version>5.0.4-SNAPSHOT</version>
 	<artifactId>org.eclipse.photran.repo</artifactId>
+	<version>7.0.5-SNAPSHOT</version>
 	<packaging>eclipse-repository</packaging>
 
 	<build>
@@ -45,14 +45,14 @@
 								</goals>
 								<configuration>
 									<tasks>
-										<mkdir/>
-										<delete>
-											<fileset>
-												<include/>
+										<mkdir dir="${ptp-install}" />
+										<delete includeemptydirs="true">
+											<fileset dir="${ptp-install}">
+												<include name="**" />
 											</fileset>
 										</delete>
-										<copy/>
-										<unzip/>
+										<copy file="target/org.eclipse.photran.repo.zip" tofile="${ptp-install}/org.eclipse.photran.repo.${unqualifiedVersion}.${buildQualifier}.zip"/>
+										<unzip src="target/org.eclipse.photran.repo.zip" dest="${ptp-install}"/>
 									</tasks>
 								</configuration>
 							</execution>

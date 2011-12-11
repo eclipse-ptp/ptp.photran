@@ -22,6 +22,10 @@
 		<version><xsl:value-of select="$newVersion"/>-SNAPSHOT</version>
 	</xsl:template>
 	
+	<xsl:template match="p:version[preceding-sibling::p:artifactId='org.eclipse.photran.repo']">
+		<version><xsl:value-of select="$newVersion"/>-SNAPSHOT</version>
+	</xsl:template>
+	
 	<xsl:template match="p:*">
 	    <xsl:element name="{name()}">
 	      <xsl:apply-templates/>
