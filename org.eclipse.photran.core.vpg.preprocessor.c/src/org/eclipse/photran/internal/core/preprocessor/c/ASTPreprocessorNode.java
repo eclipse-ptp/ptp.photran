@@ -54,6 +54,9 @@ import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit;
 //import org.eclipse.cdt.core.dom.ast.IMacroBinding;
 import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit.IDependencyTree;
 import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit.IDependencyTree.IASTInclusionNode;
+import org.eclipse.cdt.core.index.IIndexFile;
+import org.eclipse.cdt.core.parser.ISignificantMacros;
+import org.eclipse.core.runtime.CoreException;
 //import org.eclipse.cdt.core.parser.util.CharArrayUtils;
 //import org.eclipse.cdt.internal.core.dom.parser.ASTNode;
 //import org.eclipse.cdt.internal.core.dom.parser.ASTNodeSpecification;
@@ -269,6 +272,60 @@ class ASTInclusionStatement extends ASTPreprocessorNode implements IASTPreproces
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IFileNomination#getSignificantMacros()
+     */
+    public ISignificantMacros getSignificantMacros() throws CoreException
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IFileNomination#hasPragmaOnceSemantics()
+     */
+    public boolean hasPragmaOnceSemantics() throws CoreException
+    {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTPreprocessorIncludeStatement#getLoadedVersions()
+     */
+    public ISignificantMacros[] getLoadedVersions()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTPreprocessorIncludeStatement#getContentsHash()
+     */
+    public long getContentsHash()
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTPreprocessorIncludeStatement#createsAST()
+     */
+    public boolean createsAST()
+    {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTPreprocessorIncludeStatement#getImportedIndexFile()
+     */
+    public IIndexFile getImportedIndexFile()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 	
 	/*@Override
 	void findNode(ASTNodeSpecification<?> nodeSpec) {
@@ -533,6 +590,15 @@ class ASTFileLocation implements IASTFileLocation {
 	public LocationCtxFile getLocationContext() {
 		return fLocationCtx;
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTFileLocation#getContextInclusionStatement()
+     */
+    public IASTPreprocessorIncludeStatement getContextInclusionStatement()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
 
 class ASTMacroExpansion extends ASTPreprocessorNode implements IASTPreprocessorMacroExpansion {
@@ -678,6 +744,15 @@ class ASTFileLocationForBuiltins implements IASTFileLocation {
 	public int getStartingLineNumber() {
 		return 0;
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTFileLocation#getContextInclusionStatement()
+     */
+    public IASTPreprocessorIncludeStatement getContextInclusionStatement()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
 
 

@@ -123,6 +123,15 @@ class ASTPreprocessorName extends ASTPreprocessorNode implements IASTName {
 		return null;
 	}
 
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTName#isQualified()
+     */
+    public boolean isQualified()
+    {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 }
 
 /*class ASTPreprocessorDefinition extends ASTPreprocessorName {
