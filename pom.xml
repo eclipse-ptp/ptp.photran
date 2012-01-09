@@ -67,8 +67,8 @@
 
 	<repositories>
 		<repository>
-			<id>eclipse-${eclipse-release}</id>
-			<url>${eclipse-site}</url>
+			<id>platform-${platform-version}</id>
+			<url>${platform-site}</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
