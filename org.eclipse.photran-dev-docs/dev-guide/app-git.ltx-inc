@@ -9,8 +9,8 @@ following June.
 
 The source code you check out using this document is \textit{not} guaranteed to be stable.
 There are rare points in time when it may not even compile.  So, if you have problems following
-the instructions in this document, please ask for help on the ptp-dev mailing list
-<https://dev.eclipse.org/mailman/listinfo/ptp-dev>.
+the instructions in this document, please ask for help on the ptp-dev mailing list -- 
+\url{https://dev.eclipse.org/mailman/listinfo/ptp-dev}.
 
 \textbf{Before you begin\dots}
 
@@ -23,14 +23,15 @@ the instructions in this document, please ask for help on the ptp-dev mailing li
       (Since Photran is a set of Eclipse plug-ins, you need a version of Eclipse that includes the Plug-in
       Development Environment.)  What version you need depends on the time of year.
       \begin{itemize}
-      \item If it is between January and June, you need to be running the most recent
+      \item Between January and June, you need to be running the most recent
             milestone build (in preparation for the upcoming release, which occurs in June).
-            To download the latest milestone build, browse to
-            \url{http://download.eclipse.org/eclipse/downloads/} and
-            click on the link for ``4.x Stream Stable Build.''
+            To download the latest milestone build, browse to \\
+            \centerline{\url{http://download.eclipse.org/eclipse/downloads/}} \\
+            and click on the link for ``4.x Stream Stable Build.''
             This will take you to a page where you can download the Eclipse SDK.
-      \item If it is between July and December, you can use the latest release.
-            Download Eclipse Classic from \url{http://www.eclipse.org/downloads/}.
+      \item Between July and December, you can use the latest release.
+            Download Eclipse Classic from \\
+            \centerline{\url{http://www.eclipse.org/downloads/}}.
       \end{itemize}
 \item You will need to be running a Java 6 or later Java Virtual Machine (JVM).
 \item \textit{(Optional)} You may want to install the following Eclipse plug-ins, although none of them are necessary:
@@ -43,7 +44,7 @@ the instructions in this document, please ask for help on the ptp-dev mailing li
 \end{enumerate}
 
 \newcounter{running_counter}
-\textbf{Part~I.  Install the CDT SDK, EGit, and Photran}
+\textbf{Part~I.  Install the CDT SDK, EGit, Photran, and Environment Descriptions}
 
 First, you will need to install the C/C++ Development Tools Software Development Kit (CDT SDK),
 EGit, and the most recent stable release of Photran itself.  Photran reuses some parts of CDT, and the
@@ -64,6 +65,21 @@ It is also required when setting an API baseline in Part~II below.
       \item Under ``Programming Languages,'' check the box next to ``Fortran Development Tools (Photran)''
       \item Click ``Next''
       \item The wizard will show the complete list of plug-ins to be installed; click ``Next''
+      \item Accept the terms of the license agreement, and click ``Finish''
+      \item Installation may take several minutes. Restart Eclipse when prompted.
+      \item After Eclipse restarts, again click on the ``Help'' menu, and choose ``Install New Software...''
+      \item Click the ``Add...'' button.  In the ``Location'' field, type http://download.eclipse.org/eclipse/updates/3.8milestones
+      \item In the ``Work with:'' combo box, choose the update site you just entered, i.e.,
+            http://download.eclipse.org/eclipse/updates/3.8milestones
+      \item Expand the ``PDE/API Tools Environment Description'' category
+      \item Under ``PDE/API Tools Environment Description,'' check the boxes next to the following:
+      \begin{itemize}
+            \item PDE/API Tools Environment Descriptions J2SE 15
+            \item PDE/API Tools Environment Descriptions J2SE 16
+            \item PDE/API Tools Environment Descriptions J2SE 17
+      \end{itemize}
+      \item Click ``Next''
+      \item The wizard will show the list of environment descriptions to be installed; click ``Next''
       \item Accept the terms of the license agreement, and click ``Finish''
       \item Installation may take several minutes. Restart Eclipse when prompted.
 	\setcounter{running_counter}{\value{enumi}}
