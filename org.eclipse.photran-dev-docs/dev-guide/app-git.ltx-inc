@@ -1,35 +1,44 @@
 % Getting the Photran Sources from Git
 \vspace{-0.5in}
 
-{\scriptsize Last modified November 3, 2011}
+{\scriptsize Last modified January 17, 2012}
 
-The June, 2011 stable release of Photran is 7.0, released alongside
-PTP~5.0 as part of the Eclipse Indigo release train.
-This appendix describes how to check out the current \textit{development} code
-(Photran~8.0), which will become part of the Juno release train in
-June, 2012.
+This describes how to check out the source code for the current \textit{development} version
+of Photran.  At any given time, this is the version of Photran that will be released the
+following June.
+
+The source code you check out using this document is \textit{not} guaranteed to be stable.
+There are rare points in time when it may not even compile.  So, if you have problems following
+the instructions in this document, please ask for help on the ptp-dev mailing list
+<https://dev.eclipse.org/mailman/listinfo/ptp-dev>.
 
 \textbf{Before you begin\dots}
 
 \vspace{-1em}
 
 \begin{enumerate}
-\item You will need to be running \textbf{Eclipse 3.7 (Indigo)} on a Java 6 or later JVM.
-      You should install \textit{Eclipse Classic 3.7} (also called the \textit{Eclipse SDK),}
-      which includes the Eclipse Platform,
-      Java development tools, and Plug-in Development Environment.  (Since Photran is a
-      set of Eclipse plug-ins, you need a version of Eclipse that includes the Plug-in
-      Development Environment.)
+\item Photran's source code \textit{will not compile} if you are using the wrong version of Eclipse!
+      You will need to install \textit{Eclipse Classic}, also known as the \textit{Eclipse SDK},
+      which includes the Eclipse Platform, Java development tools, and Plug-in Development Environment.
+      (Since Photran is a set of Eclipse plug-ins, you need a version of Eclipse that includes the Plug-in
+      Development Environment.)  What version you need depends on the time of year.
+      \begin{itemize}
+      \item If it is between January and June, you need to be running the most recent
+            milestone build (in preparation for the upcoming release, which occurs in June).
+            To download the latest milestone build, browse to
+            \url{http://download.eclipse.org/eclipse/downloads/} and
+            click on the link for ``4.x Stream Stable Build.''
+            This will take you to a page where you can download the Eclipse SDK.
+      \item If it is between July and December, you can use the latest release.
+            Download Eclipse Classic from \url{http://www.eclipse.org/downloads/}.
+      \end{itemize}
+\item You will need to be running a Java 6 or later Java Virtual Machine (JVM).
 \item \textit{(Optional)} You may want to install the following Eclipse plug-ins, although none of them are necessary:
       \begin{enumerate}
-      \item \href{http://subclipse.tigris.org/}{\textbf{Subclipse}} --
-            provides Subversion support
-      \item \href{http://findbugs.sourceforge.net/}{\textbf{FindBugs}} --
-            a static analysis tool for Java
-      \item \href{http://www.eclemma.org/}{\textbf{EclEmma}} --
-            a Java code coverage tool
-      \item \href{http://metrics.sourceforge.net/}{\textbf{Metrics}} --
-            provides code metrics for Java code
+      \item \textbf{Subclipse} provides Subversion support -- \url{http://subclipse.tigris.org/}
+      \item \textbf{FindBugs} is a static analysis/bug detection tool for Java -- \url{http://findbugs.sourceforge.net/}
+      \item \textbf{EclEmma} is a tool which helps you determine the code coverage of your JUnit tests -- \url{http://www.eclemma.org/}
+      \item \textbf{Metrics} provides code metrics for Java code -- \url{http://metrics.sourceforge.net/}
       \end{enumerate}
 \end{enumerate}
 
@@ -39,14 +48,15 @@ June, 2012.
 First, you will need to install the C/C++ Development Tools Software Development Kit (CDT SDK),
 EGit, and the most recent stable release of Photran itself.  Photran reuses some parts of CDT, and the
 CDT SDK is required to view the source code for CDT.  EGit provides support for the Git distributed
-version control system in Eclipse; it is required to check out Photran's source code from the Git
-repository at the Eclipse Foundation.  Installing the latest release of Photran ensures that Fortran
+version control system in Eclipse; it is required to access the Git repositories at the Eclipse Foundation
+which contain Photran and CDT's source code.  Installing the latest release of Photran ensures that Fortran
 files will be properly syntax highlighted (among other things), which is helpful when writing tests.
 It is also required when setting an API baseline in Part~II below.
 
 \begin{enumerate}
       \item Start Eclipse.  Inside Eclipse, click on the ``Help'' menu, and choose ``Install New Software...''
-      \item In the ``Work with:'' combo box, choose ``Indigo -- http://download.eclipse.org/releases/indigo''
+      \item In the ``Work with:'' combo box, choose the update site for the latest Eclipse release train.
+            As of January, 2012, this should be labeled ``Juno -- http://download.eclipse.org/releases/juno''
       \item Expand the ``Collaboration'' category
       \item Under ``Collaboration,'' check the box next to ``Eclipse EGit''
       \item Expand the ``Programming Languages'' category
@@ -83,7 +93,85 @@ with the latest stable release, in order to detect API changes.
 \end{enumerate}
 
 \vspace{1em}
-\textbf{Part~III.  Clone the Photran Git repository and check out the source code}
+\textbf{Part~III.  Clone the CDT Git repository and check out CDT's source code (and its prerequisites)}
+
+Since Photran depends on CDT, you need the source code for the upcoming release of CDT.
+
+\begin{enumerate}
+	\setcounter{enumi}{\value{running_counter}}
+	\item Switch to the ``CVS Repository Exploring'' perspective.  (From the ``Window'' menu, choose ``Open Perspective'', and ``Other...''; choose ``CVS Repository Exploring'', and click ``OK.'')
+	\item Right-click anywhere in the white area of the ``CVS Repositories'' view (on the left).  In the popup menu, click New $>$ Repository Location...
+	\item In the dialog box, enter the following information, then click Finish. \\
+	\begin{tabular}{ll}
+	        Host name:       & dev.eclipse.org \\
+	        Repository path: & /cvsroot/eclipse \\
+	        Username:        & anonymous \\
+	        Password:        & (no password) \\
+	        Connection type: & pserver \\
+	\end{tabular}
+	\item In the CVS Repositories view
+	       \begin{itemize}
+	       \item  Expand ``:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse''
+	       \item  Then expand ``HEAD''
+	       \item  Then click on ``org.eclipse.test.performance'' to select it
+	       \item  Then right-click on ``org.eclipse.test.performance'' and, in the popup menu, click ``Check Out''.
+	              A dialog box may appear for a few moments while its source code is retrieved.
+	       \item  Scroll back to the top of the CVS Repositories view, and collapse ``:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse''
+	       \end{itemize}
+	\item Again, right-click anywhere in the white area of the ``CVS Repositories'' view, and in the popup menu, click New $>$ Repository Location...
+	\item In the dialog box, enter the following information, then click Finish. \\
+	\begin{tabular}{ll}
+	        Host name:       & dev.eclipse.org \\
+	        Repository path: & /cvsroot/tools \\
+	        Username:        & anonymous \\
+	        Password:        & (no password) \\
+	        Connection type: & pserver \\
+	\end{tabular}
+	\item  In the CVS Repositories view
+	       \begin{itemize}
+	       \item  Expand ``:pserver:anonymous@dev.eclipse.org:/cvsroot/tools''
+	       \item  Then expand ``Versions''
+	       \item  Right-click on ``org.eclipse.orbit'', and from the popup menu, click ``Configure Branches and Versions...''.
+	       \end{itemize}
+	\item In the ``Configure Branches and Versions'' dialog,
+	       \begin{itemize}
+	       \item  In ``Browse files for tags'', expand net.sourceforge.lpg.lpgjavaruntime, and then click on ``.project''
+	       \item  Under ``New tags found in the selected files'', click the ``Deselect All'' button.  Then, check
+	              v1\_1 (at the top of the list), so it is the only item selected in the list.
+	       \item Click ``Add Checked Tags.''
+	       \item Under ``Remembered tags for these projects,'' expand Branches, and make sure ``v1\_1'' appears.
+	       \item Click ``OK'' to close the dialog.
+	       \end{itemize}
+	\item  Back in the CVS Repositories view
+	       \begin{itemize}
+	       \item  Under ``:pserver:anonymous@dev.eclipse.org:/cvsroot/tools'', expand ``Branches''
+	       \item  Then expand ``v1\_1''
+	       \item  Then expand ``org.eclipse.orbit v1\_1''
+	       \item  Then click on ``net.sourceforge.lpg.lpgjavaruntime'' to select it
+	       \item  Then right-click on ``net.sourceforge.lpg.lpgjavaruntime'' and, in the popup menu, click ``Check Out''.
+	              A dialog box may appear for a few moments while its source code is retrieved.
+	       \end{itemize}
+	\item Switch back to the Java perspective.  The Package Explorer view should now contain two new projects named
+	      org.eclipse.test.performance and net.sourceforge.lpg.lpgjavaruntime.
+	      There should be no compilation errors (although there may be a few warnings).
+	\item Switch to the ``Git Repository Exploring'' perspective.  (From the ``Window'' menu, choose ``Open Perspective'', and ``Other...''; choose ``Git Repository Exploring'', and click ``OK.'')
+	\item From the ``File'' menu, choose ``Import...''
+	\item Under ``Git'', choose ``Projects from Git'', and click ``OK''
+	\item Click ``Clone...''
+	\item For the URI, enter \texttt{git://git.eclipse.org/gitroot/cdt/org.eclipse.cdt.git}
+	\item Click ``Next''
+	\item All branches will be selected by default; click ``Next''
+	\item Make sure the local directory is OK (or change it if you want your local Git repository stored somewhere else); then click ``Next''
+	\item The repository will be downloaded (it may spend several minutes ``receiving objects'').
+	\item Select the (newly-added) org.eclipse.cdt repository in the list, and click ``Next''
+	\item The defaults (``Import Existing Projects'') are OK; click ``Next''
+	\item All projects are selected by default.  Click ``Finish''.
+	\item Switch back to the Java perspective.  The Package Explorer view should now contain several new projects with CDT's source code.  There should be no compilation errors (although there will be a few warnings).
+	\setcounter{running_counter}{\value{enumi}}
+\end{enumerate}
+
+\vspace{1em}
+\textbf{Part~IV.  Clone the Photran Git repository and check out Photran's source code}
 
 \textit{\textbf{Important:} If you already have an earlier version of the Photran source code (e.g., if you checked it out from CVS before we moved to Git),
 you must \textit{delete} the existing projects from your workspace.  The Git import wizard will not overwrite them; it will give an error message and fail.}
