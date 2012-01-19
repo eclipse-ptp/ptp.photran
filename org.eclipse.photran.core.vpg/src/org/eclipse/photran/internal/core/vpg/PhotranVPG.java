@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeSet;
 
+import org.eclipse.core.internal.resources.ResourceException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -541,7 +542,7 @@ public class PhotranVPG extends EclipseVPG<IFortranAST, Token, PhotranTokenRef>
         }
         catch (CoreException e)
         {
-            throw new Error(e);
+            return false; // Project may be closed, or something like that; see Bug 369094
         }
     }
 
