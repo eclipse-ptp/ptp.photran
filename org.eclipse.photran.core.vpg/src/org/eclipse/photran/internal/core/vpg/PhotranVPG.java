@@ -561,7 +561,7 @@ public class PhotranVPG extends EclipseVPG<IFortranAST, Token, PhotranTokenRef>
         }
         catch (CoreException e)
         {
-            throw new Error(e);
+            return e.getLocalizedMessage();
         }
     }
 
