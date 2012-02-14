@@ -326,6 +326,16 @@ class ASTInclusionStatement extends ASTPreprocessorNode implements IASTPreproces
         // TODO Auto-generated method stub
         return null;
     }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTNode#getOriginalNode()
+     */
+    @Override
+    public IASTNode getOriginalNode()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 	
 	/*@Override
 	void findNode(ASTNodeSpecification<?> nodeSpec) {
@@ -647,6 +657,16 @@ class ASTMacroExpansion extends ASTPreprocessorNode implements IASTPreprocessorM
 	public LocationCtxMacroExpansion getContext() {
 		return fContext;
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTNode#getOriginalNode()
+     */
+    @Override
+    public IASTNode getOriginalNode()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
 
 @SuppressWarnings("deprecation")

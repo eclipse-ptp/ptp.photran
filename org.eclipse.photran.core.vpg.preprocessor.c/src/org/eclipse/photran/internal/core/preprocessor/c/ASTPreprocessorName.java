@@ -132,6 +132,16 @@ class ASTPreprocessorName extends ASTPreprocessorNode implements IASTName {
         return false;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTNode#getOriginalNode()
+     */
+    @Override
+    public IASTNode getOriginalNode()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
 
 /*class ASTPreprocessorDefinition extends ASTPreprocessorName {
