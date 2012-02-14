@@ -2,6 +2,7 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Photran User&apos;s Guide">
+   <topic label="Contents" href="html/toc.html"/>
    <topic label="Basic Features">
       <anchor id="basic"/>
    </topic>
