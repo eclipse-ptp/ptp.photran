@@ -18,14 +18,14 @@
             class="org.eclipse.photran.internal.cdtinterface.errorparsers.AbsoftErrorParser">
       </errorparser>
    </extension>
-   <!--extension
-         id="org.eclipse.photran.core.XLFErrorParser"
-         name="%FDTXLFErrorParser.name"
+   <extension
+         id="org.eclipse.photran.core.CrayErrorParser"
+         name="Photran Error Parser for Cray Fortran"
          point="org.eclipse.cdt.core.ErrorParser">
       <errorparser
-            class="org.eclipse.photran.internal.errorparsers.XLFErrorParser">
+            class="org.eclipse.photran.internal.cdtinterface.errorparsers.CrayErrorParser">
       </errorparser>
-   </extension-->
+   </extension>
    <extension
          id="org.eclipse.photran.core.GFortranErrorParser"
          name="%FDTGFortranErrorParser.name"
@@ -64,6 +64,14 @@
          point="org.eclipse.cdt.core.ErrorParser">
       <errorparser
             class="org.eclipse.photran.internal.cdtinterface.errorparsers.NAGErrorParser">
+      </errorparser>
+   </extension>
+   <extension
+         id="org.eclipse.photran.core.Open64ErrorParser"
+         name="Photran Error Parser for Open64 Fortran"
+         point="org.eclipse.cdt.core.ErrorParser">
+      <errorparser
+            class="org.eclipse.photran.internal.cdtinterface.errorparsers.Open64ErrorParser">
       </errorparser>
    </extension>
    <extension
