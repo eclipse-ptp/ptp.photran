@@ -88,7 +88,7 @@ public class CrayErrorParser implements IErrorParser {
     private int determineSeverity(String text) {
         if (text.equals("WARNING")) { //$NON-NLS-1$
             return SEVERITY_WARNING;
-        } else if (text.equals("SCALAR") || text.equals("VECTOR") || text.equals("ACCEL")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        } else if (text.equals("IPA") || text.equals("SCALAR") || text.equals("VECTOR") || text.equals("ACCEL")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
             return SEVERITY_INFO;
         } else {
             return SEVERITY_ERROR_RESOURCE;
