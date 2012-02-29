@@ -12,7 +12,6 @@ import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.jface.text.rules.ITokenScanner;
-import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -25,6 +24,7 @@ import org.eclipse.photran.internal.core.properties.SearchPathProperties;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
 import org.eclipse.photran.internal.ui.editor.FortranEditor;
 import org.eclipse.photran.internal.ui.editor.FortranKeywordRuleBasedScanner;
+import org.eclipse.photran.internal.ui.editor.FortranStmtPartitionScanner;
 import org.eclipse.photran.internal.ui.editor_vpg.DefinitionMap;
 import org.eclipse.photran.internal.ui.editor_vpg.FortranEditorTasks;
 import org.eclipse.photran.internal.ui.editor_vpg.IFortranEditorASTTask;
@@ -106,14 +106,14 @@ public class DeclarationView extends ViewPart
         final SourceViewer viewer = new SourceViewer(parent, null, SWT.V_SCROLL); //TextViewer(parent, SWT.NONE);
         viewer.configure(new FortranEditor.FortranSourceViewerConfiguration(null)
         {
-            @Override protected ITokenScanner getTokenScanner()
+            @Override protected ITokenScanner getStatementTokenScanner()
             {
                 // Copied from FortranEditor#getTokenScanner
                 return new FortranKeywordRuleBasedScanner(false, viewer);
             }
         });
         viewer.setDocument(document);
-        IDocumentPartitioner partitioner = new FastPartitioner(new RuleBasedPartitionScanner(), FortranEditor.PARTITION_TYPES);
+        IDocumentPartitioner partitioner = new FastPartitioner(new FortranStmtPartitionScanner(), FortranStmtPartitionScanner.PARTITION_TYPES);
         partitioner.connect(document);
         document.setDocumentPartitioner(partitioner);
 

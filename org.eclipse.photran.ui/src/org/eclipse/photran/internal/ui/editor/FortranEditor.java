@@ -24,22 +24,28 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.text.DefaultLineTracker;
+import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentPartitioner;
+import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.text.ITextViewerExtension2;
 import org.eclipse.jface.text.ITextViewerExtension7;
+import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.MarginPainter;
 import org.eclipse.jface.text.Position;
+import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
+import org.eclipse.jface.text.presentation.IPresentationDamager;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.jface.text.rules.ITokenScanner;
-import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
+import org.eclipse.jface.text.rules.RuleBasedScanner;
+import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.IVerticalRuler;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
@@ -54,9 +60,11 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.photran.internal.cdtinterface.ui.editor.CDTBasedSourceViewerConfiguration;
 import org.eclipse.photran.internal.cdtinterface.ui.editor.CDTBasedTextEditor;
 import org.eclipse.photran.internal.core.FortranCorePlugin;
+import org.eclipse.photran.internal.core.lang.linescanner.FortranLineType;
 import org.eclipse.photran.internal.core.preferences.FortranPreferences;
 import org.eclipse.photran.internal.core.sourceform.SourceForm;
 import org.eclipse.photran.internal.ui.FortranUIPlugin;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Composite;
@@ -89,8 +97,6 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
 
     public static final String SOURCE_VIEWER_CONFIG_EXTENSION_POINT_ID =
         "org.eclipse.photran.ui.sourceViewerConfig"; //$NON-NLS-1$
-
-    public static String[] PARTITION_TYPES = new String[] { IDocument.DEFAULT_CONTENT_TYPE };
 
     protected static String FORTRAN_EDITOR_CONTEXT_ID = "org.eclipse.photran.ui.FortranEditorContext"; //$NON-NLS-1$
 
@@ -471,8 +477,8 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
 
     protected void configurePartitionScanner(IDocument document)
     {
-        IDocumentPartitioner partitioner = new FastPartitioner(new RuleBasedPartitionScanner(),
-                                                               PARTITION_TYPES);
+        IDocumentPartitioner partitioner = new FastPartitioner(new FortranStmtPartitionScanner(this),
+                                                               FortranStmtPartitionScanner.PARTITION_TYPES);
         partitioner.connect(document);
         document.setDocumentPartitioner(partitioner);
     }
@@ -514,7 +520,7 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
          */
         @Override public String[] getConfiguredContentTypes(ISourceViewer sourceViewer)
         {
-            return PARTITION_TYPES;
+            return FortranStmtPartitionScanner.PARTITION_TYPES;
         }
 
         /**
@@ -528,18 +534,68 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
                 reconciler = new PresentationReconciler();
 
                 // Set up a damager-repairer for each content type
-
-                DefaultDamagerRepairer dr = new DefaultDamagerRepairer(getTokenScanner());
-                reconciler.setDamager(dr, IDocument.DEFAULT_CONTENT_TYPE);
-                reconciler.setRepairer(dr, IDocument.DEFAULT_CONTENT_TYPE);
+                for (FortranLineType lineType : FortranLineType.values())
+                {
+                    String partitionType = FortranStmtPartitionScanner.getPartitionType(lineType);
+                    ITokenScanner tokenScanner = getTokenScanner(lineType);
+                    reconciler.setDamager(new EntirePartitionDamager(), partitionType);
+                    reconciler.setRepairer(new DefaultDamagerRepairer(tokenScanner), partitionType);
+                }
             }
 
             return reconciler;
         }
 
-        protected ITokenScanner getTokenScanner()
+        private static class EntirePartitionDamager implements IPresentationDamager
+        {
+            @Override public void setDocument(IDocument document) { }
+
+            @Override public IRegion getDamageRegion(ITypedRegion partition, DocumentEvent event, boolean documentPartitioningChanged)
+            {
+                return partition;
+            }
+        }
+
+        private ITokenScanner getTokenScanner(FortranLineType lineType)
+        {
+            switch (lineType)
+            {
+                case STATEMENT:
+                    return getStatementTokenScanner();
+
+                default:
+                    return createSingleColorTokenScanner(getColorPreference(lineType));
+            }
+        }
+
+        protected ITokenScanner getStatementTokenScanner()
         {
             return ((FortranEditor)editor).getTokenScanner();
+        }
+
+        private ITokenScanner createSingleColorTokenScanner(TextAttribute textAttribute)
+        {
+            RuleBasedScanner scanner = new RuleBasedScanner();
+            scanner.setDefaultReturnToken(new Token(textAttribute));
+            return scanner;
+        }
+
+        private TextAttribute getColorPreference(FortranLineType lineType)
+        {
+            switch (lineType)
+            {
+                case COMMENT:
+                    return new TextAttribute(new Color(null, FortranPreferences.COLOR_COMMENTS.getValue()), null, SWT.NONE);
+
+                case COMMENT_DIRECTIVE:
+                    return new TextAttribute(new Color(null, FortranPreferences.COLOR_COMMENT_DIRECTIVES.getValue()), null, SWT.NONE);
+
+                case PREPROCESSOR_DIRECTIVE:
+                    return new TextAttribute(new Color(null, FortranPreferences.COLOR_CPP.getValue()), null, SWT.BOLD);
+
+                default: // Default to all-black tokens
+                    return new TextAttribute(new Color(null, new RGB(0, 0, 0)), null, SWT.NONE);
+            }
         }
 
         /**
@@ -551,7 +607,7 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
         {
             ContentAssistant assistant = new ContentAssistant();
             FortranTemplateCompletionProcessor templateProcessor = new FortranTemplateCompletionProcessor();
-            for (String partitionType : FortranEditor.PARTITION_TYPES)
+            for (String partitionType : FortranStmtPartitionScanner.PARTITION_TYPES)
                 assistant.setContentAssistProcessor(templateProcessor, partitionType);
             assistant.enableAutoActivation(false); //assistant.setAutoActivationDelay(500);
             assistant.setProposalPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
@@ -572,6 +628,17 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
         
         IEditorInput input = getEditorInput();
         if (input != null) return SourceForm.isFixedForm(input.getName());
+        
+        return false;
+    }
+
+    public boolean isCPreprocessed()
+    {
+        IFile file = getIFile();
+        if (file != null) return SourceForm.isCPreprocessed(getIFile());
+        
+        IEditorInput input = getEditorInput();
+        if (input != null) return SourceForm.isCPreprocessed(input.getName());
         
         return false;
     }

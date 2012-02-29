@@ -27,8 +27,8 @@ import org.eclipse.jface.text.rules.RuleBasedScanner;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.photran.internal.core.FortranCorePlugin;
-import org.eclipse.photran.internal.core.intrinsics.IntrinsicProcDescription;
-import org.eclipse.photran.internal.core.intrinsics.Intrinsics;
+import org.eclipse.photran.internal.core.lang.intrinsics.IntrinsicProcDescription;
+import org.eclipse.photran.internal.core.lang.intrinsics.Intrinsics;
 import org.eclipse.photran.internal.core.preferences.FortranPreferences;
 import org.eclipse.photran.internal.core.preferences.FortranRGBPreference;
 import org.eclipse.swt.SWT;
@@ -105,6 +105,8 @@ public class FortranKeywordRuleBasedScanner extends RuleBasedScanner
     // Fields - colors
     ///////////////////////////////////////////////////////////////////////////
 
+    private Token colorCommentDirectives = createTokenFromRGBPreference(FortranPreferences.COLOR_COMMENT_DIRECTIVES);
+
     private Token colorCpp = createTokenFromRGBPreference(FortranPreferences.COLOR_CPP);
 
     private Token colorStrings = createTokenFromRGBPreference(FortranPreferences.COLOR_STRINGS);
@@ -167,7 +169,7 @@ public class FortranKeywordRuleBasedScanner extends RuleBasedScanner
         }
 
         Eclipse33WordRule wordRule = new Eclipse33WordRule(new FortranWordDetector(), Token.UNDEFINED, true);
-        SalesScanKeywordRule salesRule = new SalesScanKeywordRule(new FortranWordDetector(), colorIdentifiers);
+        SalesScanKeywordRule salesRule = new SalesScanKeywordRule(new FortranWordDetector(), colorIdentifiers, sourceViewer);
 
         createSpecialWordRules(salesRule, wordRule);
         rules[i++] = wordRule;
@@ -215,6 +217,8 @@ public class FortranKeywordRuleBasedScanner extends RuleBasedScanner
 
             if (property.equals(FortranPreferences.COLOR_COMMENTS.getName()))
                 updateToken(colorComments, newVal);
+            else if (property.equals(FortranPreferences.COLOR_COMMENT_DIRECTIVES.getName()))
+                updateToken(colorCommentDirectives, newVal);
             else if (property.equals(FortranPreferences.COLOR_CPP.getName()))
                 updateToken(colorCpp, newVal);
             else if (property.equals(FortranPreferences.COLOR_STRINGS.getName()))

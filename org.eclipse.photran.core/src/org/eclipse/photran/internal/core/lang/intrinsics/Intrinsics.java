@@ -8,7 +8,7 @@
  * Contributors:
  *    UIUC - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.internal.core.intrinsics;
+package org.eclipse.photran.internal.core.lang.intrinsics;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,9 +28,9 @@ import org.eclipse.photran.internal.core.FortranCorePlugin;
  */
 public class Intrinsics
 {
-    private static final String INTRINSIC_PROCEDURE_LIST = "org/eclipse/photran/internal/core/intrinsics/intrinsic-procedures.txt"; //$NON-NLS-1$
-    private static final String ISO_C_BINDING_LIST = "org/eclipse/photran/internal/core/intrinsics/iso_c_binding.txt"; //$NON-NLS-1$
-    private static final String ISO_FORTRAN_ENV_LIST = "org/eclipse/photran/internal/core/intrinsics/iso_fortran_env.txt"; //$NON-NLS-1$
+    private static final String INTRINSIC_PROCEDURE_LIST = "org/eclipse/photran/internal/core/lang/intrinsics/intrinsic-procedures.txt"; //$NON-NLS-1$
+    private static final String ISO_C_BINDING_LIST = "org/eclipse/photran/internal/core/lang/intrinsics/iso_c_binding.txt"; //$NON-NLS-1$
+    private static final String ISO_FORTRAN_ENV_LIST = "org/eclipse/photran/internal/core/lang/intrinsics/iso_fortran_env.txt"; //$NON-NLS-1$
     
     private Intrinsics() {;}
     

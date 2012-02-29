@@ -38,11 +38,11 @@ import org.eclipse.jface.text.IInformationControlExtension3;
 import org.eclipse.jface.text.IInformationControlExtension5;
 import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.jface.text.rules.ITokenScanner;
-import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.photran.internal.ui.editor.FortranEditor;
 import org.eclipse.photran.internal.ui.editor.FortranKeywordRuleBasedScanner;
+import org.eclipse.photran.internal.ui.editor.FortranStmtPartitionScanner;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.DisposeEvent;
@@ -178,7 +178,7 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
         fViewer = new SourceViewer(composite, null, textStyle);
         fViewer.configure(new FortranEditor.FortranSourceViewerConfiguration(null)
         {
-            @Override protected ITokenScanner getTokenScanner()
+            @Override protected ITokenScanner getStatementTokenScanner()
             {
                 // Copied from FortranEditor#getTokenScanner
                 return new FortranKeywordRuleBasedScanner(false, fViewer);
@@ -188,7 +188,7 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
         fDocument = new Document();
         fDocument.set(""); //$NON-NLS-1$
         fViewer.setDocument(fDocument);
-        IDocumentPartitioner partitioner = new FastPartitioner(new RuleBasedPartitionScanner(), FortranEditor.PARTITION_TYPES);
+        IDocumentPartitioner partitioner = new FastPartitioner(new FortranStmtPartitionScanner(), FortranStmtPartitionScanner.PARTITION_TYPES);
         partitioner.connect(fDocument);
         fDocument.setDocumentPartitioner(partitioner);
         

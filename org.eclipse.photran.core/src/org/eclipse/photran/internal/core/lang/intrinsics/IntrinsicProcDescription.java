@@ -8,7 +8,7 @@
  * Contributors:
  *    UIUC - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.internal.core.intrinsics;
+package org.eclipse.photran.internal.core.lang.intrinsics;
 
 import java.util.ArrayList;
 import java.util.List;

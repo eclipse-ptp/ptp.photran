@@ -14,12 +14,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IRule;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.IWordDetector;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.rules.WordRule;
+import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.photran.internal.ui.FortranUIPlugin;
 
 /**
  * Syntax highlighting rule which determines whether a word should be a keyword or an identifier.
@@ -43,6 +46,9 @@ public class SalesScanKeywordRule extends WordRule implements IRule
     /** The default token to be returned on success and if nothing else has been specified. */
     protected IToken fDefaultToken;
 
+    /** The source viewer on which this rule is being run. */
+    protected ISourceViewer fSourceViewer;
+
     /** The table of predefined keywords and token for this rule. */
     protected Map<String, IToken> fWords = new HashMap<String, IToken>();
 
@@ -59,20 +65,6 @@ public class SalesScanKeywordRule extends WordRule implements IRule
     private int fWordCol = 0;
 
     /**
-     * Creates a rule which, with the help of an word detector, will return the token associated
-     * with the detected word. If no token has been associated, the scanner will be rolled back and
-     * an undefined token will be returned in order to allow any subsequent rules to analyze the
-     * characters.
-     *
-     * @param detector the word detector to be used by this rule, may not be <code>null</code>
-     * @see #addWord(String, IToken)
-     */
-    public SalesScanKeywordRule(IWordDetector detector)
-    {
-        this(detector, Token.UNDEFINED);
-    }
-
-    /**
      * Creates a rule which, with the help of a word detector, will return the token associated with
      * the detected word. If no token has been associated, the specified default token will be
      * returned.
@@ -80,9 +72,10 @@ public class SalesScanKeywordRule extends WordRule implements IRule
      * @param detector the word detector to be used by this rule, may not be <code>null</code>
      * @param defaultToken the default token to be returned on success if nothing else is specified,
      *            may not be <code>null</code>
+     * @param sourceViewer 
      * @see #addWord(String, IToken)
      */
-    public SalesScanKeywordRule(IWordDetector detector, IToken defaultToken)
+    public SalesScanKeywordRule(IWordDetector detector, IToken defaultToken, ISourceViewer sourceViewer)
     {
         super(detector);
 
@@ -91,6 +84,7 @@ public class SalesScanKeywordRule extends WordRule implements IRule
 
         fDetector = detector;
         fDefaultToken = defaultToken;
+        fSourceViewer = sourceViewer;
     }
 
     /**
@@ -129,26 +123,29 @@ public class SalesScanKeywordRule extends WordRule implements IRule
      */
     @Override public IToken evaluate(ICharacterScanner scanner)
     {
+        if (!(scanner instanceof FortranKeywordRuleBasedScanner))
+            throw new IllegalStateException();
+
         int c = scanner.read();
         if (c != ICharacterScanner.EOF && fDetector.isWordStart((char)c))
         {
-                scanner.unread();
-                populateBuffers(scanner);
+            scanner.unread();
+            populateBuffers(scanner);
 
-                String buffer = fBuffer.toString().toLowerCase();
+            String buffer = fBuffer.toString().toLowerCase();
 
-                IToken token = fWords.get(buffer);
-                if (token != null)
-                    return salesScan(token, (IToken)fIdentifiers.get(buffer));
+            IToken token = fWords.get(buffer);
+            if (token != null)
+                return salesScan(token, (IToken)fIdentifiers.get(buffer));
 
-                if (fDefaultToken.isUndefined())
-                    for (int i = fBuffer.length() - 1; i >= 0; i--)
-                        scanner.unread();
+            if (fDefaultToken.isUndefined())
+                for (int i = fBuffer.length() - 1; i >= 0; i--)
+                    scanner.unread();
 
-                if (fIdentifiers.containsKey(buffer))
-                    return fIdentifiers.get(buffer);
-                else
-                    return fDefaultToken;
+            if (fIdentifiers.containsKey(buffer))
+                return fIdentifiers.get(buffer);
+            else
+                return fDefaultToken;
         }
 
         scanner.unread();
@@ -171,12 +168,28 @@ public class SalesScanKeywordRule extends WordRule implements IRule
     {
         fWordCol = scanner.getColumn();
 
-        for (int i = 0; i < fWordCol; i++)
-            scanner.unread();
+        try
+        {
+            FortranKeywordRuleBasedScanner fscanner = (FortranKeywordRuleBasedScanner)scanner;
+            int tokenOffset = fscanner.getTokenOffset();
+            int partitionStart = fSourceViewer.getDocument().getPartition(tokenOffset).getOffset();
 
-        for (int i = 0; i < fWordCol; i++)
-            fLineBuffer.append((char)scanner.read());
+            for (int i = partitionStart; i < tokenOffset; i++)
+                scanner.unread();
 
+            for (int i = partitionStart; i < tokenOffset; i++)
+                fLineBuffer.append((char)scanner.read());
+        }
+        catch (BadLocationException e)
+        {
+            FortranUIPlugin.log(e);
+
+            for (int i = 0; i < fWordCol; i++)
+                scanner.unread();
+
+            for (int i = 0; i < fWordCol; i++)
+                fLineBuffer.append((char)scanner.read());
+        }
     }
 
     private void readWord(ICharacterScanner scanner)
@@ -207,7 +220,7 @@ public class SalesScanKeywordRule extends WordRule implements IRule
             fLineBuffer.append((char)c);
             c = scanner.read();
         }
-        while (c != ICharacterScanner.EOF && scanner.getColumn() > startCol);
+        while (c != ICharacterScanner.EOF); // && scanner.getColumn() > startCol);
 
         for (int i = 0; i < count; i++)
             scanner.unread();
@@ -217,6 +230,7 @@ public class SalesScanKeywordRule extends WordRule implements IRule
     {
         removeStringLiterals();
         removeTrailingComment();
+        removeLineContinuations();
         removeConcatenatedStatements();
     }
 
@@ -249,6 +263,13 @@ public class SalesScanKeywordRule extends WordRule implements IRule
        }
     }
 
+    private void removeLineContinuations()
+    {
+        for (int i = 0; i < fLineBuffer.length(); i++)
+            if (fLineBuffer.charAt(i) == '&')
+                fLineBuffer.setCharAt(i, ' ');
+    }
+
     private void removeConcatenatedStatements()
     {
         int precedingSemicolon = fLineBuffer.indexOf(";"); //$NON-NLS-1$
@@ -272,8 +293,8 @@ public class SalesScanKeywordRule extends WordRule implements IRule
         boolean retainAsKeyword = salesScanner.retainAsKeyword(fWordCol);
 
 //        System.out.println();
-//        System.out.println("\"" + fLineBuffer + "\"");
-//        System.out.println("\"" + fBuffer + "\"");
+//        System.out.println("fLineBuffer: \"" + fLineBuffer + "\"");
+//        System.out.println("fBuffer:     \"" + fBuffer + "\"");
 //        System.out.println("Position " + fWordCol);
 //        System.out.println("First token at column " + (salesScanner.firstTokenPos));
 //        System.out.println("First token following ) at " + (salesScanner.tokenFollowingParentheticalPos));

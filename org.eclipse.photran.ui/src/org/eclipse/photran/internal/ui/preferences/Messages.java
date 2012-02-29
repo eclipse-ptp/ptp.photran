@@ -25,6 +25,8 @@ public class Messages extends NLS
 
     public static String EditorPreferencePage_CommentsFieldLabel;
 
+    public static String EditorPreferencePage_CommentDirectivesFieldLabel;
+
     public static String EditorPreferencePage_ConvertTabsToSpaces;
 
     public static String EditorPreferencePage_CPPDirectivesFieldLabel;

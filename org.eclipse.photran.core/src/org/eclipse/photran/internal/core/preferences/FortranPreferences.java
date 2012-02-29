@@ -46,6 +46,7 @@ public final class FortranPreferences
     public static final FortranRGBPreference COLOR_STRINGS             = new FortranRGBPreference("strings",     new RGB(42,  0,   255)); //$NON-NLS-1$
     public static final FortranRGBPreference COLOR_NUMBERS_PUNCTUATION = new FortranRGBPreference("nums_punc",   new RGB(0,   0,   0  )); //$NON-NLS-1$
     public static final FortranRGBPreference COLOR_CPP                 = new FortranRGBPreference("cpp",         new RGB(128, 128, 128)); //$NON-NLS-1$
+    public static final FortranRGBPreference COLOR_COMMENT_DIRECTIVES  = new FortranRGBPreference("directives",  new RGB(180, 100, 50 )); //$NON-NLS-1$
 
     public static final FortranStringPreference PREFERRED_MODEL_BUILDER = new FortranStringPreference("modelbuilder", ""); //$NON-NLS-1$ //$NON-NLS-2$
     public static final FortranStringPreference PREFERRED_DOM_PARSER = new FortranStringPreference("domparser", ""); //$NON-NLS-1$ //$NON-NLS-2$

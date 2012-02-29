@@ -299,4 +299,9 @@ public final class SourceForm
     {
         return SourceForm.of(file).isCPreprocessed();
     }
+
+    public static boolean isCPreprocessed(String filename)
+    {
+        return SourceForm.of(filename).isCPreprocessed();
+    }
 }

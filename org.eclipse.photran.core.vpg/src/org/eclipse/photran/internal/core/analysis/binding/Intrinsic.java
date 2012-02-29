@@ -11,8 +11,8 @@
 package org.eclipse.photran.internal.core.analysis.binding;
 
 import org.eclipse.photran.internal.core.analysis.types.Type;
-import org.eclipse.photran.internal.core.intrinsics.IntrinsicProcDescription;
-import org.eclipse.photran.internal.core.intrinsics.Intrinsics;
+import org.eclipse.photran.internal.core.lang.intrinsics.IntrinsicProcDescription;
+import org.eclipse.photran.internal.core.lang.intrinsics.Intrinsics;
 import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;

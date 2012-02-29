@@ -28,6 +28,7 @@ import org.eclipse.photran.internal.core.analysis.binding.Definition;
 import org.eclipse.photran.internal.core.properties.SearchPathProperties;
 import org.eclipse.photran.internal.ui.editor.FortranEditor;
 import org.eclipse.photran.internal.ui.editor.FortranTemplateCompletionProcessor;
+import org.eclipse.photran.internal.ui.editor.FortranStmtPartitionScanner;
 import org.eclipse.photran.internal.ui.editor_vpg.FortranEditorTasks;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
@@ -62,7 +63,7 @@ public class FortranCompletionProcessor implements IContentAssistProcessor
             FortranEditorTasks.instance(editor).addVPGTask(new FortranCompletionProcessorVPGTask(this));
             
             ContentAssistant assistant = new ContentAssistant();
-            for (String partitionType : FortranEditor.PARTITION_TYPES)
+            for (String partitionType : FortranStmtPartitionScanner.PARTITION_TYPES)
                 assistant.setContentAssistProcessor(this, partitionType);
             assistant.enableAutoActivation(false); //assistant.setAutoActivationDelay(500);
             assistant.setProposalPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);

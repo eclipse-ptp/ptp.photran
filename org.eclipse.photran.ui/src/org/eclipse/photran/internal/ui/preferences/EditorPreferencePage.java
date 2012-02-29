@@ -75,6 +75,9 @@ public class EditorPreferencePage extends AbstractFortranPreferencePage
         addField(new ColorFieldEditor(FortranPreferences.COLOR_CPP.getName(),
                                       Messages.EditorPreferencePage_CPPDirectivesFieldLabel,
                                       getFieldEditorParent()));
+        addField(new ColorFieldEditor(FortranPreferences.COLOR_COMMENT_DIRECTIVES.getName(),
+                                      Messages.EditorPreferencePage_CommentDirectivesFieldLabel,
+                                      getFieldEditorParent()));
     }
     
 //    private static class Separator extends FieldEditor
