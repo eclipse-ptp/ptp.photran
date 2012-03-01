@@ -11,9 +11,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface.text,
  org.eclipse.ltk.core.refactoring,
  org.eclipse.photran.core,
- org.eclipse.rephraserengine.core.vpg,
- org.eclipse.rephraserengine.core,
- org.eclipse.rephraserengine.core.refactoring
+ org.eclipse.rephraserengine.core
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.photran.core;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests,org.eclipse.photran.ui.vpg",
  org.eclipse.photran.internal.core;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests,org.eclipse.photran.ui.vpg",

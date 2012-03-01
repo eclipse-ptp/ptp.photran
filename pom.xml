@@ -53,11 +53,7 @@
 		<module>org.eclipse.photran.ui.vpg</module>
 		<module>org.eclipse.photran.ui.vpg.preprocessor.c</module>
 		<module>org.eclipse.rephraserengine.core</module>
-		<module>org.eclipse.rephraserengine.core.refactoring</module>
-		<module>org.eclipse.rephraserengine.core.vpg</module>
 		<module>org.eclipse.rephraserengine.ui</module>
-		<module>org.eclipse.rephraserengine.ui.refactoring</module>
-		<module>org.eclipse.rephraserengine.ui.vpg</module>
 		<module>org.eclipse.photran-feature</module>
 		<module>org.eclipse.photran.intel-feature</module>
 		<module>org.eclipse.photran.xlf-feature</module>

@@ -19,7 +19,7 @@ To build the JAR files:
 2. Right-click build/cdtdb-4.0.3.xml in the Package Explorer, and choose Run As > Ant Build
 3. Right click the org.eclipse.rephraserengine-support project, and click Refresh.
 4. Right-click distrib/cdtdb-4.0.3-eclipse.jar, and click Copy.
-5. Right-click on the org.eclipse.rephraserengine.core.vpg project, and click Paste to paste it into the project root,
+5. Right-click on the org.eclipse.rephraserengine.core project, and click Paste to paste it into the project root,
    overwriting the existing JAR.
 
 

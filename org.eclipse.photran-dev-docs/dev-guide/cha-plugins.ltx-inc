@@ -189,16 +189,11 @@ Hilliard at Intel.
 %\item \textbf{org.eclipse.rephraserengine-feature}
 %\item \textbf{org.eclipse.rephraserengine-support}*
 %\item \textbf{org.eclipse.rephraserengine.core}
-%\item \textbf{org.eclipse.rephraserengine.core.refactoring}
-%\item \textbf{org.eclipse.rephraserengine.core.vpg}
-%\item \textbf{org.eclipse.rephraserengine.core.vpg.tests}*
+%\item \textbf{org.eclipse.rephraserengine.core.tests}*
 %\item \textbf{org.eclipse.rephraserengine.doc.isv}*
 %\item \textbf{org.eclipse.rephraserengine.examples.text}*
-%\item \textbf{org.eclipse.rephraserengine.examples.testing}*
 %\item \textbf{org.eclipse.rephraserengine.testing.junit3}*
 %\item \textbf{org.eclipse.rephraserengine.ui}
-%\item \textbf{org.eclipse.rephraserengine.ui.refactoring}
-%\item \textbf{org.eclipse.rephraserengine.ui.vpg}
 %\end{itemize}
 
 \section{Non-plug-in projects}

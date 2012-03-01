@@ -54,13 +54,9 @@
       <import plugin="org.eclipse.ui.intro.universal"/>
       <import plugin="org.eclipse.ui.workbench.texteditor"/>
       <import plugin="org.eclipse.ltk.core.refactoring"/>
-      <import plugin="org.eclipse.rephraserengine.core.vpg"/>
       <import plugin="org.eclipse.rephraserengine.core"/>
-      <import plugin="org.eclipse.rephraserengine.core.refactoring"/>
       <import plugin="org.eclipse.ltk.ui.refactoring"/>
-      <import plugin="org.eclipse.rephraserengine.ui.refactoring"/>
       <import plugin="org.eclipse.rephraserengine.ui"/>
-      <import plugin="org.eclipse.rephraserengine.ui.vpg"/>
       <import feature="org.eclipse.cdt" version="8.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.text"/>
    </requires>
