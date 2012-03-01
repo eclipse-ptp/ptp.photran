@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+     <!-- This was originally in a plug-in named org.eclipse.photran.errorparsers.xlf,
+          so that qualifier has been retained for backward compatibility -->
+     <extension
+         id="org.eclipse.photran.errorparsers.xlf.XLFCompilerErrorParser"
+         name="%XLFErrorParser.name"
+         point="org.eclipse.cdt.core.ErrorParser">
+      <errorparser
+            class="org.eclipse.photran.internal.core.xlf.XLFCompilerErrorParser">
+      </errorparser>
+   </extension>
+</plugin>

@@ -8,7 +8,7 @@
  * Contributors:
  *     UIUC - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.errorparsers.xlf;
+package org.eclipse.photran.internal.core.xlf;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -21,7 +21,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.photran.errorparsers.xlf";
+	public static final String PLUGIN_ID = "org.eclipse.photran.core.xlf";
 
 	// The shared instance
 	private static Activator plugin;

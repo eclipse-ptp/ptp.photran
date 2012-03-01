@@ -4,7 +4,7 @@
       label="%featureName"
       version="8.0.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.photran.errorparsers.xlf"
+      plugin="org.eclipse.photran.core.xlf"
       >
 
    <description>
@@ -32,7 +32,7 @@
    </requires>
 
    <plugin
-         id="org.eclipse.photran.errorparsers.xlf"
+         id="org.eclipse.photran.core.xlf"
          download-size="0"
          install-size="0"
          version="0.0.0"

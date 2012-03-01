@@ -9,7 +9,7 @@
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.photran.errorparsers.xlf;
+package org.eclipse.photran.internal.core.xlf;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

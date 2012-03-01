@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.photran.errorparsers.xlf; singleton:=true
+Bundle-SymbolicName: org.eclipse.photran.core.xlf;singleton:=true
 Bundle-Version: 8.0.0.qualifier
-Bundle-Activator: org.eclipse.photran.errorparsers.xlf.Activator
+Bundle-Activator: org.eclipse.photran.internal.core.xlf.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.cdt.core
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.photran.errorparsers.xlf;x-internal:=true
+Export-Package: org.eclipse.photran.internal.core.xlf;x-internal:=true
 Bundle-Vendor: %providerName
 Bundle-ClassPath: xlferrorparser.jar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
