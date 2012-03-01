@@ -25,6 +25,7 @@ import org.eclipse.rephraserengine.testing.junit3.TestSuiteFromFiles;
  * 
  * @author Jeff Overbey
  */
+@SuppressWarnings("nls")
 public class TestSuiteFromFilesExample extends TestSuiteFromFiles
 {
     public static Test suite() throws Exception
@@ -34,7 +35,7 @@ public class TestSuiteFromFilesExample extends TestSuiteFromFiles
 
     public TestSuiteFromFilesExample() throws FileNotFoundException, IOException
     {
-        super("Running TestSuiteFromFilesExample on", "test-files-1", ".txt");
+        super("Running TestSuiteFromFilesExample on", "examples/test-files-1", ".txt");
     }
 
     @Override protected void test(File file) throws Exception

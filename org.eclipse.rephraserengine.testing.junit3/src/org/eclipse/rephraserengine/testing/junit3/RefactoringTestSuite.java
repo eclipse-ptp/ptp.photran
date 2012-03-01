@@ -64,7 +64,7 @@ import org.eclipse.rephraserengine.testing.junit3.GeneralTestSuiteFromMarkers;
  * 
  * @since 3.0
  */
-public class RefactoringTestSuite<R extends Refactoring> extends GeneralTestSuiteFromMarkers {
+public abstract class RefactoringTestSuite<R extends Refactoring> extends GeneralTestSuiteFromMarkers {
 
     private Class<R> refactoringClass;
     private EclipseVPG<?, ?, ?> vpg;

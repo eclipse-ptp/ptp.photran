@@ -25,6 +25,7 @@ import org.eclipse.rephraserengine.testing.junit3.GeneralTestSuiteFromFiles;
  * 
  * @author Jeff Overbey
  */
+@SuppressWarnings("nls")
 public class GeneralTestSuiteFromFilesExample extends GeneralTestSuiteFromFiles
 {
     public static Test suite() throws Exception
@@ -34,7 +35,7 @@ public class GeneralTestSuiteFromFilesExample extends GeneralTestSuiteFromFiles
 
     public GeneralTestSuiteFromFilesExample() throws FileNotFoundException, IOException
     {
-        super("Running GeneralTestSuiteFromFilesExample on", "test-files-1", ".txt");
+        super("Running GeneralTestSuiteFromFilesExample on", "examples/test-files-1", ".txt");
     }
 
     // To prevent the JUnit runner from trying to instantiate and run ExampleTestCase,

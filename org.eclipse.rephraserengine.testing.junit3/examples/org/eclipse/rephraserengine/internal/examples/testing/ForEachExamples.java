@@ -24,6 +24,7 @@ import org.eclipse.rephraserengine.testing.combinatorial.ForEach;
  * 
  * @author Jeff Overbey
  */
+@SuppressWarnings("nls")
 public class ForEachExamples extends TestCase
 {
     private final List<String> people = Arrays.asList("Jim", "Kathy", "Bob", "Alice", "Sam", "Eor");

@@ -23,6 +23,7 @@ import org.eclipse.rephraserengine.testing.junit3.TestSuiteFromMarkers;
  * 
  * @author Jeff Overbey
  */
+@SuppressWarnings("nls")
 public class TestSuiteFromMarkersExample extends TestSuiteFromMarkers
 {
     public static Test suite() throws Exception
@@ -32,7 +33,7 @@ public class TestSuiteFromMarkersExample extends TestSuiteFromMarkers
 
     public TestSuiteFromMarkersExample() throws Exception
     {
-        super("Running TestSuiteFromMarkersExample in", "<<<", new File("test-files-2"), ".txt");
+        super("Running TestSuiteFromMarkersExample in", "<<<", new File("examples/test-files-2"), ".txt");
     }
 
     @Override

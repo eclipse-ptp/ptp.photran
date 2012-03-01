@@ -25,6 +25,7 @@ import org.eclipse.rephraserengine.testing.junit3.GeneralTestSuiteFromMarkers;
  * 
  * @author Jeff Overbey
  */
+@SuppressWarnings("nls")
 public class GeneralTestSuiteFromMarkersExample extends GeneralTestSuiteFromMarkers
 {
     public static Test suite() throws Exception
@@ -34,7 +35,7 @@ public class GeneralTestSuiteFromMarkersExample extends GeneralTestSuiteFromMark
 
     public GeneralTestSuiteFromMarkersExample() throws Exception
     {
-        super("Running GeneralTestSuiteFromMarkersExample in", "<<<", new File("test-files-2"), ".txt");
+        super("Running GeneralTestSuiteFromMarkersExample in", "<<<", new File("examples/test-files-2"), ".txt");
     }
 
     // To prevent the JUnit runner from trying to instantiate and run ExampleTestCase,
