@@ -555,14 +555,14 @@
           <!--inputType
               sources="f90,f95,f03,f08,F90,F95,F03,F08,f,for,ftn,fix,f77,fpp,F,FOR,FTN,FIX,FPP,i,i90"
               dependencyExtensions="f90,f95,f03,f08,F90,F95,F03,F08,f,for,ftn,fix,f77,fpp,F,FOR,FTN,FIX,FPP,i,i90"
-              dependencyCalculator="org.eclipse.photran.managedbuilder.core.makegen.DefaultFortranDependencyCalculator"
+              dependencyCalculator="org.eclipse.photran.cdtinterface.temp.makegen.DefaultFortranDependencyCalculator"
               id="photran.managedbuild.tool.gnu.fortran.compiler.input"
               languageId="org.eclipse.photran.cdtinterface.fortran">
           </inputType-->
           <inputType
               sourceContentType="org.eclipse.photran.core.fortranSource"
               dependencyContentType="org.eclipse.photran.core.fortranSource"
-              dependencyCalculator="org.eclipse.photran.managedbuilder.core.makegen.DefaultFortranDependencyCalculator"
+              dependencyCalculator="org.eclipse.photran.cdtinterface.temp.makegen.DefaultFortranDependencyCalculator"
               id="photran.managedbuild.tool.gnu.fortran.compiler.input"
               languageId="org.eclipse.photran.cdtinterface.fortran">
           </inputType>

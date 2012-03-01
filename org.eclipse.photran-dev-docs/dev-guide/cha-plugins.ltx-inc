@@ -79,8 +79,7 @@ functionality which allows Eclipse to support Fortran projects (although it does
 \item Utility classes
 \end{itemize}
 
-\item \textbf{org.eclipse.photran.managedbuilder.core}, \\
-      \textbf{org.eclipse.photran.managedbuilder.gnu.ui}, \\
+\item \textbf{org.eclipse.photran.managedbuilder.gnu.ui}, \\
       \textbf{org.eclipse.photran.managedbuilder.ui}
 
 Support for Managed Build projects using GNU Fortran (gfortran).  Originally created by

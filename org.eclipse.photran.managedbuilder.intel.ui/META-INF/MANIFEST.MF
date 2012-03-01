@@ -8,12 +8,13 @@ Bundle-Activator: org.eclipse.photran.internal.managedbuilder.intel.ui.IntelUiPl
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.photran.internal.managedbuilder.intel.ui;x-internal:=true
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.photran.core.intel,
- org.eclipse.cdt.managedbuilder.core,
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui,
  org.eclipse.cdt.core,
+ org.eclipse.cdt.managedbuilder.core,
  org.eclipse.photran.core,
- org.eclipse.photran.managedbuilder.core
+ org.eclipse.photran.core.intel,
+ org.eclipse.photran.cdtinterface
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

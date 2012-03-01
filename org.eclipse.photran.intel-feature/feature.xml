@@ -29,7 +29,7 @@
       <import plugin="org.eclipse.cdt.managedbuilder.core"/>
       <import plugin="org.eclipse.cdt.core"/>
       <import plugin="org.eclipse.photran.core"/>
-      <import plugin="org.eclipse.photran.managedbuilder.core"/>
+      <import plugin="org.eclipse.photran.cdtinterface"/>
       <import plugin="org.eclipse.core.resources"/>
       <import feature="org.eclipse.photran" version="8.0.0" match="compatible"/>
    </requires>

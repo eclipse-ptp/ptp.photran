@@ -8,7 +8,7 @@
  * Contributors:
  * IBM - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.managedbuilder.core.makegen;
+package org.eclipse.photran.cdtinterface.temp.makegen;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -46,6 +46,8 @@ import org.eclipse.photran.internal.cdtinterface.core.FortranLanguage;
  *  @author Unknown
  *  @author Timofey Yuvashev 2009
  *  @author Jeff Overbey -- files were not being closed (Bug 334796)
+ *  
+ *  @since 8.0
  */
 @SuppressWarnings({ "deprecation", "rawtypes", "unchecked", "unused" })
 public class DefaultFortranDependencyCalculator implements IManagedDependencyGenerator,
@@ -88,7 +90,7 @@ public class DefaultFortranDependencyCalculator implements IManagedDependencyGen
 			int token;
 			while ((token = st.nextToken()) != StreamTokenizer.TT_EOF) {
 				if (st.ttype == StreamTokenizer.TT_WORD) {
-					if (st.sval.equalsIgnoreCase("use")) {
+					if (st.sval.equalsIgnoreCase("use")) { //$NON-NLS-1$
 						token = st.nextToken();
 						if (st.ttype == StreamTokenizer.TT_WORD) {
 							names.add(st.sval);
@@ -166,7 +168,7 @@ public class DefaultFortranDependencyCalculator implements IManagedDependencyGen
 			int token;
 			while ((token = st.nextToken()) != StreamTokenizer.TT_EOF) {
 				if (st.ttype == StreamTokenizer.TT_WORD) {
-					if (st.sval.equalsIgnoreCase("module")) {
+					if (st.sval.equalsIgnoreCase("module")) { //$NON-NLS-1$
 						token = st.nextToken();
 						if (st.ttype == StreamTokenizer.TT_WORD) {
 							names.add(st.sval);
@@ -222,7 +224,7 @@ public class DefaultFortranDependencyCalculator implements IManagedDependencyGen
 		try {
 			res = project.members();
 		} catch (CoreException e1) {
-			throw new Error("No files found in the given project");
+			throw new Error("No files found in the given project"); //$NON-NLS-1$
 		}
 		
 		ArrayList modRes = new ArrayList();
@@ -281,7 +283,7 @@ public class DefaultFortranDependencyCalculator implements IManagedDependencyGen
 		fileNameContainingModule = getFileNameContainingModule(moduleName, resources, topBuildDir);
 		
 		//If we can't find any files with that module, remove Debug folder
-		if(fileNameContainingModule == null || fileNameContainingModule == "")
+		if(fileNameContainingModule == null || fileNameContainingModule == "") //$NON-NLS-1$
 		{
 			removeDir(new File(project.getLocation().toString() + Path.SEPARATOR + topBuildDir));
 			try 
@@ -290,12 +292,12 @@ public class DefaultFortranDependencyCalculator implements IManagedDependencyGen
 			} 
 			catch (CoreException e) 
 			{
-				throw new Error("Could not update the project");
+				throw new Error("Could not update the project"); //$NON-NLS-1$
 			}
-			throw new Error("Could not find a file to match the module name: "+ moduleName);
+			throw new Error("Could not find a file to match the module name: "+ moduleName); //$NON-NLS-1$
 		}
 		
-		IPath p = Path.fromOSString("./"+topBuildDir + Path.SEPARATOR + fileNameContainingModule + "." + MODULE_EXTENSION);
+		IPath p = Path.fromOSString("./"+topBuildDir + Path.SEPARATOR + fileNameContainingModule + "." + MODULE_EXTENSION); //$NON-NLS-1$ //$NON-NLS-2$
 		return p;
 	}
 	
@@ -316,7 +318,7 @@ public class DefaultFortranDependencyCalculator implements IManagedDependencyGen
 	{
 		ArrayList possibleMatchingFiles = new ArrayList();
 		if(resources == null || resources.length < 1 || 
-		   moduleName == null || moduleName == "")
+		   moduleName == null || moduleName == "") //$NON-NLS-1$
 		{
 			return null;
 		}
@@ -328,17 +330,17 @@ public class DefaultFortranDependencyCalculator implements IManagedDependencyGen
 				IFile f = (IFile)resources[i];
 				
 				//Gets rid of the file extension
-				String fileName = f.getName().replaceFirst("\\..+", "");
+				String fileName = f.getName().replaceFirst("\\..+", ""); //$NON-NLS-1$ //$NON-NLS-2$
 				
 				//If a file name matches a module name exactly -- return the relative path to that file
 				if(fileName == moduleName)
-					return f.getProjectRelativePath().toString().replaceFirst("\\..+", "");
+					return f.getProjectRelativePath().toString().replaceFirst("\\..+", ""); //$NON-NLS-1$ //$NON-NLS-2$
 				
 				//Otherwise, check if the two names have different cases
 				else if(fileName.equalsIgnoreCase(moduleName))
 				{
 					//And if they do, keep it
-					possibleMatchingFiles.add(f.getProjectRelativePath().toString().replaceFirst("\\..+", "")); 
+					possibleMatchingFiles.add(f.getProjectRelativePath().toString().replaceFirst("\\..+", "")); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 			//If its a folder, recurse, but don't look in other build folders (Bug 326333)
@@ -358,7 +360,7 @@ public class DefaultFortranDependencyCalculator implements IManagedDependencyGen
 				} 
 				catch (CoreException e) 
 				{
-					throw new Error("Could not open a container to explore its files");
+					throw new Error("Could not open a container to explore its files"); //$NON-NLS-1$
 				}
 				
 				String name = getFileNameContainingModule(moduleName, subResource, buildDirName);
@@ -473,7 +475,7 @@ public class DefaultFortranDependencyCalculator implements IManagedDependencyGen
 					//        directory path relative to the top-level build directory.  The relative path comes from the source
 					//        file location.  In order to specify that this output file is always in the top-level build 
 					//        directory, regardless of the source file directory structure, return "./path".
-					IPath modName = Path.fromOSString("." + Path.SEPARATOR + modules[i] + "." + MODULE_EXTENSION);
+					IPath modName = Path.fromOSString("." + Path.SEPARATOR + modules[i] + "." + MODULE_EXTENSION); //$NON-NLS-1$ //$NON-NLS-2$
 					outs.add(modName);				
 				}
 			}

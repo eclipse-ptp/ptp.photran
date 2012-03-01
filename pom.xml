@@ -45,7 +45,6 @@
 		<module>org.eclipse.photran.core.vpg.preprocessor.c</module>
 		<module>org.eclipse.photran.core.xlf</module>
 		<module>org.eclipse.photran.doc.user</module>
-		<module>org.eclipse.photran.managedbuilder.core</module>
 		<module>org.eclipse.photran.managedbuilder.gnu.ui</module>
 		<module>org.eclipse.photran.managedbuilder.intel.ui</module>
 		<module>org.eclipse.photran.managedbuilder.ui</module>

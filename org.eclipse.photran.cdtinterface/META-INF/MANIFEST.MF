@@ -7,14 +7,15 @@ Bundle-ClassPath: cdtinterface.jar
 Bundle-Activator: org.eclipse.photran.internal.cdtinterface.CDTInterfacePlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.photran.internal.cdtinterface;x-internal:=true,
- org.eclipse.photran.internal.cdtinterface.core;x-friends:="org.eclipse.photran.ui,org.eclipse.photran.managedbuilder.core",
+Export-Package: org.eclipse.photran.cdtinterface.temp.makegen,
+ org.eclipse.photran.internal.cdtinterface;x-internal:=true,
+ org.eclipse.photran.internal.cdtinterface.core;x-friends:="org.eclipse.photran.ui",
  org.eclipse.photran.internal.cdtinterface.dom;x-internal:=true,
  org.eclipse.photran.internal.cdtinterface.errorparsers;x-internal:=true,
  org.eclipse.photran.internal.cdtinterface.launch;x-internal:=true,
  org.eclipse.photran.internal.cdtinterface.templates;x-internal:=true,
  org.eclipse.photran.internal.cdtinterface.ui;x-internal:=true,
- org.eclipse.photran.internal.cdtinterface.ui.editor;x-friends:="org.eclipse.photran.ui",
+ org.eclipse.photran.internal.cdtinterface.ui.editor;x-friends:="org.eclipse.photran.ui,org.eclipse.photran.ui.vpg",
  org.eclipse.photran.internal.core.model
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

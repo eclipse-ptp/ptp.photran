@@ -1,0 +1,9 @@
+P1	Absolutely must be fixed before the next release
+P2	Planned for the next release but could slip under extenuating circumstances
+P3	New bug/status undetermined/needs to be triaged
+P4	Desirable but not planned/resources not allocated
+P5	Unlikely to be fixed (under current resource allocations)
+
+P5 enhancement requests should be resolved WONTFIX and moved to the wish list:
+http://wiki.eclipse.org/PTP/photran/wishlist
+This way, the set of all P5 bugs is effectively a list of "known problems."

@@ -3,13 +3,17 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.photran.managedbuilder.xlf.ui;singleton:=true
 Bundle-Version: 8.0.0.qualifier
+Bundle-ClassPath: xlfui.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.photran.core.intel,
- org.eclipse.cdt.managedbuilder.core,
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui,
  org.eclipse.cdt.core,
+ org.eclipse.cdt.managedbuilder.core,
  org.eclipse.photran.core,
- org.eclipse.photran.managedbuilder.core
+ org.eclipse.photran.core.xlf,
+ org.eclipse.photran.cdtinterface
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.photran.internal.xlf.ui.Activator

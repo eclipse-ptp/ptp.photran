@@ -259,7 +259,7 @@ public class PhotranVPGWriter extends EclipseVPGWriter<IFortranAST, Token, Photr
         computeDependenciesUsingFastTokenizer(filename); //computeDependenciesUsingLexer(filename);
     }
 
-    /** @see org.eclipse.photran.managedbuilder.core.makegen.DefaultFortranDependencyCalculator */
+    /** @see org.eclipse.photran.cdtinterface.temp.makegen.DefaultFortranDependencyCalculator */
     private void computeDependenciesUsingFastTokenizer(String filename)
     {
         try {
