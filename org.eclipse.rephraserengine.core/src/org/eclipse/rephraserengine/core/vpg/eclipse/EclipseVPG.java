@@ -206,11 +206,11 @@ public abstract class EclipseVPG<A, T, R extends IVPGNode<T>>
         workspaceRoot.accept(visitor); // Collect list of files to index
     }
 
-    private EclipseVPGWriter<A, T, R> getBuilder()
-    {
-        return (EclipseVPGWriter<A, T, R>)getBuilder();
-    }
-    
+//    private EclipseVPGWriter<A, T, R> getBuilder()
+//    {
+//        return (EclipseVPGWriter<A, T, R>)getBuilder();
+//    }
+
     private final class WorkspaceSyncResourceVisitor implements IResourceVisitor
     {
         private final ArrayList<String> files;
