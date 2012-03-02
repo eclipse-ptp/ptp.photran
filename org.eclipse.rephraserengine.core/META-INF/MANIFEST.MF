@@ -23,7 +23,10 @@ Export-Package: org.eclipse.rephraserengine.core.analysis.dependence,
  org.eclipse.rephraserengine.core.vpg.db.ram,
  org.eclipse.rephraserengine.core.vpg.eclipse,
  org.eclipse.rephraserengine.core.vpg.refactoring,
- org.eclipse.rephraserengine.internal.core.vpg.db.cdt;x-friends:="org.eclipse.rephraserengine.core.tests"
+ org.eclipse.rephraserengine.internal.core.vpg.db.cdt;x-friends:="org.eclipse.rephraserengine.core.tests",
+ org.eclipse.rephraserengine.internal.db.org.eclipse.cdt.core;x-friends:="org.eclipse.rephraserengine.core.tests",
+ org.eclipse.rephraserengine.internal.db.org.eclipse.cdt.internal.core.pdom.db;x-friends:="org.eclipse.rephraserengine.core.tests",
+ org.eclipse.rephraserengine.internal.db.org.eclipse.cdt.internal.core.pdom.dom;x-friends:="org.eclipse.rephraserengine.core.tests"
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.commands,
  org.eclipse.core.resources,
