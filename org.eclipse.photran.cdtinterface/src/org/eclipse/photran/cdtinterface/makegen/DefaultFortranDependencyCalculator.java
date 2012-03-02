@@ -8,7 +8,7 @@
  * Contributors:
  * IBM - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.cdtinterface.temp.makegen;
+package org.eclipse.photran.cdtinterface.makegen;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

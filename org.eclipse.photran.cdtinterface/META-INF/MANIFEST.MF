@@ -7,7 +7,7 @@ Bundle-ClassPath: cdtinterface.jar
 Bundle-Activator: org.eclipse.photran.internal.cdtinterface.CDTInterfacePlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.photran.cdtinterface.temp.makegen,
+Export-Package: org.eclipse.photran.cdtinterface.makegen,
  org.eclipse.photran.internal.cdtinterface;x-internal:=true,
  org.eclipse.photran.internal.cdtinterface.core;x-friends:="org.eclipse.photran.ui",
  org.eclipse.photran.internal.cdtinterface.dom;x-internal:=true,
