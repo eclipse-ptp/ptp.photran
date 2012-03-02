@@ -107,6 +107,19 @@ public final class FortranTemplateCompletionProcessor extends TemplateCompletion
         return matches.toArray(new ICompletionProposal[matches.size()]);
     }
 
+    @Override protected String extractPrefix(ITextViewer viewer, int offset)
+    {
+        try
+        {
+            final IDocument document = viewer.getDocument();
+            final int start = CompletionUtil.findPrefix(document, offset);
+            final int end = offset;
+            return document.get(start, end-start);
+        } catch (BadLocationException e) {
+            return ""; //$NON-NLS-1$
+        }
+    }
+
     private boolean templatePatternStartsWith(String prefix, Template template)
     {
         String pattern = template.getPattern();
