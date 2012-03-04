@@ -294,9 +294,17 @@
    <!--=============================================-->
    <extension-point
       id="sourceViewerConfig"
-      name="%extension-point.name"
+      name="%source-viewer-config-extension-point.name"
       schema="schema/sourceViewerConfig.exsd"/>
-   	
+
+   <!--=============================================-->
+   <!-- API Help Provider Extension Point -->
+   <!--=============================================-->
+   <extension-point
+      id="apiHelpProvider"
+      name="%api-help-provider-extension-point.name"
+      schema="schema/apiHelpProvider.exsd"/>
+
    <!--==============================================-->
    <!-- Image Associated with Fortran Project Nature -->
    <!--==============================================-->

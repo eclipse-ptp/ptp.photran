@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2007-2012 University of Illinois at Urbana-Champaign and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    UIUC - Initial API and implementation
+ *******************************************************************************/
 package org.eclipse.photran.internal.ui.views.declaration;
 
 import java.util.HashMap;
@@ -22,7 +32,9 @@ import org.eclipse.photran.internal.core.lexer.TokenList;
 import org.eclipse.photran.internal.core.parser.ASTExecutableProgramNode;
 import org.eclipse.photran.internal.core.properties.SearchPathProperties;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
+import org.eclipse.photran.internal.ui.ContributedAPIDocs;
 import org.eclipse.photran.internal.ui.editor.FortranEditor;
+import org.eclipse.photran.internal.ui.editor.FortranHelpContextProvider;
 import org.eclipse.photran.internal.ui.editor.FortranKeywordRuleBasedScanner;
 import org.eclipse.photran.internal.ui.editor.FortranStmtPartitionScanner;
 import org.eclipse.photran.internal.ui.editor_vpg.DefinitionMap;
@@ -30,6 +42,9 @@ import org.eclipse.photran.internal.ui.editor_vpg.FortranEditorTasks;
 import org.eclipse.photran.internal.ui.editor_vpg.IFortranEditorASTTask;
 import org.eclipse.photran.internal.ui.editor_vpg.IFortranEditorVPGTask;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTError;
+import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Composite;
@@ -56,13 +71,20 @@ public class DeclarationView extends ViewPart
                IFortranEditorVPGTask,
                IFortranEditorASTTask
 {
+    private static enum ContentType { HTML, FORTRAN_SOURCE };
+
     private FortranEditor activeEditor = null;
     private HashMap<String, ASTExecutableProgramNode> activeAST = new HashMap<String, ASTExecutableProgramNode>();
     private HashMap<String, TokenList> activeTokenList = new HashMap<String, TokenList>();
     private HashMap<String, DefinitionMap<String>> activeDefinitions = new HashMap<String, DefinitionMap<String>>();
 
+    private Composite composite = null;
+    private StackLayout stackLayout = null;
+
     private SourceViewer viewer = null;
     private Document document = new Document();
+
+    private Browser browser = null;
 
     private Color LIGHT_YELLOW = new Color(null, new RGB(255, 255, 191));
 
@@ -82,7 +104,15 @@ public class DeclarationView extends ViewPart
      */
     @Override public void createPartControl(Composite parent)
     {
-        this.viewer = createFortranSourceViewer(parent);
+        this.composite = new Composite(parent, SWT.NONE);
+        this.stackLayout = new StackLayout();
+        composite.setLayout(this.stackLayout);
+
+        this.viewer = createFortranSourceViewer(composite);
+        this.browser = createBrowser(composite);
+
+        stackLayout.topControl = viewer.getControl();
+        composite.layout();
 
         // Add this view as a selection listener to the workbench page
         getSite().getPage().addSelectionListener(this);
@@ -124,15 +154,45 @@ public class DeclarationView extends ViewPart
         return viewer;
     }
 
+    private Browser createBrowser(Composite parent)
+    {
+        try {
+            return new Browser(parent, SWT.NONE);
+        } catch (SWTError e) {
+            return null;
+        }
+    }
+
     /**
      * Update document by displaying the new text
      */
-    public void update(String str)
+    public void update(ContentType contentType, String str)
     {
         if (str.length() > 0)
             str = trimBlankLines(str);
-        document.set(str);
-        viewer.refresh();
+
+        switch (contentType)
+        {
+            case HTML:
+                if (browser != null)
+                {
+                    browser.setText(str);
+                    stackLayout.topControl = browser;
+                    composite.layout();
+                }
+                else
+                {
+                    document.set(""); //$NON-NLS-1$
+                }
+                break;
+                
+            case FORTRAN_SOURCE:
+                document.set(str);
+                viewer.refresh();
+                stackLayout.topControl = viewer.getControl();
+                composite.layout();
+                break;
+        }
     }
 
     private static Pattern blankLine = Pattern.compile("(([ \\t]*[\\r\\n]+)+)[^\\00]*"); //$NON-NLS-1$
@@ -271,7 +331,7 @@ public class DeclarationView extends ViewPart
      */
     private void stopObserving(FortranEditor editor)
     {
-        update(""); //$NON-NLS-1$
+        update(ContentType.FORTRAN_SOURCE, ""); //$NON-NLS-1$
         if (editor != null)
             removeCaretMovementListenerFrom(editor);
     }
@@ -335,20 +395,38 @@ public class DeclarationView extends ViewPart
     public synchronized void selectionChanged(SelectionChangedEvent event)
     {
         if (activeEditor == null) return;
-        String path = activeEditor.getIFile().getFullPath().toPortableString();
 
+        if (event.getSelection() instanceof TextSelection)
+        {
+            String contributedHelp = ContributedAPIDocs.getAPIHelpAsHTML(FortranHelpContextProvider.getSelectedString(activeEditor));
+            if (contributedHelp != null)
+            {
+                // Use third-party HTML documentation if it is present
+                update(ContentType.HTML, contributedHelp);
+            }
+            else
+            {
+                // Otherwise, extract the declaration from the Fortran source code, if possible
+                String description = getDeclarationTextFromDefMap((TextSelection)event.getSelection());
+                update(ContentType.FORTRAN_SOURCE, description);
+            }
+        }
+    }
+
+    private String getDeclarationTextFromDefMap(TextSelection selection)
+    {
+        String path = activeEditor.getIFile().getFullPath().toPortableString();
         TokenList tokenList = activeTokenList.get(path);
         DefinitionMap<String> defMap = activeDefinitions.get(path);
-        if (event.getSelection() instanceof TextSelection && tokenList != null && defMap != null)
+        String description;
+        if (tokenList != null && defMap != null)
         {
-            String description = defMap.lookup((TextSelection)event.getSelection(), tokenList);
-            update(description == null
-                ? "" //$NON-NLS-1$
-                : description);
+            description = defMap.lookup(selection, tokenList);
         }
         else
         {
-            update(""); //$NON-NLS-1$
+            description = ""; //$NON-NLS-1$
         }
+        return description == null ? "" : description; //$NON-NLS-1$
     }
 }

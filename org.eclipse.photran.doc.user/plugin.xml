@@ -7,4 +7,11 @@
       <toc file="tocbasic.xml"/>
       <toc file="tocadvanced.xml"/>
    </extension>
+
+   <extension point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml"
+            plugin="org.eclipse.photran.ui">
+      </contexts>
+   </extension>
 </plugin>

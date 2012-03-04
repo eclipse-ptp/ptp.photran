@@ -3,10 +3,10 @@
 <schema targetNamespace="org.eclipse.photran.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.photran.ui" id="sourceViewerConfig" name="Source Viewer Configuration"/>
+         <meta.schema plugin="org.eclipse.photran.ui" id="apiHelpProvider" name="API Help Provider"/>
       </appInfo>
       <documentation>
-         This is an internal extension point which allows the org.eclipse.photran.ui.vpg plug-in to contribute a SourceViewerConfiguration for the Fortran editor.
+         This extension point allows third parties to contribute HTML documentation for Fortran APIs.
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="sourceViewerConfig"/>
+            <element ref="apiHelpProvider"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,21 +47,29 @@
       </complexType>
    </element>
 
-   <element name="sourceViewerConfig">
+   <element name="apiHelpProvider">
       <complexType>
-         <attribute name="factory" type="string" use="required">
+         <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  A class extending &lt;code&gt;org.eclipse.core.model.IContributedModelBuildere&lt;/code&gt;.
+                  A class implementing &lt;code&gt;org.eclipse.photran.ui.IFortranAPIHelpProvider&lt;/code&gt;.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.photran.internal.ui.editor.IFortranSourceViewerConfigurationFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.photran.ui.IFortranAPIHelpProvider"/>
                </appInfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         8.0
+      </documentation>
+   </annotation>
 
 
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2007-2012 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Preferences.IPropertyChangeListener;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
@@ -65,13 +67,17 @@ import org.eclipse.photran.internal.core.preferences.FortranPreferences;
 import org.eclipse.photran.internal.core.sourceform.SourceForm;
 import org.eclipse.photran.internal.ui.FortranUIPlugin;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.HelpEvent;
+import org.eclipse.swt.events.HelpListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.EditorsUI;
+import org.eclipse.ui.help.IWorkbenchHelpSystem;
 import org.eclipse.ui.texteditor.ChainedPreferenceStore;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
 import org.eclipse.ui.texteditor.IDocumentProvider;
@@ -91,12 +97,16 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
     // Constants
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
+    /** Editor ID for the Fortran editor.  Defined in org.eclipse.photran.ui/plugin.xml */
     public static final String EDITOR_ID = "org.eclipse.photran.ui.FortranEditor"; //$NON-NLS-1$
 
-    protected static String CONTEXT_MENU_ID = "#FortranEditorContextMenu"; //$NON-NLS-1$
+    /** Context-sensitive help ID for the Fortran editor.  Defined in org.eclipse.photran.doc.user/contexts.xml */
+    public static final String HELP_CONTEXT_ID = "org.eclipse.photran.ui.editor"; //$NON-NLS-1$
 
-    public static final String SOURCE_VIEWER_CONFIG_EXTENSION_POINT_ID =
-        "org.eclipse.photran.ui.sourceViewerConfig"; //$NON-NLS-1$
+    /** Extension point ID for contributing new source viewer configurations.  Defined in Defined in org.eclipse.photran.ui/plugin.xml */
+    public static final String SOURCE_VIEWER_CONFIG_EXTENSION_POINT_ID = "org.eclipse.photran.ui.sourceViewerConfig"; //$NON-NLS-1$
+
+    protected static String CONTEXT_MENU_ID = "#FortranEditorContextMenu"; //$NON-NLS-1$
 
     protected static String FORTRAN_EDITOR_CONTEXT_ID = "org.eclipse.photran.ui.FortranEditorContext"; //$NON-NLS-1$
 
@@ -175,6 +185,8 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
         createLightGrayLines();
 
 //        addWatermark(parent);
+        
+        addHelpListener(parent);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -426,6 +438,22 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
         {
             return new int[0];
         }
+    }
+
+    private void addHelpListener(Composite parent)
+    {
+        final IWorkbenchHelpSystem helpSystem = PlatformUI.getWorkbench().getHelpSystem();
+        parent.addHelpListener(new HelpListener() {
+            public void helpRequested(HelpEvent e) {
+                IContextProvider provider = new FortranHelpContextProvider(FortranEditor.this);
+                IContext context = provider.getContext(FortranEditor.this);
+                if (context != null) {
+                    helpSystem.displayHelp(context);
+                    return;
+                }
+                //helpSystem.displayHelp(ICHelpContextIds.CEDITOR_VIEW);
+                helpSystem.displayHelp(HELP_CONTEXT_ID);
+            }});
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -703,5 +731,15 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
     {
         FortranCorePlugin.getDefault().getPluginPreferences().removePropertyChangeListener(this);
         super.dispose();
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Object getAdapter(Class required)
+    {
+        if (IContextProvider.class.equals(required))
+            return new FortranHelpContextProvider(this);
+        else
+            return super.getAdapter(required);
     }
 }
