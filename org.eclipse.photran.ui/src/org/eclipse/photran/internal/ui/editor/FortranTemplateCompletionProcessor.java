@@ -122,7 +122,7 @@ public final class FortranTemplateCompletionProcessor extends TemplateCompletion
 
     private boolean templatePatternStartsWith(String prefix, Template template)
     {
-        String pattern = template.getPattern();
+        String pattern = template.getPattern().replace("$$", "$"); //$NON-NLS-1$ //$NON-NLS-2$
         if (pattern.startsWith("$")) // Skip prefix in "${return_type} FUNCTION..." template //$NON-NLS-1$
             return pattern.substring(pattern.indexOf('}')+1).trim().startsWith(prefix);
         else
