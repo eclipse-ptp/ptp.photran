@@ -39,9 +39,9 @@ public final class ContributedAPIDocs
      * @return a list of help resources provided via the
      *         {@value FortranUIHelp#API_HELP_PROVIDER_EXTENSION_POINT_ID} extension point
      */
-    public static String getAPIHelpAsHTML(String apiName)
+    public static String getAPIHelpAsHTML(ITextEditor editor, String apiName, String precedingText)
     {
-        IHelpResource[] resources = getAPIHelp(apiName);
+        IHelpResource[] resources = getAPIHelp(editor, apiName, precedingText);
         if (resources.length == 0)
         {
             return null;
@@ -89,16 +89,7 @@ public final class ContributedAPIDocs
      * @return a list of help resources provided via the
      *         {@value FortranUIHelp#API_HELP_PROVIDER_EXTENSION_POINT_ID} extension point
      */
-    public static IHelpResource[] getAPIHelp(String apiName)
-    {
-        return getAPIHelp(null, apiName);
-    }
-
-    /**
-     * @return a list of help resources provided via the
-     *         {@value FortranUIHelp#API_HELP_PROVIDER_EXTENSION_POINT_ID} extension point
-     */
-    public static IHelpResource[] getAPIHelp(ITextEditor fortranEditor, String selectedText)
+    public static IHelpResource[] getAPIHelp(ITextEditor fortranEditor, String apiName, String precedingText)
     {
         final List<IHelpResource> helpResources = new ArrayList<IHelpResource>();
 
@@ -107,7 +98,7 @@ public final class ContributedAPIDocs
             try
             {
                 IFortranAPIHelpProvider helpProvider = (IFortranAPIHelpProvider)config.createExecutableExtension("class"); //$NON-NLS-1$
-                IHelpResource[] resources = helpProvider.getHelpResources(fortranEditor, selectedText);
+                IHelpResource[] resources = helpProvider.getHelpResources(fortranEditor, apiName, precedingText);
                 if (resources != null)
                     for (IHelpResource resource : resources)
                         if (resource != null)

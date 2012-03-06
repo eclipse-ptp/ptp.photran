@@ -34,14 +34,15 @@ public interface IFortranAPIHelpProvider
      * 
      * @param fortranEditor the active Fortran editor, or <code>null</code> if no editor is active
      *            (e.g., if this method is being invoked by the Fortran Declaration view)
-     * @param selectedText the word under the caret in the Fortran editor; or, if the editor
-     *            selection is nonempty, the text in the editor selection; or, if this method is
-     *            being invoked from a source other than an editor (e.g., by the Fortran Declaration
-     *            view), the name of an API type, procedure, or constant (nonempty, non-
-     *            <code>null</code>)
+     * @param apiName the word under the caret in the Fortran editor; or, if the editor selection is
+     *            nonempty, the text in the editor selection; or, if this method is being invoked
+     *            from a source other than an editor (e.g., by the Fortran Declaration view), the
+     *            name of an API type, procedure, or constant (nonempty, non- <code>null</code>)
+     * @param precedingText the text on the current editor line preceding <code>apiName</code>, or
+     *            the empty string (non-<code>null</code>)
      * 
      * @return a list of help resources for the given Fortran editor with the given selected text
      *         (possibly <code>null</code>)
      */
-    IHelpResource[] getHelpResources(ITextEditor fortranEditor, String selectedText);
+    IHelpResource[] getHelpResources(ITextEditor fortranEditor, String apiName, String precedingText);
 }

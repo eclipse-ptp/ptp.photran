@@ -58,13 +58,14 @@ public class FortranHelpContextProvider implements IContextProvider
     public IContext getContext(Object target)
     {
         String selected = getSelectedString(fEditor);
+        String preceding = getPrecedingString(fEditor);
         // IContext context= HelpSystem.getContext(ICHelpContextIds.CEDITOR_VIEW);
         IContext context = HelpSystem.getContext(FortranEditor.HELP_CONTEXT_ID);
         if (context != null && selected != null && selected.length() > 0)
         {
             try
             {
-                context = new FortranHelpDisplayContext(context, fEditor, selected);
+                context = new FortranHelpDisplayContext(context, fEditor, selected, preceding);
             }
             catch (CoreException exc)
             {
@@ -106,24 +107,46 @@ public class FortranHelpContextProvider implements IContextProvider
         return expression;
     }
 
+    public static String getPrecedingString(ITextEditor editor)
+    {
+        String expression = ""; //$NON-NLS-1$
+        try
+        {
+            ITextSelection selection = (ITextSelection)editor.getSite().getSelectionProvider().getSelection();
+            IDocument document = editor.getDocumentProvider().getDocument(editor.getEditorInput());
+            IRegion region = findWord(document, selection.getOffset());
+            if (region != null)
+            {
+                int end = region.getOffset();
+                IRegion partition = document.getPartition(end);
+                int start = partition.getOffset();
+                expression = document.get(start, end-start);
+            }
+        }
+        catch (Exception e)
+        {
+        }
+        return expression;
+    }
+
     public static final class FortranHelpDisplayContext implements IContext
     {
         private final IHelpResource[] helpResources;
 
         private final String text;
 
-        public FortranHelpDisplayContext(IContext context, ITextEditor editor, String selected)
+        public FortranHelpDisplayContext(IContext context, ITextEditor editor, String selected, String precedingText)
             throws CoreException
         {
             this.text = context.getText();
-            this.helpResources = getHelpResources(context, editor, selected);
+            this.helpResources = getHelpResources(context, editor, selected, precedingText);
         }
 
-        private IHelpResource[] getHelpResources(IContext context, ITextEditor editor, String selected)
+        private IHelpResource[] getHelpResources(IContext context, ITextEditor editor, String selected, String precedingText)
         {
             List<IHelpResource> helpResources = new ArrayList<IHelpResource>();
 
-            IHelpResource[] apiResources = getAPIHelp(editor, selected);
+            IHelpResource[] apiResources = getAPIHelp(editor, selected, precedingText);
             if (apiResources != null) helpResources.addAll(Arrays.asList(apiResources));
 
             IHelpResource[] relatedResources = context.getRelatedTopics();
@@ -133,9 +156,9 @@ public class FortranHelpContextProvider implements IContextProvider
         }
 
         /** @return a list of help resources provided via the {@value ContributedAPIDocs#API_HELP_PROVIDER_EXTENSION_POINT_ID} extension point */
-        private IHelpResource[] getAPIHelp(ITextEditor fortranEditor, String selectedText)
+        private IHelpResource[] getAPIHelp(ITextEditor fortranEditor, String apiName, String precedingText)
         {
-            return ContributedAPIDocs.getAPIHelp(fortranEditor, selectedText);
+            return ContributedAPIDocs.getAPIHelp(fortranEditor, apiName, precedingText);
         }
 
         public IHelpResource[] getRelatedTopics()

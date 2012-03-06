@@ -398,7 +398,10 @@ public class DeclarationView extends ViewPart
 
         if (event.getSelection() instanceof TextSelection)
         {
-            String contributedHelp = ContributedAPIDocs.getAPIHelpAsHTML(FortranHelpContextProvider.getSelectedString(activeEditor));
+            String contributedHelp = ContributedAPIDocs.getAPIHelpAsHTML(
+                activeEditor,
+                FortranHelpContextProvider.getSelectedString(activeEditor),
+                FortranHelpContextProvider.getPrecedingString(activeEditor));
             if (contributedHelp != null)
             {
                 // Use third-party HTML documentation if it is present
