@@ -275,6 +275,9 @@ public class Token implements IToken, IASTNode
     private static final Pattern ompComment = Pattern.compile(
         "([Cc*!][ \\t]*\\$[Oo][Mm][Pp][ \\t]*)([^\\r\\n]*\\r?\\n)"); //$NON-NLS-1$
 
+    private static final Pattern accComment = Pattern.compile(
+        "([Cc*!][ \\t]*\\$[Aa][Cc][Cc][ \\t]*)([^\\r\\n]*\\r?\\n)"); //$NON-NLS-1$
+
     /**
      * Returns a list of {@link Token}s representing OpenMP directives in the comments preceding
      * this token (i.e., {@link #getWhiteBefore()}).  These are {@link Token} objects simply
@@ -291,8 +294,31 @@ public class Token implements IToken, IASTNode
      */
     public List<Token> getOpenMPComments()
     {
+        return getPrecedingComments(ompComment);
+    }
+
+    /**
+     * Returns a list of {@link Token}s representing OpenACC directives in the comments preceding
+     * this token (i.e., {@link #getWhiteBefore()}).  These are {@link Token} objects simply
+     * for convenience (they have text and location information); they <i>do not</i> appear in
+     * the AST, and each invocation of this method will return (pointerwise) different Tokens.
+     * 
+     * @return a list of (artificial) {@link Token} objects, one per OpenACC directive in the
+     *         comments preceding this Token
+     */
+    public List<Token> getOpenACCComments()
+    {
+        return getPrecedingComments(accComment);
+    }
+
+    /**
+     * @param commentPattern
+     * @return
+     */
+    private List<Token> getPrecedingComments(Pattern commentPattern)
+    {
         String whitetext = getWhiteBefore();
-        Matcher m = ompComment.matcher(whitetext);
+        Matcher m = commentPattern.matcher(whitetext);
         int startStreamOffset = getStreamOffset() - whitetext.length();
         int startFileOffset = getFileOffset() - whitetext.length();
         List<Token> result = new LinkedList<Token>();
