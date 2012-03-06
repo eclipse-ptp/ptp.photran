@@ -289,25 +289,30 @@ public class SalesScanKeywordRule extends WordRule implements IRule
 
     private IToken salesScan(IToken tokenIfKeyword, IToken tokenIfIdentifier)
     {
-        SalesScanner salesScanner = new SalesScanner(fLineBuffer.toString(), fBuffer.toString());
-        boolean retainAsKeyword = salesScanner.retainAsKeyword(fWordCol);
-
-//        System.out.println();
-//        System.out.println("fLineBuffer: \"" + fLineBuffer + "\"");
-//        System.out.println("fBuffer:     \"" + fBuffer + "\"");
-//        System.out.println("Position " + fWordCol);
-//        System.out.println("First token at column " + (salesScanner.firstTokenPos));
-//        System.out.println("First token following ) at " + (salesScanner.tokenFollowingParentheticalPos));
-//        System.out.println("Open context comma?   " + salesScanner.openContextComma);
-//        System.out.println("Open context equals?  " + salesScanner.openContextEquals);
-//        System.out.println("Letter follows paren? " + salesScanner.letterFollowsParenthetical);
-
-        if (retainAsKeyword)
-            return tokenIfKeyword;
-        else if (tokenIfIdentifier == null)
+        try {
+            SalesScanner salesScanner = new SalesScanner(fLineBuffer.toString(), fBuffer.toString());
+            boolean retainAsKeyword = salesScanner.retainAsKeyword(fWordCol);
+    
+//            System.out.println();
+//            System.out.println("fLineBuffer: \"" + fLineBuffer + "\"");
+//            System.out.println("fBuffer:     \"" + fBuffer + "\"");
+//            System.out.println("Position " + fWordCol);
+//            System.out.println("First token at column " + (salesScanner.firstTokenPos));
+//            System.out.println("First token following ) at " + (salesScanner.tokenFollowingParentheticalPos));
+//            System.out.println("Open context comma?   " + salesScanner.openContextComma);
+//            System.out.println("Open context equals?  " + salesScanner.openContextEquals);
+//            System.out.println("Letter follows paren? " + salesScanner.letterFollowsParenthetical);
+    
+            if (retainAsKeyword)
+                return tokenIfKeyword;
+            else if (tokenIfIdentifier == null)
+                return fDefaultToken;
+            else
+                return tokenIfIdentifier;
+        } catch (Throwable e) {
+            FortranUIPlugin.log(e);
             return fDefaultToken;
-        else
-            return tokenIfIdentifier;
+        }
     }
 
     /**

@@ -135,7 +135,6 @@ public final class FortranLineScanner
                 && line.startsWith("     ") && line.charAt(5) != ' ' && line.charAt(5) != '0') //$NON-NLS-1$
             {
                 numberOfAdditionalCharacters += lengthOfComments + line.length();
-                line = reader.readNextLine();
                 moreContinuationLinesPossible = true;
             }
             else
