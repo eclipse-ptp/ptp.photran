@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.photran"
       label="%featureName"
-      version="7.0.6.qualifier"
+      version="7.0.7.qualifier"
       plugin="org.eclipse.photran.core"
       provider-name="%providerName"
       >
