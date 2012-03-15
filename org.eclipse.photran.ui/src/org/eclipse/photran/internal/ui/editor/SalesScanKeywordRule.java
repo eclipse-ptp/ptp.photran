@@ -543,6 +543,8 @@ public class SalesScanKeywordRule extends WordRule implements IRule
                 return letterFollowsParenthetical;
             else if (keyword.equalsIgnoreCase("then")) //$NON-NLS-1$
                 return !openContextEquals && !openContextComma && (match("if", firstTokenPos) || match("else", firstTokenPos) || match("forall", firstTokenPos)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            else if (keyword.equalsIgnoreCase("to")) //$NON-NLS-1$
+                return !openContextEquals && !openContextComma && match("go", firstTokenPos); //$NON-NLS-1$
             // BEGIN FORTRAN 2003
             else if (keyword.equalsIgnoreCase("bind")) //$NON-NLS-1$
                 return openContextComma && (match("enum", firstTokenPos) || match("type", firstTokenPos)) //$NON-NLS-1$ //$NON-NLS-2$
