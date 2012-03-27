@@ -55,10 +55,13 @@ public class Open64ErrorParser implements IErrorParser {
     // Capture groups in the above regexes
     private static final int ALT_DESCRIPTION_GROUP = 1;
 
+    private String previousLine = ""; //$NON-NLS-1$
+
     @Override
     public boolean processLine(String currentLine, ErrorParserManager eoParser)
     {
-        Matcher matcher = matchErrorWarningLine(eoParser.getPreviousLine());
+        Matcher matcher = matchErrorWarningLine(previousLine); // eoParser.getPreviousLine() is broken?
+        previousLine = currentLine;
         if (matcher != null)
         {
             final int severity = matcher.group(SEVERITY_GROUP).equals("WARNING") ? SEVERITY_WARNING : SEVERITY_ERROR_RESOURCE; //$NON-NLS-1$
