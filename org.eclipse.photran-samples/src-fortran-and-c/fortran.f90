@@ -1,38 +1,12 @@
-  external cfunction  ! Defined in c.c
+  interface
+    subroutine cfunction(n, x) bind(c)  ! Defined in c.c
+      use iso_c_binding
+      integer(kind=c_int), value :: n
+      real(kind=c_float), value :: x
+    end subroutine
+  end interface
 
   print *, 'This is the Fortran program; I am going to call the C function now...'
-  call cfunction()
-  call sum(1.0,2.0,3.0)
-  call factorial(3)
-  print *, 'Now we are back in Fortran again'
-
-contains
-
-  subroutine sum(x,y,z)
-
-  x = x+y+z
-
-  print *, x
-
-  end subroutine sum
-
-  subroutine factorial(j)
-
-  p=1
-  i=1
-  do i=1,j
-    p=p*i
-  end do
-
-  print *, j, "! = ", p
-
-  end subroutine factorial
-
-  subroutine sum2(x,y)
-
-  p = x+y
-
-  end subroutine sum2
-
-
+  call cfunction(1, 2.3)
 end
+

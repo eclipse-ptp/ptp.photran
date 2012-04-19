@@ -1,10 +1,7 @@
-# Requires g95 under Windows (since calling a C function; proprietary)
-
-clean:
-	rm -f a.exe *.o
-
 all:
 	gcc -g -c c.c
-	g95 -g -c fortran.f90
-	g95 -o a.exe c.o fortran.o
-	rm *.o
+	gfortran -g -c fortran.f90
+	gfortran -o a.exe -g c.o fortran.o
+
+clean:
+	rm -f *.o a.exe

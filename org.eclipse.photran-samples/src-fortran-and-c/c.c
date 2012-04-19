@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void cfunction_()
+void cfunction(int n, float x)
 {
-	printf(" This is the C function\n");
+	printf(" This is the C function - %d %f\n", n, x);
 }
