@@ -263,6 +263,9 @@ public class DeclarationView extends ViewPart
                 tasks.addASTTask(this);
                 tasks.addVPGTask(this);
 
+                if (getSite() == null || getSite().getService(IPartService.class) == null)
+                    return null;
+
                 ((IPartService)getSite().getService(IPartService.class)).addPartListener(new IPartListener2()
                 {
                     public void partActivated(IWorkbenchPartReference partRef)
