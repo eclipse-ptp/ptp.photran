@@ -168,6 +168,9 @@ public class DeclarationView extends ViewPart
      */
     public void update(ContentType contentType, String str)
     {
+        if (composite.isDisposed())
+            return;
+
         if (str.length() > 0)
             str = trimBlankLines(str);
 
