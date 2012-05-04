@@ -28,7 +28,8 @@ EXEFILES=$(EXEFILE) *.exe
 all:	clean build
 
 clean:
-	for dir in $(SRCDIRS) .; do \
+	@echo Cleaning output files
+	@for dir in $(SRCDIRS) .; do \
 	  cd $$dir; \
 	  rm -f $(OBJFILES) >/dev/null 2>&1; \
 	  rm -f $(OTHERFILES) >/dev/null 2>&1; \
@@ -37,27 +38,31 @@ clean:
 	done
 
 build:
-	@echo "=====>" Using compiler $(FORTRAN)
-	@for dir in $(SRCDIRS); do \
-	  if [ -e $$dir/Makefile ]; then \
-	    $(MAKE) -C $$dir; \
-	  else \
-	    echo "=====>" Begin compiling sources in $$dir; \
-	    $(FORTRAN) $(DEBUGSWITCH) \
-	               $(OUTSWITCH) $$dir/$(EXEFILE) \
-	               $(INCLUDESWITCH). \
-	               $(INCLUDESWITCH)$$dir \
-	               $(LIBSWITCH). \
-	               $(LIBSWITCH)$$dir \
-	               $(OPTSWITCH) \
-	               $(CRAYSWITCH) \
-	               $$dir/$(SRCFILES); \
-	    echo "<=====" Done compiling sources in $$dir; \
-	  fi \
-	done
-	@for dir in $(SRCDIRS) .; do \
-	  cd $$dir; \
-	  rm -f $(OBJFILES) >/dev/null 2>&1; \
-	  rm -f $(OTHERFILES) >/dev/null 2>&1; \
-	  cd ..; \
-	done
+	@if [ "$(FORTRAN)" == "" ]; then \
+		echo "No Fortran compiler found; cannot compile photran-samples"; \
+	else \
+		echo "=====>" Using compiler $(FORTRAN); \
+		for dir in $(SRCDIRS); do \
+		  if [ -e $$dir/Makefile ]; then \
+		    $(MAKE) -C $$dir; \
+		  else \
+		    echo "=====>" Begin compiling sources in $$dir; \
+		    $(FORTRAN) $(DEBUGSWITCH) \
+		               $(OUTSWITCH) $$dir/$(EXEFILE) \
+		               $(INCLUDESWITCH). \
+		               $(INCLUDESWITCH)$$dir \
+		               $(LIBSWITCH). \
+		               $(LIBSWITCH)$$dir \
+		               $(OPTSWITCH) \
+		               $(CRAYSWITCH) \
+		               $$dir/$(SRCFILES); \
+		    echo "<=====" Done compiling sources in $$dir; \
+		  fi \
+		done; \
+		for dir in $(SRCDIRS) .; do \
+		  cd $$dir; \
+		  rm -f $(OBJFILES) >/dev/null 2>&1; \
+		  rm -f $(OTHERFILES) >/dev/null 2>&1; \
+		  cd ..; \
+		done; \
+	fi
