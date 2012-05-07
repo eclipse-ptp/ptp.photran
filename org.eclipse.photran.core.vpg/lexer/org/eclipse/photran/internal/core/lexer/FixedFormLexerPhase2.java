@@ -29,6 +29,26 @@ public class FixedFormLexerPhase2 implements ILexer
 
     private IToken nextToken = null;
 
+    public FixedFormLexerPhase2(ILexer phase1Lexer)
+    {
+
+        freeLexer2 = new FreeFormLexerPhase2(phase1Lexer)
+        {
+            @Override
+            protected void modifyPreprocessorDirective(IToken t)
+            {
+                IPreprocessorReplacement ppr = t.getPreprocessorDirective();
+                if(ppr != null && ppr instanceof FixedFormReplacement)
+                {
+                    FixedFormReplacement ffr = (FixedFormReplacement)ppr;
+                    String replStr = ffr.toString();
+                    replStr = replStr.replaceAll("=", ""); //$NON-NLS-1$ //$NON-NLS-2$
+                    ffr.setReplacementText(replStr);
+                }
+            }
+        };
+    }
+    
     public FixedFormLexerPhase2(Reader in, IFile file, String filename)
     {
         final Reader input = new LineAppendingReader(in);
