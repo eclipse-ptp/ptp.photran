@@ -131,7 +131,15 @@ public class Messages extends NLS
     public static String TransformToDerivedDataTypeAction_label1Text;
 
     public static String TransformToDerivedDataTypeAction_label2Text;
-    
+
+    public static String VariableCaseInputPage_ChangeKeywordsToLabel;
+
+    public static String VariableCaseInputPage_ClickOKMessage;
+
+    public static String VariableCaseInputPage_LowerCaseLabel;
+
+    public static String VariableCaseInputPage_UpperCaseLabel;
+
     static
     {
         // initialize resource bundle

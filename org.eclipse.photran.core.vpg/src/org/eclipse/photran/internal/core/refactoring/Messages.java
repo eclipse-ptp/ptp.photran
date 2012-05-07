@@ -64,19 +64,19 @@ public class Messages extends NLS
     public static String AddOnlyToUseStmtRefactoring_ProjectDoesNotExist;
 
     public static String AddOnlyToUseStmtRefactoring_SelectModuleName;
-    
+
     public static String AddSubroutineParameterRefactoring_InvalidDeclaration;
-    
+
     public static String AddSubroutineParameterRefactoring_InvalidDefaultValue;
-    
+
     public static String AddSubroutineParameterRefactoring_InvalidParameterPosition;
-    
+
     public static String AddSubroutineParameterRefactoring_matchingDeclarationsDoNotUniquelyBind;
-    
+
     public static String AddSubroutineParameterRefactoring_Name;
-    
+
     public static String AddSubroutineParameterRefactoring_NameConflictsWith;
-    
+
     public static String AddSubroutineParameterRefactoring_NameMightConflictWithSubprogram;
 
     public static String AddSubroutineParameterRefactoring_selectSubroutineError;
@@ -137,9 +137,9 @@ public class Messages extends NLS
     public static String ExtractProcedureRefactoring_ProcedureContainsLabels;
 
     public static String ExtractProcedureRefactoring_StatementCannotBeExtracted;
-    
+
     public static String MakeSaveExplicitRefactoring_Name;
-    
+
     public static String MakeSaveExplicitRefactoring_SelectedFileCannotBeParsed;
 
     public static String MinOnlyListRefactoring_ModuleIsEmpty;
@@ -293,17 +293,17 @@ public class Messages extends NLS
     public static String ExtractLocalVariableRefactoring_VarsOnlyExtractedFromStmtsIn;
 
     public static String InterchangeLoopsRefactoring_Name;
-    
+
     public static String IfConstructStatementConversionRefactoring_Name;
-    
+
     public static String IfConstructStatementConversionRefactoring_SelectAValidIfStatement;
 
     public static String IfConstructStatementConversionRefactoring_InvalidNamedConstruct;
-    
+
     public static String IfConstructStatementConversionRefactoring_TooManyStatements;
-    
+
     public static String FortranEditorRefactoring_CantPerformRefactoringOnReadOnlyFile;
-    
+
     public static String FortranEditorRefactoring_CantPerformRefactoringOnFileThatDoesNotExist;
 
     public static String InterchangeLoopsRefactoring_SelectTwoPerfNextedLoops;
@@ -377,7 +377,7 @@ public class Messages extends NLS
     public static String MakePrivateEntityPublicRefactoring_PublicEntitySelectedSelectPrivate;
 
     public static String MakePrivateEntityPublicRefactoring_SelectPrivateEntityName;
-    
+
     public static String MoveCommonToModuleRefactoring_InvalidIdentifier;
 
     public static String MoveCommonToModuleRefactoring_Name;
@@ -389,7 +389,7 @@ public class Messages extends NLS
     public static String MoveFromModuleRefactoring_selectionNotInsideModuleError;
 
     public static String MoveFromModuleRefactoring_textSelectionError;
-    
+
     public static String RemoveArithmeticIfRefactoring_Error;
 
     public static String RemoveArithmeticIfRefactoring_Name;
@@ -481,11 +481,11 @@ public class Messages extends NLS
     public static String StandardizeStatementsRefactoring_Name;
 
     public static String StandardizeStatementsRefactoring_SelectedFileCannotBeParsed;
-    
+
     public static String RemoveUnreferencedLabelsRefactoring_Name;
-    
+
     public static String RemoveUnreferencedLabelsRefactoring_ThereMustBeAtLeastOneLabeledStatement;
-    
+
     public static String RemoveAssignedGotoRefactoring_AllLabelsUsedInActionStatement;
 
     public static String RemoveAssignedGotoRefactoring_ForFile;
@@ -497,16 +497,20 @@ public class Messages extends NLS
     public static String RemoveAssignedGotoRefactoring_TheFollowingLabelsCannotBeRefactored;
 
     public static String RemoveAssignedGoToRefactoring_Name;
-    
+
     public static String RemoveAssignedGoToRefactoring_SelectedFileCannotBeParsed;
-    
+
     public static String RemoveUnusedCommonBlocksRefactoring_Name;
-    
+
     public static String RemoveUnusedCommonBlocksRefactoring_SelectedFilesMustBeImplicitNone;
-    
+
     public static String RemoveUnusedCommonBlocksRefactoring_NoDeclarationFoundFor;
-    
+
     public static String RemoveUnusedCommonBlocksRefactoring_MultipleDeclarationsFoundFor;
+
+    public static String VariableCaseRefactoring_Name;
+
+    public static String VariableCaseRefactoring_SelectedFileCannotBeParsed;
 
     static
     {

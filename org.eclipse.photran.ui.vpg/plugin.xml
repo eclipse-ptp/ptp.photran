@@ -156,6 +156,10 @@
                  class="org.eclipse.photran.internal.core.refactoring.KeywordCaseRefactoring"
                  inputPage="org.eclipse.photran.internal.ui.refactoring.KeywordCaseInputPage"
              />
+             <resourceRefactoring
+                 class="org.eclipse.photran.internal.core.refactoring.VariableCaseRefactoring"
+                 inputPage="org.eclipse.photran.internal.ui.refactoring.VariableCaseInputPage"
+             />
              <editorRefactoring
                  command="org.eclipse.photran.ui.IfConstructStatementConversionRefactoringCommand"
              />
