@@ -8,7 +8,6 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-
 package org.eclipse.photran.internal.core.xlf;
 
 import java.util.regex.Matcher;
@@ -28,8 +27,8 @@ import org.eclipse.core.runtime.Path;
  */
 public class XLFCompilerErrorParser implements IErrorParser
 {
-	Pattern p1 = Pattern.compile("^\"([^\"]*)\", line (\\d+)\\.(\\d+): (\\d+)-(\\d+) \\(([USEWLI])\\) (.*)$");
-	Pattern p2 = Pattern.compile("^\"([^\"]*)\", (\\d+)-(\\d+) \\(([USEWLI])\\) (.*)$");
+	Pattern p1 = Pattern.compile("^\"([^\"]*)\", line (\\d+)\\.(\\d+): (\\d+)-(\\d+) \\(([USEWLI])\\) (.*)$"); //$NON-NLS-1$
+	Pattern p2 = Pattern.compile("^\"([^\"]*)\", (\\d+)-(\\d+) \\(([USEWLI])\\) (.*)$"); //$NON-NLS-1$
 	private String fileName;
 	private String lineNum;
 	private String level;
@@ -40,7 +39,7 @@ public class XLFCompilerErrorParser implements IErrorParser
 	{
 		fileName = null;
 		lineNum = null;
-		level = "S";
+		level = "S"; //$NON-NLS-1$
 		message = null;
 		num = -1;
 	}
@@ -226,19 +225,19 @@ public class XLFCompilerErrorParser implements IErrorParser
     {
         int severity = defaultSeverity;
 
-        if (desc.equals("U") || desc.equals("S") )
+        if (desc.equals("U") || desc.equals("S") ) //$NON-NLS-1$ //$NON-NLS-2$
         {
             severity = IMarkerGenerator.SEVERITY_ERROR_BUILD;
         }
-        else if (desc.equals("E"))
+        else if (desc.equals("E")) //$NON-NLS-1$
         {
             severity = IMarkerGenerator.SEVERITY_ERROR_RESOURCE;
         }
-        else if (desc.equals("W") || desc.equals("L") )
+        else if (desc.equals("W") || desc.equals("L") ) //$NON-NLS-1$ //$NON-NLS-2$
         {
             severity = IMarkerGenerator.SEVERITY_WARNING;
         }
-        else if (desc.equals("I"))
+        else if (desc.equals("I")) //$NON-NLS-1$
         {
             severity = IMarkerGenerator.SEVERITY_INFO;
         }

@@ -88,14 +88,6 @@ public class Messages extends NLS
 
     public static String KeywordCaseInputPage_UpperCaseLabel;
 
-    public static String MoveFromModuleInputPage_leftPanelMessage;
-
-    public static String MoveFromModuleInputPage_Name;
-
-    public static String MoveFromModuleInputPage_rightPanelMessage;
-
-    public static String MoveFromModuleInputPage_selectDataMessage;
-
     public static String MoveSubprogramToModuleAction_labelText;
 
     public static String RenameAction_MatchExternalSubprograms;

@@ -230,8 +230,6 @@ public class Messages extends NLS
 
     public static String PermuteSubroutineArgsRefactoring_selectSubroutineError;
 
-    public static String PermuteSubroutineArgsRefactoring_subroutineParameterDefinitionError;
-
     public static String CommonVarNamesRefactoring_Name;
 
     public static String CommonVarNamesRefactoring_NameConflictsWith;
@@ -318,15 +316,9 @@ public class Messages extends NLS
 
     public static String KeywordCaseRefactoring_SelectedFileCannotBeParsed;
 
-    public static String LoopAlignmentRefactoring_LoopAlignmentName;
-
-    public static String LoopAlignmentRefactoring_LoopsNotCompatible;
-
     public static String FuseLoopsRefactoring_CycleExitFails;
 
     public static String FuseLoopsRefactoring_IncompatibleLoopErorrMessage;
-
-    public static String FuseLoopsRefactoring_InvalidLoopBounds;
 
     public static String FuseLoopsRefactoring_InvalidStepError;
 
@@ -383,12 +375,6 @@ public class Messages extends NLS
     public static String MoveCommonToModuleRefactoring_Name;
 
     public static String MoveCommonToModuleRefactoring_SelectVarOrBlockInCommonStmt;
-
-    public static String MoveFromModuleRefactoring_Name;
-
-    public static String MoveFromModuleRefactoring_selectionNotInsideModuleError;
-
-    public static String MoveFromModuleRefactoring_textSelectionError;
 
     public static String RemoveArithmeticIfRefactoring_Error;
 

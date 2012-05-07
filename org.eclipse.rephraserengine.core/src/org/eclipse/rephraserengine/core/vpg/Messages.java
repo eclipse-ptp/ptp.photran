@@ -27,12 +27,6 @@ public class Messages extends NLS
 
     public static String VPG_PostTransformAnalysis;
 
-    public static String VPG_ProcessingDependentFile;
-
-    public static String VPG_SortingFilesEnqueuingDependents;
-
-    public static String VPG_SortingFilesSortingDependents;
-
     public static String VPGDB_AnnotationOfType;
 
     public static String VPGDB_EdgeOfType;

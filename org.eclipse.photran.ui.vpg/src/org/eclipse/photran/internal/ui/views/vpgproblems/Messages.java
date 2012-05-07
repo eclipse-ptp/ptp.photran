@@ -51,8 +51,6 @@ public class Messages extends NLS
 
     public static String VPGProblemContextMenu_Problems;
 
-    public static String VPGProblemLabelProvider_LineN;
-
     public static String VPGProblemView_DescriptionColumnHeader;
 
     public static String VPGProblemView_Errors;

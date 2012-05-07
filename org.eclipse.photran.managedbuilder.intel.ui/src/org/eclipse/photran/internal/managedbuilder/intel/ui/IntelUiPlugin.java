@@ -59,6 +59,6 @@ public class IntelUiPlugin extends AbstractUIPlugin {
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
-		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.photran.managedbuilder.intel.ui", path);
+		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.photran.managedbuilder.intel.ui", path); //$NON-NLS-1$
 	}
 }

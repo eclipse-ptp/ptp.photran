@@ -22,7 +22,6 @@ import org.eclipse.core.resources.IFile;
  * Intel Compilers error parser
  * 
  */
-
 public class IntelCompilerErrorParser  implements IErrorParser {
     /**
      *  Extracts information from Intel compiler diagnostics.
@@ -77,15 +76,15 @@ public class IntelCompilerErrorParser  implements IErrorParser {
     {
         String severitystr, filestr, linestr, message;
 
-        StringTokenizer tokenizer = new StringTokenizer(line, ":");
+        StringTokenizer tokenizer = new StringTokenizer(line, ":"); //$NON-NLS-1$
 	/* First of all, see if this is a fortcom-specific error */
-        if (line.startsWith("fortcom: ")) {
+        if (line.startsWith("fortcom: ")) { //$NON-NLS-1$
             try {
 		tokenizer.nextToken(); /* fortcom */
                 severitystr = tokenizer.nextToken().trim();
-               	if (severitystr.equals("Severe")) {
-		    message = tokenizer.nextToken("\r\n").substring(2).trim();
-		    if (message.startsWith("No such file or directory")) {
+               	if (severitystr.equals("Severe")) { //$NON-NLS-1$
+		    message = tokenizer.nextToken("\r\n").substring(2).trim(); //$NON-NLS-1$
+		    if (message.startsWith("No such file or directory")) { //$NON-NLS-1$
 			/* need to process this together with the line. Save
 			   it in a buffer and return */
 			eoParser.appendToScratchBuffer(message);
@@ -98,19 +97,19 @@ public class IntelCompilerErrorParser  implements IErrorParser {
                	}	
                	else {
                 
-		    filestr = tokenizer.nextToken(",").substring(2).trim();
-		    linestr = tokenizer.nextToken(":").substring(2).trim();
-		    message = tokenizer.nextToken("\r\n").substring(2).trim();
+		    filestr = tokenizer.nextToken(",").substring(2).trim(); //$NON-NLS-1$
+		    linestr = tokenizer.nextToken(":").substring(2).trim(); //$NON-NLS-1$
+		    message = tokenizer.nextToken("\r\n").substring(2).trim(); //$NON-NLS-1$
 		    IFile file = eoParser.findFileName(filestr);
 
 		    int severity = -1;          
-		    if (severitystr.equals("Info")) {
+		    if (severitystr.equals("Info")) { //$NON-NLS-1$
                 	severity = IMarkerGenerator.SEVERITY_INFO;
 		    }
-		    else if (severitystr.equals("Warning")) {
+		    else if (severitystr.equals("Warning")) { //$NON-NLS-1$
                 	severity = IMarkerGenerator.SEVERITY_WARNING;
 		    }
-		    else if (severitystr.equals("Error")) {
+		    else if (severitystr.equals("Error")) { //$NON-NLS-1$
                 	severity = IMarkerGenerator.SEVERITY_ERROR_RESOURCE;
 		    }
                                                 
@@ -123,7 +122,7 @@ public class IntelCompilerErrorParser  implements IErrorParser {
                 ;
             }
 	} /* fortcom */
-    else if (eoParser.getScratchBuffer().startsWith("No such file or directory")) {
+    else if (eoParser.getScratchBuffer().startsWith("No such file or directory")) { //$NON-NLS-1$
     		/* process the multi-line fortcom diagnostics */
     		String buffer = eoParser.getScratchBuffer();
     		eoParser.clearScratchBuffer();
@@ -158,14 +157,14 @@ public class IntelCompilerErrorParser  implements IErrorParser {
 
 	    if ((firstColon != -1) && (secondColon != -1)) {
 		String firstPart= line.substring(0, firstColon);
-		int leftParen = firstPart.indexOf("(");
+		int leftParen = firstPart.indexOf("("); //$NON-NLS-1$
 		/* the string must have two colons to get this far. */
 		/* do a paren check to distinguish the front end format from
 		   the driver format. */
 		if (leftParen != -1) {
 		    /* have a left paren, proceed to parse as a mcpcom front end
 		       message */
-		    StringTokenizer tok= new StringTokenizer(firstPart, "()");
+		    StringTokenizer tok= new StringTokenizer(firstPart, "()"); //$NON-NLS-1$
 		    if (tok.hasMoreTokens()) {
 		        String fileName= tok.nextToken();
 		        if (tok.hasMoreTokens()) {
@@ -184,17 +183,17 @@ public class IntelCompilerErrorParser  implements IErrorParser {
 				if (file != null || eoParser.isConflictingName(fileName)) {
 				    String middle= desc.substring(0, secondColon);
 				    int severity = -1;
-				    if (middle.indexOf("warning")!= -1) {
+				    if (middle.indexOf("warning")!= -1) { //$NON-NLS-1$
 					severity= IMarkerGenerator.SEVERITY_WARNING;
 				    }
-				    if (middle.indexOf("error")!= -1) {
+				    if (middle.indexOf("error")!= -1) { //$NON-NLS-1$
 					severity= IMarkerGenerator.SEVERITY_ERROR_RESOURCE;
 				    }
-				    if (middle.indexOf("remark")!= -1) {
+				    if (middle.indexOf("remark")!= -1) { //$NON-NLS-1$
 					severity= IMarkerGenerator.SEVERITY_INFO;
 				    }
 				    if (file == null) {
-					desc= "*" + desc;
+					desc= "*" + desc; //$NON-NLS-1$
 				    }
 				    if (severity == IMarkerGenerator.SEVERITY_WARNING ||
 					severity == IMarkerGenerator.SEVERITY_ERROR_RESOURCE ||
@@ -213,19 +212,19 @@ public class IntelCompilerErrorParser  implements IErrorParser {
 		}
 		else { /* no filename or line# - try to parse as a driver diagnostics */
 		    /* qualify the message by checking the program name */
-		    if((firstPart.indexOf("icl")!= -1)   ||(firstPart.indexOf("icc")!= -1) ||
-		       (firstPart.indexOf("icpc")!= -1)  ||(firstPart.indexOf("ifort")!= -1) ||  
-		       (firstPart.indexOf("xilink")!= -1)||(firstPart.indexOf("xild")!= -1) ||  
-		       (firstPart.indexOf("xiar")!= -1)  ||(firstPart.indexOf("xilib")!= -1)) {  
+		    if((firstPart.indexOf("icl")!= -1)   ||(firstPart.indexOf("icc")!= -1) || //$NON-NLS-1$ //$NON-NLS-2$
+		       (firstPart.indexOf("icpc")!= -1)  ||(firstPart.indexOf("ifort")!= -1) ||   //$NON-NLS-1$ //$NON-NLS-2$
+		       (firstPart.indexOf("xilink")!= -1)||(firstPart.indexOf("xild")!= -1) ||   //$NON-NLS-1$ //$NON-NLS-2$
+		       (firstPart.indexOf("xiar")!= -1)  ||(firstPart.indexOf("xilib")!= -1)) {   //$NON-NLS-1$ //$NON-NLS-2$
 			String  middle= desc.substring(0, secondColon);
 			int severity = -1;
-			if (middle.indexOf("warning")!= -1) {
+			if (middle.indexOf("warning")!= -1) { //$NON-NLS-1$
 			    severity= IMarkerGenerator.SEVERITY_WARNING;
 			}
-			if (middle.indexOf("error")!= -1) {
+			if (middle.indexOf("error")!= -1) { //$NON-NLS-1$
 			    severity= IMarkerGenerator.SEVERITY_ERROR_RESOURCE;
 			}
-			if (middle.indexOf("remark")!= -1) {
+			if (middle.indexOf("remark")!= -1) { //$NON-NLS-1$
 			    severity= IMarkerGenerator.SEVERITY_INFO;
 			}
 			if (severity == IMarkerGenerator.SEVERITY_WARNING ||
@@ -236,7 +235,7 @@ public class IntelCompilerErrorParser  implements IErrorParser {
 			}			      
 			return false; /* message not qualified, give not handled return */
 			} else {
-				if (line.indexOf("Command-line error: invalid macro definition: -D") != -1) { 
+				if (line.indexOf("Command-line error: invalid macro definition: -D") != -1) {  //$NON-NLS-1$
 					int severity= IMarkerGenerator.SEVERITY_ERROR_RESOURCE;
 					eoParser.generateMarker(null, 0, line, severity, null);
 					return false; // give handled return 
@@ -246,7 +245,7 @@ public class IntelCompilerErrorParser  implements IErrorParser {
 		}
 	    }
 	    /* non-standard driver/preprocessor message */
-	      if (line.indexOf("Catastrophic error: could not open source file") != -1 ) { 
+	      if (line.indexOf("Catastrophic error: could not open source file") != -1 ) {  //$NON-NLS-1$
 		      int severity= IMarkerGenerator.SEVERITY_ERROR_RESOURCE;
 		      eoParser.generateMarker(/*file=*/null, /*line#=*/-1, line, severity, null);
 		      return false; /* give handled return */
