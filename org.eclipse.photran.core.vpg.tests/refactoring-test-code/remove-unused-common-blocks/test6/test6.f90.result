@@ -1,0 +1,10 @@
+program test6!<<<<< 1,1,fail-initial
+	
+	
+    integer a,b,c
+
+    common a,b
+
+    a=1
+
+end program test4

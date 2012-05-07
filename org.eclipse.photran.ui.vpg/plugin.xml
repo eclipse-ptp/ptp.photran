@@ -72,6 +72,9 @@
              <editorRefactoring
                  class="org.eclipse.photran.internal.core.refactoring.MoveSavedToCommonBlockRefactoring"
              />
+             <resourceRefactoring
+                 class="org.eclipse.photran.internal.core.refactoring.RemoveUnusedCommonBlocksRefactoring"
+             />
              <!--editorRefactoring
                  class="org.eclipse.photran.internal.core.refactoring.MoveCommonToModuleRefactoring"
              /-->
