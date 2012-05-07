@@ -78,6 +78,8 @@ public class Messages extends NLS
 
     public static String ExtractProcedureAction_SubroutineNameLabel;
 
+    public static String ExtractSubprogramToModuleAction_labelText;
+
     public static String KeywordCaseInputPage_ChangeKeywordsToLabel;
 
     public static String KeywordCaseInputPage_ClickOKMessage;
@@ -93,6 +95,8 @@ public class Messages extends NLS
     public static String MoveFromModuleInputPage_rightPanelMessage;
 
     public static String MoveFromModuleInputPage_selectDataMessage;
+
+    public static String MoveSubprogramToModuleAction_labelText;
 
     public static String RenameAction_MatchExternalSubprograms;
 
@@ -112,11 +116,21 @@ public class Messages extends NLS
     
     public static String RemoveRealAndDoublePrecisionLoopCountersInputPage_ClickPreviewMessage;
 
+    public static String ReplaceDoLoopWithForallAction_messageText;
+
     public static String AddSubroutineParameterAction_DefaultLabel;
 
     public static String AddSubroutineParameterAction_DeclarationLabel;
 
     public static String AddSubroutineParameterAction_LocationLabel;
+
+    public static String AddVariableToDerivedDataTypeAction_label1Text;
+
+    public static String AddVariableToDerivedDataTypeAction_label2Text;
+
+    public static String TransformToDerivedDataTypeAction_label1Text;
+
+    public static String TransformToDerivedDataTypeAction_label2Text;
     
     static
     {

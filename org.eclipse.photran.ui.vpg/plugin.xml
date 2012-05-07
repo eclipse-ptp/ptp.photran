@@ -31,7 +31,16 @@
                  inputPage="org.eclipse.photran.internal.ui.refactoring.PermuteSubroutineArgsInputPage"
              />
              <editorRefactoring
-                 class = "org.eclipse.photran.internal.core.refactoring.SafeDeleteInternalSubprogramRefactoring"
+                 class="org.eclipse.photran.internal.core.refactoring.SafeDeleteInternalSubprogramRefactoring"
+             />
+             <editorRefactoring
+                command="org.eclipse.photran.ui.ExtractSubprogramToModuleRefactoringCommand"
+             />
+             <editorRefactoring
+                command="org.eclipse.photran.ui.MoveSubprogramToModuleRefactoringCommand"
+             />
+             <resourceRefactoring
+                 class="org.eclipse.photran.internal.core.refactoring.IntroduceCallTreeRefactoring"
              />
           </submenu>
       </group>
@@ -69,6 +78,16 @@
           </submenu>
       </group>
       <group>
+          <submenu name="Derived Type"><!-- Refactorings for derived types -->
+             <editorRefactoring
+                command="org.eclipse.photran.ui.AddVariableToDerivedDataTypeRefactoringCommand"
+             />
+             <editorRefactoring
+                command="org.eclipse.photran.ui.TransformToDerivedDataTypeRefactoringCommand"
+             />
+          </submenu>
+      </group>
+      <group>
           <submenu name="Do Loop"><!-- Loop transformations (for performance improvement) -->
              <editorRefactoring
                  class="org.eclipse.photran.internal.core.refactoring.InterchangeLoopsRefactoring"
@@ -84,6 +103,9 @@
              />
              <editorRefactoring
                 class="org.eclipse.photran.internal.core.refactoring.UnrollLoopRefactoring"
+             />
+             <editorRefactoring
+                command="org.eclipse.photran.ui.ReplaceDoLoopWithForallRefactoringCommand"
              />
           </submenu>
       </group>
@@ -130,6 +152,9 @@
              />
              <editorRefactoring
                  command="org.eclipse.photran.ui.IfConstructStatementConversionRefactoringCommand"
+             />
+             <resourceRefactoring
+                 class="org.eclipse.photran.internal.core.refactoring.NestedIfThenElseToSelectCaseRefactoring"
              />
              <resourceRefactoring
                  class="org.eclipse.photran.internal.core.refactoring.DataToParameterRefactoring"
@@ -197,6 +222,31 @@
             name="%command.name.21"
             categoryId="org.eclipse.photran.ui.RefactoringCategory"
             id="org.eclipse.photran.ui.AddSubroutineParameterRefactoringCommand">
+      </command>
+      <command
+            name="Add Variable to Derived Data Type..."
+            categoryId="org.eclipse.photran.ui.RefactoringCategory"
+            id="org.eclipse.photran.ui.AddVariableToDerivedDataTypeRefactoringCommand">
+      </command>
+      <command
+            name="Extract Subprogram to Module..."
+            categoryId="org.eclipse.photran.ui.RefactoringCategory"
+            id="org.eclipse.photran.ui.ExtractSubprogramToModuleRefactoringCommand">
+      </command>
+      <command
+            name="Move Subprogram to Module..."
+            categoryId="org.eclipse.photran.ui.RefactoringCategory"
+            id="org.eclipse.photran.ui.MoveSubprogramToModuleRefactoringCommand">
+      </command>
+      <command
+            name="Replace Do Loop with Forall..."
+            categoryId="org.eclipse.photran.ui.RefactoringCategory"
+            id="org.eclipse.photran.ui.ReplaceDoLoopWithForallRefactoringCommand">
+      </command>
+      <command
+            name="Transform to Derived Data Type..."
+            categoryId="org.eclipse.photran.ui.RefactoringCategory"
+            id="org.eclipse.photran.ui.TransformToDerivedDataTypeRefactoringCommand">
       </command>
    </extension>
 
@@ -273,6 +323,31 @@
                definitionId="org.eclipse.photran.ui.AddSubroutineParameterRefactoringCommand"
                class="org.eclipse.photran.internal.ui.refactoring.AddSubroutineParameterAction"
                id="org.eclipse.photran.ui.AddSubroutineParameterRefactoringAction"/>
+         <action
+               label="Add Variable to Derived Data Type"
+               definitionId="org.eclipse.photran.ui.AddVariableToDerivedDataTypeRefactoringCommand"
+               class="org.eclipse.photran.internal.ui.refactoring.AddVariableToDerivedDataTypeAction"
+               id="org.eclipse.photran.ui.AddVariableToDerivedDataTypeRefactoringAction"/>
+         <action
+               label="Extract Subprogram to Module"
+               definitionId="org.eclipse.photran.ui.ExtractSubprogramToModuleRefactoringCommand"
+               class="org.eclipse.photran.internal.ui.refactoring.ExtractSubprogramToModuleAction"
+               id="org.eclipse.photran.ui.ExtractSubprogramToModuleRefactoringAction"/>
+         <action
+               label="Move Subprogram to Module"
+               definitionId="org.eclipse.photran.ui.MoveSubprogramToModuleRefactoringCommand"
+               class="org.eclipse.photran.internal.ui.refactoring.MoveSubprogramToModuleAction"
+               id="org.eclipse.photran.ui.MoveSubprogramToModuleRefactoringAction"/>
+         <action
+               label="Replace Do Loop with Forall"
+               definitionId="org.eclipse.photran.ui.ReplaceDoLoopWithForallRefactoringCommand"
+               class="org.eclipse.photran.internal.ui.refactoring.ReplaceDoLoopWithForallAction"
+               id="org.eclipse.photran.ui.ReplaceDoLoopWithForallRefactoringAction"/>
+         <action
+               label="Transform to Derived Data Type"
+               definitionId="org.eclipse.photran.ui.TransformToDerivedDataTypeRefactoringCommand"
+               class="org.eclipse.photran.internal.ui.refactoring.TransformToDerivedDataTypeAction"
+               id="org.eclipse.photran.ui.TransformToDerivedDataTypeRefactoringAction"/>
       </actionSet>
    </extension>
 
