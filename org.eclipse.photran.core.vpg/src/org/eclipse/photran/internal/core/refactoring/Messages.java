@@ -81,6 +81,12 @@ public class Messages extends NLS
 
     public static String AddSubroutineParameterRefactoring_selectSubroutineError;
 
+    public static String ChangeToVectorNotation_PleaseSelectDoLoopNode;
+
+    public static String ChangeToVectorNotation_PleaseSelectNewStyleDoLoopNode;
+
+    public static String ChangeToVectorNotation_CanNotBeChangedToVectorNotation;
+
     public static String EncapsulateVariableRefactoring_CannotEncapsulateArrays;
 
     public static String EncapsulateVariableRefactoring_CannotEncapsulatePARAMETER;

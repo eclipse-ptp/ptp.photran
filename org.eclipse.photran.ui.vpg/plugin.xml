@@ -110,6 +110,9 @@
              <editorRefactoring
                 command="org.eclipse.photran.ui.ReplaceDoLoopWithForallRefactoringCommand"
              />
+             <editorRefactoring 
+                class="org.eclipse.photran.internal.core.refactoring.ChangeToVectorNotationRefactoring" 
+             />
           </submenu>
       </group>
       <group>
