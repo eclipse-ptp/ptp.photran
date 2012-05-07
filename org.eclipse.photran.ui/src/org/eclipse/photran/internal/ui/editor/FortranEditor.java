@@ -28,6 +28,7 @@ import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.text.DefaultLineTracker;
 import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.IDocumentExtension3;
 import org.eclipse.jface.text.IDocumentPartitioner;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextSelection;
@@ -48,6 +49,8 @@ import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.jface.text.rules.ITokenScanner;
 import org.eclipse.jface.text.rules.RuleBasedScanner;
 import org.eclipse.jface.text.rules.Token;
+import org.eclipse.jface.text.source.DefaultCharacterPairMatcher;
+import org.eclipse.jface.text.source.ICharacterPairMatcher;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.IVerticalRuler;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
@@ -82,6 +85,7 @@ import org.eclipse.ui.texteditor.ChainedPreferenceStore;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
+import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
 import org.eclipse.ui.texteditor.WorkbenchChainedTextFontFieldEditor;
 
 /**
@@ -246,6 +250,26 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
             // The RefactorMenu class is contributed through an optional dependency;
             // if it's not present, it's not a problem
         }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // Matching Parenthesis/Bracket Highlighting
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static final String MATCHING_PAIRS_ENABLED_PREF_KEY = "matchPairsEnabled"; //$NON-NLS-1$
+
+    public static final String MATCHING_PAIRS_COLOR_PREF_KEY = "matchPairsColor"; //$NON-NLS-1$
+
+    private static final char[] CHAR_PAIRS_TO_MATCH = { '(', ')', '[', ']', '{', '}' };
+
+    @Override
+    protected void configureSourceViewerDecorationSupport(SourceViewerDecorationSupport support)
+    {
+        super.configureSourceViewerDecorationSupport(support);
+
+        ICharacterPairMatcher matcher = new DefaultCharacterPairMatcher(CHAR_PAIRS_TO_MATCH, IDocumentExtension3.DEFAULT_PARTITIONING, true);
+        support.setCharacterPairMatcher(matcher);
+        support.setMatchingCharacterPainterPreferenceKeys(MATCHING_PAIRS_ENABLED_PREF_KEY, MATCHING_PAIRS_COLOR_PREF_KEY);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////

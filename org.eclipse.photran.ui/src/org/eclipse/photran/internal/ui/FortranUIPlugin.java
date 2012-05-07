@@ -12,7 +12,9 @@ package org.eclipse.photran.internal.ui;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.photran.internal.ui.editor.FortranEditor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -78,6 +80,9 @@ public class FortranUIPlugin extends AbstractUIPlugin
      */
     @Override protected void initializeDefaultPluginPreferences()
     {
+        IPreferenceStore store = getPreferenceStore();
+        store.setDefault(FortranEditor.MATCHING_PAIRS_ENABLED_PREF_KEY, true);
+        store.setDefault(FortranEditor.MATCHING_PAIRS_COLOR_PREF_KEY, "128,128,128"); //$NON-NLS-1$
     }
 
     public static void log(Throwable e)
