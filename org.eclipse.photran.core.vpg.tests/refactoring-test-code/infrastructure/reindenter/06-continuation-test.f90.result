@@ -1,6 +1,6 @@
 program continuation !<<<<<START
     implicit none 
     print &
-    *,&
-    "work"
+        *,&
+        "work"
 end program continuation !<<<<<END

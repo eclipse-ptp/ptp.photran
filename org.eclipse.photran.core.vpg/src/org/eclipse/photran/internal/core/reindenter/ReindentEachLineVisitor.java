@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2010, 2012 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,10 +22,10 @@ import org.eclipse.photran.internal.core.reindenter.Reindenter.Strategy;
  * @author Rui Wang
  */
 final class ReindentEachLineVisitor extends ReindentingVisitor
-{   
+{
     private StartOfLine previousLine;
     private String previousIndentation;
-    
+
     protected ReindentEachLineVisitor(IFortranAST ast, Token firstTokenInRegion, Token lastTokenInRegion)
     {
         super(ast, firstTokenInRegion, lastTokenInRegion);
@@ -43,13 +43,14 @@ final class ReindentEachLineVisitor extends ReindentingVisitor
         final String newIndentation = computeNewIndentation(currentLine);
 
         currentLine.reindent(currentIndentation, newIndentation);
-        
+
         // Lines with labels tend to have atypical indentation (heuristically),
         // so try to avoid using them to compute the next line's indentation
         // (unless we're the first line in the file or the first line in a
         // DO-construct, IF-construct, etc.)
         if (!currentLine.hasLabel() || previousLine == null || previousLine.startsIndentedRegion() || currentLine.endsIndentedRegion())
-            this.previousIndentation = currentLine.getIndentation();
+            if (!currentLine.isContinuationLine())
+                this.previousIndentation = currentLine.getIndentation();
 
         this.previousLine = currentLine;
     }
@@ -58,12 +59,13 @@ final class ReindentEachLineVisitor extends ReindentingVisitor
     {
         if (previousLine == null) // currentLine is the line in the file
             return ""; //$NON-NLS-1$
+        else if (currentLine.isContinuationLine())
+            return StartOfLine.getIncreasedIndentation(previousIndentation) + currentLine.getContinuationPrefix();
         else if (previousLine.startsIndentedRegion() && !currentLine.isContinuationLine() && !currentLine.endsIndentedRegion())
             return StartOfLine.getIncreasedIndentation(previousIndentation);
         else if (currentLine.endsDoublyIndentedRegion() && !previousLine.startsIndentedRegion())
             return StartOfLine.getDecreasedIndentation(StartOfLine.getDecreasedIndentation(previousIndentation));
         else if (currentLine.isEndDoStmt() && previousLine.isContinueStmt())
-                //|| currentLine.isContinueStmt() && previousLine.isEndDoStmt())
             return previousIndentation;
         else if (currentLine.endsIndentedRegion() && !previousLine.startsIndentedRegion()
                 || currentLine.endsDoublyIndentedRegion() && previousLine.startsIndentedRegion())

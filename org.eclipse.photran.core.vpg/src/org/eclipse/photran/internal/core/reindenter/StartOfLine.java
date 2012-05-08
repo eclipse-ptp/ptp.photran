@@ -15,6 +15,8 @@ import static org.eclipse.photran.internal.core.reindenter.Reindenter.defaultInd
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.photran.core.IFortranAST;
 import org.eclipse.photran.internal.core.lexer.Terminal;
@@ -284,16 +286,37 @@ final class StartOfLine
 
     public String getIndentation()
     {
-        String whiteText = getFirstTokenOnLine().getWhiteBefore();
-        int lastCR = whiteText.lastIndexOf('\n');
-        String result = whiteText.substring(lastCR + 1);
-        if (result.equals("") && getFirstTokenOnLine() == label) //$NON-NLS-1$
-        {
-            whiteText = spaces(label.getText().length()) + firstStmtToken.getWhiteBefore();
-            lastCR = whiteText.lastIndexOf('\n');
-            result = whiteText.substring(lastCR + 1);
-        }
+        String result = getFinalLineOfWhitetext();
+        result = replaceLabelAtBeginningOfLineWithSpaces(result);
+        result = removeTrailingContinuationPrefix(result);
         return result;
+    }
+
+    private String getFinalLineOfWhitetext()
+    {
+        String whiteText = getFirstTokenOnLine().getWhiteBefore();
+        int lastLF = whiteText.lastIndexOf('\n');
+        return whiteText.substring(lastLF + 1);
+    }
+
+    private String replaceLabelAtBeginningOfLineWithSpaces(String finalLineOfWhiteText)
+    {
+        if (finalLineOfWhiteText.equals("") && getFirstTokenOnLine() == label) //$NON-NLS-1$
+        {
+            String newWhiteText = spaces(label.getText().length()) + firstStmtToken.getWhiteBefore();
+            int lastCR = newWhiteText.lastIndexOf('\n');
+            finalLineOfWhiteText = newWhiteText.substring(lastCR + 1);
+        }
+        return finalLineOfWhiteText;
+    }
+
+    private String removeTrailingContinuationPrefix(String string)
+    {
+        Matcher matcher = CONTINUATION_PREFIX.matcher(string);
+        if (matcher.find())
+            return string.substring(0, matcher.start());
+        else
+            return string;
     }
 
     private String spaces(int count)
@@ -468,5 +491,36 @@ final class StartOfLine
     public boolean isContinueStmt()
     {
         return firstStmtToken.findNearestAncestor(ASTContinueStmtNode.class) != null;
+    }
+
+    /**
+     * See {@link #getContinuationPrefix()}.  Matches an ampersand and zero or more spaces
+     * at the end of a string.
+     */
+    private static final Pattern CONTINUATION_PREFIX = Pattern.compile("&[ \t]*$"); //$NON-NLS-1$
+
+    /**
+     * If a line is a continuation of a previous line, and it begins with an ampersand, returns
+     * the substring beginning with that ampersand.
+     * <p>
+     * For example, when invoked on the second line of this input:
+     * <pre>
+     * call subroutine(1, 2, &
+     *      & 3, 4)
+     * </pre>
+     * this method returns &quot;&amp;&nbsp;&quot; (i.e., the ampersand and space preceding the 3).
+     * 
+     * @return the second ampersand and any trailing spaces/tabs appearing at the beginning of
+     * a continuation line, or the empty string if there is no second ampersand for the
+     * continuation (or if this is not a continuation line).
+     */
+    public String getContinuationPrefix()
+    {
+        final String finalLineOfWhitetext = getFinalLineOfWhitetext();
+        final Matcher matcher = CONTINUATION_PREFIX.matcher(finalLineOfWhitetext);
+        if (matcher.find())
+            return matcher.group();
+        else
+            return ""; //$NON-NLS-1$
     }
 }

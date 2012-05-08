@@ -1,17 +1,24 @@
 program & !<<<<<START
-program
+    program
     print *, &
-    "Hello"
+        "Hello"
+    print *, 1 &
+        2, &
+        &3,  &
+        &   4,      &
+        &      5,&
+        6,  &
+        7
 end&
-program program
+    program program
 
 subroutine s
     integer :: i
     do i = 3, 4
         do j =&
-        5, 6
+            5, 6
             print *, i + j
         end do
     end&
-    do
+        do
 end subroutine !<<<<<END
