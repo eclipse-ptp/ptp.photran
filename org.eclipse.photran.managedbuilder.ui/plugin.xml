@@ -26,31 +26,20 @@
 	               value="org.eclipse.cdt.managedbuilder.core.managedBuildNature">
 	         </filter>
       </page-->
-      
+
+         <!-- The following property pages are from CDT, but they are placed
+              under the Fortran Build category.  Enablement settings are copied
+              verbatim from org.eclipse.cdt.managedbuilder.ui's plugin.xml -->
          <page
             class="org.eclipse.cdt.managedbuilder.ui.properties.Page_head_build"
             id="org.eclipse.photran.managedbuilder.ui.properties.Page_head_build"
             name="%page.c.build"
             >
-         <filter
-               name="projectNature"
-               value="org.eclipse.cdt.managedbuilder.core.managedBuildNature">
-         </filter>            
-         <filter
-               name="projectNature"
-               value="org.eclipse.photran.core.fnature">
-         </filter>            
          <enabledWhen>
-            <or>
-		     <instanceof value="org.eclipse.core.resources.IProject"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-		     
-		     <instanceof value="org.eclipse.core.resources.IFolder"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICContainer"/>
-
-         	 <instanceof value="org.eclipse.cdt.core.model.ITranslationUnit"/>
-	         <instanceof value="org.eclipse.core.resources.IFile"/>
-		    </or>          
+           <adapt type="org.eclipse.core.resources.IResource">
+	            <test property="org.eclipse.core.resources.projectNature"
+	                  value="org.eclipse.cdt.managedbuilder.core.managedBuildNature"/>
+           </adapt>
          </enabledWhen>
         </page>    
         <page
@@ -59,39 +48,25 @@
             category="org.eclipse.photran.managedbuilder.ui.properties.Page_head_build"
             name="%CDTVariablesProperty.name"
             >
-         <filter
-               name="projectNature"
-               value="org.eclipse.cdt.managedbuilder.core.managedBuildNature">
-         </filter>
          <enabledWhen>
-            <or>
-	     <instanceof value="org.eclipse.core.resources.IProject"/>
-	     <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-	    </or>
+           <adapt type="org.eclipse.core.resources.IProject">
+	            <test property="org.eclipse.core.resources.projectNature"
+	                  value="org.eclipse.cdt.managedbuilder.core.managedBuildNature"/>
+           </adapt>
          </enabledWhen>
       </page>
-      
+
       <page
             class="org.eclipse.cdt.managedbuilder.ui.properties.Page_PathAndSymb"
             id="org.eclipse.photran.managedbuilder.ui.properties.Page_PathAndSymb"
             category="org.eclipse.photran.ui.newui.Page_head_general"
             name="%CDTPathSymbolsProperty.name"
             >
-         <filter
-               name="projectNature"
-               value="org.eclipse.cdt.managedbuilder.core.managedBuildNature">
-         </filter>
          <enabledWhen>
-            <or>
-		     <instanceof value="org.eclipse.core.resources.IProject"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-		     
-		     <instanceof value="org.eclipse.core.resources.IFolder"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICContainer"/>
-
-             <instanceof value="org.eclipse.core.resources.IFile"/>
-          	 <instanceof value="org.eclipse.cdt.core.model.ITranslationUnit"/>
-		    </or>          
+           <adapt type="org.eclipse.core.resources.IResource">
+	            <test property="org.eclipse.core.resources.projectNature"
+	                  value="org.eclipse.cdt.managedbuilder.core.managedBuildNature"/>
+           </adapt>
          </enabledWhen>
       </page>
       
@@ -107,11 +82,11 @@
          </filter>
          <enabledWhen>
             <and>
-            <or>
-		     <instanceof value="org.eclipse.core.resources.IProject"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-		    </or>
-                <test property="org.eclipse.cdt.ui.pageEnabled" value="export" />
+                <adapt type="org.eclipse.core.resources.IProject">
+	               <test property="org.eclipse.core.resources.projectNature"
+	                  value="org.eclipse.cdt.managedbuilder.core.managedBuildNature"/>
+                </adapt>
+                <test property="org.eclipse.cdt.ui.checkPreference" value="org.eclipse.cdt.ui:properties.export.page.enable=true"/>
 		    </and>          
          </enabledWhen>
       </page>
@@ -127,16 +102,10 @@
                value="org.eclipse.cdt.managedbuilder.core.managedBuildNature">
          </filter>
          <enabledWhen>
-            <or>
-		     <instanceof value="org.eclipse.core.resources.IProject"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-		     
-		     <instanceof value="org.eclipse.core.resources.IFolder"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICContainer"/>
-
-         	 <instanceof value="org.eclipse.core.resources.IFile"/>
-	         <instanceof value="org.eclipse.cdt.core.model.ITranslationUnit"/>
-		    </or>          
+           <adapt type="org.eclipse.core.resources.IResource">
+	            <test property="org.eclipse.core.resources.projectNature"
+	                  value="org.eclipse.cdt.managedbuilder.core.managedBuildNature"/>
+           </adapt>
          </enabledWhen>
       </page>
       <page
@@ -145,23 +114,13 @@
             category="org.eclipse.photran.managedbuilder.ui.properties.Page_head_build"
             name="%CDTToolchainProperty.name"
             >
-         <filter
-               name="projectNature"
-               value="org.eclipse.cdt.managedbuilder.core.managedBuildNature">
-         </filter>
          <enabledWhen>
             <and>
-            <or>
-		     <instanceof value="org.eclipse.core.resources.IProject"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-		     
-		     <instanceof value="org.eclipse.core.resources.IFolder"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICContainer"/>
-
-	         <instanceof value="org.eclipse.core.resources.IFile"/>
-         	 <instanceof value="org.eclipse.cdt.core.model.ITranslationUnit"/>
-		    </or>
-                <test property="org.eclipse.cdt.ui.pageEnabled" value="toolEdit" />
+                <adapt type="org.eclipse.core.resources.IResource">
+	               <test property="org.eclipse.core.resources.projectNature"
+	                  value="org.eclipse.cdt.managedbuilder.core.managedBuildNature"/>
+                </adapt>
+                <test property="org.eclipse.cdt.ui.checkPreference" value="org.eclipse.cdt.ui:properties.toolchain.modification.disable=false"/>
 		    </and>          
          </enabledWhen>
       </page>
@@ -177,22 +136,15 @@
                value="org.eclipse.cdt.managedbuilder.core.managedBuildNature">
          </filter>
          <enabledWhen>
-            <or>
-		     <instanceof value="org.eclipse.core.resources.IProject"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-		     
-		     <instanceof value="org.eclipse.core.resources.IFolder"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICContainer"/>
-
-		     <and>
-		        <instanceof value="org.eclipse.core.resources.IFile"/>
-    	        <test property="org.eclipse.cdt.ui.isSource" value="" />
-             </and>
-             <and>
-	         	<instanceof value="org.eclipse.cdt.core.model.ITranslationUnit"/>
-    	        <test property="org.eclipse.cdt.ui.isSource" value="" />
-	         </and>	
-		    </or>
+            <adapt type="org.eclipse.core.resources.IProject">
+               <and>
+                  <test property="org.eclipse.core.resources.projectNature" value="org.eclipse.cdt.managedbuilder.core.managedBuildNature"/>
+                  <or>
+                     <test property="org.eclipse.cdt.ui.checkPreference" value="org.eclipse.cdt.ui:properties.sd.page.enable="/>
+                     <test property="org.eclipse.cdt.ui.checkPreference" value="org.eclipse.cdt.ui:properties.sd.page.enable=true"/>
+                  </or>
+               </and>
+            </adapt>
          </enabledWhen>
       </page>
       <page
@@ -201,15 +153,11 @@
             category="org.eclipse.photran.managedbuilder.ui.properties.Page_head_build"
             name="%Environment"
             >
-         <filter
-               name="projectNature"
-               value="org.eclipse.cdt.managedbuilder.core.managedBuildNature">
-         </filter>
          <enabledWhen>
-            <or>
-		     <instanceof value="org.eclipse.core.resources.IProject"/>
-		     <instanceof value="org.eclipse.cdt.core.model.ICProject"/>
-		    </or>
+            <adapt type="org.eclipse.core.resources.IProject">
+	           <test property="org.eclipse.core.resources.projectNature"
+	                  value="org.eclipse.cdt.managedbuilder.core.managedBuildNature"/>
+            </adapt>
          </enabledWhen>
       </page>
       
