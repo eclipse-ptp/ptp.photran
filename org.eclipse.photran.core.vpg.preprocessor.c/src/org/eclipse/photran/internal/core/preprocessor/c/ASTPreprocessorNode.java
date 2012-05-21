@@ -376,6 +376,16 @@ class ASTInclusionStatement extends ASTPreprocessorNode implements IASTPreproces
         // TODO Auto-generated method stub
         return false;
     }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTPreprocessorIncludeStatement#getIncludedFileReadTime()
+     */
+    @Override
+    public long getIncludedFileReadTime()
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 	
 	/*@Override
 	void findNode(ASTNodeSpecification<?> nodeSpec) {
