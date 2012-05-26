@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 Tombazzi Juan, Aquino German, Mariano Mendez and others.
+ * Copyright (c) 2010 Tombazzi Juan, Aquino German, Mariano Méndez and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  * Contributors:
  * Tombazzi Juan - Initial API and implementation
  * Aquino German - Initial API and implementation
- * Mariano Mendez - Initial API and implementation
+ * Mariano Méndez - Initial API and implementation
  *******************************************************************************/
 package org.eclipse.photran.internal.core.refactoring;
 
@@ -18,6 +18,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.photran.core.IFortranAST;
+import org.eclipse.photran.internal.core.analysis.loops.ASTProperLoopConstructNode;
+import org.eclipse.photran.internal.core.analysis.loops.ASTVisitorWithLoops;
+import org.eclipse.photran.internal.core.analysis.loops.LoopReplacer;
 import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.parser.ASTCommonBlockObjectNode;
 import org.eclipse.photran.internal.core.parser.ASTFunctionParNode;
@@ -36,6 +39,7 @@ import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranResou
  * 
  * @author German Aquino
  * @author Federico Tombazzi
+ * @author Mariano Méndez 
  */
 public class VariableCaseRefactoring extends FortranResourceRefactoring
 {
@@ -88,7 +92,7 @@ public class VariableCaseRefactoring extends FortranResourceRefactoring
         try
         {
             if (ast == null) return;
-
+            LoopReplacer.replaceAllLoopsIn(ast.getRoot());
             CaseChangingVisitor replacer = new CaseChangingVisitor();
             replacer.lowerCase = this.lowerCase;
             ast.accept(replacer);
@@ -107,7 +111,7 @@ public class VariableCaseRefactoring extends FortranResourceRefactoring
     {
     }
 
-    private static final class CaseChangingVisitor extends GenericASTVisitor
+    private static final class CaseChangingVisitor extends ASTVisitorWithLoops
     {
         private boolean changedAST = false;
         private boolean lowerCase;
@@ -128,6 +132,13 @@ public class VariableCaseRefactoring extends FortranResourceRefactoring
             }
         }        
 
+        @Override
+        public void visitASTProperLoopConstructNode(ASTProperLoopConstructNode node)
+        {
+            changeCaseOf(node.getIndexVariable());
+            this.traverseChildren(node);
+        }
+        
         private boolean identifierIsInFunctionCall(IASTNode node){
             IASTNode parent = node.getParent();
             /*if the parent node represents a function name in a function call,
