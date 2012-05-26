@@ -46,6 +46,7 @@ import org.eclipse.photran.internal.core.reindenter.Reindenter.Strategy;
  */
 public class ChangeToVectorNotationRefactoring extends FortranEditorRefactoring
 {
+   
     private ASTProperLoopConstructNode DoLoopNode =null;
     @Override
     public String getName()
@@ -76,8 +77,19 @@ public class ChangeToVectorNotationRefactoring extends FortranEditorRefactoring
        this.DoLoopNode.accept(dependencyFinder);
        this.DoLoopNode.getBody().accept(changer);
 
-       if ((!changer.canBeChanged() || dependencyFinder.getHasDependencies() )  )  //
-           fail(Messages.ChangeToVectorNotation_CanNotBeChangedToVectorNotation);
+       if ((!changer.canBeChanged() || dependencyFinder.getHasDependencies() )  )
+       {
+           if (!changer.canBeChanged())
+           {
+             fail(
+                 Messages.bind(
+                     Messages.ChangeToVectorNotation_CanNotBeChanged,
+                     changer.failMessage)
+                 );  
+           }
+           else 
+               fail(Messages.ChangeToVectorNotation_CanNotBeChangedToVectorNotation);
+       }
     }
 
     private void ensureDoLoopHasBeenSelected()
@@ -115,8 +127,7 @@ public class ChangeToVectorNotationRefactoring extends FortranEditorRefactoring
         // Do something with
         IASTNode newNode = getNewCode(this.DoLoopNode);
         this.DoLoopNode.replaceWith(newNode.toString().trim()+"\n"); //$NON-NLS-1$
-        //this.DoLoopNode.removeFromTree();
-        Reindenter.reindent(this.DoLoopNode, this.astOfFileInEditor, Strategy.SHIFT_ENTIRE_BLOCK);
+        Reindenter.reindent(this.DoLoopNode, this.astOfFileInEditor, Strategy.REINDENT_EACH_LINE );
         this.addChangeFromModifiedAST(this.fileInEditor, pm);
         vpg.releaseAST(this.fileInEditor);
     }
@@ -145,7 +156,6 @@ public class ChangeToVectorNotationRefactoring extends FortranEditorRefactoring
                     token.replaceWith(s2);
                 }
             }
-
         });
         return newBody;
     }
@@ -206,7 +216,8 @@ public class ChangeToVectorNotationRefactoring extends FortranEditorRefactoring
     {
         private boolean CanChangeVectorNotation=true;
         private String indexVarName;
-
+        private String failMessage=""; //$NON-NLS-1$
+        
         public VectorNotationVisitor(String indexVarName)
         {
             super();
@@ -216,6 +227,11 @@ public class ChangeToVectorNotationRefactoring extends FortranEditorRefactoring
         public boolean canBeChanged()
         {
             return CanChangeVectorNotation;
+        }
+        
+        public String getFailMessage()
+        {
+            return this.failMessage;
         }
 
         @Override public void visitIExecutionPartConstruct(IExecutionPartConstruct node)
@@ -262,10 +278,17 @@ public class ChangeToVectorNotationRefactoring extends FortranEditorRefactoring
                 if (!definitions.isEmpty() && definitions.size()==1)
                 {
                     Definition symbol = definitions.get(0);
-                    if (!symbol.isArray()) return false; //if lhsVariable is not an array it can not be changed
+                    if (!symbol.isArray()) 
+                        {
+                            this.failMessage= "Variable " + lhsVariable.getText() + " must be an explicitly defined array"; //$NON-NLS-1$ //$NON-NLS-2$
+                            return false; //if lhsVariable is not an array it can not be changed
+                        }
                 }
                 else
+                {
+                    this.failMessage= "Variable " + lhsVariable.getText() + " must be an explicitly defined array"; //$NON-NLS-1$ //$NON-NLS-2$
                     return false;
+                }
 
             }
             else
@@ -290,4 +313,7 @@ public class ChangeToVectorNotationRefactoring extends FortranEditorRefactoring
         }
 
     }
+    
+   
+    
 }

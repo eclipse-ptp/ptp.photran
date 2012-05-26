@@ -84,6 +84,8 @@ public class Messages extends NLS
     public static String ChangeToVectorNotation_PleaseSelectDoLoopNode;
 
     public static String ChangeToVectorNotation_PleaseSelectNewStyleDoLoopNode;
+    
+    public static String ChangeToVectorNotation_CanNotBeChanged;
 
     public static String ChangeToVectorNotation_CanNotBeChangedToVectorNotation;
 
