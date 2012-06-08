@@ -109,13 +109,37 @@ public final class HorizontalRuler extends Composite implements PaintListener, C
             gc.setBackground(gc.getDevice().getSystemColor(SWT.COLOR_GRAY));
             gc.setForeground(gc.getDevice().getSystemColor(SWT.COLOR_WHITE));
 
-            //gc.fillRectangle(0, 0, controlWidth, height);
             gc.fillGradientRectangle(0, 0, controlWidth, height*2, true);
         }
 
+        /* Character Widths (Windows):
+         *   Font Name              w    i   Avg (Height) |w-Avg|/Ht |Avg-i|/Ht
+         *
+         *   Consolas 10pt          7    6    7    (15)         0         .06
+         *   Consolas 18pt         13   10   13    (18)         0         .17
+         *   Courier New 10pt       8    6    8    (16)         0         .125
+         *   Courier New 18pt      14   10   14    (27)         0         .148
+         *
+         *   Times New Roman 10pt   9    3    5    (15)        .27        .4
+         *   Times New Roman 18pt  17    6   10    (27)        .26        .4
+         * 
+         * So, heuristically, this method classifies a font as fixed width iff
+         * (1) the absolute difference between the width of w and the average
+         *     character width is less than 20% of the font height
+         * (2) the absolute difference between the width of i and the average
+         *     character width is less than 20% of the font height
+         */
         private boolean isFixedWidthFont(GC gc)
         {
-            return gc.getCharWidth('i') == gc.getCharWidth('w');
+            //System.out.println("Width of w: " + gc.getCharWidth('w'));
+            //System.out.println("Width of i: " + gc.getCharWidth('i'));
+            //System.out.println("Avg Width:  " + gc.getFontMetrics().getAverageCharWidth());
+            //System.out.println("Height:     " + gc.getFontMetrics().getHeight());
+
+            final int avgCharWidth = gc.getFontMetrics().getAverageCharWidth();
+            final float fontHeight = gc.getFontMetrics().getHeight();
+            return Math.abs(gc.getCharWidth('w') - avgCharWidth) < .2 * fontHeight
+                && Math.abs(gc.getCharWidth('i') - avgCharWidth) < .2 * fontHeight;
         }
 
         private void drawTicks(GC gc)
