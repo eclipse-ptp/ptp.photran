@@ -11,42 +11,37 @@
 package org.eclipse.photran.internal.tests.lexer.preprocessor.fortran_include;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.TreeMap;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Plugin;
 import org.eclipse.photran.core.IFortranAST;
 import org.eclipse.photran.internal.core.refactoring.infrastructure.SourcePrinter;
-import org.eclipse.photran.internal.core.reindenter.Reindenter;
-import org.eclipse.photran.internal.core.reindenter.Reindenter.Strategy;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
 import org.eclipse.photran.internal.tests.Activator;
 import org.eclipse.photran.internal.tests.PhotranWorkspaceTestCase;
 
 /**
+ * Unit tests for INCLUDE lines in fixed form code.
  * 
- * @author Mariano Méndez
+ * @author Mariano Mendez
+ * @author Jeff Overbey
  */
-public class FortranIncludeFixedFormTestCase extends PhotranWorkspaceTestCase
+public final class FortranIncludeFixedFormTestCase extends PhotranWorkspaceTestCase
 {
     private static final String DIR = "fixed-form-test-code/fixed-form-lexer/fortran-include-stmt";
 
-    
-    protected String  filename = null;
-    private int fromLine;
-    private int thruLine;
-
-    public FortranIncludeFixedFormTestCase() {;}  // when JUnit invokes a subclass outside a test suite
+    protected final String filename;
 
     public FortranIncludeFixedFormTestCase(String filename)
     {
-        this.filename =filename;
+        if (filename.equals("test"))
+            this.filename = null; // Constructor called by JUnit, not by FortranIncludeFixedFormTestSuite
+        else
+            this.filename = filename;
+
         this.setName("test");
     }
 
