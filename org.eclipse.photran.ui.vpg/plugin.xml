@@ -36,9 +36,9 @@
              <editorRefactoring
                 command="org.eclipse.photran.ui.ExtractSubprogramToModuleRefactoringCommand"
              />
-             <editorRefactoring
+             <!--editorRefactoring Temporarily disabled - see Bug 382437
                 command="org.eclipse.photran.ui.MoveSubprogramToModuleRefactoringCommand"
-             />
+             /-->
              <resourceRefactoring
                  class="org.eclipse.photran.internal.core.refactoring.IntroduceCallTreeRefactoring"
              />
@@ -72,9 +72,9 @@
              <editorRefactoring
                  class="org.eclipse.photran.internal.core.refactoring.MoveSavedToCommonBlockRefactoring"
              />
-             <resourceRefactoring
-                 class="org.eclipse.photran.internal.core.refactoring.RemoveUnusedCommonBlocksRefactoring"
-             />
+             <!--resourceRefactoring Temporarily disabled - see Bug 382436
+                 class="org.eclipse.photran.internal.core.refactoring.RemoveUnusedCommonBlockVariablesRefactoring"
+             /-->
              <!--editorRefactoring
                  class="org.eclipse.photran.internal.core.refactoring.MoveCommonToModuleRefactoring"
              /-->
@@ -164,10 +164,10 @@
                  command="org.eclipse.photran.ui.IfConstructStatementConversionRefactoringCommand"
              />
              <resourceRefactoring
-                 class="org.eclipse.photran.internal.core.refactoring.NestedIfThenElseToSelectCaseRefactoring"
+                 class="org.eclipse.photran.internal.core.refactoring.DataToParameterRefactoring"
              />
              <resourceRefactoring
-                 class="org.eclipse.photran.internal.core.refactoring.DataToParameterRefactoring"
+                 class="org.eclipse.photran.internal.core.refactoring.ConvertIfThenElseToSelectCaseRefactoring"
              />
              <resourceRefactoring
                  class="org.eclipse.photran.internal.core.refactoring.IntroImplicitNoneRefactoring"

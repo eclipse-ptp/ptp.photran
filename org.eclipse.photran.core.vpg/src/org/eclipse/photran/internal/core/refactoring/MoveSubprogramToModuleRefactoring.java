@@ -35,6 +35,7 @@ import org.eclipse.photran.internal.core.parser.ASTVarOrFnRefNode;
 import org.eclipse.photran.internal.core.parser.IASTListNode;
 import org.eclipse.photran.internal.core.parser.IASTNode;
 import org.eclipse.photran.internal.core.parser.IInternalSubprogram;
+import org.eclipse.photran.internal.core.parser.IProgramUnit;
 import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranEditorRefactoring;
 
 /**
@@ -65,7 +66,7 @@ public class MoveSubprogramToModuleRefactoring extends FortranEditorRefactoring 
     protected void doCheckInitialConditions(RefactoringStatus status, IProgressMonitor pm) throws PreconditionFailure {
         ensureProjectHasRefactoringEnabled(status);
         // Finds the selected node and checks if it is a subroutine or a function.
-        IASTNode selectedNode = findEnclosingNode(astOfFileInEditor, selectedRegionInEditor);
+        IASTNode selectedNode = findEnclosingNode(astOfFileInEditor, selectedRegionInEditor, IProgramUnit.class);
         if(selectedNode instanceof ASTSubroutineSubprogramNode || selectedNode instanceof ASTFunctionSubprogramNode){
             selectedFunctionOrSubroutine = selectedNode;
         }else{

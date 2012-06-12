@@ -32,7 +32,7 @@ import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranResou
  * @author Gustavo Risetti
  */
 @SuppressWarnings("nls") // TODO: Externalize strings
-public class NestedIfThenElseToSelectCaseRefactoring extends FortranResourceRefactoring{
+public class ConvertIfThenElseToSelectCaseRefactoring extends FortranResourceRefactoring{
 
     List<ASTIfConstructNode> ifNodes = new LinkedList<ASTIfConstructNode>();
     List<ASTIfConstructNode> removeIfNodes = new LinkedList<ASTIfConstructNode>();
@@ -42,7 +42,7 @@ public class NestedIfThenElseToSelectCaseRefactoring extends FortranResourceRefa
 
     @Override
     public String getName() {
-        return "Nested If-Then-Else To Select Case";
+        return "Convert If-Then-Else To Select Case";
     }
 
     @Override

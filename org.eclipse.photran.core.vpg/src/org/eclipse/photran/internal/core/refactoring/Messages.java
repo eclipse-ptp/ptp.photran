@@ -488,13 +488,13 @@ public class Messages extends NLS
 
     public static String RemoveAssignedGoToRefactoring_SelectedFileCannotBeParsed;
 
-    public static String RemoveUnusedCommonBlocksRefactoring_Name;
+    public static String RemoveUnusedCommonBlockVariablesRefactoring_Name;
 
-    public static String RemoveUnusedCommonBlocksRefactoring_SelectedFilesMustBeImplicitNone;
+    public static String RemoveUnusedCommonBlockVariablesRefactoring_SelectedFilesMustBeImplicitNone;
 
-    public static String RemoveUnusedCommonBlocksRefactoring_NoDeclarationFoundFor;
+    public static String RemoveUnusedCommonBlockVariablesRefactoring_NoDeclarationFoundFor;
 
-    public static String RemoveUnusedCommonBlocksRefactoring_MultipleDeclarationsFoundFor;
+    public static String RemoveUnusedCommonBlockVariablesRefactoring_MultipleDeclarationsFoundFor;
 
     public static String VariableCaseRefactoring_Name;
 

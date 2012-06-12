@@ -33,7 +33,7 @@ import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranResou
  * @author Federico Tombazzi
  * @author German Aquino
  */
-public class RemoveUnusedCommonBlocksRefactoring extends FortranResourceRefactoring
+public class RemoveUnusedCommonBlockVariablesRefactoring extends FortranResourceRefactoring
 {
     @Override
     protected void doCheckInitialConditions(RefactoringStatus status, IProgressMonitor pm)
@@ -89,7 +89,7 @@ public class RemoveUnusedCommonBlocksRefactoring extends FortranResourceRefactor
     @Override
     public String getName()
     {
-        return Messages.RemoveUnusedCommonBlocksRefactoring_Name;
+        return Messages.RemoveUnusedCommonBlockVariablesRefactoring_Name;
     }
 
     private void esureAllCommonVariablesAreDeclared(IFile file, IFortranAST ast) throws PreconditionFailure
@@ -109,11 +109,11 @@ public class RemoveUnusedCommonBlocksRefactoring extends FortranResourceRefactor
 
                if (definition.size() == 0)
                {
-                   fail(Messages.bind(Messages.RemoveUnusedCommonBlocksRefactoring_NoDeclarationFoundFor, commonBlockObject.getVariableName()));
+                   fail(Messages.bind(Messages.RemoveUnusedCommonBlockVariablesRefactoring_NoDeclarationFoundFor, commonBlockObject.getVariableName()));
                }
                else if (definition.size() > 1)
                {
-                   fail(Messages.bind(Messages.RemoveUnusedCommonBlocksRefactoring_MultipleDeclarationsFoundFor, commonBlockObject.getVariableName()));
+                   fail(Messages.bind(Messages.RemoveUnusedCommonBlockVariablesRefactoring_MultipleDeclarationsFoundFor, commonBlockObject.getVariableName()));
                }
             }
         }
@@ -128,7 +128,7 @@ public class RemoveUnusedCommonBlocksRefactoring extends FortranResourceRefactor
        for (ScopingNode scope : ast.getRoot().getAllContainedScopes())
            if (!(scope instanceof ASTExecutableProgramNode))
                if (!scope.isImplicitNone())
-                   fail(Messages.bind(Messages.RemoveUnusedCommonBlocksRefactoring_SelectedFilesMustBeImplicitNone, file.getName()));
+                   fail(Messages.bind(Messages.RemoveUnusedCommonBlockVariablesRefactoring_SelectedFilesMustBeImplicitNone, file.getName()));
    }
 
    private void processCommon(ASTCommonStmtNode node) throws PreconditionFailure
