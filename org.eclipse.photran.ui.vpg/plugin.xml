@@ -249,7 +249,7 @@
             id="org.eclipse.photran.ui.MoveSubprogramToModuleRefactoringCommand">
       </command>
       <command
-            name="Replace Do Loop with Forall..."
+            name="Replace Do Loop with Forall (Unchecked)..."
             categoryId="org.eclipse.photran.ui.RefactoringCategory"
             id="org.eclipse.photran.ui.ReplaceDoLoopWithForallRefactoringCommand">
       </command>

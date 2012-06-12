@@ -35,7 +35,7 @@ public class ReplaceDoLoopWithForallRefactoring extends FortranEditorRefactoring
 
     @Override
     public String getName() {
-        return "Replace Do Loop By Forall";
+        return "Replace Do Loop With Forall (Unchecked)";
     }
 
     @Override
