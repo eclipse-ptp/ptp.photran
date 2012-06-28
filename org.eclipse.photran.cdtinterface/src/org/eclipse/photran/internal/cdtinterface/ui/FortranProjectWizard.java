@@ -27,7 +27,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.photran.internal.cdtinterface.CDTInterfacePlugin;
 import org.eclipse.photran.internal.cdtinterface.core.FortranLanguage;
 import org.eclipse.photran.internal.core.FProjectNature;
@@ -132,7 +134,7 @@ public class FortranProjectWizard extends CDTCommonProjectWizard
 
                 // Find the natures in the list
                 Iterator itr = lineList.iterator();
-                int first_index = 0, phot_index = 0;
+                int first_index = -1, phot_index = -1;
                 while (itr.hasNext())
                 {
                     line = (String)itr.next();
@@ -144,6 +146,13 @@ public class FortranProjectWizard extends CDTCommonProjectWizard
                     {
                         phot_index = lineList.indexOf(line);
                     }
+                }
+
+                if (first_index < 0 || phot_index < 0)
+                {
+                    CDTInterfacePlugin.log(new Status(IStatus.WARNING, CDTInterfacePlugin.PLUGIN_ID,
+                        "FortranProjectWizard#setFortranNatureFirst cannot proceed: Fortran nature not found (did you call #continueCreation?)")); //$NON-NLS-1$
+                    return;
                 }
 
                 // Swap the photran nature with the first nature

@@ -23,7 +23,7 @@ import org.osgi.framework.BundleContext;
  */
 public class CDTInterfacePlugin extends AbstractUIPlugin
 {
-    private static final String PLUGIN_ID = "org.eclipse.photran.cdtinterface"; //$NON-NLS-1$
+    public static final String PLUGIN_ID = "org.eclipse.photran.cdtinterface"; //$NON-NLS-1$
 
     // The shared instance.
     private static CDTInterfacePlugin plugin;
