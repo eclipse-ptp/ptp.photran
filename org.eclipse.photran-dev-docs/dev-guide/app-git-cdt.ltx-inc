@@ -1,0 +1,91 @@
+% Checking Out the CDT Sources from Git
+\vspace{-0.5in}
+
+{\scriptsize Last modified June 28, 2012}
+
+This describes how to check out the source code for the current \textit{development} version
+of CDT.  At any given time, this is the version of CDT that will be released the
+following June.
+
+In general, you should \textit{not} have to check out CDT's source code from Git, unless
+you are planning to modify CDT.  Photran developers generally do not need to modify/patch
+CDT; the instructions provided in Appendix~\ref{app:git} describe how to install the CDT SDK,
+which is usually sufficient for Photran development.
+
+This information is provided for information only and may be incomplete or out of date.
+The ``official'' instructions for checking out CDT from Git are on the Eclipse wiki; see
+\url{http://wiki.eclipse.org/Getting_started_with_CDT_development} and
+\url{http://wiki.eclipse.org/CDT/git}.
+
+\begin{enumerate}
+	\setcounter{enumi}{\value{running_counter}}
+	\item Switch to the ``CVS Repository Exploring'' perspective.  (From the ``Window'' menu, choose ``Open Perspective'', and ``Other...''; choose ``CVS Repository Exploring'', and click ``OK.'')
+	\item Right-click anywhere in the white area of the ``CVS Repositories'' view (on the left).  In the popup menu, click New $>$ Repository Location...
+	\item In the dialog box, enter the following information, then click Finish. \\
+	\begin{tabular}{ll}
+	        Host name:       & dev.eclipse.org \\
+	        Repository path: & /cvsroot/eclipse \\
+	        Username:        & anonymous \\
+	        Password:        & (no password) \\
+	        Connection type: & pserver \\
+	\end{tabular}
+	\item In the CVS Repositories view
+	       \begin{itemize}
+	       \item  Expand ``:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse''
+	       \item  Then expand ``HEAD''
+	       \item  Then click on ``org.eclipse.test.performance'' to select it
+	       \item  Then right-click on ``org.eclipse.test.performance'' and, in the popup menu, click ``Check Out''.
+	              A dialog box may appear for a few moments while its source code is retrieved.
+	       \item  Scroll back to the top of the CVS Repositories view, and collapse ``:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse''
+	       \end{itemize}
+	\item Again, right-click anywhere in the white area of the ``CVS Repositories'' view, and in the popup menu, click New $>$ Repository Location...
+	\item In the dialog box, enter the following information, then click Finish. \\
+	\begin{tabular}{ll}
+	        Host name:       & dev.eclipse.org \\
+	        Repository path: & /cvsroot/tools \\
+	        Username:        & anonymous \\
+	        Password:        & (no password) \\
+	        Connection type: & pserver \\
+	\end{tabular}
+	\item  In the CVS Repositories view
+	       \begin{itemize}
+	       \item  Expand ``:pserver:anonymous@dev.eclipse.org:/cvsroot/tools''
+	       \item  Then expand ``Versions''
+	       \item  Right-click on ``org.eclipse.orbit'', and from the popup menu, click ``Configure Branches and Versions...''.
+	       \end{itemize}
+	\item In the ``Configure Branches and Versions'' dialog,
+	       \begin{itemize}
+	       \item  In ``Browse files for tags'', expand net.sourceforge.lpg.lpgjavaruntime, and then click on ``.project''
+	       \item  Under ``New tags found in the selected files'', click the ``Deselect All'' button.  Then, check
+	              v1\_1 (at the top of the list), so it is the only item selected in the list.
+	       \item Click ``Add Checked Tags.''
+	       \item Under ``Remembered tags for these projects,'' expand Branches, and make sure ``v1\_1'' appears.
+	       \item Click ``OK'' to close the dialog.
+	       \end{itemize}
+	\item  Back in the CVS Repositories view
+	       \begin{itemize}
+	       \item  Under ``:pserver:anonymous@dev.eclipse.org:/cvsroot/tools'', expand ``Branches''
+	       \item  Then expand ``v1\_1''
+	       \item  Then expand ``org.eclipse.orbit v1\_1''
+	       \item  Then click on ``net.sourceforge.lpg.lpgjavaruntime'' to select it
+	       \item  Then right-click on ``net.sourceforge.lpg.lpgjavaruntime'' and, in the popup menu, click ``Check Out''.
+	              A dialog box may appear for a few moments while its source code is retrieved.
+	       \end{itemize}
+	\item Switch back to the Java perspective.  The Package Explorer view should now contain two new projects named
+	      org.eclipse.test.performance and net.sourceforge.lpg.lpgjavaruntime.
+	      There should be no compilation errors (although there may be a few warnings).
+	\item Switch to the ``Git Repository Exploring'' perspective.  (From the ``Window'' menu, choose ``Open Perspective'', and ``Other...''; choose ``Git Repository Exploring'', and click ``OK.'')
+	\item From the ``File'' menu, choose ``Import...''
+	\item Under ``Git'', choose ``Projects from Git'', and click ``OK''
+	\item Click ``Clone...''
+	\item For the URI, enter \texttt{git://git.eclipse.org/gitroot/cdt/org.eclipse.cdt.git}
+	\item Click ``Next''
+	\item All branches will be selected by default; click ``Next''
+	\item Make sure the local directory is OK (or change it if you want your local Git repository stored somewhere else); then click ``Next''
+	\item The repository will be downloaded (it may spend several minutes ``receiving objects'').
+	\item Select the (newly-added) org.eclipse.cdt repository in the list, and click ``Next''
+	\item The defaults (``Import Existing Projects'') are OK; click ``Next''
+	\item All projects are selected by default.  Click ``Finish''.
+	\item Switch back to the Java perspective.  The Package Explorer view should now contain several new projects with CDT's source code.  There should be no compilation errors (although there will be a few warnings).
+	\setcounter{running_counter}{\value{enumi}}
+\end{enumerate}
