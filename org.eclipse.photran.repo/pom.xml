@@ -52,8 +52,8 @@
 												<include name="**" />
 											</fileset>
 										</delete>
-										<copy file="${project.build.directory}/${project.build.finalName}" tofile="${ptp-install}/org.eclipse.photran.repo.${unqualifiedVersion}.${buildQualifier}.zip"/>
-										<unzip src="${project.build.directory}/${project.build.finalName}" dest="${ptp-install}"/>
+										<copy file="${project.build.directory}/${project.build.finalName}.zip" tofile="${ptp-install}/org.eclipse.photran.repo.${unqualifiedVersion}.${buildQualifier}.zip"/>
+										<unzip src="${project.build.directory}/${project.build.finalName}.zip" dest="${ptp-install}"/>
 									</tasks>
 								</configuration>
 							</execution>
