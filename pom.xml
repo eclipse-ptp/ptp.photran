@@ -15,7 +15,7 @@
 
 	<properties>
 		<tycho-version>0.15.0</tycho-version>
-		<platform-version>4.2milestones</platform-version>
+		<platform-version>4.2</platform-version>
 		<platform-site>http://download.eclipse.org/eclipse/updates/${platform-version}</platform-site>
 		<cdt-version>juno</cdt-version>
 		<!--cdt-site>http://download.eclipse.org/tools/cdt/builds/${cdt-version}/milestones/M4</cdt-site-->	
