@@ -89,7 +89,8 @@ Use one of the simpler refactorings listed above as a starting point, and look a
 for each method you must override.
 
 \item
-Add the refactoring to the \texttt{plugin.xml} file.  Be sure that you give the correct
+Add the refactoring to the \texttt{plugin.xml} file in org.eclipse.ui.vpg.
+Be sure that you give the correct
 fully-qualified name for your refactoring class, and be sure you correctly identify it as
 either a resource refactoring or an editor refactoring based on its superclass!
 
