@@ -6,11 +6,11 @@
 	<parent>
 		<groupId>org.eclipse.photran</groupId>
 		<artifactId>photran-parent</artifactId>
-		<version>8.0.2-SNAPSHOT</version>
+		<version>8.0.4-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<version>8.0.2-SNAPSHOT</version>
+	<version>8.0.4-SNAPSHOT</version>
 	<artifactId>org.eclipse.photran.repo</artifactId>
 	<packaging>eclipse-repository</packaging>
 
