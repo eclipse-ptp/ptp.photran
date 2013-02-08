@@ -130,17 +130,17 @@
       </editorContribution>
    </extension>
    <!-- Enable CDT breakpoint toggle for Photran's editors and model elements -->
-   <!--extension point="org.eclipse.debug.ui.toggleBreakpointsTargetFactories">
+   <extension point="org.eclipse.debug.ui.toggleBreakpointsTargetFactories">
       <toggleTargetFactory
             id="ToggleFortranBreakpointsTargetFactory"
-            class="org.eclipse.cdt.debug.internal.ui.actions.ToggleCBreakpointsTargetFactory">
+            class="org.eclipse.photran.internal.cdtinterface.ui.editor.CDTToggleBreakpointsTargetFactory">
             <enablement>
             <or>
                <instanceof value="org.eclipse.photran.internal.ui.editor.FortranEditor"/>
             </or>
          </enablement>
       </toggleTargetFactory>
-   </extension-->
+   </extension>
    <!-- Also support PTP parallel breakpoints -->
    <!--extension point="org.eclipse.core.runtime.adapters">
       <factory 
