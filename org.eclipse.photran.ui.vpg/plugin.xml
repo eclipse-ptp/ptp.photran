@@ -446,7 +446,7 @@
             visible="false"
             id="org.eclipse.photran.ui.AnalysisActionSet">
          <action
-               label="%action.label.2"
+               label="%action.label.3"
                definitionId="org.eclipse.photran.ui.OpenDeclarationCommand"
                class="org.eclipse.photran.internal.ui.actions.OpenDeclaration"
                menubarPath="navigate/additions"
