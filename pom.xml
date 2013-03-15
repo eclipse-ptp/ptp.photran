@@ -15,10 +15,10 @@
 
 	<properties>
 		<tycho-version>0.15.0</tycho-version>
-		<platform-version>4.2</platform-version>
+		<platform-version>4.3milestones</platform-version>
 		<platform-site>http://download.eclipse.org/eclipse/updates/${platform-version}</platform-site>
-		<cdt-version>kepler</cdt-version>
-		<cdt-site>http://download.eclipse.org/tools/cdt/builds/${cdt-version}/nightly</cdt-site>	
+		<cdt-version>kepler/milestones</cdt-version>
+		<cdt-site>http://download.eclipse.org/tools/cdt/builds/${cdt-version}</cdt-site>	
 	</properties>
 
 	<licenses>
