@@ -7,6 +7,7 @@
  *
  * Contributors:
  *    UIUC - Initial API and implementation
+ *    Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=400647
  *******************************************************************************/
 package org.eclipse.photran.internal.core.refactoring.infrastructure;
 
@@ -27,6 +28,7 @@ import org.eclipse.rephraserengine.core.refactorings.IEditorRefactoring;
  * This is a base class for all Photran refactorings that apply to a single file
  * and possibly require user input/selection
  * @author Jeff Overbey, Timofey Yuvashev
+ * @author Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=400647
  */
 public abstract class FortranEditorRefactoring
     extends FortranResourceRefactoring
@@ -112,7 +114,7 @@ public abstract class FortranEditorRefactoring
         if (astOfFileInEditor == null)
         {
             // Re-acquire the AST, and re-analyze the selection
-            checkInitialConditions(pm);
+            checkInitialConditions(pm, true);
         }
     }
 }

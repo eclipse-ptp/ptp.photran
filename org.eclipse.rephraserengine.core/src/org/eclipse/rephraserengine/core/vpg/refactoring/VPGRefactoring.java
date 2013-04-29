@@ -10,6 +10,7 @@ import java.util.Collections;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jface.text.Region;
 import org.eclipse.ltk.core.refactoring.Change;
@@ -29,6 +30,7 @@ import org.eclipse.text.edits.ReplaceEdit;
  * A refactoring which accesses a VPG.
  * 
  * @author Jeff Overbey
+ * @author Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=400647
  * 
  * @param <A> AST type
  * @param <T> node/token type (i.e., the type returned by {@link IVPGNode#getASTNode()})
@@ -59,14 +61,22 @@ public abstract class VPGRefactoring<A, T, V extends EclipseVPG<A, T, ? extends 
     ///////////////////////////////////////////////////////////////////////////
     
     @Override
-    public final RefactoringStatus checkInitialConditions(IProgressMonitor pm)
+    public final RefactoringStatus checkInitialConditions(IProgressMonitor pm) {
+        return checkInitialConditions(pm, false);
+    }
+    
+    public final RefactoringStatus checkInitialConditions(IProgressMonitor pm, boolean maskVPGFromPM)
     {
         this.vpg = getVPG();
         
         RefactoringStatus status = new RefactoringStatus();
 
         pm.beginTask(Messages.VPGRefactoring_EnsuringIndexIsUpToDate, IProgressMonitor.UNKNOWN);
-        vpg.ensureVPGIsUpToDate(pm);
+        if (maskVPGFromPM) {
+            vpg.ensureVPGIsUpToDate(new NullProgressMonitor());
+        } else {
+            vpg.ensureVPGIsUpToDate(pm);
+        }
         pm.done();
 
         try
