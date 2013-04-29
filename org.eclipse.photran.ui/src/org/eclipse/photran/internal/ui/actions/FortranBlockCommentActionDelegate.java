@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     UIUC - Initial API and implementation
+ *     Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=390322
  *******************************************************************************/
 package org.eclipse.photran.internal.ui.actions;
 
@@ -34,6 +35,7 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
  * 
  * @author Cheah Chin Fei based on org.eclipse.cdt.internal.ui.actions
  * @author Jeff Overbey made FortranEditorActionDelegate
+ * @author Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=390322
  */
 public class FortranBlockCommentActionDelegate extends FortranEditorActionDelegate
 {
@@ -93,37 +95,40 @@ public class FortranBlockCommentActionDelegate extends FortranEditorActionDelega
     protected void runInternal(ITextSelection selection, EditFactory factory) throws BadLocationException
     {
         // ITextSelection ts = selection;
-        int selectionOffset = selection.getStartLine();
-        int selectionEndOffset = selection.getEndLine();
+        int selectionLineStart = selection.getStartLine();
+        int selectionLineEnd = selection.getEndLine();
         List<Edit> edits = new LinkedList<Edit>();
         IDocumentProvider dp = getFortranEditor().getDocumentProvider();
         IDocument doc = dp.getDocument(getFortranEditor().getEditorInput());
+        
+        // since this is a block action, only use the 1st selected line to determine whether the selected lines should
+        // have a comment added or removed
+        boolean addComment = doc.getChar(doc.getLineOffset(selectionLineStart)) != '!';
+        
+        // adjust the selection length
+        int newLength = selection.getLength() + (addComment ? 1 : -1) * (selectionLineEnd - selectionLineStart);
+        if (selection.getOffset() == doc.getLineOffset(selectionLineStart)) {
+            newLength += (addComment ? 1 : -1);
+        }
+        
+        // adjust the selection start offset
+        int newOffset = selection.getOffset();
+        if (doc.getLineOffset(selectionLineStart) < selection.getOffset()) {
+            newOffset += (addComment ? 1 : -1);
+        }
 
-        for (int i = selectionOffset; i <= selectionEndOffset; i++)
+        for (int i = selectionLineStart; i <= selectionLineEnd; i++)
         {
-            int eff;
-            eff = doc.getLineOffset(i);
-            if (doc.getChar(eff) == '!')
-                edits.add(factory.createEdit(eff, 1, "")); //$NON-NLS-1$
-            else
+            int eff = doc.getLineOffset(i);
+            if (addComment) {
                 edits.add(factory.createEdit(eff, 0, "!")); //$NON-NLS-1$
+            } else {
+                edits.add(factory.createEdit(eff, 1, "")); //$NON-NLS-1$
+            }
         }
         executeEdits(edits);
 
-        if (selectionEndOffset == doc.getNumberOfLines() - 1)
-        {
-            // case when lines get to the end
-            getFortranEditor().selectAndReveal(selection.getOffset(), selection.getLength());
-            getFortranEditor().selectAndReveal(doc.getLineOffset(selectionOffset),
-                                               doc.getLineOffset(selectionEndOffset)
-                                               - doc.getLineOffset(selectionOffset)
-                                               + doc.getLineLength(doc.getLineLength(doc.getNumberOfLines())));
-        }
-        else
-        {
-            // normal case
-            getFortranEditor().selectAndReveal(doc.getLineOffset(selectionOffset), doc.getLineOffset(selectionEndOffset + 1) - doc.getLineOffset(selectionOffset));
-        }
+        getFortranEditor().selectAndReveal(newOffset, newLength);
     }
 
     /**
