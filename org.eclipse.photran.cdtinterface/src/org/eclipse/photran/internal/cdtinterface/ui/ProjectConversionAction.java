@@ -8,11 +8,13 @@
  * Contributors:
  *   Eclipse Engineering LLC (Matt Scarpino) - Initial API and implementation
  *   University of Illinois (Jeff Overbey) - Updated for Projects View
+ *   Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=379854
  *******************************************************************************/
 package org.eclipse.photran.internal.cdtinterface.ui;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.eclipse.cdt.core.CProjectNature;
 import org.eclipse.cdt.core.model.ICProject;
@@ -35,12 +37,13 @@ import org.eclipse.ui.navigator.CommonNavigator;
  * 
  * @author Matt Scarpino
  * @author Jeff Overbey
+ * @author Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=379854
  */
 public class ProjectConversionAction implements IViewActionDelegate
 {
     private IViewPart view = null;
 
-    private ArrayList<IProject> projects = new ArrayList<IProject>();
+    private Set<IProject> projects = new HashSet<IProject>();
 
     /**
      * Callback invoked to initialize this action.
@@ -48,7 +51,6 @@ public class ProjectConversionAction implements IViewActionDelegate
     public void init(IViewPart v)
     {
         view = v;
-        projects = new ArrayList<IProject>();
     }
 
     /**
@@ -59,6 +61,7 @@ public class ProjectConversionAction implements IViewActionDelegate
      */
     public void selectionChanged(IAction action, ISelection selection)
     {
+        projects.clear();
         if (selection instanceof IStructuredSelection)
         {
             IStructuredSelection structuredSelection = (IStructuredSelection)selection;
@@ -71,7 +74,7 @@ public class ProjectConversionAction implements IViewActionDelegate
                     try
                     {
                         IProject project = (IProject)element;
-                        if (project.hasNature(CProjectNature.C_NATURE_ID))
+                        if (project.isOpen() && project.hasNature(CProjectNature.C_NATURE_ID))
                         {
                             projects.add(project);
                         }
