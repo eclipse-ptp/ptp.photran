@@ -7,7 +7,6 @@
  *
  * Contributors:
  *    UIUC - Initial API and implementation
- *    Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=319867
  *******************************************************************************/
 package org.eclipse.photran.internal.core.refactoring.infrastructure;
 
@@ -70,7 +69,6 @@ import org.eclipse.rephraserengine.core.vpg.refactoring.VPGResourceRefactoring;
 /**
  * This is a base class for all Photran refactorings that apply to multiple files
  * @author Jeff Overbey, Timofey Yuvashev
- * @author Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=319867
  */
 public abstract class FortranResourceRefactoring
     extends VPGResourceRefactoring<IFortranAST, Token, PhotranVPG>
@@ -775,19 +773,6 @@ public abstract class FortranResourceRefactoring
     {
         checkForConflictingBindings(pm, callback, definitionToCheck, allReferences, Arrays.asList(newNames));
     }
-    
-    protected static void checkForConflictingBindings(
-        IProgressMonitor pm,
-        IConflictingBindingCallback callback,
-        Definition definitionToCheck,
-        ScopingNode scopeToCheck,
-        Collection<PhotranTokenRef> allReferences,
-        String... newNames)
-    {
-        CheckForConflictBindings check = new CheckForConflictBindings(definitionToCheck, allReferences, Arrays.asList(newNames));
-        check.scopeOfDefinitionToCheck = scopeToCheck;
-        check.check(pm, callback);
-    }
 
     /**
      * Given a {@link Definition} and a list of references to that Definition
@@ -1017,9 +1002,6 @@ public abstract class FortranResourceRefactoring
                 {
                     pm.subTask(Messages.bind(Messages.FortranResourceRefactoring_CheckingForReferencesTo, newName, importingScope.describe()));
                     shadowedDefinitions.addAll(importingScope.manuallyResolve(token));
-                }
-                if (definitionToCheck != null) {
-                    shadowedDefinitions.remove(definitionToCheck.getTokenRef());
                 }
 
                 for (PhotranTokenRef def : shadowedDefinitions)
