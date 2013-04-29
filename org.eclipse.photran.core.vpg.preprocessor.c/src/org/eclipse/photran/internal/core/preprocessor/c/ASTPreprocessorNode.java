@@ -386,6 +386,15 @@ class ASTInclusionStatement extends ASTPreprocessorNode implements IASTPreproces
         // TODO Auto-generated method stub
         return 0;
     }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.dom.ast.IASTPreprocessorIncludeStatement#isIncludedFileExported()
+     */
+    public boolean isIncludedFileExported()
+    {
+        // TODO Auto-generated method stub
+        return false;
+    }
 	
 	/*@Override
 	void findNode(ASTNodeSpecification<?> nodeSpec) {
