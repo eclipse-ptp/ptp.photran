@@ -7,6 +7,7 @@
  *
  * Contributors:
  *    UIUC - Initial API and implementation
+ *    Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=399314
  *******************************************************************************/
 package org.eclipse.photran.internal.ui.refactoring;
 
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import org.eclipse.photran.internal.core.refactoring.AddOnlyToUseStmtRefactoring;
 import org.eclipse.rephraserengine.ui.refactoring.CustomUserInputPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
@@ -26,6 +28,7 @@ import org.eclipse.swt.widgets.Label;
 /**
  *
  * @author Kurt Hendle
+ * @author Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=399314
  */
 public class AddOnlyToUseStmtInputPage extends CustomUserInputPage<AddOnlyToUseStmtRefactoring>
 {
@@ -40,11 +43,13 @@ public class AddOnlyToUseStmtInputPage extends CustomUserInputPage<AddOnlyToUseS
         newOnlyList = getRefactoring().getNewOnlyList();
         checkList = new ArrayList<Button>();
 
-        Composite top = new Composite(parent, SWT.NONE);
-        initializeDialogUnits(top);
-        setControl(top);
-
-        top.setLayout(new GridLayout(1,false));
+        // using a ScrolledComposite so the list is scrollable
+        ScrolledComposite container = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL);
+        initializeDialogUnits(container);
+        setControl(container);
+        
+        Composite top = new Composite(container, SWT.NONE);
+        top.setLayout(new GridLayout(1, false));
         Composite group = top;
 
         Label lbl = new Label(group, SWT.NONE);
@@ -92,5 +97,10 @@ public class AddOnlyToUseStmtInputPage extends CustomUserInputPage<AddOnlyToUseS
 
         Label instruct = new Label(top, SWT.NONE);
         instruct.setText(Messages.AddOnlyToUseStmtInputPage_ClickOKMessage);
+        
+        container.setExpandHorizontal(true);
+        container.setExpandVertical(true);
+        container.setContent(top);
+        container.setMinSize(top.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 }
