@@ -7,17 +7,19 @@
  *
  * Contributors:
  *    UIUC - Initial API and implementation
+ *    Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=319867
  *******************************************************************************/
 package org.eclipse.photran.internal.ui.refactoring;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.photran.internal.core.refactoring.AddOnlyToUseStmtRefactoring;
 import org.eclipse.rephraserengine.ui.refactoring.CustomUserInputPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -26,71 +28,65 @@ import org.eclipse.swt.widgets.Label;
 /**
  *
  * @author Kurt Hendle
+ * @author Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=319867
  */
 public class AddOnlyToUseStmtInputPage extends CustomUserInputPage<AddOnlyToUseStmtRefactoring>
 {
-    protected ArrayList<String> entities;
-    protected HashMap<Integer, String> newOnlyList;
-    protected ArrayList<Button> checkList;
-    protected Button check;
+    protected List<Button> checkList;
+
+    @Override
+    public IWizardPage getNextPage()
+    {
+        for(Button checkBox : checkList) {
+            boolean isChecked = checkBox.getSelection();
+            final String buttonText = checkBox.getText();
+            if (isChecked) {
+                getRefactoring().addToOnlyList(buttonText);
+            } else {
+                getRefactoring().removeFromOnlyList(buttonText);
+            }
+        }
+        
+        return super.getNextPage();
+    }
 
     @Override public void createControl(Composite parent)
     {
-        entities = getRefactoring().getModuleEntityList();
-        newOnlyList = getRefactoring().getNewOnlyList();
+        getRefactoring().readExistingOnlyList();
+        List<String> entities = getRefactoring().getModuleEntityList();
+        Set<String> newOnlyList = getRefactoring().getNewOnlyList();
         checkList = new ArrayList<Button>();
 
-        Composite top = new Composite(parent, SWT.NONE);
-        initializeDialogUnits(top);
-        setControl(top);
-
-        top.setLayout(new GridLayout(1,false));
+        // using a ScrolledComposite so the list is scrollable
+        ScrolledComposite container = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL);
+        initializeDialogUnits(container);
+        setControl(container);
+        
+        Composite top = new Composite(container, SWT.NONE);
+        top.setLayout(new GridLayout(1, false));
         Composite group = top;
 
         Label lbl = new Label(group, SWT.NONE);
         lbl.setText(Messages.AddOnlyToUseStmtInputPage_SelectModuleEntitiesLabel);
 
-        for(int i=0; i<getRefactoring().getNumEntitiesInModule(); i++)
+        for(String entityName : entities) 
         {
-            check = new Button(group, SWT.CHECK);
-            check.setText(entities.get(i));
+            Button check = new Button(group, SWT.CHECK);
+            check.setText(entityName);
 
-            if(newOnlyList.containsValue(entities.get(i))){
+            if(newOnlyList.contains(entityName)){
                 check.setSelection(true);
-                //getRefactoring().addToOnlyList(i, entities.get(i));
             }
 
             checkList.add(check);
         }
 
-        //turns out need to add listeners last to make this work correctly
-        for(int i=0; i<getRefactoring().getNumEntitiesInModule(); i++)
-        {
-            final int index = i;
-            checkList.get(i).addSelectionListener(new SelectionListener()
-            {
-                public void widgetDefaultSelected(SelectionEvent e)
-                {
-                    widgetSelected(e);
-                }
-
-                public void widgetSelected(SelectionEvent e)
-                {
-                    boolean isChecked = checkList.get(index).getSelection();
-
-                    if(isChecked)
-                    {
-                        getRefactoring().addToOnlyList(entities.get(index));
-                    }
-                    else //if(!isChecked)
-                    {
-                        getRefactoring().removeFromOnlyList(entities.get(index));
-                    }
-                }
-            });
-        }
-
         Label instruct = new Label(top, SWT.NONE);
         instruct.setText(Messages.AddOnlyToUseStmtInputPage_ClickOKMessage);
+        
+        container.setExpandHorizontal(true);
+        container.setExpandVertical(true);
+        container.setContent(top);
+        container.setMinSize(top.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 }
