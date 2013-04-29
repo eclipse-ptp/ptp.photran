@@ -7,6 +7,7 @@
  *
  * Contributors:
  *    UIUC - Initial API and implementation
+ *    Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=399565
  *******************************************************************************/
 package org.eclipse.photran.internal.core.refactoring.infrastructure;
 
@@ -15,10 +16,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -69,6 +72,7 @@ import org.eclipse.rephraserengine.core.vpg.refactoring.VPGResourceRefactoring;
 /**
  * This is a base class for all Photran refactorings that apply to multiple files
  * @author Jeff Overbey, Timofey Yuvashev
+ * @author Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=399565
  */
 public abstract class FortranResourceRefactoring
     extends VPGResourceRefactoring<IFortranAST, Token, PhotranVPG>
@@ -745,6 +749,25 @@ public abstract class FortranResourceRefactoring
             this.name = name;
             this.tokenRef = tokenRef;
         }
+        
+        @Override
+        public int hashCode()
+        {
+            int hash = name.hashCode();
+            hash = hash * 31 + tokenRef.hashCode();
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object other)
+        {
+            if (other == null || !(other instanceof Conflict)) {
+                return false;
+            }
+            Conflict o = (Conflict)other;
+            return name.equals(o.name) 
+                && tokenRef.equals(o.tokenRef);
+        }
     }
 
 
@@ -885,7 +908,7 @@ public abstract class FortranResourceRefactoring
 
         private List<Conflict> findAllPotentiallyConflictingDefinitions()
         {
-            List<Conflict> conflicts = new ArrayList<Conflict>();
+            Set<Conflict> conflicts = new HashSet<Conflict>();
 
             if (definitionToCheck != null)
             {
@@ -919,7 +942,7 @@ public abstract class FortranResourceRefactoring
                 findAllPotentiallyConflictingDefinitionsInScope(conflicts, importingScope, true);
             }
 
-            return conflicts;
+            return new ArrayList<Conflict>(conflicts);
         }
 
         private ScopingNode scopeContainingInternalSubprogram()
@@ -933,11 +956,11 @@ public abstract class FortranResourceRefactoring
          * The third parameter indicates whether or not we should check that the definition to check is actually imported
          * into the target scope (it may not be if there is a USE statement with a Rename or ONLY list).
          */
-        private void findAllPotentiallyConflictingDefinitionsInScope(List<Conflict> conflicts, ScopingNode importingScope, boolean shouldCheckIfDefinitionImportedIntoScope)
+        private void findAllPotentiallyConflictingDefinitionsInScope(Set<Conflict> conflicts, ScopingNode importingScope, boolean shouldCheckIfDefinitionImportedIntoScope)
         {
             for (String newName : newNames)
             {
-                List<PhotranTokenRef> definitionsLocalToScope = collectLocalDefinitions(importingScope);
+                Set<PhotranTokenRef> definitionsLocalToScope = new HashSet<PhotranTokenRef>(collectLocalDefinitions(importingScope));
 
                 if (isProgramOrSubprogramOrModuleScope(importingScope) && shouldCheckIfDefinitionImportedIntoScope)
                 {
@@ -990,13 +1013,13 @@ public abstract class FortranResourceRefactoring
         /** Check whether the new definition will either conflict with or shadow an existing definition */
         private List<PhotranTokenRef> findReferencesToShadowedDefinitions()
         {
-            List<PhotranTokenRef> referencesToShadowedDefinitions = new LinkedList<PhotranTokenRef>();
+            Set<PhotranTokenRef> referencesToShadowedDefinitions = new HashSet<PhotranTokenRef>();
 
             for (String newName : newNames)
             {
                 Token token = definitionToCheck == null ? new FakeToken(scopeOfDefinitionToCheck, newName) : new FakeToken(definitionToCheck.getTokenRef().findToken(), newName);
-
-                List<PhotranTokenRef> shadowedDefinitions = scopeOfDefinitionToCheck.manuallyResolve(token);
+                
+                Set<PhotranTokenRef> shadowedDefinitions = new HashSet<PhotranTokenRef>(scopeOfDefinitionToCheck.manuallyResolve(token));
                 // TODO: Does not consider rename or only lists (need to tell if this SPECIFIC definition will be imported)
                 for (ScopingNode importingScope : scopeOfDefinitionToCheck.findImportingScopes())
                 {
@@ -1012,7 +1035,7 @@ public abstract class FortranResourceRefactoring
                 }
             }
 
-            return referencesToShadowedDefinitions;
+            return new ArrayList<PhotranTokenRef>(referencesToShadowedDefinitions);
         }
 
         private void checkIfReferenceBindingWillChange(IConflictingBindingCallback callback, PhotranTokenRef ref, boolean shouldReferenceRenamedDefinition)
@@ -1026,15 +1049,27 @@ public abstract class FortranResourceRefactoring
                 ScopingNode scopeOfDefinitionToRename = reference.findScopeDeclaringOrImporting(definitionToCheck);
                 if (scopeOfDefinitionToRename == null) return;
 
+                Map<String, Set<Token>> errorsMap = new HashMap<String, Set<Token>>();
                 for (String newName : newNames)
                 {
-                    for (PhotranTokenRef existingBinding : new FakeToken(reference, newName).manuallyResolveBinding())
+                    List<PhotranTokenRef> bindings = new FakeToken(reference, newName).manuallyResolveBinding();
+                    for (PhotranTokenRef existingBinding : bindings)
                     {
                         ScopingNode scopeOfExistingBinding = existingBinding.findToken().getEnclosingScope();
 
                         boolean willReferenceRenamedDefinition = scopeOfExistingBinding.isParentScopeOf(scopeOfDefinitionToRename);
-                        if (shouldReferenceRenamedDefinition != willReferenceRenamedDefinition)
-                            callback.addReferenceWillChangeError(newName, reference);
+                        if (shouldReferenceRenamedDefinition != willReferenceRenamedDefinition) {
+                            if (!errorsMap.containsKey(newName)) {
+                                errorsMap.put(newName, new HashSet<Token>());
+                            }
+                            errorsMap.get(newName).add(reference);
+                        }
+                    }
+                }
+                for(Entry<String, Set<Token>> errorSet : errorsMap.entrySet()) {
+                    String name = errorSet.getKey();
+                    for(Token errorToken : errorSet.getValue()) {
+                        callback.addReferenceWillChangeError(name, errorToken);
                     }
                 }
             }
@@ -1060,7 +1095,7 @@ public abstract class FortranResourceRefactoring
 
         private List<Conflict> findAllPotentiallyConflictingUnboundSubprogramCalls()
         {
-            final List<Conflict> conflictingDef = new ArrayList<Conflict>();
+            final Set<Conflict> conflictingDef = new HashSet<Conflict>();
 
             for (ScopingNode importingScope : scopeItselfAndAllScopesThatImport(scopeOfDefinitionToCheck))
             {
@@ -1090,7 +1125,7 @@ public abstract class FortranResourceRefactoring
                 });
             }
 
-            return conflictingDef;
+            return new ArrayList<Conflict>(conflictingDef);
         }
 
         private Iterable<ScopingNode> scopeItselfAndAllScopesThatImport(final ScopingNode scope)

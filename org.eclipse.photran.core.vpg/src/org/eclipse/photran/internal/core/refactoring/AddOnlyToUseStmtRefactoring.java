@@ -7,6 +7,7 @@
  *
  * Contributors:
  *    UIUC - Initial API and implementation
+ *    Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=399565
  *******************************************************************************/
 package org.eclipse.photran.internal.core.refactoring;
 
@@ -47,6 +48,7 @@ import org.eclipse.photran.internal.core.vpg.PhotranVPG;
  *
  * @author Kurt Hendle
  * @author Jeff Overbey - externalized strings
+ * @author Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=399565
  */
 public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
 {
@@ -336,7 +338,7 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
     private Set<PhotranTokenRef> findModuleEntityRefs(IFortranAST ast)
     {
         final Set<PhotranTokenRef> result = new HashSet<PhotranTokenRef>();
-        final Collection<String> defNames = entitiesToAdd.values();
+        final Set<String> defNames = new HashSet<String>(entitiesToAdd.values());
         ast.accept(new GenericASTVisitor()
         {
             @Override public void visitToken(Token token)
@@ -457,11 +459,18 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
                 IFile file = conflict.tokenRef.getFile();
                 if(!filesContainingModule.contains(file) && file.getProject().equals(projectInEditor))
                 {
+                    Definition def = vpg.getDefinitionFor(conflict.tokenRef);
+                    Token token = def.getTokenRef().findToken();
                     String msg =
                         Messages.bind(
                             Messages.AddOnlyToUseStmtRefactoring_NameConflicts,
-                            conflict.name,
-                            vpg.getDefinitionFor(conflict.tokenRef));
+                            new Object[] {
+                                          conflict.name,
+                                          def.getCanonicalizedName(),
+                                          def.getClassification(),
+                                          token.getLine(),
+                                          conflict.tokenRef.getFilename()
+                            });
                     RefactoringStatusContext context = createContext(conflict.tokenRef); // Highlights problematic definition
                     status.addError(msg, context);
                 }
@@ -492,15 +501,15 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
             if(entitiesInProgram.contains(newName))
             {
                 // The entity with the new name will shadow the definition to which this binding resolves
-                status.addError(
-                    Messages.bind(
-                        Messages.AddOnlyToUseStmtRefactoring_AddingWouldChangeMeaningOf,
-                        new Object[] {
-                            newName,
-                            reference.getText(),
-                            reference.getLine(),
-                            reference.getTokenRef().getFilename() }),
-                    createContext(reference)); // Highlight problematic reference
+                String msg = Messages.bind(
+                    Messages.AddOnlyToUseStmtRefactoring_AddingWouldChangeMeaningOf,
+                    new Object[] { newName,
+                                   reference.getText(),
+                                   reference.getLine(),
+                                   reference.getTokenRef().getFilename() 
+                    });
+                RefactoringStatusContext context = createContext(reference); // Highlight problematic reference
+                status.addError(msg, context);
             }
         }
     }
