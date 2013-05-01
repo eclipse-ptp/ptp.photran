@@ -12,11 +12,13 @@
 package org.eclipse.photran.internal.core.refactoring;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -30,16 +32,15 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.RefactoringStatusContext;
 import org.eclipse.photran.core.IFortranAST;
 import org.eclipse.photran.internal.core.analysis.binding.Definition;
+import org.eclipse.photran.internal.core.analysis.binding.ScopingNode;
 import org.eclipse.photran.internal.core.lexer.Terminal;
 import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.parser.ASTEntityDeclNode;
-import org.eclipse.photran.internal.core.parser.ASTListNode;
 import org.eclipse.photran.internal.core.parser.ASTModuleNode;
 import org.eclipse.photran.internal.core.parser.ASTSeparatedListNode;
 import org.eclipse.photran.internal.core.parser.ASTUseStmtNode;
 import org.eclipse.photran.internal.core.parser.GenericASTVisitor;
 import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranEditorRefactoring;
-import org.eclipse.photran.internal.core.reindenter.Reindenter;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
 
@@ -54,21 +55,20 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
 {
     private String moduleName = null;
     private IProject projectInEditor = null;
-    private int numEntitiesInList = 0;
     private ASTUseStmtNode useNode = null;
     private List<IFile> filesContainingModule = null;
 
-    //private List<Definition> programEntities = new ArrayList<Definition>();
-    private ArrayList<String> entitiesInProgram = new ArrayList<String>();
+    private List<String> entitiesInProgram = new ArrayList<String>();
 
-    private List<Definition> moduleEntities = new ArrayList<Definition>();
-    private ArrayList<String> entitiesInModule = new ArrayList<String>();
+    private List<String> entitiesInModule = new ArrayList<String>();
+    private Map<String, Definition> moduleEntDefMap = new HashMap<String, Definition>();
 
     private List<Definition> existingOnlyList = new ArrayList<Definition>();
     private List<Definition> defsToAdd = new ArrayList<Definition>();
-    private HashMap<Integer, String> entitiesToAdd = new HashMap<Integer, String>();
+    private Set<String> entitiesToAdd = new HashSet<String>();
 
     private Set<PhotranTokenRef> allReferences = null;
+    private boolean onlyListInitiatlized = false;
 
     public AddOnlyToUseStmtRefactoring()
     {
@@ -79,57 +79,36 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
         initialize(file, selection);
     }
 
-    public ArrayList<String> getModuleEntityList()
+    public List<String> getModuleEntityList()
     {
         return entitiesInModule;
     }
 
     public void addToOnlyList(String name)
     {
-        if(!entitiesToAdd.containsValue(name))
-        {
-            entitiesToAdd.put(numEntitiesInList, PhotranVPG.canonicalizeIdentifier(name));
-
-            for(int i=0; i<moduleEntities.size(); i++)  //construct list of definitions
-            {
-                if(entitiesToAdd.get(numEntitiesInList).equals(moduleEntities.get(i).getCanonicalizedName()))
-                    defsToAdd.add(moduleEntities.get(i));
-            }
-
-            numEntitiesInList++;
+        final String id = PhotranVPG.canonicalizeIdentifier(name);
+        entitiesToAdd.add(id);
+        if (!defsToAdd.contains(moduleEntDefMap.get(id))) {
+            defsToAdd.add(moduleEntDefMap.get(id));
         }
     }
 
     public void removeFromOnlyList(String name)
     {
-        for(int i=0; i<entitiesToAdd.size(); i++)
-        {
-            if(name.equalsIgnoreCase(entitiesToAdd.get(i)))
-            {
-                for(int j=0; j<moduleEntities.size(); j++)  //remove def from list
-                {
-                    if(entitiesToAdd.get(i).equalsIgnoreCase(moduleEntities.get(j).getCanonicalizedName()))
-                    {
-                        defsToAdd.remove(moduleEntities.get(j));
-                        existingOnlyList.remove(moduleEntities.get(j));
-                    }
-                }
-
-                entitiesToAdd.remove(i);
-                numEntitiesInList--;
-                return;
-            }
-        }
+        entitiesToAdd.remove(name);
+        defsToAdd.remove(moduleEntDefMap.get(name));
     }
 
-    public HashMap<Integer, String> getNewOnlyList()
+    public Set<String> getNewOnlyList()
     {
         return entitiesToAdd;
     }
-
-    public int getNumEntitiesInModule()
+    
+    @Override
+    protected void preCheckFinalConditions(RefactoringStatus status, IProgressMonitor pm)
+        throws PreconditionFailure
     {
-        return moduleEntities.size();
+        // no-op
     }
 
     /* (non-Javadoc)
@@ -216,7 +195,7 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
 
         DeclarationVisitor visitor = new DeclarationVisitor();
         ast.accept(visitor);
-        //AST will be released later
+        vpg.releaseAST(this.fileInEditor);
     }
 
     private void getModuleDeclaredEntities() throws PreconditionFailure
@@ -234,44 +213,39 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
         if(moduleNode == null)
             fail(Messages.AddOnlyToUseStmtRefactoring_ModuleNodeNodeFound);
 
-        moduleEntities = moduleNode.getAllPublicDefinitions();
-        if(moduleEntities.isEmpty())
+        List<Definition> moduleDefs = moduleNode.getAllPublicDefinitions();        
+        if (moduleDefs.isEmpty()) {
             fail(Messages.AddOnlyToUseStmtRefactoring_NoDeclarationsInModule);
-        else
-        {
-            for(int i=0; i<moduleEntities.size(); i++)
-                entitiesInModule.add(moduleEntities.get(i).getCanonicalizedName());
+        } else {
+            for(Definition def : moduleDefs) {
+                moduleEntDefMap.put(def.getCanonicalizedName(), def);
+                entitiesInModule.add(def.getCanonicalizedName());
+            }
         }
     }
 
-    private void readExistingOnlyList()
+    public void readExistingOnlyList()
     {
         @SuppressWarnings("rawtypes")
         ASTSeparatedListNode existingOnlys = (ASTSeparatedListNode)useNode.getOnlyList();
         if(existingOnlys != null)
         {
-            for(int i=0; i<existingOnlys.size(); i++)
-            {
-                entitiesToAdd.put(i,
-                    PhotranVPG.canonicalizeIdentifier(existingOnlys.get(i).toString().trim()));
-            }
-
-            numEntitiesInList = entitiesToAdd.size();
-
-            for(int i=0; i<moduleEntities.size(); i++)  //construct list of definitions
-            {
-                if(entitiesToAdd.containsValue(moduleEntities.get(i).getCanonicalizedName()))
-                    existingOnlyList.add(moduleEntities.get(i));
+            for(Object existingOnly : existingOnlys) {
+                final String id = PhotranVPG.canonicalizeIdentifier(existingOnly.toString().trim());
+                entitiesToAdd.add(id);
+                existingOnlyList.add(moduleEntDefMap.get(id));
             }
         }
 
-        //FIXME add functionality to search file for existing uses of module vars
-        //and automatically make them be added to the list
-        IFortranAST ast = vpg.acquirePermanentAST(this.fileInEditor);
-        if(ast == null) return;
-
-        TokenVisitor visitor = new TokenVisitor();
-        ast.accept(visitor);
+        if (!onlyListInitiatlized) {
+            IFortranAST ast = vpg.acquirePermanentAST(fileInEditor);
+            if(ast == null) return;
+    
+            TokenVisitor visitor = new TokenVisitor();
+            ast.accept(visitor);
+            vpg.releaseAST(fileInEditor);
+            onlyListInitiatlized = true;
+        }
     }
 
     /* (non-Javadoc)
@@ -281,7 +255,18 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
     protected void doCreateChange(IProgressMonitor pm) throws CoreException,
         OperationCanceledException
     {
-        //nothing to do here
+        IFortranAST ast = vpg.acquirePermanentAST(this.fileInEditor);
+        if(ast == null) return;
+        
+        pm.subTask(Messages.AddOnlyToUseStmtRefactoring_InsertingUseStmt);
+        createAndInsertUseStmt(ast);
+  
+        pm.subTask(Messages.AddOnlyToUseStmtRefactoring_CreatingChangeObject);
+        addChangeFromModifiedAST(this.fileInEditor, pm);
+
+        vpg.releaseAST(this.fileInEditor);
+
+        pm.done();
     }
 
     /* (non-Javadoc)
@@ -301,19 +286,13 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
         if(ast == null) return;
 
         pm.subTask(Messages.AddOnlyToUseStmtRefactoring_CheckingForConflicts);
-        checkConflictingBindings(ast, pm, status);  //find conflicts
-
-        pm.subTask(Messages.AddOnlyToUseStmtRefactoring_InsertingUseStmt);
-        createAndInsertUseStmt(ast);
-
-        pm.subTask(Messages.AddOnlyToUseStmtRefactoring_CreatingChangeObject);
-        addChangeFromModifiedAST(fileInEditor, pm);
+        checkConflictingBindings(ast, pm, status); //find conflicts
+        
         vpg.releaseAST(fileInEditor);
 
         pm.done();
     }
-
-
+    
     /*
      * This method assumes that any existing only list is OK. Only checks for conflicting
      * bindings with NEW additions to only list.
@@ -321,39 +300,44 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
     private void checkConflictingBindings(IFortranAST ast, IProgressMonitor pm, RefactoringStatus status)
     {
         pm.subTask(Messages.AddOnlyToUseStmtRefactoring_FindingReferences);
-        allReferences = findModuleEntityRefs(ast);
-        //removeOriginalModuleRefs(); //possibly not needed - working without
 
-        for(Definition def : defsToAdd)
-        {
+        // find names that are the same as entities in the module that will be added to the "only" list
+        // find references to those names, and make sure those references don't change        
+        // find references to the current file and make sure that referenced names don't change
+        
+        for(String entityToAdd : entitiesToAdd) {
+            
+            final Set<PhotranTokenRef> newRefs = findModuleEntityRefs(ast, Arrays.asList(entityToAdd));
+            allReferences = newRefs;
+
+            Definition def = moduleEntDefMap.get(entityToAdd);
+            
             checkForConflictingBindings(pm,
                 new ConflictingBindingErrorHandler(status),
                 def,
+                (ScopingNode)ast.getRoot().getProgramUnitList().get(0),
                 allReferences,
                 def.getCanonicalizedName());
         }
     }
-
-  //Similar to ExtractProcedureRefactoring#localVariablesUsedIn
-    private Set<PhotranTokenRef> findModuleEntityRefs(IFortranAST ast)
+    
+    private Set<PhotranTokenRef> findModuleEntityRefs(IFortranAST ast, final Collection<String> defNames) 
     {
         final Set<PhotranTokenRef> result = new HashSet<PhotranTokenRef>();
-        final Set<String> defNames = new HashSet<String>(entitiesToAdd.values());
-        ast.accept(new GenericASTVisitor()
-        {
-            @Override public void visitToken(Token token)
-            {
-                if (token.getTerminal() == Terminal.T_IDENT)
-                {
-                    for (Definition def : token.resolveBinding())
-                    {
-                        if (defNames.contains(def.getCanonicalizedName()))
-                            result.addAll(def.findAllReferences(true));
+        
+        ast.accept(new GenericASTVisitor() {
+            @Override
+            public void visitToken(Token token) {
+                if (token.getTerminal() == Terminal.T_IDENT) {
+                    for (Definition def : token.resolveBinding()) {
+                        if (defNames.contains(def.getCanonicalizedName())) {
+                            result.add(token.getTokenRef());
+                        }
                     }
                 }
             }
         });
-
+        
         return result;
     }
 
@@ -382,9 +366,14 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
 
     private void createAndInsertUseStmt(IFortranAST ast)
     {
-      //create the new only selection
+    	// find the use node in the ast
+        Token useToken = ast.findTokenByStreamOffsetLength(
+        		useNode.getUseToken().getFileOffset(), useNode.getUseToken().getLength());
+        ASTUseStmtNode useToModify = (ASTUseStmtNode)useToken.getParent();
+        Collection<String> varNames = new TreeSet<String>(entitiesToAdd); // JO -- Sort names
+
+        //create the new only selection
         String newOnlyAdditions = " "; //$NON-NLS-1$
-        Collection<String> varNames = new TreeSet<String>(entitiesToAdd.values()); // JO -- Sort names
         Iterator<String> iter = varNames.iterator();
         int counter = 0;
 
@@ -399,17 +388,14 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
         //construct the new USE node and replace the old one in the ast
         ASTUseStmtNode newStmtNode;
         if(entitiesToAdd.size() > 0)// && entitiesToAdd.size() < moduleEntities.size())
-            newStmtNode = (ASTUseStmtNode)parseLiteralStatement("use " + //$NON-NLS-1$
-                useNode.getName().getText()+", only:" + newOnlyAdditions //$NON-NLS-1$
+            newStmtNode = (ASTUseStmtNode)parseLiteralStatement(useToken.getWhiteBefore() + "use " + //$NON-NLS-1$
+                useToModify.getName().getText()+", only:" + newOnlyAdditions //$NON-NLS-1$
                 + System.getProperty("line.separator")); //$NON-NLS-1$
         else
-            newStmtNode = (ASTUseStmtNode)parseLiteralStatement("use " + //$NON-NLS-1$
-                useNode.getName().getText() + System.getProperty("line.separator")); //$NON-NLS-1$
+            newStmtNode = (ASTUseStmtNode)parseLiteralStatement(useToken.getWhiteBefore() + "use " + //$NON-NLS-1$
+                useToModify.getName().getText() + System.getProperty("line.separator")); //$NON-NLS-1$
 
-        @SuppressWarnings("rawtypes")
-        ASTListNode body = (ASTListNode)useNode.getParent();
-        body.replaceChild(useNode, newStmtNode);
-        Reindenter.reindent(newStmtNode, ast);
+        useToModify.replaceWith(newStmtNode);
     }
 
     /* (non-Javadoc)
@@ -439,7 +425,7 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
         @Override public void visitToken(Token node)
         {
             String name = node.getText();
-            if(entitiesInModule.contains(name))
+            if(moduleEntDefMap.containsKey(name))
                 addToOnlyList(name);
         }
     }

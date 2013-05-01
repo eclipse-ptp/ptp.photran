@@ -796,6 +796,19 @@ public abstract class FortranResourceRefactoring
     {
         checkForConflictingBindings(pm, callback, definitionToCheck, allReferences, Arrays.asList(newNames));
     }
+    
+    protected static void checkForConflictingBindings(
+        IProgressMonitor pm,
+        IConflictingBindingCallback callback,
+        Definition definitionToCheck,
+        ScopingNode scopeToCheck,
+        Collection<PhotranTokenRef> allReferences,
+        String... newNames)
+    {
+        CheckForConflictBindings check = new CheckForConflictBindings(definitionToCheck, allReferences, Arrays.asList(newNames));
+        check.scopeOfDefinitionToCheck = scopeToCheck;
+        check.check(pm, callback);
+    }
 
     /**
      * Given a {@link Definition} and a list of references to that Definition
@@ -1025,6 +1038,9 @@ public abstract class FortranResourceRefactoring
                 {
                     pm.subTask(Messages.bind(Messages.FortranResourceRefactoring_CheckingForReferencesTo, newName, importingScope.describe()));
                     shadowedDefinitions.addAll(importingScope.manuallyResolve(token));
+                }
+                if (definitionToCheck != null) {
+                    shadowedDefinitions.remove(definitionToCheck.getTokenRef());
                 }
 
                 for (PhotranTokenRef def : shadowedDefinitions)
