@@ -37,7 +37,6 @@ import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranEdito
 import org.eclipse.photran.internal.core.reindenter.Reindenter;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
 
-
 /**
  * Refactoring to extract an expression into a local (temporary) variable.
  *
@@ -197,7 +196,7 @@ public class ExtractLocalVariableRefactoring extends FortranEditorRefactoring
         {
             Conflict conflict = conflictingDef.get(0);
 
-            String msg = Messages.bind(Messages.ExtractLocalVariableRefactoring_NameConflictsWith, conflict.name, vpg.getDefinitionFor(conflict.tokenRef));
+            String msg = Messages.bind(Messages.ExtractLocalVariableRefactoring_NameConflictsWith, conflict.name, getVPG().getDefinitionFor(conflict.tokenRef));
             RefactoringStatusContext context = createContext(conflict.tokenRef); // Highlights problematic definition
             status.addError(msg, context);
         }
@@ -236,7 +235,7 @@ public class ExtractLocalVariableRefactoring extends FortranEditorRefactoring
         }
         finally
         {
-            vpg.releaseAllASTs();
+            getVPG().releaseAllASTs();
         }
     }
 

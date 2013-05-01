@@ -227,13 +227,13 @@ public class CommonVarNamesRefactoring extends FortranEditorRefactoring
         }
         finally
         {
-            vpg.releaseAllASTs();
+            getVPG().releaseAllASTs();
         }
     }
 
     private void makeChangesTo(IFile file, IProgressMonitor pm, RefactoringStatus status) throws PreconditionFailure
     {
-        IFortranAST ast = vpg.acquirePermanentAST(file);
+        IFortranAST ast = getVPG().acquirePermanentAST(file);
         if(ast == null) return;
 
         try
@@ -248,7 +248,7 @@ public class CommonVarNamesRefactoring extends FortranEditorRefactoring
             fail(e.getMessage());
         }
 
-        vpg.releaseAST(file);
+        getVPG().releaseAST(file);
     }
 
     /** This class is adapted/taken from the code in RenameRefactoring.java */
@@ -358,7 +358,7 @@ public class CommonVarNamesRefactoring extends FortranEditorRefactoring
         {
             Conflict conflict = conflictingDef.get(0);
 
-            String msg = Messages.bind(Messages.CommonVarNamesRefactoring_NameConflictsWith, conflict.name, vpg.getDefinitionFor(conflict.tokenRef));
+            String msg = Messages.bind(Messages.CommonVarNamesRefactoring_NameConflictsWith, conflict.name, getVPG().getDefinitionFor(conflict.tokenRef));
             RefactoringStatusContext context = createContext(conflict.tokenRef); // Highlights problematic definition
             status.addError(msg, context);
         }

@@ -408,7 +408,7 @@ public class AddSubroutineParameterRefactoring extends FortranEditorRefactoring
         permuteCallSites();
 
         addChangeFromModifiedAST(fileInEditor, pm);
-        vpg.releaseAST(fileInEditor);
+        getVPG().releaseAST(fileInEditor);
 
     }
 
@@ -624,7 +624,7 @@ public class AddSubroutineParameterRefactoring extends FortranEditorRefactoring
 
             String msg = Messages.bind(
                 Messages.AddSubroutineParameterRefactoring_NameConflictsWith, conflict.name,
-                vpg.getDefinitionFor(conflict.tokenRef));
+                getVPG().getDefinitionFor(conflict.tokenRef));
             RefactoringStatusContext context = createContext(conflict.tokenRef); // Highlights
                                                                                  // problematic
                                                                                  // definition

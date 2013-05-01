@@ -234,7 +234,7 @@ public class EncapsulateVariableRefactoring extends FortranEditorRefactoring
             if (declaringModule == null) throw new IllegalStateException();
 
             IFile defFile = varDefTok.getLogicalFile();
-            vpg.acquirePermanentAST(defFile);
+            getVPG().acquirePermanentAST(defFile);
 
             for (IFile file : filesIn(allRefs))
             {
@@ -259,11 +259,11 @@ public class EncapsulateVariableRefactoring extends FortranEditorRefactoring
             }
 
             this.addChangeFromModifiedAST(defFile, pm);
-            vpg.releaseAST(defFile);
+            getVPG().releaseAST(defFile);
         }
         finally
         {
-            vpg.releaseAllASTs();
+            getVPG().releaseAllASTs();
         }
     }
 
@@ -409,14 +409,14 @@ public class EncapsulateVariableRefactoring extends FortranEditorRefactoring
                     {
                         lst.insertAfter(newDeclNode, newAccessNode);
                         Reindenter.reindent(newDeclNode,
-                            vpg.acquireTransientAST(varDefTok.getLogicalFile()),
+                            getVPG().acquireTransientAST(varDefTok.getLogicalFile()),
                             Strategy.REINDENT_EACH_LINE);
                     }
                     else
                         lst.insertAfter(possibleTypeDec, newAccessNode);
 
                     Reindenter.reindent(newAccessNode,
-                                        vpg.acquireTransientAST(varDefTok.getLogicalFile()),
+                                        getVPG().acquireTransientAST(varDefTok.getLogicalFile()),
                                         Strategy.REINDENT_EACH_LINE);
                     break;
                 }
@@ -543,7 +543,7 @@ public class EncapsulateVariableRefactoring extends FortranEditorRefactoring
         funNode.setParent(lst);
         lst.insertAfter(lst.get(index), funNode);
         Reindenter.reindent(funNode,
-            vpg.acquireTransientAST(def.getTokenRef().getFile()),
+            getVPG().acquireTransientAST(def.getTokenRef().getFile()),
             Strategy.SHIFT_ENTIRE_BLOCK);
     }
 
@@ -554,7 +554,7 @@ public class EncapsulateVariableRefactoring extends FortranEditorRefactoring
         funNode.setParent(lst);
         lst.insertAfter(lst.get(index), funNode);
         Reindenter.reindent(funNode,
-            vpg.acquireTransientAST(def.getTokenRef().getFile()),
+            getVPG().acquireTransientAST(def.getTokenRef().getFile()),
             Strategy.SHIFT_ENTIRE_BLOCK);
     }
 
@@ -691,7 +691,7 @@ public class EncapsulateVariableRefactoring extends FortranEditorRefactoring
                     Messages.bind(
                         Messages.EncapsulateVariableRefactoring_NameConflicts,
                         conflict.name,
-                        vpg.getDefinitionFor(conflict.tokenRef));
+                        getVPG().getDefinitionFor(conflict.tokenRef));
                 RefactoringStatusContext context = createContext(conflict.tokenRef); // Highlights problematic definition
                 status.addError(msg, context);
             }
