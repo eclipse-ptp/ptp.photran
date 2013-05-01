@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2009, 2013 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -49,7 +49,7 @@ import org.eclipse.photran.internal.core.vpg.PhotranVPG;
  *
  * @author Kurt Hendle
  * @author Jeff Overbey - externalized strings
- * @author Louis Orenstein (Tech-X Corporation) - fix for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=399565
+ * @author Louis Orenstein (Tech-X Corporation) - fix for https://bugs.eclipse.org/399565 and https://bugs.eclipse.org/404170
  */
 public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
 {
@@ -439,6 +439,7 @@ public class AddOnlyToUseStmtRefactoring extends FortranEditorRefactoring
 
         public void addConflictError(List<Conflict> conflictingDef)
         {
+            PhotranVPG vpg = getVPG(); // to prevent Bug https://bugs.eclipse.org/404170
             for(Conflict conflict : conflictingDef)
             {
                 //remove conflicts with the module itself
