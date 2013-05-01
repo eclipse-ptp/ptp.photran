@@ -186,7 +186,7 @@ public class RenameRefactoring extends FortranEditorRefactoring implements IRena
                 Messages.bind(
                     Messages.RenameRefactoring_NameConflicts,
                     conflict.name,
-                    vpg.getDefinitionFor(conflict.tokenRef));
+                    getVPG().getDefinitionFor(conflict.tokenRef));
             RefactoringStatusContext context = createContext(conflict.tokenRef); // Highlights problematic definition
             status.addError(msg, context);
         }
