@@ -13,6 +13,7 @@ package org.eclipse.photran.internal.tests.refactoring;
 
 import junit.framework.Test;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.photran.internal.core.refactoring.EncapsulateVariableRefactoring;
 import org.eclipse.photran.internal.tests.Activator;
 import org.eclipse.photran.internal.tests.PhotranRefactoringTestSuiteFromMarkers;
@@ -43,5 +44,12 @@ public class EncapsulateVariableTestSuite extends PhotranRefactoringTestSuiteFro
               "Running Encapsulate variable refactoring in",
               DIR,
               EncapsulateVariableRefactoring.class);
+    }
+
+    /** Prevents the compilation and running of certain tests */
+    @Override protected boolean shouldCompile(IFile fileContainingMarker)
+    {
+       // GCC 4.6.2 gives Internal Compiler Error on this file
+       return !fileContainingMarker.getName().equals("test-encap-01c-basic-dt.f90");
     }
 }

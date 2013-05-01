@@ -49,7 +49,7 @@ public class ExtractProcTestCase extends PhotranWorkspaceTestCase
         ExtractProcedureRefactoring refactoring = createRefactoring(filename);
 
         project.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
-        String before = compileAndRunFortranProgram();
+        String before = shouldCompile(filename) ? compileAndRunFortranProgram() : "";
 
         RefactoringStatus status = refactoring.checkInitialConditions(pm);
         assertTrue(description + " failed initial precondition check: " + status.toString(), !status.hasError());
@@ -66,7 +66,7 @@ public class ExtractProcTestCase extends PhotranWorkspaceTestCase
 
         project.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 
-        String after = compileAndRunFortranProgram();
+        String after = shouldCompile(filename) ? compileAndRunFortranProgram() : "";
         System.out.println(after);
         assertEquals(before, after);
     }
@@ -110,5 +110,17 @@ public class ExtractProcTestCase extends PhotranWorkspaceTestCase
         assertEquals(
             readTestFile(filename + ".result").replaceAll("\\r", ""), // expected result
             readWorkspaceFile(filename).replaceAll("\\r", ""));       // actual refactored file
+    }
+
+    /** Prevents the compilation and running of tests we know don't preserve behavior */
+    protected boolean shouldCompile(String filenameContainingMarker)
+    {
+        // Test 7 has been copied to the vpg.tests.failing project -- GCC 4.6.2 gives this error:
+        // test07-attribs.f90:11.26:
+        // call new_procedure(COLS, ROWS, m, matrix, n, saved)
+        // Error: Dummy argument 'saved' of procedure 'new_procedure' at (1) has an attribute
+        // that requires an explicit interface for this procedure
+
+       return !filenameContainingMarker.equals("test07-attribs.f90");
     }
 }
