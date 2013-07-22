@@ -21,6 +21,7 @@
 		<platform-site>http://download.eclipse.org/eclipse/updates/${platform-version}</platform-site>
 		<cdt-version>kepler</cdt-version>
 		<cdt-site>http://download.eclipse.org/tools/cdt/builds/${cdt-version}/milestones</cdt-site>
+		<photran-install-dir>/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-release-photran</photran-install-dir>
 	</properties>
 
 	<licenses>
