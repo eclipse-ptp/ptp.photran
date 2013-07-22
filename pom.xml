@@ -15,6 +15,7 @@
 
 	<properties>
 		<tycho-version>0.17.0</tycho-version>
+		<tycho-extras-version>${tycho-version}</tycho-extras-version>
 		<platform-version>4.3milestones</platform-version>
 		<platform-site>http://download.eclipse.org/eclipse/updates/${platform-version}</platform-site>
 		<cdt-version>kepler</cdt-version>
