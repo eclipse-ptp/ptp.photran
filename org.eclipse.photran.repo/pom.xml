@@ -14,7 +14,7 @@
 	<version>8.1.2-SNAPSHOT</version>
 	<artifactId>org.eclipse.photran.repo</artifactId>
 	<packaging>eclipse-repository</packaging>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -25,31 +25,41 @@
 					<publishArtifacts>true</publishArtifacts>
 				</configuration>
 			</plugin>
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>deploy</id>
-						<phase>install</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<mkdir dir="${photran-install-dir}" />
-								<delete includeemptydirs="true">
-									<fileset dir="${photran-install-dir}">
-										<include name="**" />
-									</fileset>
-								</delete>
-								<unzip
-									src="${project.build.directory}/${project.build.finalName}.zip"
-									dest="${photran-install-dir}" />
-							</tasks>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>production</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>deploy</id>
+								<phase>install</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<mkdir dir="${photran-install-dir}" />
+										<delete includeemptydirs="true">
+											<fileset dir="${photran-install-dir}">
+												<include name="**" />
+											</fileset>
+										</delete>
+										<unzip
+											src="${project.build.directory}/${project.build.finalName}.zip"
+											dest="${photran-install-dir}" />
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
