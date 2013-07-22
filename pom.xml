@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
 	<prerequisites>
@@ -19,7 +20,7 @@
 		<platform-version>4.3milestones</platform-version>
 		<platform-site>http://download.eclipse.org/eclipse/updates/${platform-version}</platform-site>
 		<cdt-version>kepler</cdt-version>
-		<cdt-site>http://download.eclipse.org/tools/cdt/builds/${cdt-version}/milestones</cdt-site>	
+		<cdt-site>http://download.eclipse.org/tools/cdt/builds/${cdt-version}/milestones</cdt-site>
 	</properties>
 
 	<licenses>
@@ -201,6 +202,13 @@
 	<profiles>
 		<profile>
 			<id>eclipse-sign</id>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>m2e-cbi</id>
+					<url>http://download.eclipse.org/technology/m2e/maven/</url>
+				</pluginRepository>
+			</pluginRepositories>
+
 			<build>
 				<plugins>
 					<plugin>
