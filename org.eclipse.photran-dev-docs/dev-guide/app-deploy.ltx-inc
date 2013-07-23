@@ -84,7 +84,9 @@ For example, in Photran 4.0 beta 5, the database filename was ``photran40b5vpg''
 
 \item Add a Bugzilla version for the release and a target for the next expected release
 
-\item Update the Web site:
+\item Update the Web site.  It is in the following Git
+      repository:\footnote{See \url{http://bugs.eclipse.org/413409}} \\
+      \centerline{\texttt{ssh://username@git.eclipse.org/gitroot/www.eclipse.org/photran.git}}
     \begin{enumerate}
     \item Update the home page to mention the release
     \item Change the update site URL and archived update site link on the Downloads page

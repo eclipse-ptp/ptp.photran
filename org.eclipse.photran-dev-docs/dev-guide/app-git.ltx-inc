@@ -1,7 +1,7 @@
 % Getting the Photran Sources from Git
 \vspace{-0.5in}
 
-{\scriptsize Last modified June 29, 2012}
+{\scriptsize Last modified July 22, 2013}
 
 This describes how to check out the source code for the current \textit{development} version
 of Photran.  At any given time, this is the version of Photran that will be released the
@@ -60,7 +60,7 @@ It is also required when setting an API baseline in Part~II below.
 \begin{enumerate}
       \item Start Eclipse.  Inside Eclipse, click on the ``Help'' menu, and choose ``Install New Software...''
       \item In the ``Work with:'' combo box, choose the update site for the latest Eclipse release train.
-            As of January, 2012, this should be labeled ``Juno -- http://download.eclipse.org/releases/juno''
+            As of July, 2013, this should be labeled ``Kepler -- http://download.eclipse.org/releases/kepler''
       \item Expand the ``Collaboration'' category
       \item Under ``Collaboration,'' check the box next to ``Eclipse EGit''
       \item Expand the ``Programming Languages'' category
@@ -128,7 +128,8 @@ you must \textit{delete} the existing projects from your workspace.  The Git imp
 	    \item Most people will enter \\
 	      \centerline{\texttt{git://git.eclipse.org/gitroot/ptp/org.eclipse.photran.git}}
 	    \item If you are a committer at the Eclipse Foundation, enter \\
-	      \centerline{\texttt{ssh://username@git.eclipse.org/gitroot/ptp/org.eclipse.photran.git}}
+	      \centerline{\texttt{ssh://username@git.eclipse.org:29418/ptp/org.eclipse.photran}}
+	      %\centerline{\texttt{ssh://username@git.eclipse.org/gitroot/ptp/org.eclipse.photran.git}}
 	      replacing \texttt{username} with your committer username.
 	    \end{itemize}
 	\item Click ``Next''

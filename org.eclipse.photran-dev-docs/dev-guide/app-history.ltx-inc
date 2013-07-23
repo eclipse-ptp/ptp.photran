@@ -25,7 +25,8 @@ Photran & Date & Platform & CDT & Notes \\
 6.0.0 & Jun 2010 & 3.6     & 7.0.0 & First release as part of the train (Helios) \\
 7.0.0 & Jun 2011 & 3.7     & 8.0.0 & Indigo release train \\
 8.0.0 & Jun 2012 & 4.2     & 8.1.0 & Juno release train \\
-8.1.0 & Jun 2013 & 4.3     & 9.0.0 & Kepler release train (PLANNED) \\
+8.1.0 & Jun 2013 & 4.3     & 8.2.0 & Kepler release train \\
+8.2.0 & Jun 2014 & 4.4     & ?     & Luna (PLANNED) \\
 %Vers & Mon Year & Platfrm & CDT   & \\
 \end{tabular}
 }
