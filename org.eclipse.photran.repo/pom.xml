@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -13,7 +14,7 @@
 	<version>8.1.2-SNAPSHOT</version>
 	<artifactId>org.eclipse.photran.repo</artifactId>
 	<packaging>eclipse-repository</packaging>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -26,13 +27,10 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
 	<profiles>
 		<profile>
 			<id>production</id>
-			<properties>
-				<ptp-install>/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-nightly-photran</ptp-install>
-			</properties>
 			<build>
 				<plugins>
 					<plugin>
@@ -46,14 +44,15 @@
 								</goals>
 								<configuration>
 									<tasks>
-										<mkdir dir="${ptp-install}" />
+										<mkdir dir="${photran-install-dir}" />
 										<delete includeemptydirs="true">
-											<fileset dir="${ptp-install}">
+											<fileset dir="${photran-install-dir}">
 												<include name="**" />
 											</fileset>
 										</delete>
-										<copy file="${project.build.directory}/${project.build.finalName}.zip" tofile="${ptp-install}/org.eclipse.photran.repo.${unqualifiedVersion}.${buildQualifier}.zip"/>
-										<unzip src="${project.build.directory}/${project.build.finalName}.zip" dest="${ptp-install}"/>
+										<unzip
+											src="${project.build.directory}/${project.build.finalName}.zip"
+											dest="${photran-install-dir}" />
 									</tasks>
 								</configuration>
 							</execution>
