@@ -10,7 +10,7 @@
 
 	<groupId>org.eclipse.photran</groupId>
 	<artifactId>photran-parent</artifactId>
-	<version>8.1.2-SNAPSHOT</version>
+	<version>8.1.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>PTP Photran Parent</name>
 

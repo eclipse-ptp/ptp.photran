@@ -6,12 +6,12 @@
   <parent>
     <groupId>org.eclipse.photran</groupId>
     <artifactId>photran-parent</artifactId>
-    <version>8.1.2-SNAPSHOT</version>
+    <version>8.1.3-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>org.eclipse.ptp.features</groupId>
   <artifactId>org.eclipse.photran.intel</artifactId>
   <packaging>eclipse-feature</packaging>
-  <version>8.1.2-SNAPSHOT</version>
+  <version>8.1.3-SNAPSHOT</version>
 </project>
