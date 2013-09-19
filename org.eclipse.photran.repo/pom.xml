@@ -31,7 +31,7 @@
 		<profile>
 			<id>production</id>
 			<properties>
-				<ptp-install>/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-photran-release</ptp-install>
+				<ptp-install>/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-maint-photran</ptp-install>
 			</properties>
 			<build>
 				<plugins>
@@ -46,6 +46,11 @@
 								</goals>
 								<configuration>
 									<tasks>
+										<delete dir="/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-4.1"/>
+										<delete dir="/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-4.x"/>
+										<delete dir="/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-photran-4.1"/>
+										<delete dir="/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-photran-4.x"/>
+										<delete dir="/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-photran-release"/>
 										<mkdir dir="${ptp-install}" />
 										<delete includeemptydirs="true">
 											<fileset dir="${ptp-install}">
