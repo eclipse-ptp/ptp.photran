@@ -25,7 +25,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.views,
  org.eclipse.ui.workbench.texteditor,
  org.eclipse.photran.core,
- org.eclipse.photran.cdtinterface,
- org.eclipse.photran.doc.user
+ org.eclipse.photran.cdtinterface
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
