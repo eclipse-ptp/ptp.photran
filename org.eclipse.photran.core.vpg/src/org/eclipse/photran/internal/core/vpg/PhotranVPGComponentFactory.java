@@ -36,7 +36,7 @@ public class PhotranVPGComponentFactory
     {
         File logFile = new File(
             Activator.getDefault().getStateLocation().addTrailingSeparator().toOSString() +
-            "photran70vpg-log.txt"); //$NON-NLS-1$
+            "photran83vpg-log.txt"); //$NON-NLS-1$
 
         return new VPGLog<Token, PhotranTokenRef>(logFile, this);
     }
@@ -71,7 +71,7 @@ public class PhotranVPGComponentFactory
 
     private static File getFileInPluginStateLocation()
     {
-        return new File(Activator.getDefault().getStateLocation().addTrailingSeparator().toOSString() + "photran70vpg.new"); //$NON-NLS-1$
+        return new File(Activator.getDefault().getStateLocation().addTrailingSeparator().toOSString() + "photran83vpg.new"); //$NON-NLS-1$
     }
 
     public PhotranVPGWriter createVPGWriter(VPGDB<IFortranAST, Token, PhotranTokenRef> db, VPGLog<Token,PhotranTokenRef> log)

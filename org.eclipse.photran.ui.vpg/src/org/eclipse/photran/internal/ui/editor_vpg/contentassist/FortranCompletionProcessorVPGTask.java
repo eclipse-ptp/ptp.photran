@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2009, 2014 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     UIUC - Initial API and implementation
+ *     Chris Hansen (U Washington) - Auto-complete improvements (Bug 414906)
  *******************************************************************************/
 package org.eclipse.photran.internal.ui.editor_vpg.contentassist;
 
@@ -53,9 +54,10 @@ final class FortranCompletionProcessorVPGTask implements IFortranEditorVPGTask
                         
                         TreeSet<Definition> set = defs.get(qualifier);
                         if (set == null) set = new TreeSet<Definition>();
-                        for (Definition def : allDefs)
-                            if (def != null)
+                        for (Definition def : allDefs)                                                       
+                            if (def != null) {
                                 set.add(def);
+                            }
                         defs.put(qualifier, set);
                     }
                     

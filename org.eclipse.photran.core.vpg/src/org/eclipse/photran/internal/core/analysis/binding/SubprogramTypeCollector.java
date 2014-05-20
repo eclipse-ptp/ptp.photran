@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2010, 2014 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     UIUC - Initial API and implementation
+ *     Chris Hansen (U Washington) - Auto-complete improvements (Bug 414906)
  *******************************************************************************/
 package org.eclipse.photran.internal.core.analysis.binding;
 
@@ -20,6 +21,7 @@ import org.eclipse.photran.internal.core.parser.ASTFunctionStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTSubroutineParNode;
 import org.eclipse.photran.internal.core.parser.ASTSubroutineStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTTypeSpecNode;
+import org.eclipse.photran.internal.core.parser.IASTListNode;
 import org.eclipse.photran.internal.core.vpg.AnnotationType;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
 
@@ -29,6 +31,7 @@ import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
  * Visits subprogram declarations, setting their types in the VPG.
  *
  * @author Jeff Overbey
+ * @author Chris Hansen
  * @see Binder
  */
 class SubprogramTypeCollector extends BindingCollector
@@ -38,7 +41,9 @@ class SubprogramTypeCollector extends BindingCollector
         super.traverseChildren(node);
         
         PhotranTokenRef tokenRef = node.getSubroutineName().getSubroutineName().getTokenRef();
+        IASTListNode<ASTSubroutineParNode> subParams = node.getSubroutinePars();
         updateDefinitionWithTypeInfo(tokenRef, typeOf(node));
+        updateDefinitionWithSubParameters(tokenRef, typeOf(node), subParams);
     }
 
     @Override public void visitASTFunctionStmtNode(ASTFunctionStmtNode node)
@@ -46,13 +51,77 @@ class SubprogramTypeCollector extends BindingCollector
         super.traverseChildren(node);
         
         PhotranTokenRef tokenRef = node.getFunctionName().getFunctionName().getTokenRef();
+        IASTListNode<ASTFunctionParNode> funParams = node.getFunctionPars();
         updateDefinitionWithTypeInfo(tokenRef, typeOf(node));
+        updateDefinitionWithFunParameters(tokenRef, typeOf(node), funParams);
     }
     
     private void updateDefinitionWithTypeInfo(PhotranTokenRef tokenRef, FunctionType type)
     {
         Definition def = vpg.getDefinitionFor(tokenRef);
         def.setType(type);
+        vpgProvider.setDefinitionFor(tokenRef, def);
+    }
+    
+    private void updateDefinitionWithSubParameters(PhotranTokenRef tokenRef, FunctionType type, IASTListNode<ASTSubroutineParNode> subParams)
+    {
+        Definition def = vpg.getDefinitionFor(tokenRef);
+        // Populate subroutines auto-completion with parameters
+        StringBuilder fullId = new StringBuilder(40);
+        fullId.append(def.getDeclaredName());
+        fullId.append('(');
+        if (subParams != null) {
+            int paramCount = 0;
+            for (ASTSubroutineParNode param: subParams) {
+                Token tmpToken = param.getVariableName();
+                String paramText = tmpToken.getText();
+                if (paramCount>0)
+                    fullId.append(',');
+                fullId.append(paramText);
+                //
+                Definition varDef = bindUniquely(tmpToken);
+                if (varDef != null) {
+                    if (varDef.isOptional()) {
+                        fullId.append('=');
+                        fullId.append(paramText);
+                    }
+                }
+                paramCount=paramCount+1;
+            }
+        }
+        fullId.append(')');
+        def.setCompletionText(fullId.toString());
+        vpgProvider.setDefinitionFor(tokenRef, def);
+    }
+    
+    private void updateDefinitionWithFunParameters(PhotranTokenRef tokenRef, FunctionType type, IASTListNode<ASTFunctionParNode> funParams)
+    {
+        Definition def = vpg.getDefinitionFor(tokenRef);
+        // Populate function auto-completion with parameters
+        StringBuilder fullId = new StringBuilder(40);
+        fullId.append(def.getDeclaredName());
+        fullId.append('(');
+        if (funParams != null) {
+            int paramCount = 0;
+            for (ASTFunctionParNode param: funParams) {
+                Token tmpToken = param.getVariableName();
+                String paramText = tmpToken.getText();
+                if (paramCount>0)
+                    fullId.append(',');
+                fullId.append(paramText);
+                //
+                Definition varDef = bindUniquely(tmpToken);
+                if (varDef != null) {
+                    if (varDef.isOptional()) {
+                        fullId.append('=');
+                        fullId.append(paramText);
+                    }
+                }
+                paramCount=paramCount+1;
+            }
+        }
+        fullId.append(')');
+        def.setCompletionText(fullId.toString());
         vpgProvider.setDefinitionFor(tokenRef, def);
     }
 

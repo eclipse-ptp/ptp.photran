@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2007, 2014 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     UIUC - Initial API and implementation
+ *     Chris Hansen (U Washington) - Auto-complete improvements (Bug 414906)
  *******************************************************************************/
 package org.eclipse.photran.internal.core.analysis.types;
 
@@ -20,6 +21,7 @@ import org.eclipse.photran.internal.core.vpg.PhotranVPGSerializer;
  * A {@link Type} representing a Fortran derived type with a particular name.
  * 
  * @author Jeff Overbey
+ * @author Chris Hansen
  */
 public class DerivedType extends Type
 {
@@ -33,6 +35,11 @@ public class DerivedType extends Type
         this.name = name.toLowerCase();
     }
 
+    public String getName()
+    {
+        return this.name;
+    }
+    
     @Override public String toString()
     {
         return "type(" + name + ")"; //$NON-NLS-1$ //$NON-NLS-2$

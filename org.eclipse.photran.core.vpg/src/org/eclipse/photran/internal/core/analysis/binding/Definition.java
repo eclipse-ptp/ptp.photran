@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2007, 2014 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     UIUC - Initial API and implementation
+ *     Chris Hansen (U Washington) - Auto-complete improvements (Bug 414906)
  *******************************************************************************/
 package org.eclipse.photran.internal.core.analysis.binding;
 
@@ -63,6 +64,7 @@ import org.eclipse.rephraserengine.core.vpg.IVPGNode;
  * <b>array spec</b> may give an array specification (e.g., one-dimensional, indexed from 3 to 5).
  *
  * @author Jeff Overbey
+ * @author Chris Hansen
  */
 public class Definition implements IPhotranSerializable, Comparable<Definition>
 {
@@ -126,7 +128,7 @@ public class Definition implements IPhotranSerializable, Comparable<Definition>
 
     protected Classification classification;
     protected PhotranTokenRef tokenRef;
-    protected String declaredName, canonicalizedName;
+    protected String declaredName, canonicalizedName, completionText;
     //protected Visibility visibility;
     protected Type type;
     protected ArraySpec arraySpec;
@@ -157,6 +159,7 @@ public class Definition implements IPhotranSerializable, Comparable<Definition>
         //this.visibility = visibility; //Visibility.INHERIT_FROM_SCOPE;
         this.type = type;
         this.arraySpec = null;
+        this.completionText = declaredName;
     }
 
 	protected String canonicalize(String identifier)
@@ -221,6 +224,11 @@ public class Definition implements IPhotranSerializable, Comparable<Definition>
     public boolean isDerivedType()
     {
         return classification == Classification.DERIVED_TYPE;
+    }
+    
+    public boolean isDerivedTypeComponent()
+    {
+        return classification == Classification.DERIVED_TYPE_COMPONENT;
     }
 
     public boolean isSubprogram()
@@ -324,6 +332,19 @@ public class Definition implements IPhotranSerializable, Comparable<Definition>
     public String getCanonicalizedName()
     {
         return canonicalizedName;
+    }
+    
+    /** Sets the auto-completion text to be used for this definition. This is usually the name of the defined entity,
+     * however for procedures/functions this text contains the argument list as well. */
+    public void setCompletionText(String completionText)
+    {
+        this.completionText = completionText;
+    }
+    
+    /** @return the auto-completion text for this definition, canonicalized by <code>PhotranVPG.canonicalizeIdentifier</code> */
+    public String getCompletionText()
+    {
+        return completionText;
     }
 
     /** @return a description of the type of entity being defined */
@@ -1139,6 +1160,7 @@ public class Definition implements IPhotranSerializable, Comparable<Definition>
         result.intent_out = PhotranVPGSerializer.deserialize(in);
         result.optional = PhotranVPGSerializer.deserialize(in);
         result.save = PhotranVPGSerializer.deserialize(in);
+        result.completionText = PhotranVPGSerializer.deserialize(in);
         return result;
     }
 
@@ -1160,6 +1182,7 @@ public class Definition implements IPhotranSerializable, Comparable<Definition>
         PhotranVPGSerializer.serialize(intent_out, out);
         PhotranVPGSerializer.serialize(optional, out);
         PhotranVPGSerializer.serialize(save, out);
+        PhotranVPGSerializer.serialize(completionText, out);
     }
 
     public char getSerializationCode()

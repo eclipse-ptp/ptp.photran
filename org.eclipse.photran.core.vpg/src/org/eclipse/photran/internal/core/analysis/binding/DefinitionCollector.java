@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2007, 2014 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     UIUC - Initial API and implementation
+ *     Chris Hansen (U Washington) - Auto-complete improvements (Bug 414906)
  *******************************************************************************/
 package org.eclipse.photran.internal.core.analysis.binding;
 
@@ -41,9 +42,12 @@ import org.eclipse.photran.internal.core.parser.ASTLabelDoStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTModuleStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTNamelistGroupsNode;
 import org.eclipse.photran.internal.core.parser.ASTNamelistStmtNode;
+import org.eclipse.photran.internal.core.parser.ASTProcComponentDefStmtNode;
+import org.eclipse.photran.internal.core.parser.ASTProcDeclNode;
 import org.eclipse.photran.internal.core.parser.ASTProgramStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTSelectCaseStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTSelectTypeStmtNode;
+import org.eclipse.photran.internal.core.parser.ASTSpecificBindingNode;
 import org.eclipse.photran.internal.core.parser.ASTStmtFunctionStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTSubroutineStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTSubroutineSubprogramNode;
@@ -51,6 +55,7 @@ import org.eclipse.photran.internal.core.parser.ASTTypeAttrSpecNode;
 import org.eclipse.photran.internal.core.parser.ASTTypeDeclarationStmtNode;
 import org.eclipse.photran.internal.core.parser.ASTTypeParamDeclNode;
 import org.eclipse.photran.internal.core.parser.ASTTypeParamDefStmtNode;
+import org.eclipse.photran.internal.core.parser.ASTTypeSpecNode;
 import org.eclipse.photran.internal.core.parser.ASTWhereConstructStmtNode;
 import org.eclipse.photran.internal.core.parser.IASTListNode;
 import org.eclipse.photran.internal.core.parser.IInterfaceSpecification;
@@ -66,6 +71,7 @@ import org.eclipse.photran.internal.core.vpg.PhotranVPG;
  * Operators are NOT included in the symbol table.
  * 
  * @author Jeff Overbey
+ * @author Chris Hansen
  * @see Binder
  */
 class DefinitionCollector extends BindingCollector
@@ -93,7 +99,8 @@ class DefinitionCollector extends BindingCollector
         
         Definition d = addDefinition(node.getTypeName(), Definition.Classification.DERIVED_TYPE, Type.VOID);
         
-        ScopingNode enclosingScope = node.findNearestAncestor(ScopingNode.class);
+        ScopingNode parentScope = node.findNearestAncestor(ScopingNode.class);
+        ScopingNode enclosingScope = parentScope.getEnclosingScope();
         
 //        if (node.getAccessSpec() != null)
 //            d.setVisibility(node.getAccessSpec());
@@ -136,6 +143,32 @@ class DefinitionCollector extends BindingCollector
             addDefinition(decls.get(i).getComponentName().getComponentName(),
                           Definition.Classification.DERIVED_TYPE_COMPONENT,
                           Type.parse(node.getTypeSpec()));
+    }
+    
+    @Override public void visitASTProcComponentDefStmtNode(ASTProcComponentDefStmtNode node)
+    {
+        super.traverseChildren(node);
+        
+        IASTListNode<ASTProcDeclNode> decls = node.getProcDeclList();
+        for (int i = 0; i < decls.size(); i++) {
+            ASTTypeSpecNode typeAttr = node.getProcInterface().getTypeSpec();
+            Type procType = Type.VOID;
+            if (typeAttr != null)
+                procType = Type.parse(typeAttr);
+            
+            addDefinition(decls.get(i).getProcedureEntityName(),
+                          Definition.Classification.DERIVED_TYPE_COMPONENT,
+                          procType);
+        }
+    }
+    
+    @Override public void visitASTSpecificBindingNode(ASTSpecificBindingNode node)
+    {
+        super.traverseChildren(node);
+        
+        addDefinition(node.getBindingName(),
+                      Definition.Classification.SUBROUTINE,
+                      Type.VOID);
     }
 
     // # R501

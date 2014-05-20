@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2009, 2014 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     UIUC - Initial API and implementation
+ *     Chris Hansen (U Washington) - Auto-complete improvements (Bug 414906)
  *******************************************************************************/
 package org.eclipse.photran.internal.ui.editor_vpg.contentassist;
 
@@ -39,19 +40,39 @@ import org.eclipse.swt.graphics.Image;
  * Computes the list of items be shown in the content assist list.
  * 
  * @author Jeff Overbey
+ * @author Chris Hansen
  * 
  * @see FortranCompletionProcessor#computeCompletionProposals(org.eclipse.jface.text.ITextViewer, int)
  */
 class FortranCompletionProposalComputer extends CompletionComputer
 {
+    public static enum Context
+    {
+        GENERIC,
+        TYPE_VARIABLE_DEF,
+        ALLOCATE,
+        DEALLOCATE,
+        USE,
+        USE_ONLY;
+    }
+    
     private HashMap<String, TreeSet<Definition>> defs;
     private String scope;
-
-    FortranCompletionProposalComputer(HashMap<String, TreeSet<Definition>> defs, String scope, IDocument document, int offset) throws BadLocationException
+    protected Context context;
+    
+    FortranCompletionProposalComputer(HashMap<String, TreeSet<Definition>> defs, String scope, IDocument document, int offset, Context contextType) throws BadLocationException
     {
         super(document, offset);
         this.defs = defs;
         this.scope = scope;
+        this.context = contextType;
+    }
+    
+    public List<ICompletionProposal> proposalsFromTheseDefs(Iterable<Definition> defsIn) throws BadLocationException
+    {
+        TreeSet<FortranCompletionProposal> proposals = new TreeSet<FortranCompletionProposal>();
+        addProposals(defsIn, proposals);
+        return toProposalArray(proposals);
     }
 
     public List<ICompletionProposal> proposalsFromDefs() throws BadLocationException
@@ -88,9 +109,29 @@ class FortranCompletionProposalComputer extends CompletionComputer
             {
                 if (def.getClassification().equals(Classification.MAIN_PROGRAM))
                     continue;
-                
-                String identifier = def.getDeclaredName();
+                //Filter by context
+                if (this.context == Context.TYPE_VARIABLE_DEF) {
+                    if (!(def.getClassification().equals(Classification.DERIVED_TYPE)))
+                        continue;
+                } else if (this.context == Context.ALLOCATE) {
+                    if (!(def.getClassification().equals(Classification.DERIVED_TYPE) ||
+                        def.getClassification().equals(Classification.VARIABLE_DECLARATION) ||
+                        def.getClassification().equals(Classification.FUNCTION)))
+                        continue;
+                } else if (this.context == Context.DEALLOCATE) {
+                    if (!def.getClassification().equals(Classification.VARIABLE_DECLARATION))
+                        continue;
+                } else if (this.context == Context.USE) {
+                    if (!def.getClassification().equals(Classification.MODULE))
+                        continue;
+                }
+                //
+                String identifier = def.getCompletionText();
                 String canonicalizedId = def.getCanonicalizedName();
+                //
+                if (this.context == Context.USE_ONLY)
+                    identifier = def.getDeclaredName();
+                //
                 if (canonicalizedId.startsWith(prefix) && canonicalizedId.endsWith(suffix))
                     proposals.add(createProposal(identifier,
                                                  def.describeClassification(),
@@ -221,8 +262,17 @@ class FortranCompletionProposalComputer extends CompletionComputer
             for (int i = 0; i < args.length; i++)
             {
                 if (i > 0) sb.append(", "); //$NON-NLS-1$
+                //
+                String argTemp = args[i];
+                if (argTemp.indexOf('=')>=0) {
+                    String[] argSplit = argTemp.split("="); //$NON-NLS-1$
+                    sb.append(argSplit[0].trim().replace(' ', '_'));
+                    sb.append('=');
+                    argTemp=argSplit[1];
+                }
+                //
                 sb.append("${"); //$NON-NLS-1$
-                sb.append(args[i].trim().replace(' ', '_'));
+                sb.append(argTemp.trim().replace(' ', '_'));
                 sb.append('}');
             }
             sb.append(')');
