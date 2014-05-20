@@ -30,8 +30,8 @@ public class ASTVarOrFnRefNode extends ASTNode implements IExpr, ISelector
 {
     ASTNameNode name; // in ASTVarOrFnRefNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTLparen; // in ASTVarOrFnRefNode
-    IASTListNode<ASTFunctionArgListNode> functionArgList; // in ASTVarOrFnRefNode
     IASTListNode<ASTSectionSubscriptNode> primarySectionSubscriptList; // in ASTVarOrFnRefNode
+    IASTListNode<ASTFunctionArgListNode> functionArgList; // in ASTVarOrFnRefNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTRparen; // in ASTVarOrFnRefNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTPercent; // in ASTVarOrFnRefNode
     ASTSubstringRangeNode substringRange; // in ASTVarOrFnRefNode
@@ -55,18 +55,6 @@ public class ASTVarOrFnRefNode extends ASTNode implements IExpr, ISelector
     }
 
 
-    public IASTListNode<ASTFunctionArgListNode> getFunctionArgList()
-    {
-        return this.functionArgList;
-    }
-
-    public void setFunctionArgList(IASTListNode<ASTFunctionArgListNode> newValue)
-    {
-        this.functionArgList = newValue;
-        if (newValue != null) newValue.setParent(this);
-    }
-
-
     public IASTListNode<ASTSectionSubscriptNode> getPrimarySectionSubscriptList()
     {
         return this.primarySectionSubscriptList;
@@ -75,6 +63,18 @@ public class ASTVarOrFnRefNode extends ASTNode implements IExpr, ISelector
     public void setPrimarySectionSubscriptList(IASTListNode<ASTSectionSubscriptNode> newValue)
     {
         this.primarySectionSubscriptList = newValue;
+        if (newValue != null) newValue.setParent(this);
+    }
+
+
+    public IASTListNode<ASTFunctionArgListNode> getFunctionArgList()
+    {
+        return this.functionArgList;
+    }
+
+    public void setFunctionArgList(IASTListNode<ASTFunctionArgListNode> newValue)
+    {
+        this.functionArgList = newValue;
         if (newValue != null) newValue.setParent(this);
     }
 
@@ -159,8 +159,8 @@ public class ASTVarOrFnRefNode extends ASTNode implements IExpr, ISelector
         {
         case 0:  return this.name;
         case 1:  return this.hiddenTLparen;
-        case 2:  return this.functionArgList;
-        case 3:  return this.primarySectionSubscriptList;
+        case 2:  return this.primarySectionSubscriptList;
+        case 3:  return this.functionArgList;
         case 4:  return this.hiddenTRparen;
         case 5:  return this.hiddenTPercent;
         case 6:  return this.substringRange;
@@ -181,8 +181,8 @@ public class ASTVarOrFnRefNode extends ASTNode implements IExpr, ISelector
         {
         case 0:  this.name = (ASTNameNode)value; if (value != null) value.setParent(this); return;
         case 1:  this.hiddenTLparen = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 2:  this.functionArgList = (IASTListNode<ASTFunctionArgListNode>)value; if (value != null) value.setParent(this); return;
-        case 3:  this.primarySectionSubscriptList = (IASTListNode<ASTSectionSubscriptNode>)value; if (value != null) value.setParent(this); return;
+        case 2:  this.primarySectionSubscriptList = (IASTListNode<ASTSectionSubscriptNode>)value; if (value != null) value.setParent(this); return;
+        case 3:  this.functionArgList = (IASTListNode<ASTFunctionArgListNode>)value; if (value != null) value.setParent(this); return;
         case 4:  this.hiddenTRparen = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
         case 5:  this.hiddenTPercent = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
         case 6:  this.substringRange = (ASTSubstringRangeNode)value; if (value != null) value.setParent(this); return;

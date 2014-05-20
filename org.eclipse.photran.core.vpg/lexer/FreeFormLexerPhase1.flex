@@ -277,6 +277,8 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 // Intel Extension
 "CONVERT"[ \t]*"="                              { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_CONVERTEQ); }
 // New for Fortran 2008 //////////////////////////////////
+"CONCURRENT"                                    { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_CONCURRENT); }
+"NEWUNIT"[ \t]*"="                              { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NEWUNITEQ); }
 "SUBMODULE"                                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SUBMODULE); }
 "ENDSUBMODULE"                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDSUBMODULE); }
 "ENDPROCEDURE"                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDPROCEDURE); }

@@ -269,6 +269,8 @@ public final class Terminal
     public static final Terminal T_MEMORY = new Terminal("memory");
     public static final Terminal T_LOCK = new Terminal("lock");
     public static final Terminal T_UNLOCK = new Terminal("unlock");
+    public static final Terminal T_NEWUNITEQ = new Terminal("newunit=");
+    public static final Terminal T_CONCURRENT = new Terminal("concurrent");
 
     // Intel extension
     public static final Terminal T_CONVERTEQ = new Terminal("convert=");

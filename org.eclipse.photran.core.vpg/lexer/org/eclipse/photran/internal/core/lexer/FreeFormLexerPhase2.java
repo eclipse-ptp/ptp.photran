@@ -477,6 +477,9 @@ public class FreeFormLexerPhase2 implements ILexer
         // R821
         addRule(Terminal.T_WHILE,
                 new MustBePrecededByOneOf(Terminal.T_DO, Terminal.T_COMMA, Terminal.T_ICON));
+        // Fortran 2008 R826
+        addRule(Terminal.T_CONCURRENT,
+                new MustBePrecededByOneOf(Terminal.T_DO, Terminal.T_COMMA, Terminal.T_ICON));
 
         // R825
         addRules(Terminal.T_DO,
@@ -501,6 +504,7 @@ public class FreeFormLexerPhase2 implements ILexer
         applySameRulesTo(Terminal.T_ACTIONEQ);
         applySameRulesTo(Terminal.T_DELIMEQ);
         applySameRulesTo(Terminal.T_PADEQ);
+        applySameRulesTo(Terminal.T_NEWUNITEQ); // FORTRAN 2008
 
         // R905, R908
         addRules(Terminal.T_STATUSEQ,

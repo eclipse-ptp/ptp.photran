@@ -94,10 +94,10 @@ public class ASTInquireSpecNode extends ASTNode
     ASTScalarVariableNode pendingVar; // in ASTInquireSpecNode
     ASTScalarVariableNode delimVar; // in ASTInquireSpecNode
     ASTScalarVariableNode accessVar; // in ASTInquireSpecNode
-    org.eclipse.photran.internal.core.lexer.Token hiddenTPadeq; // in ASTInquireSpecNode
-    ASTScalarVariableNode padVar; // in ASTInquireSpecNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTReadwriteeq; // in ASTInquireSpecNode
     ASTScalarVariableNode readWriteVar; // in ASTInquireSpecNode
+    org.eclipse.photran.internal.core.lexer.Token hiddenTPadeq; // in ASTInquireSpecNode
+    ASTScalarVariableNode padVar; // in ASTInquireSpecNode
     ASTScalarVariableNode openedVar; // in ASTInquireSpecNode
     ASTScalarVariableNode writeVar; // in ASTInquireSpecNode
 
@@ -485,18 +485,6 @@ public class ASTInquireSpecNode extends ASTNode
     }
 
 
-    public ASTScalarVariableNode getPadVar()
-    {
-        return this.padVar;
-    }
-
-    public void setPadVar(ASTScalarVariableNode newValue)
-    {
-        this.padVar = newValue;
-        if (newValue != null) newValue.setParent(this);
-    }
-
-
     public ASTScalarVariableNode getReadWriteVar()
     {
         return this.readWriteVar;
@@ -505,6 +493,18 @@ public class ASTInquireSpecNode extends ASTNode
     public void setReadWriteVar(ASTScalarVariableNode newValue)
     {
         this.readWriteVar = newValue;
+        if (newValue != null) newValue.setParent(this);
+    }
+
+
+    public ASTScalarVariableNode getPadVar()
+    {
+        return this.padVar;
+    }
+
+    public void setPadVar(ASTScalarVariableNode newValue)
+    {
+        this.padVar = newValue;
         if (newValue != null) newValue.setParent(this);
     }
 
@@ -615,10 +615,10 @@ public class ASTInquireSpecNode extends ASTNode
         case 63: return this.pendingVar;
         case 64: return this.delimVar;
         case 65: return this.accessVar;
-        case 66: return this.hiddenTPadeq;
-        case 67: return this.padVar;
-        case 68: return this.hiddenTReadwriteeq;
-        case 69: return this.readWriteVar;
+        case 66: return this.hiddenTReadwriteeq;
+        case 67: return this.readWriteVar;
+        case 68: return this.hiddenTPadeq;
+        case 69: return this.padVar;
         case 70: return this.openedVar;
         case 71: return this.writeVar;
         default: throw new IllegalArgumentException("Invalid index");
@@ -695,10 +695,10 @@ public class ASTInquireSpecNode extends ASTNode
         case 63: this.pendingVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
         case 64: this.delimVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
         case 65: this.accessVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
-        case 66: this.hiddenTPadeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 67: this.padVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
-        case 68: this.hiddenTReadwriteeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 69: this.readWriteVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
+        case 66: this.hiddenTReadwriteeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 67: this.readWriteVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
+        case 68: this.hiddenTPadeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 69: this.padVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
         case 70: this.openedVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
         case 71: this.writeVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
         default: throw new IllegalArgumentException("Invalid index");

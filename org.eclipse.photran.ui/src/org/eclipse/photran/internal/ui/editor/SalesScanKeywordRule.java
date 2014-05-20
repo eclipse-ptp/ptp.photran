@@ -625,6 +625,8 @@ public class SalesScanKeywordRule extends WordRule implements IRule
                   || keyword.equalsIgnoreCase("images") //$NON-NLS-1$
                   || keyword.equalsIgnoreCase("memory")) //$NON-NLS-1$
                 return precedingKeyword.equalsIgnoreCase("sync"); //$NON-NLS-1$
+            else if (keyword.equalsIgnoreCase("concurrent")) //$NON-NLS-1$
+                return precedingKeyword.equalsIgnoreCase("do"); //$NON-NLS-1$
             // END FORTRAN 2008
             else
                 return precedingKeyword.equalsIgnoreCase("end"); //$NON-NLS-1$

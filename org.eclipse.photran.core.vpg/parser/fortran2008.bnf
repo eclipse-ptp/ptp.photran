@@ -2452,6 +2452,7 @@ ASTAssignmentStmtNode:<PointerAssignmentStmt> ::=
   | loop(inline):<VariableName> -:T_EQUALS lb:<Expr> -:T_COMMA ub:<Expr>
   | loop(inline):<VariableName> -:T_EQUALS lb:<Expr> -:T_COMMA ub:<Expr> -:T_COMMA step:<Expr>
   | -:T_WHILE -:T_LPAREN whileExpr:<Expr> -:T_RPAREN
+  | -:T_CONCURRENT (inline):<ForallHeader> # Fortran 2008
 
 # R822 chain rule deleted
 
@@ -2619,6 +2620,7 @@ ASTAssignmentStmtNode:<PointerAssignmentStmt> ::=
   | -:T_IOMSGEQ        iomsgExpr:<ScalarVariable> # F03
   | -:T_ROUNDEQ        roundExpr:<CExpr>          # F03
   | -:T_SIGNEQ          signExpr:<CExpr>          # F03
+  | -:T_NEWUNITEQ    newunitExpr:<CExpr>          # F08?
 
   | -:T_CONVERTEQ    convertExpr:<CExpr>          # Intel extension
 

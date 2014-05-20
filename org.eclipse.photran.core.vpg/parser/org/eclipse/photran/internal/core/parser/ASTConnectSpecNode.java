@@ -28,6 +28,7 @@ import org.eclipse.photran.internal.core.lexer.*;                   import org.e
 @SuppressWarnings("all")
 public class ASTConnectSpecNode extends ASTNode
 {
+    org.eclipse.photran.internal.core.lexer.Token hiddenTNewuniteq; // in ASTConnectSpecNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTEncodingeq; // in ASTConnectSpecNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTPadeq; // in ASTConnectSpecNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTBlankeq; // in ASTConnectSpecNode
@@ -52,8 +53,8 @@ public class ASTConnectSpecNode extends ASTNode
     ASTCExprNode convertExpr; // in ASTConnectSpecNode
     ASTCExprNode fileExpr; // in ASTConnectSpecNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTDelimeq; // in ASTConnectSpecNode
-    ASTCExprNode delimExpr; // in ASTConnectSpecNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTIostateq; // in ASTConnectSpecNode
+    ASTCExprNode delimExpr; // in ASTConnectSpecNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTUniteq; // in ASTConnectSpecNode
     ASTCExprNode statusExpr; // in ASTConnectSpecNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTIomsgeq; // in ASTConnectSpecNode
@@ -65,6 +66,7 @@ public class ASTConnectSpecNode extends ASTNode
     ASTCExprNode asyncExpr; // in ASTConnectSpecNode
     ASTScalarVariableNode ioStatVar; // in ASTConnectSpecNode
     org.eclipse.photran.internal.core.lexer.Token hiddenTErreq; // in ASTConnectSpecNode
+    ASTCExprNode newunitExpr; // in ASTConnectSpecNode
     ASTUnitIdentifierNode unitIdentifier; // in ASTConnectSpecNode
     ASTLblRefNode errLbl; // in ASTConnectSpecNode
     ASTCExprNode formExpr; // in ASTConnectSpecNode
@@ -274,6 +276,18 @@ public class ASTConnectSpecNode extends ASTNode
     }
 
 
+    public ASTCExprNode getNewunitExpr()
+    {
+        return this.newunitExpr;
+    }
+
+    public void setNewunitExpr(ASTCExprNode newValue)
+    {
+        this.newunitExpr = newValue;
+        if (newValue != null) newValue.setParent(this);
+    }
+
+
     public ASTUnitIdentifierNode getUnitIdentifier()
     {
         return this.unitIdentifier;
@@ -331,54 +345,56 @@ public class ASTConnectSpecNode extends ASTNode
 
     @Override protected int getNumASTFields()
     {
-        return 41;
+        return 43;
     }
 
     @Override protected IASTNode getASTField(int index)
     {
         switch (index)
         {
-        case 0:  return this.hiddenTEncodingeq;
-        case 1:  return this.hiddenTPadeq;
-        case 2:  return this.hiddenTBlankeq;
-        case 3:  return this.hiddenTFileeq;
-        case 4:  return this.hiddenTRoundeq;
-        case 5:  return this.roundExpr;
-        case 6:  return this.encodingExpr;
-        case 7:  return this.hiddenTDecimaleq;
-        case 8:  return this.hiddenTRecleq;
-        case 9:  return this.hiddenTStatuseq;
-        case 10: return this.hiddenTSigneq;
-        case 11: return this.filename;
-        case 12: return this.signExpr;
-        case 13: return this.hiddenTPositioneq;
-        case 14: return this.positionExpr;
-        case 15: return this.hiddenTActioneq;
-        case 16: return this.actionExpr;
-        case 17: return this.decimalExpr;
-        case 18: return this.hiddenTConverteq;
-        case 19: return this.hiddenTAccesseq;
-        case 20: return this.accessExpr;
-        case 21: return this.convertExpr;
-        case 22: return this.fileExpr;
-        case 23: return this.hiddenTDelimeq;
-        case 24: return this.delimExpr;
+        case 0:  return this.hiddenTNewuniteq;
+        case 1:  return this.hiddenTEncodingeq;
+        case 2:  return this.hiddenTPadeq;
+        case 3:  return this.hiddenTBlankeq;
+        case 4:  return this.hiddenTFileeq;
+        case 5:  return this.hiddenTRoundeq;
+        case 6:  return this.roundExpr;
+        case 7:  return this.encodingExpr;
+        case 8:  return this.hiddenTDecimaleq;
+        case 9:  return this.hiddenTRecleq;
+        case 10: return this.hiddenTStatuseq;
+        case 11: return this.hiddenTSigneq;
+        case 12: return this.filename;
+        case 13: return this.signExpr;
+        case 14: return this.hiddenTPositioneq;
+        case 15: return this.positionExpr;
+        case 16: return this.hiddenTActioneq;
+        case 17: return this.actionExpr;
+        case 18: return this.decimalExpr;
+        case 19: return this.hiddenTConverteq;
+        case 20: return this.hiddenTAccesseq;
+        case 21: return this.accessExpr;
+        case 22: return this.convertExpr;
+        case 23: return this.fileExpr;
+        case 24: return this.hiddenTDelimeq;
         case 25: return this.hiddenTIostateq;
-        case 26: return this.hiddenTUniteq;
-        case 27: return this.statusExpr;
-        case 28: return this.hiddenTIomsgeq;
-        case 29: return this.iomsgExpr;
-        case 30: return this.blankExpr;
-        case 31: return this.hiddenTFormeq;
-        case 32: return this.padExpr;
-        case 33: return this.hiddenTAsynchronouseq;
-        case 34: return this.asyncExpr;
-        case 35: return this.ioStatVar;
-        case 36: return this.hiddenTErreq;
-        case 37: return this.unitIdentifier;
-        case 38: return this.errLbl;
-        case 39: return this.formExpr;
-        case 40: return this.reclExpr;
+        case 26: return this.delimExpr;
+        case 27: return this.hiddenTUniteq;
+        case 28: return this.statusExpr;
+        case 29: return this.hiddenTIomsgeq;
+        case 30: return this.iomsgExpr;
+        case 31: return this.blankExpr;
+        case 32: return this.hiddenTFormeq;
+        case 33: return this.padExpr;
+        case 34: return this.hiddenTAsynchronouseq;
+        case 35: return this.asyncExpr;
+        case 36: return this.ioStatVar;
+        case 37: return this.hiddenTErreq;
+        case 38: return this.newunitExpr;
+        case 39: return this.unitIdentifier;
+        case 40: return this.errLbl;
+        case 41: return this.formExpr;
+        case 42: return this.reclExpr;
         default: throw new IllegalArgumentException("Invalid index");
         }
     }
@@ -387,47 +403,49 @@ public class ASTConnectSpecNode extends ASTNode
     {
         switch (index)
         {
-        case 0:  this.hiddenTEncodingeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 1:  this.hiddenTPadeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 2:  this.hiddenTBlankeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 3:  this.hiddenTFileeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 4:  this.hiddenTRoundeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 5:  this.roundExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 6:  this.encodingExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 7:  this.hiddenTDecimaleq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 8:  this.hiddenTRecleq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 9:  this.hiddenTStatuseq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 10: this.hiddenTSigneq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 11: this.filename = (ASTUnitIdentifierNode)value; if (value != null) value.setParent(this); return;
-        case 12: this.signExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 13: this.hiddenTPositioneq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 14: this.positionExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 15: this.hiddenTActioneq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 16: this.actionExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 17: this.decimalExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 18: this.hiddenTConverteq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 19: this.hiddenTAccesseq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 20: this.accessExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 21: this.convertExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 22: this.fileExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 23: this.hiddenTDelimeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 24: this.delimExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 0:  this.hiddenTNewuniteq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 1:  this.hiddenTEncodingeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 2:  this.hiddenTPadeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 3:  this.hiddenTBlankeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 4:  this.hiddenTFileeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 5:  this.hiddenTRoundeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 6:  this.roundExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 7:  this.encodingExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 8:  this.hiddenTDecimaleq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 9:  this.hiddenTRecleq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 10: this.hiddenTStatuseq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 11: this.hiddenTSigneq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 12: this.filename = (ASTUnitIdentifierNode)value; if (value != null) value.setParent(this); return;
+        case 13: this.signExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 14: this.hiddenTPositioneq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 15: this.positionExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 16: this.hiddenTActioneq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 17: this.actionExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 18: this.decimalExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 19: this.hiddenTConverteq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 20: this.hiddenTAccesseq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 21: this.accessExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 22: this.convertExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 23: this.fileExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 24: this.hiddenTDelimeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
         case 25: this.hiddenTIostateq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 26: this.hiddenTUniteq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 27: this.statusExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 28: this.hiddenTIomsgeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 29: this.iomsgExpr = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
-        case 30: this.blankExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 31: this.hiddenTFormeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 32: this.padExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 33: this.hiddenTAsynchronouseq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 34: this.asyncExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 35: this.ioStatVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
-        case 36: this.hiddenTErreq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 37: this.unitIdentifier = (ASTUnitIdentifierNode)value; if (value != null) value.setParent(this); return;
-        case 38: this.errLbl = (ASTLblRefNode)value; if (value != null) value.setParent(this); return;
-        case 39: this.formExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
-        case 40: this.reclExpr = (IExpr)value; if (value != null) value.setParent(this); return;
+        case 26: this.delimExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 27: this.hiddenTUniteq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 28: this.statusExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 29: this.hiddenTIomsgeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 30: this.iomsgExpr = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
+        case 31: this.blankExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 32: this.hiddenTFormeq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 33: this.padExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 34: this.hiddenTAsynchronouseq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 35: this.asyncExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 36: this.ioStatVar = (ASTScalarVariableNode)value; if (value != null) value.setParent(this); return;
+        case 37: this.hiddenTErreq = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 38: this.newunitExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 39: this.unitIdentifier = (ASTUnitIdentifierNode)value; if (value != null) value.setParent(this); return;
+        case 40: this.errLbl = (ASTLblRefNode)value; if (value != null) value.setParent(this); return;
+        case 41: this.formExpr = (ASTCExprNode)value; if (value != null) value.setParent(this); return;
+        case 42: this.reclExpr = (IExpr)value; if (value != null) value.setParent(this); return;
         default: throw new IllegalArgumentException("Invalid index");
         }
     }
