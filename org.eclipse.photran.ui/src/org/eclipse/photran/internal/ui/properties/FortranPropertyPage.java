@@ -50,15 +50,15 @@ public abstract class FortranPropertyPage extends PropertyPage
     @Override public final boolean performOk()
     {
         boolean result = doPerformOk();
-        
-        if (shouldNotifyUser && !dialogShown)
+
+        if (shouldNotifyUser && !dialogShown && !getControl().isDisposed())
         {
             dialogShown = true;
-            MessageDialog.openInformation(getShell(),
+            MessageDialog.openInformation(getShell(), // getShell() will fail if the control is disposed
                 UIMessages.FortranPropertyPage_PreferencesChangedTitle,
                 UIMessages.FortranPropertyPage_NeedToCloseAndReOpenEditors);
         }
-        
+
         return result;
     }
     
