@@ -275,10 +275,10 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 
 <YYINITIAL,IMPLICIT,OPERATORorFORMAT> {
 // Intel Extension
-"CONVERT"[ \t]*"="                              { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_CONVERTEQ); }
+"CONVERT"[ \t]*"="/[^>]                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_CONVERTEQ); }
 // New for Fortran 2008 //////////////////////////////////
 "CONCURRENT"                                    { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_CONCURRENT); }
-"NEWUNIT"[ \t]*"="                              { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NEWUNITEQ); }
+"NEWUNIT"[ \t]*"="/[^>]                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NEWUNITEQ); }
 "SUBMODULE"                                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SUBMODULE); }
 "ENDSUBMODULE"                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDSUBMODULE); }
 "ENDPROCEDURE"                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDPROCEDURE); }
@@ -303,16 +303,16 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 "WAIT"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_WAIT); }
 "["                                             { wantEos = true;                     return token(Terminal.T_LBRACKET); }
 "]"                                             { wantEos = true;                     return token(Terminal.T_RBRACKET); }
-"STREAM"[ \t]*"="                               { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_STREAMEQ); }
-"PENDING"[ \t]*"="                              { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PENDINGEQ); }
-"POS"[ \t]*"="                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_POSEQ); }
-"ID"[ \t]*"="                                   { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_IDEQ); }
-"SIGN"[ \t]*"="                                 { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SIGNEQ); }
-"ROUND"[ \t]*"="                                { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ROUNDEQ); }
-"IOMSG"[ \t]*"="                                { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_IOMSGEQ); }
-"ENCODING"[ \t]*"="                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENCODINGEQ); }
-"DECIMAL"[ \t]*"="                              { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DECIMALEQ); }
-"ASYNCHRONOUS"[ \t]*"="                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ASYNCHRONOUSEQ); }
+"STREAM"[ \t]*"="/[^>]                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_STREAMEQ); }
+"PENDING"[ \t]*"="/[^>]                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PENDINGEQ); }
+"POS"[ \t]*"="/[^>]                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_POSEQ); }
+"ID"[ \t]*"="/[^>]                              { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_IDEQ); }
+"SIGN"[ \t]*"="/[^>]                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SIGNEQ); }
+"ROUND"[ \t]*"="/[^>]                           { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ROUNDEQ); }
+"IOMSG"[ \t]*"="/[^>]                           { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_IOMSGEQ); }
+"ENCODING"[ \t]*"="/[^>]                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENCODINGEQ); }
+"DECIMAL"[ \t]*"="/[^>]                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DECIMALEQ); }
+"ASYNCHRONOUS"[ \t]*"="/[^>]                    { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ASYNCHRONOUSEQ); }
 "IS"                                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_IS); }
 "ASSOCIATE"                                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ASSOCIATE); }
 "EXTENDS"                                       { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_EXTENDS); }
@@ -334,9 +334,9 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 "VALUE"                                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_VALUE); }
 "VOLATILE"                                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_VOLATILE); }
 // Same as for Fortran 77/90/95 //////////////////////////////////
-"ACCESS"[ \t]*"="                               { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ACCESSEQ); }
-"ACTION"[ \t]*"="                               { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ACTIONEQ); }
-"ADVANCE"[ \t]*"="                              { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ADVANCEEQ); }
+"ACCESS"[ \t]*"="/[^>]                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ACCESSEQ); }
+"ACTION"[ \t]*"="/[^>]                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ACTIONEQ); }
+"ADVANCE"[ \t]*"="/[^>]                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ADVANCEEQ); }
 "ALLOCATABLE"                                   { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ALLOCATABLE); }
 "ALLOCATE"                                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ALLOCATE); }
 ".AND."                                         { wantEos = true;                     return token(Terminal.T_AND); }
@@ -344,7 +344,7 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 "ASSIGNMENT"                                    { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ASSIGNMENT); }
 "*"                                             { wantEos = true;                     return token(Terminal.T_ASTERISK); }
 "BACKSPACE"                                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_BACKSPACE); }
-"BLANK"[ \t]*"="                                { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_BLANKEQ); }
+"BLANK"[ \t]*"="/[^>]                           { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_BLANKEQ); }
 "BLOCK"                                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_BLOCK); }
 "BLOCK"[ \t]*"DATA"                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_BLOCKDATA); }
 "CALL"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_CALL); }
@@ -361,9 +361,9 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 "DATA"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DATA); }
 "DEALLOCATE"                                    { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DEALLOCATE); }
 "DEFAULT"                                       { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DEFAULT); }
-"DELIM"[ \t]*"="                                { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DELIMEQ); }
+"DELIM"[ \t]*"="/[^>]                           { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DELIMEQ); }
 "DIMENSION"                                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DIMENSION); }
-"DIRECT"[ \t]*"="                               { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DIRECTEQ); }
+"DIRECT"[ \t]*"="/[^>]                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DIRECTEQ); }
 "DO"                                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_DO); }
 "DOUBLE"{StarredType}                           { wantEos = true;                     return token(Terminal.T_DOUBLE); }
 "DOUBLECOMPLEX"{StarredType}                    { wantEos = true;                     return token(Terminal.T_DOUBLECOMPLEX); }
@@ -376,7 +376,7 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 "ENDBLOCK"                                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDBLOCK); }
 "ENDBLOCKDATA"                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDBLOCKDATA); }
 "ENDDO"                                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDDO); }
-"END"[ \t]*"="                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDEQ); }
+"END"[ \t]*"="/[^>]                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDEQ); }
 "ENDFILE"                                       { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDFILE); }
 "ENDFORALL"                                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDFORALL); }
 "ENDFUNCTION"                                   { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDFUNCTION); }
@@ -389,25 +389,25 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 "ENDTYPE"                                       { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDTYPE); }
 "ENDWHERE"                                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDWHERE); }
 "ENTRY"                                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENTRY); }
-"EOR"[ \t]*"="                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_EOREQ); }
+"EOR"[ \t]*"="/[^>]                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_EOREQ); }
 ".EQ."                                          { wantEos = true;                     return token(Terminal.T_EQ); }
 "=="                                            { wantEos = true;                     return token(Terminal.T_EQEQ); }
 "=>"                                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_EQGREATERTHAN); }
 "="                                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_EQUALS); }
 "EQUIVALENCE"                                   { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_EQUIVALENCE); }
 ".EQV."                                         { wantEos = true;                     return token(Terminal.T_EQV); }
-"ERR"[ \t]*"="                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ERREQ); }
-"EXIST"[ \t]*"="                                { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_EXISTEQ); }
+"ERR"[ \t]*"="/[^>]                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ERREQ); }
+"EXIST"[ \t]*"="/[^>]                           { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_EXISTEQ); }
 "EXIT"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_EXIT); }
 "EXTERNAL"                                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_EXTERNAL); }
 ".FALSE."                                       { wantEos = true;                     return token(Terminal.T_FALSE); }
 "FILE"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FILE); }
-"FILE"[ \t]*"="                                 { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FILEEQ); }
-"FMT"[ \t]*"="                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FMTEQ); }
+"FILE"[ \t]*"="/[^>]                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FILEEQ); }
+"FMT"[ \t]*"="/[^>]                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FMTEQ); }
 "FORALL"                                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FORALL); }
 "FORMAT"                                        { wantEos = true; yybegin(OPERATORorFORMAT);    return token(Terminal.T_FORMAT); }
-"FORMATTED"[ \t]*"="                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FORMATTEDEQ); }
-"FORM"[ \t]*"="                                 { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FORMEQ); }
+"FORMATTED"[ \t]*"="/[^>]                       { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FORMATTEDEQ); }
+"FORM"[ \t]*"="/[^>]                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FORMEQ); }
 "FUNCTION"                                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_FUNCTION); }
 ".GE."                                          { wantEos = true;                     return token(Terminal.T_GE); }
 "GO"                                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_GO); }
@@ -424,11 +424,11 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 "INTENT"                                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_INTENT); }
 "INTERFACE"                                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_INTERFACE); }
 "INTRINSIC"                                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_INTRINSIC); }
-"IOLENGTH"[ \t]*"="                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_IOLENGTHEQ); }
-"IOSTAT"[ \t]*"="                               { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_IOSTATEQ); }
-"KIND"[ \t]*"="                                 { wantEos = true;                     return token(Terminal.T_KINDEQ); }
+"IOLENGTH"[ \t]*"="/[^>]                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_IOLENGTHEQ); }
+"IOSTAT"[ \t]*"="/[^>]                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_IOSTATEQ); }
+"KIND"[ \t]*"="/[^>]                            { wantEos = true;                     return token(Terminal.T_KINDEQ); }
 ".LE."                                          { wantEos = true;                     return token(Terminal.T_LE); }
-"LEN"[ \t]*"="                                  { wantEos = true;                     return token(Terminal.T_LENEQ); }
+"LEN"[ \t]*"="/[^>]                             { wantEos = true;                     return token(Terminal.T_LENEQ); }
 "<"                                             { wantEos = true;                     return token(Terminal.T_LESSTHAN); }
 "<="                                            { wantEos = true;                     return token(Terminal.T_LESSTHANEQ); }
 "LOGICAL"{StarredType}                          { wantEos = true;                     return token(Terminal.T_LOGICAL); }
@@ -436,33 +436,33 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 ".LT."                                          { wantEos = true;                     return token(Terminal.T_LT); }
 "-"                                             { wantEos = true;                     return token(Terminal.T_MINUS); }
 "MODULE"                                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_MODULE); }
-"NAMED"[ \t]*"="                                { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NAMEDEQ); }
-"NAME"[ \t]*"="                                 { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NAMEEQ); }
+"NAMED"[ \t]*"="/[^>]                           { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NAMEDEQ); }
+"NAME"[ \t]*"="/[^>]                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NAMEEQ); }
 "NAMELIST"                                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NAMELIST); }
 "<>"                                            { wantEos = true;                     return token(Terminal.T_NE); }
 ".NE."                                          { wantEos = true;                     return token(Terminal.T_NE); }
 ".NEQV."                                        { wantEos = true;                     return token(Terminal.T_NEQV); }
-"NEXTREC"[ \t]*"="                              { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NEXTRECEQ); }
-"NML"[ \t]*"="                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NMLEQ); }
+"NEXTREC"[ \t]*"="/[^>]                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NEXTRECEQ); }
+"NML"[ \t]*"="/[^>]                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NMLEQ); }
 "NONE"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NONE); }
 ".NOT."                                         { wantEos = true;                     return token(Terminal.T_NOT); }
 "NULL"                                          { wantEos = true;                     return token(Terminal.T_NULL); }
 "NULLIFY"                                       { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NULLIFY); }
-"NUMBER"[ \t]*"="                               { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NUMBEREQ); }
+"NUMBER"[ \t]*"="/[^>]                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_NUMBEREQ); }
 "ONLY"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ONLY); }
 "OPEN"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_OPEN); }
-"OPENED"[ \t]*"="                               { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_OPENEDEQ); }
+"OPENED"[ \t]*"="/[^>]                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_OPENEDEQ); }
 "OPERATOR"                                      { wantEos = true; yybegin(OPERATORorFORMAT);  return token(Terminal.T_OPERATOR); }
 "OPTIONAL"                                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_OPTIONAL); }
 ".OR."                                          { wantEos = true;                     return token(Terminal.T_OR); }
 "OUT"                                           { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_OUT); }
-"PAD"[ \t]*"="                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PADEQ); }
+"PAD"[ \t]*"="/[^>]                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PADEQ); }
 "PARAMETER"                                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PARAMETER); }
 "PAUSE"                                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PAUSE); }
 "%"                                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PERCENT); }
 "+"                                             { wantEos = true;                     return token(Terminal.T_PLUS); }
 "POINTER"                                       { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_POINTER); }
-"POSITION"[ \t]*"="                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_POSITIONEQ); }
+"POSITION"[ \t]*"="/[^>]                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_POSITIONEQ); }
 "**"                                            { wantEos = true;                     return token(Terminal.T_POW); }
 "PRECISION"                                     { wantEos = true;                     return token(Terminal.T_PRECISION); }
 "PRINT"                                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PRINT); }
@@ -472,11 +472,11 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 "PUBLIC"                                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PUBLIC); }
 "PURE"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PURE); }
 "READ"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_READ); }
-"READ"[ \t]*"="                                 { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_READEQ); }
-"READWRITE"[ \t]*"="                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_READWRITEEQ); }
+"READ"[ \t]*"="/[^>]                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_READEQ); }
+"READWRITE"[ \t]*"="/[^>]                       { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_READWRITEEQ); }
 "REAL"{StarredType}                             { wantEos = true;                     return token(Terminal.T_REAL); }
-"REC"[ \t]*"="                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_RECEQ); }
-"RECL"[ \t]*"="                                 { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_RECLEQ); }
+"REC"[ \t]*"="/[^>]                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_RECEQ); }
+"RECL"[ \t]*"="/[^>]                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_RECLEQ); }
 "RECURSIVE"                                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_RECURSIVE); }
 "RESULT"                                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_RESULT); }
 "RETURN"                                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_RETURN); }
@@ -486,13 +486,13 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 "SELECT"                                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SELECT); }
 "SELECTCASE"                                    { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SELECTCASE); }
 "SEQUENCE"                                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SEQUENCE); }
-"SEQUENTIAL"[ \t]*"="                           { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SEQUENTIALEQ); }
-"SIZE"[ \t]*"="                                 { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SIZEEQ); }
+"SEQUENTIAL"[ \t]*"="/[^>]                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SEQUENTIALEQ); }
+"SIZE"[ \t]*"="/[^>]                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SIZEEQ); }
 "/"                                             { wantEos = true;                     return token(Terminal.T_SLASH); }
 "/="                                            { wantEos = true;                     return token(Terminal.T_SLASHEQ); }
 "//" | "/"{LineContinuation}"/"                 { wantEos = true;                     return token(Terminal.T_SLASHSLASH); }
-"STAT"[ \t]*"="                                 { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_STATEQ); }
-"STATUS"[ \t]*"="                               { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_STATUSEQ); }
+"STAT"[ \t]*"="/[^>]                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_STATEQ); }
+"STATUS"[ \t]*"="/[^>]                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_STATUSEQ); }
 "STOP"                                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_STOP); }
 "SUBROUTINE"                                    { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_SUBROUTINE); }
 "TARGET"                                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_TARGET); }
@@ -501,13 +501,13 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 ".TRUE."                                        { wantEos = true;                     return token(Terminal.T_TRUE); }
 "TYPE"                                          { wantEos = true;                     return token(Terminal.T_TYPE); }
 "_"                                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_UNDERSCORE); }
-"UNFORMATTED"[ \t]*"="                          { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_UNFORMATTEDEQ); }
-"UNIT"[ \t]*"="                                 { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_UNITEQ); }
+"UNFORMATTED"[ \t]*"="/[^>]                     { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_UNFORMATTEDEQ); }
+"UNIT"[ \t]*"="/[^>]                            { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_UNITEQ); }
 "USE"                                           { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_USE); }
 "WHERE"                                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_WHERE); }
 "WHILE"                                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_WHILE); }
 "WRITE"                                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_WRITE); }
-"WRITE"[ \t]*"="                                { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_WRITEEQ); }
+"WRITE"[ \t]*"="/[^>]                           { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_WRITEEQ); }
 {Bcon}                                          { wantEos = true;                     return token(Terminal.T_BCON); }
 {Rcon1}                                         { wantEos = true;                     return token(Terminal.T_RCON); }
 {Rcon2}/{NumDotLkahead}                         { wantEos = true;                     return token(Terminal.T_RCON); }
