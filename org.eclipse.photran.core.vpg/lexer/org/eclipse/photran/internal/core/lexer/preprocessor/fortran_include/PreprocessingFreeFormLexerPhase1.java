@@ -129,9 +129,4 @@ public class PreprocessingFreeFormLexerPhase1 extends FreeFormLexerPhase1
         charsToTrim = Math.max(charsToTrim, 0); // TODO: Why does this go negative?
         token.setWhiteBefore(whiteBefore.substring(charsToTrim));
     }
-
-    @Override public void yypushback(int number)
-    {
-        throw new UnsupportedOperationException();
-    }
 }
