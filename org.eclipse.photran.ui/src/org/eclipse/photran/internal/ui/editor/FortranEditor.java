@@ -134,6 +134,10 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
     protected Color verticalLineColor;
     protected TabsToSpacesConverter tabToSpacesConverter;
 
+    // Cache these values since they are needed every time the token scanner is requested
+    // (determined through profiling -- accessing project properties was somewhat expensive)
+    private Boolean isFixedForm = null, isCPreprocessed = null;
+
     // More fields in Folding, below
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -675,23 +679,35 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
 
     public boolean isFixedForm()
     {
+        if (isFixedForm == null) isFixedForm = determineIsFixedForm();
+        return isFixedForm.booleanValue();
+    }
+
+    private boolean determineIsFixedForm()
+    {
         IFile file = getIFile();
         if (file != null) return SourceForm.isFixedForm(getIFile());
-        
+
         IEditorInput input = getEditorInput();
         if (input != null) return SourceForm.isFixedForm(input.getName());
-        
+
         return false;
     }
 
     public boolean isCPreprocessed()
     {
+        if (isCPreprocessed == null) isCPreprocessed = determineIsCPreprocessed();
+        return isCPreprocessed.booleanValue();
+    }
+
+    private boolean determineIsCPreprocessed()
+    {
         IFile file = getIFile();
         if (file != null) return SourceForm.isCPreprocessed(getIFile());
-        
+
         IEditorInput input = getEditorInput();
         if (input != null) return SourceForm.isCPreprocessed(input.getName());
-        
+
         return false;
     }
 
