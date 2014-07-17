@@ -39,7 +39,7 @@ public class IntroduceCallTreeRefactoring extends FortranResourceRefactoring {
             for (IFile file : selectedFiles) {
                 IFortranAST ast = vpg.acquirePermanentAST(file);
                 if (ast == null) {
-                    status.addError("One of the selected files (" + file.getName() +") cannot be parsed.");
+                    status.addError(Messages.bind(Messages.IntroduceCallTreeRefactoring_CannotParse, file.getName()));
                 } else {
                     makeChangesTo(file, ast, status, pm);
                     vpg.releaseAST(file);
@@ -82,7 +82,7 @@ public class IntroduceCallTreeRefactoring extends FortranResourceRefactoring {
                         }
                         String line = line_int.toString();
                         // Adds entry to the calls buffer of the scope.
-                        callStmtsOfScope.add(((ASTCallStmtNode)node).getSubroutineName().getText() + " (on line <" +line+">)");
+                        callStmtsOfScope.add(Messages.bind(Messages.IntroduceCallTreeRefactoring_OnLine, ((ASTCallStmtNode)node).getSubroutineName().getText() , line));
                     }
                 }
                 if((hasCall== true) && (scopeChanged != null)){
@@ -97,21 +97,21 @@ public class IntroduceCallTreeRefactoring extends FortranResourceRefactoring {
                     tab = getBlankCharacters(blank_characters, tab, headerStmt);
                     String name = ""; //$NON-NLS-1$
                     if(scopeChanged.isMainProgram()){
-                        name = " in program ";
+                        name = " in program "; //$NON-NLS-1$
                     }if(scopeChanged.isModule()){
-                        name = " in module ";
+                        name = " in module "; //$NON-NLS-1$
                     }if(scopeChanged.isSubprogram()){
-                        name = " in subroutine ";
+                        name = " in subroutine "; //$NON-NLS-1$
                     }
                     // Prints the call tree of each subroutine.
-                    firstToken.setText("! " + "Calls" + name + scopeChanged.getName().toUpperCase()+": \n"); //$NON-NLS-1$
+                    firstToken.setText("! " + "Calls" + name + scopeChanged.getName().toUpperCase()+": \n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                     for(int i=0; i<callStmtsOfScope.size(); i++){
                         String arrow = "="; //$NON-NLS-1$
                         for(int j=0; j<i; j++){
                             arrow += "="; //$NON-NLS-1$
                         }
                         arrow += ">"; //$NON-NLS-1$
-                        firstToken.setText(firstToken.getText()+ tab + "! " + arrow + " " + callStmtsOfScope.get(i).toString() + "\n"); //$NON-NLS-1$ //$NON-NLS-2$
+                        firstToken.setText(firstToken.getText()+ tab + "! " + arrow + " " + callStmtsOfScope.get(i).toString() + "\n"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                     }
                     firstToken.setText(firstToken.getText()+tab + firstTokenText.trim());
                 }
@@ -191,6 +191,6 @@ public class IntroduceCallTreeRefactoring extends FortranResourceRefactoring {
 
     @Override
     public String getName() {
-        return "Introduce Call Tree";
+        return Messages.IntroduceCallTreeRefactoring_Name;
     }
 }

@@ -74,16 +74,23 @@ class SubprogramTypeCollector extends BindingCollector
             int paramCount = 0;
             for (ASTSubroutineParNode param: subParams) {
                 Token tmpToken = param.getVariableName();
-                String paramText = tmpToken.getText();
+                String paramText;
+                if (tmpToken != null) {
+                    paramText = tmpToken.getText();
+                } else {
+                    paramText = "*"; //$NON-NLS-1$
+                }
                 if (paramCount>0)
                     fullId.append(',');
                 fullId.append(paramText);
                 //
-                Definition varDef = bindUniquely(tmpToken);
-                if (varDef != null) {
-                    if (varDef.isOptional()) {
-                        fullId.append('=');
-                        fullId.append(paramText);
+                if (tmpToken != null) {
+                    Definition varDef = bindUniquely(tmpToken);
+                    if (varDef != null) {
+                        if (varDef.isOptional()) {
+                            fullId.append('=');
+                            fullId.append(paramText);
+                        }
                     }
                 }
                 paramCount=paramCount+1;

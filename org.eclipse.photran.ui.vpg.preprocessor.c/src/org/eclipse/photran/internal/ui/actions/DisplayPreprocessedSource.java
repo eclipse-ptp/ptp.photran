@@ -43,24 +43,33 @@ public class DisplayPreprocessedSource extends FortranEditorActionDelegate
             IDocument doc = getFortranEditor().getIDocument();
             Reader in = new StringReader(doc.get());
             Reader cppIn = new CPreprocessingReader(getFortranEditor().getIFile(), null, in);
-            
-            File tempFile = File.createTempFile(
-            	"tmp", //$NON-NLS-1$
-            	isFixedForm ? ".f" : ".f90"); //$NON-NLS-1$ //$NON-NLS-2$
-            tempFile.deleteOnExit();
-            PrintStream out =
-            	new PrintStream(
-            		new BufferedOutputStream(
-            			new FileOutputStream(tempFile)));
-            for (int c = cppIn.read(); c != -1; c = cppIn.read())
-            	out.print((char)c);
-            out.close();
+            try
+            {
+                File tempFile = File.createTempFile("tmp", //$NON-NLS-1$
+                    isFixedForm ? ".f" : ".f90"); //$NON-NLS-1$ //$NON-NLS-2$
+                tempFile.deleteOnExit();
+                PrintStream out = new PrintStream(new BufferedOutputStream(new FileOutputStream(
+                    tempFile)));
+                try
+                {
+                    for (int c = cppIn.read(); c != -1; c = cppIn.read())
+                        out.print((char)c);
+                }
+                finally
+                {
+                    out.close();
+                }
 
-            IDE.openEditor(
-            		Workbench.getInstance().getActiveWorkbenchWindow().getActivePage(),
-            		tempFile.toURI(),
-            		FortranEditor.EDITOR_ID,
-            		true);
+                IDE.openEditor(
+                        Workbench.getInstance().getActiveWorkbenchWindow().getActivePage(),
+                        tempFile.toURI(),
+                        FortranEditor.EDITOR_ID,
+                        true);
+            }
+            finally
+            {
+                cppIn.close();
+            }
         }
         catch (Exception e)
         {

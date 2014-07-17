@@ -126,13 +126,17 @@ public abstract class CDTBasedTextEditor extends TextEditor implements ISelectio
     {
         super.editorContextMenuAboutToShow(menu);
         
-        textSearchGroup.fillContextMenu(menu);
+        if (textSearchGroup != null) {
+            textSearchGroup.fillContextMenu(menu);
+        }
     }
     
     @Override
     public void dispose()
     {
-        textSearchGroup.dispose();
+        if (textSearchGroup != null) {
+            textSearchGroup.dispose();
+        }
         super.dispose();
     }
 

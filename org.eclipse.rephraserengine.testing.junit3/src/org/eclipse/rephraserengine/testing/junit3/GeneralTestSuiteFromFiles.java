@@ -177,11 +177,18 @@ public abstract class GeneralTestSuiteFromFiles extends TestSuite
             Set<String> result = new HashSet<String>();
 
             BufferedReader r = new BufferedReader(new FileReader(list));
-            for (String line = r.readLine(); line != null; line = r.readLine())
+            try
             {
-                line = line.trim();
-                if (!line.equals("") && !line.startsWith("#")) //$NON-NLS-1$ //$NON-NLS-2$
-                    result.add(line);
+                for (String line = r.readLine(); line != null; line = r.readLine())
+                {
+                    line = line.trim();
+                    if (!line.equals("") && !line.startsWith("#")) //$NON-NLS-1$ //$NON-NLS-2$
+                        result.add(line);
+                }
+            }
+            finally
+            {
+                r.close();
             }
 
             return result;

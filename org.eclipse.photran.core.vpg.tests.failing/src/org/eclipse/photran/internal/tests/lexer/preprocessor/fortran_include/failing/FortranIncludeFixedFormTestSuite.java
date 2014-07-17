@@ -8,7 +8,7 @@
  * Contributors:
  *    UIUC - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.internal.tests.lexer.preprocessor.fortran_include;
+package org.eclipse.photran.internal.tests.lexer.preprocessor.fortran_include.failing;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
