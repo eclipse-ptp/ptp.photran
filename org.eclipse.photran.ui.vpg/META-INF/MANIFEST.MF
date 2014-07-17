@@ -18,8 +18,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.editors,
  org.eclipse.cdt.core,
  org.eclipse.cdt.ui,
- org.eclipse.rephraserengine.core,
- org.eclipse.rephraserengine.ui,
  org.eclipse.photran.core,
  org.eclipse.photran.core.vpg,
  org.eclipse.photran.cdtinterface,
@@ -35,6 +33,11 @@ Export-Package: org.eclipse.photran.internal.ui.actions;x-internal:=true,
  org.eclipse.photran.internal.ui.search;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.core.vpg.tests.failing",
  org.eclipse.photran.internal.ui.views.declaration;x-internal:=true,
  org.eclipse.photran.internal.ui.views.vpgproblems;x-internal:=true,
- org.eclipse.photran.internal.ui.vpg;x-internal:=true
+ org.eclipse.photran.internal.ui.vpg;x-internal:=true,
+ org.eclipse.rephraserengine.ui,
+ org.eclipse.rephraserengine.ui.actions,
+ org.eclipse.rephraserengine.ui.menus,
+ org.eclipse.rephraserengine.ui.refactoring,
+ org.eclipse.rephraserengine.ui.search
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Localization: plugin
