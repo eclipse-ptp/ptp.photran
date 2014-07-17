@@ -45,8 +45,6 @@ import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPG;
  * transformations.
  *
  * @author Jeff Overbey
- *
- * @since 8.0
  */
 @SuppressWarnings({"unchecked", "rawtypes"})
 public final class PreservationAnalysis
@@ -65,7 +63,6 @@ public final class PreservationAnalysis
     private String fields;
     private String times;
 
-    /** @since 3.0 */
     public PreservationAnalysis(
         EclipseVPG vpg,
         IProgressMonitor progressMonitor, int ticks,
@@ -75,7 +72,6 @@ public final class PreservationAnalysis
         this(vpg, progressMonitor, ticks, EclipseVPG.getFilenameForIFile(file), ruleset);
     }
 
-    /** @since 3.0 */
     public PreservationAnalysis(
         EclipseVPG vpg,
         IProgressMonitor progressMonitor, int ticks,
@@ -85,7 +81,6 @@ public final class PreservationAnalysis
         this(vpg, progressMonitor, ticks, getFilenames(files), ruleset);
     }
 
-    /** @since 3.0 */
     public PreservationAnalysis(
         EclipseVPG vpg,
         IProgressMonitor progressMonitor, int ticks,
@@ -95,7 +90,6 @@ public final class PreservationAnalysis
         this(vpg, progressMonitor, ticks, Collections.singletonList(filename), ruleset);
     }
 
-    /** @since 3.0 */
     public PreservationAnalysis(
         EclipseVPG vpg,
         IProgressMonitor progressMonitor, int ticks,
@@ -196,50 +190,11 @@ public final class PreservationAnalysis
         replacements.add(rho);
     }
 
-//    /**
-//     * @since 3.0
-//     */
-//    public void markMu(IFile file, Object oldNode, Object newNode)
-//    {
-//        String filename = EclipseVPG.getFilenameForIFile(file);
-//
-//        OffsetLength oldOffsetLength = (OffsetLength)adapterManager.getAdapter(oldNode, OffsetLength.class);
-//        if (oldOffsetLength == null)
-//            throw new Error("Unable to get OffsetLength adapter for " + oldNode.getClass().getName()); //$NON-NLS-1$
-//
-//        OffsetLength newOffsetLength = (OffsetLength)adapterManager.getAdapter(newNode, OffsetLength.class);
-//        if (newOffsetLength == null)
-//            throw new Error("Unable to get OffsetLength adapter for " + newNode.getClass().getName()); //$NON-NLS-1$
-//
-//        Mu mu = PrimitiveOp.mu(
-//            filename,
-//            oldOffsetLength,
-//            newOffsetLength);
-//
-//        replacements.add(mu);
-//    }
-//
-//    /**
-//     * @since 3.0
-//     */
-//    public void markMu(IFile file, OffsetLength oldOffsetLength, OffsetLength newOffsetLength)
-//    {
-//        String filename = EclipseVPG.getFilenameForIFile(file);
-//
-//        Mu mu = PrimitiveOp.mu(
-//            filename,
-//            oldOffsetLength,
-//            newOffsetLength);
-//
-//        replacements.add(mu);
-//    }
-
     @Override public String toString()
     {
         return replacements.toString();
     }
 
-    /** @since 3.0 */
     public void logPostTransformTime(long milliseconds)
     {
         this.fields += SEPARATOR + "PostTransform"; //$NON-NLS-1$
@@ -447,7 +402,6 @@ public final class PreservationAnalysis
         });
     }
     
-    /** @since 3.0 */
     public static boolean printModelOn(PrintStream ps, IFile file, EclipseVPG<?,?,?> vpg) throws UnsupportedEncodingException, IOException, CoreException
     {
         String filename = EclipseVPG.getFilenameForIFile(file);

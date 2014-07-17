@@ -24,8 +24,6 @@ import org.eclipse.core.resources.WorkspaceJob;
  * 
  * @author Jeff Overbey
  * @see org.eclipse.core.resources.WorkspaceJob
- * 
- * @since 8.0
  */
 public abstract class VPGJob<A, T> extends WorkspaceJob
 {

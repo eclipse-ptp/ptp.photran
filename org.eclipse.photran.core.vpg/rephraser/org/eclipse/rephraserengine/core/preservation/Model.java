@@ -28,8 +28,6 @@ import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPG;
  * A mutable, in-memory copy of the edges in part of a program graph.
  *
  * @author Jeff Overbey
- * 
- * @since 3.0
  */
 final class Model<A, T, R extends IVPGNode<T>>
 {

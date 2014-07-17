@@ -39,8 +39,6 @@ import org.eclipse.rephraserengine.core.vpg.VPGEdge;
  * @param <R> TokenRef type
  * @param <D> database type
  * @param <L> VPG log type
- * 
- * @since 8.0
  */
 public class ProfilingDB<A, T, R extends IVPGNode<T>>
      extends VPGDB<A, T, R>

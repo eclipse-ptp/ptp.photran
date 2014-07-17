@@ -32,8 +32,6 @@ import org.eclipse.rephraserengine.core.util.SetOfPairs;
  * @param <A> AST type
  * @param <T> token type
  * @param <R> TokenRef type
- * 
- * @since 8.0
  */
 public final class DemandDB<A, T, R extends IVPGNode<T>>
            extends VPGDB<A, T, R>

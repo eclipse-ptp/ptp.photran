@@ -14,8 +14,6 @@ import java.util.TreeMap;
  * @param <ColType>
  * @param <CellType>
  * 
- * @since 3.0
- * 
  * @see TwoKeyHashMap
  */
 public final class TwoKeyTreeMap<RowType  extends Comparable<RowType>,

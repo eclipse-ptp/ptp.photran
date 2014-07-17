@@ -34,8 +34,6 @@ import junit.framework.TestSuite;
  * 
  * @author Jeff Overbey
  * @see TestSuiteFromFiles
- * 
- * @since 2.0
  */
 public abstract class GeneralTestSuiteFromFiles extends TestSuite
 {

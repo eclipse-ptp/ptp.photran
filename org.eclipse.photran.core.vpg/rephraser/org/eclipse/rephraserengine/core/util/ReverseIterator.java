@@ -18,8 +18,6 @@ import java.util.ListIterator;
  * An {@link Iterator} that traverses a {@link List} in reverse order.
  *
  * @author Jeff Overbey
- *
- * @since 3.0
  */
 public class ReverseIterator<T> implements Iterator<T>
 {

@@ -22,8 +22,6 @@ import org.eclipse.rephraserengine.ui.UIUtil;
  * user to view.
  *
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 @SuppressWarnings("rawtypes")
 public abstract class VPGOutputWindowAction extends VPGWindowActionDelegate

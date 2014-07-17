@@ -17,8 +17,6 @@ import java.util.Iterator;
  * located quickly by offset.
  * 
  * @author Jeff Overbey
- * 
- * @since 2.0
  */
 public abstract class TokenList<T> implements Iterable<T>
 {
@@ -157,10 +155,7 @@ public abstract class TokenList<T> implements Iterable<T>
             index--;
         return array[index];
     }
-    
-    /**
-     * @since 3.0
-     */
+
     public T findFirstTokenOnOrAfterLine(int line)
     {
         T result = findFirstTokenOnLine(line);
@@ -199,10 +194,7 @@ public abstract class TokenList<T> implements Iterable<T>
             index++;
         return array[index];
     }
-    
-    /**
-     * @since 3.0
-     */
+
     public T findLastTokenOnOrBeforeLine(int line)
     {
         T result = findLastTokenOnLine(line);

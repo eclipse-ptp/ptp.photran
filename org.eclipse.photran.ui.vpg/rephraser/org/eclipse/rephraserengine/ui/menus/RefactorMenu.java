@@ -57,8 +57,6 @@ import org.eclipse.ui.menus.CommandContributionItem;
  * </ul>
  *
  * @author Jeff Overbey
- *
- * @since 8.0
  */
 @SuppressWarnings("restriction")
 public final class RefactorMenu extends CompoundContributionItem
@@ -67,7 +65,6 @@ public final class RefactorMenu extends CompoundContributionItem
 
     private WorkbenchSelectionInfo selection;
 
-    /** @since 3.0 */
     @Override
     public IContributionItem[] getContributionItems()
     {
@@ -366,7 +363,6 @@ public final class RefactorMenu extends CompoundContributionItem
         }
     };
     
-    /** @since 3.0 */
     public boolean isEmpty()
     {
         return isEmpty(getContributionItems());

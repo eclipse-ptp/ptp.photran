@@ -39,8 +39,6 @@ import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPG;
  * @param <A> AST type
  * @param <T> token type
  * @param <R> {@link IVPGNode}/{@link NodeRef} type
- * 
- * @since 8.0
  */
 public abstract class VPG<A, T, R extends IVPGNode<T>>
 {
@@ -63,13 +61,11 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
     // Constructor
     ///////////////////////////////////////////////////////////////////////////
 
-	/** @since 3.0 */
     protected VPG(IVPGComponentFactory<A, T, R> factory)
     {
         this(factory, 5);
     }
 
-    /** @since 3.0 */
 	protected VPG(IVPGComponentFactory<A, T, R> factory, int transientASTCacheSize)
 	{
         assert transientASTCacheSize > 0;
@@ -82,19 +78,17 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
 
         this.astCache = new ASTRepository<A>(transientASTCacheSize);
 	}
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // ACCESSORS
     ////////////////////////////////////////////////////////////////////////////
 
-    /** @since 3.0 */
     @SuppressWarnings("unchecked")
     public <W extends VPGWriter<A, T, R>> W getVPGWriter()
     {
         return (W)vpgWriter;
     }
     
-    /** @since 3.0 */
     public VPGLog<T, R> getLog()
     {
         return log;
@@ -140,8 +134,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
      * Changes the AST for the given file from a transient AST to a permanent
      * AST.  The AST will remain in memory until it is explicitly released
      * using {@link #releaseAST(String)} or {@link #releaseAllASTs()}.
-     * 
-     * @since 2.0
      */
     public final A makeTransientASTPermanent(String filename)
     {
@@ -187,8 +179,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
 	 * by comparing the given argument with every AST in memory.
 	 * 
 	 * @return filename or <code>null</code>
-	 * 
-	 * @since 2.0
 	 */
 	public final String getFilenameCorrespondingTo(A ast)
 	{
@@ -201,8 +191,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
 
     /**
      * @return a TokenRef referring to the token with the given position in the given file.
-     * 
-     * @since 3.0
      */
     public final R getVPGNode(String filename, int offset, int length)
     {
@@ -215,7 +203,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
 
     /**
      * @return the name of every file on which at least one other file is dependent.
-     * @since 3.0
      */
     public Iterable<String> listAllFilenamesWithDependents()
     {
@@ -224,7 +211,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
 
     /**
      * @return the name of every file which depends on at least one other file.
-     * @since 3.0
      */
     public Iterable<String> listAllDependentFilenames()
     {
@@ -233,7 +219,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
 
     /**
      * @return all of the files on which the given file depends
-     * @since 3.0
      */
     public Iterable<String> getOutgoingDependenciesFrom(String filename)
     {
@@ -242,14 +227,12 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
 
     /**
      * @return all of the files dependent on the given file
-     * @since 3.0
      */
     public Iterable<String> getIncomingDependenciesTo(String filename)
     {
         return db.getIncomingDependenciesTo(filename);
     }
     
-    /** @since 3.0 */
     public List<String> sortFilesAccordingToDependencies(List<String> files)
     {
         return db.sortFilesAccordingToDependencies(files);
@@ -268,8 +251,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
      * Returns a list of all of the edges with at least one endpoint in the given file.
      * <p>
      * Due to implementation details, some edges may be listed more than once.
-     * 
-     * @since 3.0
      */
     public Iterable<? extends VPGEdge<A, T, R>> getAllEdgesFor(String filename)
     {
@@ -287,8 +268,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
      * The annotation can be retrieved using {@link VPGDB#getAnnotation(VPGNode, int)}.
      * <p>
      * Due to implementation details, some annotations may be listed more than once.
-     * 
-     * @since 3.0
      */
     public Iterable<Pair<R, Integer>> getAllAnnotationsFor(String filename)
     {
@@ -354,14 +333,12 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
 
     /**
      * @return all filenames present in the VPG database.
-     * @since 3.0
      */
     public Iterable<String> listAllFilenames()
     {
         return db.listAllFilenames();
     }
 
-    /** @since 3.0 */
     public boolean isOutOfDate(String filename)
     {
         return db.isOutOfDate(filename);
@@ -380,7 +357,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
 
     /**
      * @return true iff the given file should be parsed
-     * @since 3.0
      */
     public boolean shouldProcessFile(String filename)
     {
@@ -391,19 +367,16 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
     // HYPOTHETICAL UPDATING
     ////////////////////////////////////////////////////////////////////////////
     
-    /** @since 3.0 */
     public void enterHypotheticalMode() throws IOException
     {
         db.enterHypotheticalMode();
     }
     
-    /** @since 3.0 */
     public void leaveHypotheticalMode() throws IOException
     {
         db.leaveHypotheticalMode();
     }
     
-    /** @since 3.0 */
     public boolean isInHypotheticalMode()
     {
         return db.isInHypotheticalMode();
@@ -440,8 +413,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
      * annotations) for the file, since it no longer exists.
      * 
      * @param filename path to the deleted file
-     * 
-     * @since 3.0
      */
     public void deleteAllEntriesFor(String filename)
     {
@@ -453,25 +424,21 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
     // UTILITY METHODS - DATABASE
     ////////////////////////////////////////////////////////////////////////////
     
-    /** @since 3.0 */
     public void resetDatabaseStatistics()
     {
         db.resetStatistics();
     }
     
-    /** @since 3.0 */
     public void printDatabaseStatisticsOn(PrintStream out)
     {
         db.printStatisticsOn(out);
     }
     
-    /** @since 3.0 */
     public void printDatabaseOn(PrintStream out)
     {
         db.printOn(out);
     }
     
-    /** @since 3.0 */
     public void clearDatabase()
     {
         db.clearDatabase();
@@ -479,7 +446,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
     
     /**
      * Forces any in-memory data to be flushed to disk
-     * @since 3.0
      */
     public void flushDatabase()
     {
@@ -512,8 +478,6 @@ public abstract class VPG<A, T, R extends IVPGNode<T>>
      * 
      * @param message
      * @param filename (possibly <code>null</code>
-     * 
-     * @since 3.0
      */
     public void debug(String message, String filename)
     {

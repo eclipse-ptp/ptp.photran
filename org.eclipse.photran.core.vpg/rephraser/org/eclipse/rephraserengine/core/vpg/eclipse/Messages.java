@@ -14,8 +14,6 @@ import org.eclipse.osgi.util.NLS;
 
 /**
  * Externalized strings.
- * 
- * @since 8.0
  */
 public class Messages extends NLS
 {
@@ -29,7 +27,6 @@ public class Messages extends NLS
 
     public static String EclipseVPG_SearchingForWorkspaceModifications;
 
-    /** @since 3.0 */
     public static String EclipseVPG_WritingDatabaseToDisk;
 
     public static String EclipseVPG_XofY;

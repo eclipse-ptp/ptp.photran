@@ -18,8 +18,6 @@ import org.eclipse.rephraserengine.core.vpg.IVPGNode;
  * |<i>j</i> - <i>i</i>| with new text of length |<i>k</i> - <i>i</i>|.
  * 
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 public final class Replacement
 {

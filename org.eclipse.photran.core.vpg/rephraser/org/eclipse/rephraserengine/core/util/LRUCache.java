@@ -23,8 +23,6 @@ import java.util.Map;
  * key and a value.
  * 
  * @author Jeff Overbey
- * 
- * @since 3.0
  */
 public class LRUCache<T, U>
 {

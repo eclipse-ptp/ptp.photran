@@ -18,8 +18,6 @@ package org.eclipse.rephraserengine.core.analysis.flow;
  * @param U type of data associated with each flowgraph node
  *
  * @see org.eclipse.rephraserengine.core.analysis.flow.VPGFlowGraph
- *
- * @since 3.0
  */
 public class FlowGraph<U>
 {

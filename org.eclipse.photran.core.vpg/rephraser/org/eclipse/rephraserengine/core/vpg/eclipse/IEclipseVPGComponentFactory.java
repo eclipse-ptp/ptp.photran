@@ -27,8 +27,6 @@ import org.eclipse.rephraserengine.core.vpg.VPGLog;
  * @param <A> AST type
  * @param <T> token type
  * @param <R> {@link IVPGNode}/{@link NodeRef} type
- * 
- * @since 8.0
  */
 public interface IEclipseVPGComponentFactory<A, T, R extends IVPGNode<T>>
          extends IVPGComponentFactory<A, T, R>

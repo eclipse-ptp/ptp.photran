@@ -24,8 +24,6 @@ import java.io.Serializable;
  * @author Jeff Overbey
  * 
  * @param <T> node/token type
- * 
- * @since 8.0
  */
 public interface IVPGNode<T> extends Serializable, Comparable<IVPGNode<?>>
 {
@@ -53,7 +51,6 @@ public interface IVPGNode<T> extends Serializable, Comparable<IVPGNode<?>>
      * @param edgeType the type of edge (an arbitrary non-negative integer), or
      *                 {@link VPG#ALL_EDGES} to process all edges, regardless
      *                 of type
-     * @since 3.0
      */
     public abstract <R extends IVPGNode<T>> Iterable<R> followOutgoing(int edgeType);
 
@@ -66,13 +63,11 @@ public interface IVPGNode<T> extends Serializable, Comparable<IVPGNode<?>>
      * @param edgeType the type of edge (an arbitrary non-negative integer), or
      *                 {@link VPG#ALL_EDGES} to process all edges, regardless
      *                 of type
-     * @since 3.0
      */
     public abstract <R extends IVPGNode<T>> Iterable<R> followIncoming(int edgeType);
 
     /** @return the annotation with the given ID for the given token, or <code>null</code>
      *  if it does not exist
-     * @since 3.0
      */
     public abstract <R extends Serializable> R getAnnotation(int annotationID);
 

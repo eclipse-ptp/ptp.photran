@@ -36,8 +36,6 @@ import org.eclipse.ui.internal.Workbench;
  * A collection of static utility methods for use by Eclipse user interfaces.
  *
  * @author Jeff Overbey
- * 
- * @since 2.0
  */
 @SuppressWarnings("restriction")
 public final class UIUtil

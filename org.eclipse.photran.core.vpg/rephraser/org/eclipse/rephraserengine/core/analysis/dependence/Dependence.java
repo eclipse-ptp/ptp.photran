@@ -17,8 +17,6 @@ package org.eclipse.rephraserengine.core.analysis.dependence;
  *
  * @author Jeff Overbey
  * @see LoopDependences
- * 
- * @since 2.0
  */
 public class Dependence
 {

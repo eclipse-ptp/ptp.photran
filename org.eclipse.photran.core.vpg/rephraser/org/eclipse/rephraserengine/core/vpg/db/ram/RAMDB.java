@@ -54,8 +54,6 @@ import org.eclipse.rephraserengine.core.vpg.VPGEdge;
  * @param <A> AST type
  * @param <T> token type
  * @param <R> {@link IVPGNode}/{@link NodeRef} type
- * 
- * @since 8.0
  */
 public abstract class RAMDB<A, T, R extends IVPGNode<T>>
               extends VPGDB<A, T, R>
@@ -569,8 +567,6 @@ public abstract class RAMDB<A, T, R extends IVPGNode<T>>
      * The annotation can be retrieved using {@link VPGDB#getAnnotation(IVPGNode, int)}.
      * <p>
      * Due to implementation details, some annotations may be listed more than once.
-     * 
-     * @since 3.0
      */
     @Override
     public Iterable<Pair<R, Integer>> getAllAnnotationsFor(String filename)

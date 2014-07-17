@@ -46,8 +46,6 @@ import org.eclipse.text.edits.ReplaceEdit;
  * dialog is displayed.
  * 
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 public abstract class SimpleEditorRefactoring extends Refactoring implements IEditorRefactoring
 {

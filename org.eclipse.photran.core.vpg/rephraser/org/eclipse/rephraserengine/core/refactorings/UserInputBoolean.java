@@ -26,8 +26,6 @@ import java.lang.annotation.Target;
  * <code>void setterMethod(boolean newValue)</code>
  *
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

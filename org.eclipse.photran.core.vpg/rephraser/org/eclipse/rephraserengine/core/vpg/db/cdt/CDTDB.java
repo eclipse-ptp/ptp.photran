@@ -48,8 +48,6 @@ import org.eclipse.rephraserengine.internal.core.vpg.db.cdt.InternalCDTDB.IntVec
  * @param <A> AST type
  * @param <T> token type
  * @param <R> {@link IVPGNode}/{@link NodeRef} type
- * 
- * @since 8.0
  */
 public abstract class CDTDB<A, T, R extends IVPGNode<T>>
               extends VPGDB<A, T, R>
@@ -59,17 +57,11 @@ public abstract class CDTDB<A, T, R extends IVPGNode<T>>
     
     private final VPGLog<T, R> log;
 
-    /**
-     * @since 3.0
-     */
     public CDTDB(String filename, IVPGComponentFactory<A, T, R> locator, VPGLog<T, R> log)
     {
         this(new File(filename), locator, log);
     }
 
-    /**
-     * @since 3.0
-     */
     public CDTDB(File file, IVPGComponentFactory<A, T, R> locator, VPGLog<T, R> log)
     {
         super(locator);

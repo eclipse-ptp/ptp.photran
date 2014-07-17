@@ -13,8 +13,6 @@ package org.eclipse.rephraserengine.internal.ui.search;
 
 /**
  * @author Doug Schaefer
- *
- * @since 2.0
  */
 public interface ISearchContentProvider {
 

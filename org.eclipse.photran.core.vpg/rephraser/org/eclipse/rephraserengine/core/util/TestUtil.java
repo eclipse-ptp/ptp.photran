@@ -14,8 +14,6 @@ package org.eclipse.rephraserengine.core.util;
  * Utility methods for JUnit/testing.
  * 
  * @author Jeff Overbey
- * 
- * @since 3.0
  */
 public final class TestUtil
 {

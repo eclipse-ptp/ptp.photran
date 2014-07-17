@@ -26,8 +26,6 @@ import org.eclipse.rephraserengine.core.util.TwoKeyHashMap;
  *
  * @param <N> namespace type
  * @param <S> symbol type
- * 
- * @since 2.0
  */
 public class SymbolTable<N, S>
 {
@@ -324,8 +322,6 @@ public class SymbolTable<N, S>
      * 
      * @return the symbol table associated with the named scope <code>scopeName</code>, or
      *         <code>null</code> iff no such named scope exists
-     * 
-     * @since 3.0
      */
     public SymbolTable<N, S> getNamedScope(String scopeName)
     {
@@ -342,8 +338,6 @@ public class SymbolTable<N, S>
      * @return the symbol table corresponding to
      *         <code>getNamedScope(scopeNames[0]).getNamedScope(scopeNames[1]).getNamedScope(scopeNames[2])</code>
      *         ..., or <code>null</code> iff no such named scope exists
-     * 
-     * @since 3.0
      */
     public SymbolTable<N, S> getNestedNamedScope(String... scopeNames)
     {
@@ -359,8 +353,6 @@ public class SymbolTable<N, S>
      * 
      * @return the symbol table containing the given named scope,
      *         or <code>null</code> iff no such named scope exists
-     * 
-     * @since 3.0
      */
     public SymbolTable<N, S> getStartingScope(String scopeName)
     {

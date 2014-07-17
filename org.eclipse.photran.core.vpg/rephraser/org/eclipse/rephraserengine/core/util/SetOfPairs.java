@@ -18,8 +18,8 @@ import java.util.Iterator;
  * A set of <i>(key, value)</i> pairs where many pairs are expected to have the same key.
  * <p>
  * Internally, the pairs are stored as a <code>HashMap<K, HashSet<V>></code>.
+ * 
  * @author Jeff Overbey
- * @since 3.0
  */
 public class SetOfPairs<K, V> implements Cloneable
 {

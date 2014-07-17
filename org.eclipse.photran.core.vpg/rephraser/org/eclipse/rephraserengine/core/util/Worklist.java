@@ -20,8 +20,6 @@ import java.util.LinkedList;
  * new-style for-loop).
  *
  * @author Jeff Overbey
- *
- * @since 3.0
  */
 public class Worklist<T> implements Iterable<T>
 {

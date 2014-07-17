@@ -34,8 +34,6 @@ import java.util.Set;
  * 
  * @param <T> token type
  * @param <R> {@link IVPGNode}/{@link NodeRef} type
- * 
- * @since 8.0
  */
 public final class VPGLog<T, R extends IVPGNode<T>>
 {
@@ -45,7 +43,6 @@ public final class VPGLog<T, R extends IVPGNode<T>>
 		private String message;
 		private R tokenRef;
 
-		/** @since 3.0 */
 		public Entry(boolean isWarningOnly, String message, R tokenRef)
 		{
 			this.isWarning = isWarningOnly;
@@ -75,8 +72,7 @@ public final class VPGLog<T, R extends IVPGNode<T>>
 			return message;
 		}
 
-		/** @return the token associated with this error message, or <code>null</code> 
-		 * @since 3.0*/
+		/** @return the token associated with this error message, or <code>null</code> */
 		public R getTokenRef()
 		{
 			return tokenRef;
@@ -87,19 +83,14 @@ public final class VPGLog<T, R extends IVPGNode<T>>
     // Fields
     ///////////////////////////////////////////////////////////////////////////
 
-    /** @since 3.0 */
     protected final File logFile;
     
-    /** @since 3.0 */
     protected IVPGComponentFactory<?, T, R> locator;
     
     ///////////////////////////////////////////////////////////////////////////
     // Constructor
     ///////////////////////////////////////////////////////////////////////////
 
-    /**
-     * @since 3.0
-     */
     public VPGLog(File logFile, IVPGComponentFactory<?, T, R> locator)
     {
         this.logFile = logFile;
@@ -169,7 +160,6 @@ public final class VPGLog<T, R extends IVPGNode<T>>
      * @param tokenRef a specific token with which the warning is associated;
      *                 for example, if an identifier was used without being
      *                 initialized, it could reference that identifier
-     * @since 3.0
      */
 	public void logWarning(String message, R tokenRef)
 	{
@@ -194,7 +184,6 @@ public final class VPGLog<T, R extends IVPGNode<T>>
      * @param tokenRef a specific token with which the warning is associated;
      *                 for example, if an identifier was used without being
      *                 initialized, it could reference that identifier
-     * @since 3.0
      */
 	public void logError(Throwable e, R tokenRef)
 	{
@@ -241,7 +230,6 @@ public final class VPGLog<T, R extends IVPGNode<T>>
      * @param tokenRef a specific token with which the error is associated;
      *                 for example, if an identifier was used but not
      *                 declared, it could reference that identifier
-     * @since 3.0
      */
 	public void logError(String message, R tokenRef)
 	{
@@ -338,7 +326,6 @@ public final class VPGLog<T, R extends IVPGNode<T>>
     
     /**
      * Writes the log to a file.
-     * @since 2.0
      */
     public void writeToFile() throws IOException
     {
@@ -381,7 +368,6 @@ public final class VPGLog<T, R extends IVPGNode<T>>
      *      TokenRef filename, offset, length
      *      message
      * </pre>
-     * @since 2.0
      */
     public void readLogFromFile()
     {

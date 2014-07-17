@@ -14,8 +14,6 @@ package org.eclipse.rephraserengine.core.util;
  * Collection of assorted math routines.
  * 
  * @author Jeff Overbey
- * 
- * @since 2.0
  */
 public class MathUtil
 {

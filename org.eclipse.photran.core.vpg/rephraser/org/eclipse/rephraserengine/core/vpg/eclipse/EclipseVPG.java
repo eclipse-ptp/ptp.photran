@@ -46,8 +46,6 @@ import org.eclipse.ui.internal.Workbench;
  * This class is intended to be subclassed directly.
  *
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 @SuppressWarnings("restriction")
 public abstract class EclipseVPG<A, T, R extends IVPGNode<T>>
@@ -55,18 +53,12 @@ public abstract class EclipseVPG<A, T, R extends IVPGNode<T>>
 {
     private String syncMessage;
 
-    /**
-     * @since 3.0
-     */
     public EclipseVPG(IEclipseVPGComponentFactory<A, T, R> locator, String syncMessage, int transientASTCacheSize)
     {
         super(locator, transientASTCacheSize);
         this.syncMessage = syncMessage;
     }
 
-    /**
-     * @since 3.0
-     */
     public EclipseVPG(IEclipseVPGComponentFactory<A, T, R> locator, String syncMessage)
     {
         super(locator);
@@ -511,49 +503,31 @@ public abstract class EclipseVPG<A, T, R extends IVPGNode<T>>
     // IFile-Based AST Acquisition & Release API
     ///////////////////////////////////////////////////////////////////////////
 
-    /**
-     * @since 2.0
-     */
     public A acquireTransientAST(IFile file)
     {
         return file == null ? null : acquireTransientAST(getFilenameForIFile(file));
     }
 
-    /**
-     * @since 2.0
-     */
     public A acquirePermanentAST(IFile file)
     {
         return file == null ? null : acquirePermanentAST(getFilenameForIFile(file));
     }
     
-    /**
-     * @since 2.0
-     */
     public A makeTransientASTPermanent(IFile file)
     {
         return file == null ? null : makeTransientASTPermanent(getFilenameForIFile(file));
     }
 
-    /**
-     * @since 2.0
-     */
     public A makeTransientASTPermanent(IFile file, A ast)
     {
         return file == null ? null : makeTransientASTPermanent(getFilenameForIFile(file), ast);
     }
 
-    /**
-     * @since 2.0
-     */
     public void releaseAST(IFile file)
     {
         if (file != null) releaseAST(getFilenameForIFile(file));
     }
     
-    /**
-     * @since 2.0
-     */
     public IFile getIFileCorrespondingTo(A ast)
     {
         String filename = getFilenameCorrespondingTo(ast);
@@ -572,7 +546,6 @@ public abstract class EclipseVPG<A, T, R extends IVPGNode<T>>
 
     /**
      * Forces the database to be updated based on the current in-memory ASTs for the given files
-     * @since 2.0
      */
     public void commitChangesFromInMemoryASTs(IProgressMonitor pm, int ticks, Set<IFile> files)
     {
@@ -588,19 +561,16 @@ public abstract class EclipseVPG<A, T, R extends IVPGNode<T>>
     // Abstract Methods (Resource Filtering)
     ///////////////////////////////////////////////////////////////////////////
 
-    /** @return true iff the given file should be parsed 
-     * @since 3.0*/
+    /** @return true iff the given file should be parsed */
     @Override public boolean shouldProcessFile(String filename)
     {
         IFile file = EclipseVPG.getIFileForFilename(filename);
         return file == null ? false : shouldProcessFile(file);
     }
 
-    /** @return true if the given project should be indexed 
-     * @since 3.0*/
+    /** @return true if the given project should be indexed */
     public abstract boolean shouldProcessProject(IProject project);
 
-    /** @return true iff the given file should be indexed 
-     * @since 3.0*/
+    /** @return true iff the given file should be indexed */
     public abstract boolean shouldProcessFile(IFile file);
 }

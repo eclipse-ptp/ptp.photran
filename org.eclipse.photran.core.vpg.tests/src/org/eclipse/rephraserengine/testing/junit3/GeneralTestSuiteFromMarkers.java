@@ -32,14 +32,11 @@ import org.eclipse.rephraserengine.core.util.StringUtil;
  * 
  * @author Jeff Overbey
  * @see TestSuiteFromMarkers
- * 
- * @since 2.0
  */
 public abstract class GeneralTestSuiteFromMarkers extends TestSuite
 {
     protected final String description;
     protected final String marker;
-    /** @since 3.0 */
     protected final String markerEnd;
     
     /**
@@ -67,8 +64,6 @@ public abstract class GeneralTestSuiteFromMarkers extends TestSuite
      * @param filenameFilter
      * @param initializationData these arguments (if any) will be passed directly to {@link #initialize(Object...)} before adding tests to the test suite
      * @throws Exception
-     * 
-     * @since 3.0
      */
     public GeneralTestSuiteFromMarkers(String description, String marker, String markerEnd, File fileOrDirectory, FilenameFilter filenameFilter, Object... initializationData) throws Exception
     {

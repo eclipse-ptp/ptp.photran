@@ -17,8 +17,6 @@ package org.eclipse.rephraserengine.core.refactorings;
  *
  * @see IResourceRefactoring
  * @see IEditorRefactoring
- * 
- * @since 8.0
  */
 public interface IRefactoring
 {

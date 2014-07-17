@@ -21,8 +21,6 @@ import java.io.Serializable;
  * @param <A> AST type
  * @param <T> token type
  * @param <R> {@link IVPGNode}/{@link NodeRef} type
- *
- * @since 8.0
  */
 public class VPGDependency<A, T, R extends IVPGNode<T>> implements Serializable
 {
@@ -35,8 +33,6 @@ public class VPGDependency<A, T, R extends IVPGNode<T>> implements Serializable
      * Constructor. Creates a dependency between two files in the given VPG.
      * <p>
      * The dependency is <i>not</i> added to the VPG database automatically.
-     * 
-     * @since 3.0
      */
 	public VPGDependency(String dependencyFrom, String dependsOn)
 	{

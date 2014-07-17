@@ -23,8 +23,6 @@ import org.eclipse.rephraserengine.core.util.ReverseIterator;
  * @author Jeff Overbey
  *
  * @param T type of data associated with each flowgraph node
- *
- * @since 3.0
  */
 public final class FlowGraphNode<T>
 {

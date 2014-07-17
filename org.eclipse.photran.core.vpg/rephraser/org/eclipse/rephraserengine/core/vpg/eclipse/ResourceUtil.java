@@ -19,8 +19,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
  * <code>String</code>) filenames used by the VPG and stored in its database.
  * 
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 public class ResourceUtil
 {

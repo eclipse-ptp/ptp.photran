@@ -25,8 +25,6 @@ import org.eclipse.core.resources.IResource;
  * database.
  *
  * @author Jeff Overbey
- * 
- * @since 1.0
  */
 public interface IResourceFilter
 {

@@ -14,8 +14,6 @@ import org.eclipse.osgi.util.NLS;
 
 /**
  * Externalized strings.
- * 
- * @since 2.0
  */
 class Messages extends NLS
 {

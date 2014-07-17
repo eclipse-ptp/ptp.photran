@@ -33,8 +33,6 @@ import java.util.Map;
  * @author Jeff Overbey
  *
  * @see FlowGraph#formBasicBlocks(BasicBlockBuilder)
- *
- * @since 3.0
  */
 public class BasicBlockBuilder<U>
 {

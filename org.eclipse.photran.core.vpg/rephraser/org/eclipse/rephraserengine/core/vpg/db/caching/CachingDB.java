@@ -35,8 +35,6 @@ import org.eclipse.rephraserengine.core.vpg.db.cdt.CDTDB;
  * @param <A> AST type
  * @param <T> token type
  * @param <R> {@link IVPGNode}/{@link NodeRef} type
- * 
- * @since 8.0
  */
 public class CachingDB<A, T, R extends IVPGNode<T>>
      extends VPGDB<A, T, R>

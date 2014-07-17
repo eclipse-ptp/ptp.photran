@@ -22,16 +22,12 @@ import java.util.List;
  * Utility class with static methods to run a command line program and return its output.
  *
  * @author Jeff Overbey
- *
- * @since 1.0
  */
 public final class Spawner
 {
     /**
      * If the spawner exits with an error status, this determines whether the output will be dumped
      * to standard error before an exception is thrown.
-     * 
-     * @since 3.0
      */
     public static boolean SHOW_OUTPUT_ON_ERROR = true;
     

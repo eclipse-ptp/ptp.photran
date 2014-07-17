@@ -23,16 +23,11 @@ import org.eclipse.rephraserengine.core.preservation.ReplacementList;
  * @param <A> AST type
  * @param <T> token type
  * @param <R> {@link IVPGNode}/{@link NodeRef} type
- *
- * @since 8.0
  */
 public final class VPGEdge<A, T, R extends IVPGNode<T>> implements Comparable<VPGEdge<?,?,?>>, Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * @since 3.0
-     */
     public static enum Classification
     {
         INCOMING,
@@ -41,21 +36,15 @@ public final class VPGEdge<A, T, R extends IVPGNode<T>> implements Comparable<VP
         EXTERNAL
     }
     
-    /** @since 2.0 */
     protected final R source;
-    /** @since 2.0 */
     protected final R sink;
-    /** @since 2.0 */
     protected final int type;
-    /** @since 3.0 */
     protected transient VPGEdge<A, T, R> origEdge;
 
 	/**
 	 * Constructor. Creates an edge of the given type between the given tokens in the given VPG.
 	 * <p>
 	 * The edge is <i>not</i> added to the VPG database automatically.
-	 * 
-	 * @since 3.0
 	 */
 	public VPGEdge(R source, R sink, int type)
 	{
@@ -69,8 +58,6 @@ public final class VPGEdge<A, T, R extends IVPGNode<T>> implements Comparable<VP
      * Constructor. Creates an edge of the given type between the given tokens in the given VPG.
      * <p>
      * The edge is <i>not</i> added to the VPG database automatically.
-     * 
-     * @since 3.0
      */
     public VPGEdge(R source, R sink, Enum<?> type)
     {
@@ -83,7 +70,6 @@ public final class VPGEdge<A, T, R extends IVPGNode<T>> implements Comparable<VP
 
 	/**
 	 * @return a TokenRef describing the token from which this edge emanates
-     * @since 3.0
      */
 	public R getSource()
 	{
@@ -92,7 +78,6 @@ public final class VPGEdge<A, T, R extends IVPGNode<T>> implements Comparable<VP
 
     /**
      * @return a TokenRef describing the token to which this edge points
-     * @since 3.0
      */
 	public R getSink()
 	{
@@ -108,8 +93,6 @@ public final class VPGEdge<A, T, R extends IVPGNode<T>> implements Comparable<VP
     /**
      * @return the original edge, if this edge is a projection created by
      *         {@link #projectInitial(ReplacementList)} or {@link #projectFinal(ReplacementList)}
-     * 
-     * @since 3.0
      */
     public VPGEdge<A, T, R> getOriginalEdge()
     {
@@ -136,7 +119,6 @@ public final class VPGEdge<A, T, R extends IVPGNode<T>> implements Comparable<VP
 
     ///////////////////////////////////////////////////////////////////////////
 
-	/** @since 3.0 */
     public int compareTo(VPGEdge<?,?,?> that)
     {
         int result = 0;
@@ -174,8 +156,6 @@ public final class VPGEdge<A, T, R extends IVPGNode<T>> implements Comparable<VP
 
     /**
      * @return the initial model projection of this edge
-     * 
-     * @since 3.0
      */
     public VPGEdge<A, T, R> projectInitial(ReplacementList replacements, VPG<A,T,R> vpg)
     {
@@ -188,8 +168,6 @@ public final class VPGEdge<A, T, R extends IVPGNode<T>> implements Comparable<VP
 
     /**
      * @return the final model projection of this edge
-     * 
-     * @since 3.0
      */
     public VPGEdge<A, T, R> projectFinal(ReplacementList replacements, VPG<A,T,R> vpg)
     {
@@ -202,8 +180,6 @@ public final class VPGEdge<A, T, R extends IVPGNode<T>> implements Comparable<VP
 
     /**
      * @return the classification of this edge
-     * 
-     * @since 3.0
      */
     public Classification getClassification()
     {

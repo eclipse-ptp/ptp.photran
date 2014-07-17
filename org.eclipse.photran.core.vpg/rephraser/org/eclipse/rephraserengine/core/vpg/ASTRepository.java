@@ -103,8 +103,6 @@ final class ASTRepository<A>
      * Changes the AST for the given file from a transient AST to a permanent
      * AST.  The AST will remain in memory until it is explicitly released
      * using {@link #releaseAST(String)} or {@link #releaseAllASTs()}.
-     * 
-     * @since 2.0
      */
     public <T, R extends IVPGNode<T>>
            A makeTransientASTPermanent(String filename, VPG<A, T, R> vpg)
@@ -155,8 +153,6 @@ final class ASTRepository<A>
      * by comparing the given argument with every AST in memory.
      * 
      * @return filename or <code>null</code>
-     * 
-     * @since 2.0
      */
     public String getFilenameCorrespondingTo(A ast)
     {

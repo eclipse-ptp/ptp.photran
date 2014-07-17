@@ -19,8 +19,6 @@ import junit.framework.TestSuite;
  * subclass from {@link GeneralTestSuiteFromMarkers} instead.
  * 
  * @author Jeff Overbey
- * 
- * @since 2.0
  */
 public abstract class TestSuiteFromMarkers extends GeneralTestSuiteFromMarkers
 {

@@ -21,8 +21,6 @@ import org.eclipse.rephraserengine.core.vpg.VPG;
  * A list of {@link Replacement}s.
  *
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 public final class ReplacementList implements Iterable<Replacement>
 {

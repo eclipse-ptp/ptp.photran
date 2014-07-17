@@ -19,8 +19,6 @@ import java.util.HashMap;
  * @author Jeff Overbey
  *
  * @param T type of nodes in the control flow graph
- *
- * @since 3.0
  */
 public abstract class ReachingDefsAnalysis<T>
 {

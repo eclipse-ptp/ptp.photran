@@ -31,8 +31,6 @@ import org.eclipse.rephraserengine.core.vpg.db.profiling.ProfilingDB;
  * @param <A> AST type
  * @param <T> token type
  * @param <R> {@link IVPGNode}/{@link NodeRef} type
- *
- * @since 8.0
  */
 public abstract class VPGDB<A, T, R extends IVPGNode<T>>
 {
@@ -50,14 +48,12 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
     // Fields
     ///////////////////////////////////////////////////////////////////////////
 
-    /** @since 3.0 */
     protected final IVPGComponentFactory<A, T, R> factory;
     
     ///////////////////////////////////////////////////////////////////////////
     // Constructors
     ///////////////////////////////////////////////////////////////////////////
 
-    /** @since 3.0 */
     public VPGDB(IVPGComponentFactory<A, T, R> factory)
     {
         this.factory = factory;
@@ -68,8 +64,6 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
      * <p>
      * Rather than providing an explicit {@link IVPGComponentFactory}, this uses the locator from the
      * wrapped database.
-     * 
-     * @since 3.0
      */
     protected VPGDB(VPGDB<A, T, R> wrappedDB)
     {
@@ -145,7 +139,6 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
     /** @return all of the files dependent on the given file */
     public abstract Iterable<String> getIncomingDependenciesTo(String filename);
     
-    /** @since 3.0 */
     public List<String> sortFilesAccordingToDependencies(final List<String> files)
     {
         // Enqueue the reflexive transitive closure of the dependencies
@@ -233,7 +226,6 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
      * @param edgeType the type of edge (an arbitrary non-negative integer), or
      *                 {@link VPG#ALL_EDGES} to return all edges, regardless
      *                 of type
-     * @since 3.0
      */
     public abstract Iterable<? extends VPGEdge<A, T, R>> getOutgoingEdgesFrom(R tokenRef, int edgeType);
 
@@ -246,7 +238,6 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
      * @param edgeType the type of edge (an arbitrary non-negative integer), or
      *                 {@link VPG#ALL_EDGES} to return all edges, regardless
      *                 of type
-     * @since 3.0
      */
     public abstract Iterable<? extends VPGEdge<A, T, R>> getIncomingEdgesTo(R tokenRef, int edgeType);
 
@@ -259,7 +250,6 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
      * @param edgeType the type of edge (an arbitrary non-negative integer), or
      *                 {@link VPG#ALL_EDGES} to process all edges, regardless
      *                 of type
-     * @since 3.0
      */
     public Iterable<R> getOutgoingEdgeTargets(R tokenRef, int edgeType)
     {
@@ -275,7 +265,6 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
      * @param edgeType the type of edge (an arbitrary non-negative integer), or
      *                 {@link VPG#ALL_EDGES} to process all edges, regardless
      *                 of type
-     * @since 3.0
      */
     public Iterable<R> getIncomingEdgeSources(R tokenRef, int edgeType)
     {
@@ -294,23 +283,17 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
      * a unique ID.  For example, annotation 0 might describe
      * the type of an identifier, while annotation 1 might hold documentation
      * for that identifier.
-     * 
-     * @since 3.0
      */
     public abstract void setAnnotation(R token, int annotationID, Serializable annotation);
 
-    /** @since 3.0 */
     public void setAnnotation(R token, Enum<?> annotationID, Serializable annotation)
     {
         setAnnotation(token, annotationID.ordinal(), annotation);
     }
 
-    /** Deletes the annotation with the given ID for the given token, if it exists.
-     * @since 3.0
-     */
+    /** Deletes the annotation with the given ID for the given token, if it exists. */
     public abstract void deleteAnnotation(R token, int annotationID);
 
-    /** @since 3.0 */
     public void deleteAnnotation(R token, Enum<?> annotationID)
     {
         deleteAnnotation(token, annotationID.ordinal());
@@ -318,11 +301,9 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
 
     /** @return the annotation with the given ID for the given token, or <code>null</code>
      *  if it does not exist
-     * @since 3.0
      */
     public abstract Serializable getAnnotation(R tokenRef, int annotationID);
 
-    /** @since 3.0 */
     public Serializable getAnnotation(R tokenRef, Enum<?> annotationID)
     {
         return getAnnotation(tokenRef, annotationID.ordinal());
@@ -335,8 +316,6 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
      * The annotation can be retrieved using {@link VPGDB#getAnnotation(VPGNode, int)}.
      * <p>
      * Due to implementation details, some annotations may be listed more than once.
-     * 
-     * @since 3.0
      */
     public abstract Iterable<Pair<R, Integer>> getAllAnnotationsFor(String filename);
     
@@ -348,19 +327,16 @@ public abstract class VPGDB<A, T, R extends IVPGNode<T>>
 
     public abstract void resetStatistics();
 
-    /** @since 3.0 */
     public String describeEdgeType(int edgeType)
     {
         return Messages.bind(Messages.VPGDB_EdgeOfType, edgeType);
     }
 
-    /** @since 3.0 */
     public String describeAnnotationType(int annotationType)
     {
         return Messages.bind(Messages.VPGDB_AnnotationOfType, annotationType);
     }
 
-    /** @since 3.0 */
     public String describeToken(String filename, int offset, int length)
     {
         return Messages.bind(Messages.VPGDB_FilenameOffsetLength,

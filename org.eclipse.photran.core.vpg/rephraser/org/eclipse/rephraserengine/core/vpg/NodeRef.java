@@ -18,18 +18,13 @@ import java.io.Serializable;
  * @author Jeff Overbey
  * 
  * @param <T> node/token type
- * 
- * @since 8.0
  */
 public abstract class NodeRef<T> implements IVPGNode<T>
 {
 	private static final long serialVersionUID = 1L;
 
-    /** @since 2.0 */
 	protected final String filename;
-    /** @since 2.0 */
 	protected final int offset;
-    /** @since 2.0 */
 	protected final int length;
 
 	/** Constructor.  Creates a TokenRef referring to the token at
@@ -158,7 +153,6 @@ public abstract class NodeRef<T> implements IVPGNode<T>
         return offset + length + (filename == null ? 0 : filename.hashCode());
     }
 
-    /** @since 3.0 */
     public int compareTo(IVPGNode<?> that)
     {
         int result = 0;

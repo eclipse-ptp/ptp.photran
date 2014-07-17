@@ -36,8 +36,6 @@ import java.util.List;
  *
  * @see FlowGraph#formBasicBlocks()
  * @see FlowGraph#formBasicBlocks(BasicBlockBuilder)
- *
- * @since 3.0
  */
 public class BasicBlock<T> implements Iterable<T>
 {

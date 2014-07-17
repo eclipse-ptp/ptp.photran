@@ -10,9 +10,6 @@ import org.eclipse.rephraserengine.core.preservation.PreservationRuleset;
 import org.eclipse.rephraserengine.core.vpg.IVPGNode;
 import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPG;
 
-/**
- * @since 8.0
- */
 public abstract class VPGPreservationBasedEditorRefactoring<A, T, V extends EclipseVPG<A, T, ? extends IVPGNode<T>>>
     extends VPGEditorRefactoring<A, T, V>
 {
@@ -64,7 +61,6 @@ public abstract class VPGPreservationBasedEditorRefactoring<A, T, V extends Ecli
 
     protected abstract void doValidateUserInput(RefactoringStatus status, IProgressMonitor pm) throws PreconditionFailure;
 
-    /** @since 3.0 */
     protected abstract PreservationRuleset getEdgesToPreserve();
 
     protected abstract void doTransform(RefactoringStatus status, IProgressMonitor pm) throws PreconditionFailure;

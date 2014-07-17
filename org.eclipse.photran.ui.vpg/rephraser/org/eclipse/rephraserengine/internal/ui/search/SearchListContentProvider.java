@@ -18,8 +18,6 @@ import org.eclipse.rephraserengine.ui.search.SearchResult;
 
 /**
  * @author Doug Schaefer
- *
- * @since 2.0
  */
 public class SearchListContentProvider implements
 		IStructuredContentProvider, ISearchContentProvider {

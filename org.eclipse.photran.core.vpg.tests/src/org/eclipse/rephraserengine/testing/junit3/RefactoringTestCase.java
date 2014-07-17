@@ -67,8 +67,6 @@ import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPG;
  * 
  * @see RefactoringTestSuite
  * @see GeneralTestSuiteFromMarkers
- * 
- * @since 3.0
  */
 public abstract class RefactoringTestCase<R extends Refactoring> extends WorkspaceTestCase
 {

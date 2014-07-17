@@ -23,8 +23,6 @@ import org.eclipse.core.runtime.jobs.ISchedulingRule;
  * <a href="../../../../overview-summary.html#Eclipse">More Information</a>
  * 
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 public class VPGSchedulingRule implements ISchedulingRule
 {

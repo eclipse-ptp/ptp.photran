@@ -43,8 +43,6 @@ package org.eclipse.rephraserengine.core.analysis.dependence;
  * THIS IS PRELIMINARY AND EXPERIMENTAL.  IT IS NOT APPROPRIATE FOR PRODUCTION USE.
  *
  * @author Jeff Overbey
- * 
- * @since 2.0
  */
 public interface IDependenceTester
 {

@@ -18,8 +18,6 @@ import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPG;
  * @param <A> AST type
  * @param <T> node/token type (i.e., the type returned by {@link IVPGNode#getASTNode()})
  * @param <V> VPG
- * 
- * @since 8.0
  */
 public abstract class VPGEditorRefactoring<A, T, V extends EclipseVPG<A, T, ? extends IVPGNode<T>>>
     extends VPGRefactoring<A, T, V>

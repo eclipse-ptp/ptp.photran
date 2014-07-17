@@ -61,8 +61,6 @@ import org.eclipse.rephraserengine.testing.junit3.GeneralTestSuiteFromMarkers;
  * 
  * @see RefactoringTestCase
  * @see GeneralTestSuiteFromMarkers
- * 
- * @since 3.0
  */
 public abstract class RefactoringTestSuite<R extends Refactoring> extends GeneralTestSuiteFromMarkers {
 

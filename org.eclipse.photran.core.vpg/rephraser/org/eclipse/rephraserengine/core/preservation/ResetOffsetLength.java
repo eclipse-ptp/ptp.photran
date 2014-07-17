@@ -22,8 +22,6 @@ package org.eclipse.rephraserengine.core.preservation;
  *
  * @see PreservationAnalysis#markAlpha(org.eclipse.core.resources.IFile, Object)
  * @see PreservationAnalysis#markEpsilon(org.eclipse.core.resources.IFile, Object)
- *
- * @since 8.0
  */
 public final class ResetOffsetLength
 {

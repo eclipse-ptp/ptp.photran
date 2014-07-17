@@ -48,8 +48,6 @@ import org.eclipse.ui.texteditor.ITextEditor;
  * should be created and then immediately used and disposed of.
  *
  * @author Jeff Overbey, Tim Yuvashev
- * 
- * @since 1.0
  */
 @SuppressWarnings("restriction")
 public class WorkbenchSelectionInfo
@@ -94,8 +92,6 @@ public class WorkbenchSelectionInfo
      * workbench window.
      *
      * @see #WorkbenchSelectionInfo(IResourceFilter)
-     *
-     * @since 2.0
      */
     public WorkbenchSelectionInfo(IWorkbenchWindow workbenchWindow)
     {
@@ -110,8 +106,6 @@ public class WorkbenchSelectionInfo
      *                        included in the results of {@link #getAllFilesInSelectedResources()}
      *                        and {@link #getFileInEditor()}
      * @param workbenchWindow the workbench window whose selection will be tracked
-     *
-     * @since 2.0
      */
     public WorkbenchSelectionInfo(IResourceFilter resourceFilter, IWorkbenchWindow workbenchWindow)
     {
@@ -195,8 +189,6 @@ public class WorkbenchSelectionInfo
      * <p>
      * If the <code>canGuess</code> parameter is <code>false<c/ode>, then this method returns true
      * iff {@link #getAllFilesInSelectedResources()} is non-empty.
-     * 
-     * @since 3.0
      */
     public boolean someFilesAreSelected(boolean canGuess)
     {
@@ -272,7 +264,6 @@ public class WorkbenchSelectionInfo
 
     /**
      * @return the active editor in the workbench, or <code>null</code> if no editor is active 
-     * @since 2.0
      */
     public IEditorPart getActiveEditor()
     {
@@ -282,7 +273,6 @@ public class WorkbenchSelectionInfo
     /**
      * @return the active editor in the workbench, if it is a text editor, or <code>null</code>
      * if no editor is active or it is not a text editor
-     * @since 2.0
      */
     public ITextEditor getActiveTextEditor()
     {
@@ -322,7 +312,6 @@ public class WorkbenchSelectionInfo
      *         text editor and its contents can be retrieved), or <code>null</code> otherwise.
      *         Note that, if the editor's contents have not been saved, the <i>unsaved</i>
      *         version (i.e., the current text in the editor) will be returned.
-     * @since 2.0
      */
     public String getEditorContents()
     {
@@ -357,8 +346,6 @@ public class WorkbenchSelectionInfo
      * only one file: the file in the active editor.
      * 
      * @see #WorkbenchSelectionInfo(IResourceFilter)
-     * 
-     * @since 2.0
      */
     public List<IResource> getSelectedResources()
     {

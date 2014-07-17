@@ -35,8 +35,6 @@ import org.eclipse.text.edits.ReplaceEdit;
  * @param <A> AST type
  * @param <T> node/token type (i.e., the type returned by {@link IVPGNode#getASTNode()})
  * @param <V> VPG
- * 
- * @since 8.0
  */
 public abstract class VPGRefactoring<A, T, V extends EclipseVPG<A, T, ? extends IVPGNode<T>>>
     extends Refactoring
@@ -217,7 +215,6 @@ public abstract class VPGRefactoring<A, T, V extends EclipseVPG<A, T, ? extends 
 
     protected abstract void doCreateChange(IProgressMonitor pm) throws CoreException, OperationCanceledException;
 
-    /** @since 3.0 */
     protected void postCreateChange(IProgressMonitor pm) throws CoreException, OperationCanceledException
     {
     }
@@ -253,9 +250,6 @@ public abstract class VPGRefactoring<A, T, V extends EclipseVPG<A, T, ? extends 
 
     // REFACTORING STATUS /////////////////////////////////////////////////////
 
-    /**
-     * @since 3.0
-     */
     protected RefactoringStatusContext createContext(IVPGNode<T> tokenRef)
     {
         if (tokenRef == null) return null;

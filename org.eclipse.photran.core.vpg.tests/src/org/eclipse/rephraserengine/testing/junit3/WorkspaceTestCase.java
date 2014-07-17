@@ -50,8 +50,6 @@ import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPG;
  * 
  * @author aniefer
  * @author Jeff Overbey
- * 
- * @since 3.0
  */
 public abstract class WorkspaceTestCase extends TestCase
 {

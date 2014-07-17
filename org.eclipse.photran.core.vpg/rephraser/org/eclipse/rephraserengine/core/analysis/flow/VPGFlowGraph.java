@@ -26,8 +26,6 @@ import org.eclipse.rephraserengine.core.vpg.IVPGNode;
  * @param <R> {@link IVPGNode}/{@link NodeRef} type
  * @param <T> node/token type
  * @param <U> flowgraph node type
- *
- * @since 8.0
  */
 public abstract class VPGFlowGraph<R extends IVPGNode<T>, T, U>
               extends FlowGraph<U>

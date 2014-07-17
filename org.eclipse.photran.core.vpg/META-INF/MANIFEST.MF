@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.photran.core.vpg;singleton:=true
-Bundle-Version: 8.0.0.qualifier
+Bundle-Version: 9.0.0.qualifier
 Bundle-Activator: org.eclipse.photran.internal.core.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
@@ -110,7 +110,7 @@ Export-Package: org.eclipse.photran.core;
  org.eclipse.rephraserengine.core.vpg.db.cdt;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.ui.vpg",
  org.eclipse.rephraserengine.core.vpg.db.profiling;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.ui.vpg",
  org.eclipse.rephraserengine.core.vpg.db.ram;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.ui.vpg",
- org.eclipse.rephraserengine.core.vpg.eclipse;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.ui.vpg",
+ org.eclipse.rephraserengine.core.vpg.eclipse;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.ui.vpg,org.eclipse.photran.core.vpg.tests.failing",
  org.eclipse.rephraserengine.core.vpg.refactoring;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.ui.vpg",
  org.eclipse.rephraserengine.internal.core.vpg.db.cdt;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.ui.vpg",
  org.eclipse.rephraserengine.internal.db.org.eclipse.cdt.internal.core.pdom.db;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.ui.vpg"

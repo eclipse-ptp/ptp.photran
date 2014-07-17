@@ -23,8 +23,6 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatusContext;
  * displays the modified contents of the file and highlights the indicated region.
  *
  * @author Jeff Overbey
- *
- * @since 8.0
  */
 public class PostTransformationContext extends RefactoringStatusContext
 {

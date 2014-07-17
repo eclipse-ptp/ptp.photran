@@ -37,8 +37,6 @@ import org.eclipse.rephraserengine.internal.db.org.eclipse.cdt.internal.core.pdo
  * which provides access to the corresponding table.
  * 
  * @author Jeff Overbey
- * 
- * @since 1.0
  */
 /*
  * In reality, there are no tables: A Database is simply a big

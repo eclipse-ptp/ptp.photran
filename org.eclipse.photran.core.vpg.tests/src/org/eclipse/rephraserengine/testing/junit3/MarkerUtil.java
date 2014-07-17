@@ -21,8 +21,6 @@ import org.eclipse.jface.text.TextSelection;
  * Utility methods for
  * 
  * @author Jeff Overbey
- * 
- * @since 3.0
  */
 public class MarkerUtil
 {

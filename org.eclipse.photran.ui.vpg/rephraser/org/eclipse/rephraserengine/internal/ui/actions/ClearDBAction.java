@@ -18,8 +18,6 @@ import org.eclipse.rephraserengine.ui.actions.VPGWindowActionDelegate;
  * Implements the Clear and Rebuild VPG Database action in the Refactor/(Debugging) menu
  *
  * @author Jeff Overbey
- *
- * @since 1.0
  */
 @SuppressWarnings("rawtypes")
 public class ClearDBAction extends VPGWindowActionDelegate

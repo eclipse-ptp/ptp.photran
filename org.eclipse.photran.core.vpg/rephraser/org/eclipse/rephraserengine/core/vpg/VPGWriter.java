@@ -14,8 +14,6 @@ package org.eclipse.rephraserengine.core.vpg;
  * Strategy object which populates a VPG database ({@link VPGDB}).
  * 
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 public abstract class VPGWriter<A, T, R extends IVPGNode<T>>
 {

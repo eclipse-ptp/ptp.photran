@@ -17,8 +17,6 @@ import org.eclipse.rephraserengine.core.vpg.VPGEdge.Classification;
  * Set of rules indicating how each type of semantic edge should be preserved in a program graph.
  *
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 public class PreservationRuleset
 {

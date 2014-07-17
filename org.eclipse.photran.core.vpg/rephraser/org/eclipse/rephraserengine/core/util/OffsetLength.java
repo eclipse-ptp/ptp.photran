@@ -18,8 +18,6 @@ package org.eclipse.rephraserengine.core.util;
  * text in a file.
  *
  * @author Jeff Overbey
- *
- * @since 1.0
  */
 public final class OffsetLength
 {
@@ -108,7 +106,6 @@ public final class OffsetLength
    /**
     * @return true iff the offset and length are both non-negative, i.e., this
     *         represents a plausible region of text
-    * @since 2.0
     */
    public boolean isValid()
    {

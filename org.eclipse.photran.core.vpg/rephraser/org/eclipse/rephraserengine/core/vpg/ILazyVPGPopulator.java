@@ -15,8 +15,6 @@ package org.eclipse.rephraserengine.core.vpg;
  * rather than computing them immediately when the file is indexed.
  * 
  * @author Jeff Overbey
- * 
- * @since 8.0
  */
 public interface ILazyVPGPopulator
 {
