@@ -11,26 +11,33 @@
 package org.eclipse.photran.internal.core.lang.linescanner;
 
 /**
- * An implementation of {@link ILookaheadLineReader} which reads lines from a String.
+ * An implementation of {@link ILookaheadLineReader} that reads lines from a String, char[] or other CharSequence.
  * 
  * @author Jeff Overbey
  */
-public final class StringLookaheadLineReader implements ILookaheadLineReader<Error>
+public final class CharSeqLookaheadLineReader implements ILookaheadLineReader<Error>
 {
-    private final String string;
+    private final CharSequence string;
 
     private int start;
 
     private int index;
 
-    public StringLookaheadLineReader(String string)
+    public CharSeqLookaheadLineReader(CharSequence string)
     {
         this.string = string;
         this.start = 0;
         this.index = 0;
     }
 
-    public String readNextLine()
+    public CharSeqLookaheadLineReader(char[] chars)
+    {
+        this.string = new CharArraySequence(chars);
+        this.start = 0;
+        this.index = 0;
+    }
+
+    public CharSequence readNextLine()
     {
         if (index >= string.length())
         {
@@ -38,17 +45,25 @@ public final class StringLookaheadLineReader implements ILookaheadLineReader<Err
         }
         else
         {
-            int nextLF = string.indexOf('\n', index) + 1;
+            int nextLF = indexOf('\n', string, index) + 1;
             if (nextLF <= 0) nextLF = string.length();
-            String result = string.substring(index, nextLF);
+            CharSequence result = string.subSequence(index, nextLF);
             index = nextLF;
             return result;
         }
     }
 
-    public String advanceAndRestart(int numChars)
+    private int indexOf(char c, CharSequence seq, int start)
     {
-        String result = string.substring(start, numChars);
+        for (int i = start, len = seq.length(); i < len; i++)
+            if (seq.charAt(i) == c)
+                return i;
+        return -1;
+    }
+
+    public CharSequence advanceAndRestart(int numChars)
+    {
+        CharSequence result = string.subSequence(start, start + numChars);
         this.start += numChars;
         this.index = start;
         return result;

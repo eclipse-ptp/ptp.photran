@@ -16,7 +16,7 @@ package org.eclipse.photran.internal.core.lang.linescanner;
  * @author Jeff Overbey
  * 
  * @see LookaheadLineReader
- * @see StringLookaheadLineReader
+ * @see CharSeqLookaheadLineReader
  * @see FortranLineScanner#scan(ILookaheadLineReader)
  */
 public interface ILookaheadLineReader<X extends Throwable>
@@ -26,9 +26,9 @@ public interface ILookaheadLineReader<X extends Throwable>
      * @return or <code>null</code>
      * @throws X
      */
-    String readNextLine() throws X;
+    CharSequence readNextLine() throws X;
 
-    String advanceAndRestart(int numChars);
+    CharSequence advanceAndRestart(int numChars);
 
     void close() throws X;
 }

@@ -27,6 +27,7 @@ public final class FortranLineScanner
         .compile("[ \t]*[Ii][ \t]*[Nn][ \t]*[Cc][ \t]*[Ll][ \t]*[Uu][ \t]*[Dd][ \t]*[Ee][ \t]*[\"']([^\r\n\"]*)[\"'][ \t]*(![^\r\n]*)?[\r\n]*"); //$NON-NLS-1$
     private static final Pattern FREE_FORM_INCLUDE_LINE = Pattern
         .compile("[ \t]*[Ii][Nn][Cc][Ll][Uu][Dd][Ee][ \t]+[\"']([^\r\n\"]*)[\"'][ \t]*(![^\r\n]*)?[\r\n]*"); //$NON-NLS-1$
+    private static final Pattern TRIGRAPH_DIRECTIVE = Pattern.compile("[ \t]*\\?\\?=.*"); //$NON-NLS-1$
 
     @SuppressWarnings("unused")
     private static final int INCLUDE_LINE_CAPTURING_GROUP_OF_FILENAME = 1;
@@ -53,12 +54,12 @@ public final class FortranLineScanner
      * statement. This is necessary to detect (the absence of) continuation lines in fixed form
      * source code.
      */
-    public final <X extends Throwable> String scan(ILookaheadLineReader<X> reader) throws X
+    public final <X extends Throwable> CharSequence scan(ILookaheadLineReader<X> reader) throws X
     {
         this.lineLength = -1;
         this.lineType = null;
 
-        String line = reader.readNextLine();
+        CharSequence line = reader.readNextLine();
         if (line == null)
         {
             this.lineLength = 0;
@@ -74,7 +75,7 @@ public final class FortranLineScanner
         }
     }
 
-    private <X extends Throwable> int checkForContinuationLines(String line, ILookaheadLineReader<X> reader) throws X
+    private <X extends Throwable> int checkForContinuationLines(CharSequence line, ILookaheadLineReader<X> reader) throws X
     {
         if (this.lineType == FortranLineType.PREPROCESSOR_DIRECTIVE)
             return checkForPreprocessorDirectiveContinuation(line, reader);
@@ -84,7 +85,7 @@ public final class FortranLineScanner
             return 0;
     }
 
-    private <X extends Throwable> int checkForPreprocessorDirectiveContinuation(String line, ILookaheadLineReader<X> reader) throws X
+    private <X extends Throwable> int checkForPreprocessorDirectiveContinuation(CharSequence line, ILookaheadLineReader<X> reader) throws X
     {
         int numberOfAdditionalCharacters = 0;
 
@@ -97,7 +98,7 @@ public final class FortranLineScanner
         return numberOfAdditionalCharacters;
     }
 
-    private <X extends Throwable> int checkForFreeFormContinuation(String line, ILookaheadLineReader<X> reader) throws X
+    private <X extends Throwable> int checkForFreeFormContinuation(CharSequence line, ILookaheadLineReader<X> reader) throws X
     {
         int numberOfAdditionalCharacters = 0;
 
@@ -120,7 +121,7 @@ public final class FortranLineScanner
         {
             // Skip comment lines
             int lengthOfComments = 0;
-            String line = reader.readNextLine();
+            CharSequence line = reader.readNextLine();
             while (line != null
                 && classify(line) == FortranLineType.COMMENT
                 && findFirstNonWhitespaceCharacter(line) != '\0')
@@ -132,7 +133,7 @@ public final class FortranLineScanner
             // Then check for continuation line
             if (line != null
                 && line.length() >= 7
-                && line.startsWith("     ") && line.charAt(5) != ' ' && line.charAt(5) != '0') //$NON-NLS-1$
+                && startsWith(line, "     ") && line.charAt(5) != ' ' && line.charAt(5) != '0') //$NON-NLS-1$
             {
                 numberOfAdditionalCharacters += lengthOfComments + line.length();
                 moreContinuationLinesPossible = true;
@@ -146,9 +147,9 @@ public final class FortranLineScanner
         return numberOfAdditionalCharacters;
     }
 
-    private FortranLineType classify(String line)
+    private FortranLineType classify(CharSequence line)
     {
-        final char firstChar = line.isEmpty() ? '\0' : line.charAt(0);
+        final char firstChar = line.length() == 0 ? '\0' : line.charAt(0);
         final char firstNonSpaceChar = findFirstNonWhitespaceCharacter(line);
 
         if (firstNonSpaceChar == '\0') // Line contains only blanks
@@ -157,21 +158,20 @@ public final class FortranLineScanner
         }
         else if (fixedForm && (firstChar == 'C' || firstChar == 'c' || firstChar == '*'))
         {
-            if (line.startsWith("      C") || line.startsWith("      c") || line.startsWith("      *")) //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            if (startsWith(line, "      C") || startsWith(line, "      c") || startsWith(line, "      *")) //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 return FortranLineType.STATEMENT; // Actually a continuation of a previous line
             else
                 return isCommentDirective(line) ? FortranLineType.COMMENT_DIRECTIVE : FortranLineType.COMMENT;
         }
         else if (firstNonSpaceChar == '!')
         {
-            if (fixedForm && line.startsWith("      !")) //$NON-NLS-1$
+            if (fixedForm && startsWith(line, "      !")) //$NON-NLS-1$
                 return FortranLineType.STATEMENT; // Actually a continuation of a previous line
             else
                 return isCommentDirective(line) ? FortranLineType.COMMENT_DIRECTIVE : FortranLineType.COMMENT;
         }
         else if (preprocessed
-            && (firstNonSpaceChar == '#' || (firstNonSpaceChar == '?' && line.trim().startsWith(
-                "??=")))) //$NON-NLS-1$
+            && (firstNonSpaceChar == '#' || (firstNonSpaceChar == '?' && TRIGRAPH_DIRECTIVE.matcher(line).matches())))
         {
             return FortranLineType.PREPROCESSOR_DIRECTIVE;
         }
@@ -184,7 +184,17 @@ public final class FortranLineScanner
         }
     }
 
-    private boolean isIncludeLine(String line)
+    private boolean startsWith(CharSequence line, CharSequence prefix)
+    {
+        if (line.length() < prefix.length()) return false;
+
+        for (int i = 0, len = prefix.length(); i < len; i++)
+            if (line.charAt(i) != prefix.charAt(i))
+                return false;
+        return true;
+    }
+
+    private boolean isIncludeLine(CharSequence line)
     {
         if (fixedForm)
             return FIXED_FORM_INCLUDE_LINE.matcher(line).matches();
@@ -192,7 +202,7 @@ public final class FortranLineScanner
             return FREE_FORM_INCLUDE_LINE.matcher(line).matches();
     }
 
-    private static final char findFirstNonWhitespaceCharacter(String string)
+    private static final char findFirstNonWhitespaceCharacter(CharSequence string)
     {
         if (string != null)
         {
@@ -205,12 +215,12 @@ public final class FortranLineScanner
         return '\0';
     }
 
-    private boolean isCommentDirective(String line)
+    private boolean isCommentDirective(CharSequence line)
     {
         return COMMENT_DIRECTIVE.matcher(line).find();
     }
 
-    private static final char findLastNonWhitespaceCharacter(String string)
+    private static final char findLastNonWhitespaceCharacter(CharSequence string)
     {
         if (string != null)
         {
@@ -223,7 +233,7 @@ public final class FortranLineScanner
         return '\0';
     }
 
-    private boolean isContinued(String line)
+    private boolean isContinued(CharSequence line)
     {
         if (line == null) return false;
 
@@ -266,7 +276,7 @@ public final class FortranLineScanner
     public final int getLineLength()
     {
         if (lineLength < 0)
-            throw new IllegalStateException("Must call #readNextLine before calling #getLineLength"); //$NON-NLS-1$
+            throw new IllegalStateException("Must call #scan before calling #getLineLength"); //$NON-NLS-1$
         else
             return lineLength;
     }
@@ -274,7 +284,7 @@ public final class FortranLineScanner
     public final FortranLineType getLineType()
     {
         if (lineType == null)
-            throw new IllegalStateException("Must call #readNextLine before calling #getLineType"); //$NON-NLS-1$
+            throw new IllegalStateException("Must call #scan before calling #getLineType"); //$NON-NLS-1$
         else
             return lineType;
     }

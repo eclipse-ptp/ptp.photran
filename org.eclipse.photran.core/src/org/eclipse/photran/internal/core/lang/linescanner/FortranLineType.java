@@ -24,6 +24,13 @@ package org.eclipse.photran.internal.core.lang.linescanner;
  */
 public enum FortranLineType {
     /**
+     * A blank line.
+     * <p>
+     * A blank line consists of zero or more whitespace characters.
+     */
+    BLANK,
+
+    /**
      * A Fortran comment.
      * <p>
      * Comments usually start with !, although in fixed form they may be indicated by a C, c, or *

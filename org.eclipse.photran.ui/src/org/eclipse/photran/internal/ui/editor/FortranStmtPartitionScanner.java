@@ -130,34 +130,6 @@ public class FortranStmtPartitionScanner implements IPartitionTokenScanner
         return editor == null ? true : editor.isCPreprocessed();
     }
 
-    private final class DocumentLookaheadLineReader implements ILookaheadLineReader<BadLocationException>
-    {
-        private int offset = startOffset;
-
-        public String readNextLine() throws BadLocationException
-        {
-            if (offset >= document.getLength()) return null;
-
-            int lineNumber = document.getLineOfOffset(offset);
-            IRegion line = document.getLineInformation(lineNumber);
-            String delimiter = document.getLineDelimiter(lineNumber);
-            if (delimiter == null) delimiter = ""; //$NON-NLS-1$
-            String result = document.get(line.getOffset(), line.getLength()) + delimiter;
-            offset += result.length();
-            return result;
-        }
-
-        public String advanceAndRestart(int numChars)
-        {
-            offset = startOffset + numChars; // Pointless, actually, since this is never reused
-            return null; // Return value (passed back via FortranLineScanner#scan) not used above
-        }
-
-        public void close()
-        {
-        }
-    }
-
     @Override
     public int getTokenOffset()
     {
@@ -168,5 +140,33 @@ public class FortranStmtPartitionScanner implements IPartitionTokenScanner
     public int getTokenLength()
     {
         return tokenLength;
+    }
+
+    private final class DocumentLookaheadLineReader implements ILookaheadLineReader<BadLocationException>
+    {
+        private int offset = startOffset;
+
+        public CharSequence readNextLine() throws BadLocationException
+        {
+            if (offset >= document.getLength()) return null;
+
+            int lineNumber = document.getLineOfOffset(offset);
+            IRegion line = document.getLineInformation(lineNumber);
+            String delimiter = document.getLineDelimiter(lineNumber);
+            if (delimiter == null) delimiter = ""; //$NON-NLS-1$
+            CharSequence result = new IDocumentCharSequence(document, line.getOffset(), line.getOffset() + line.getLength() + delimiter.length());
+            offset += result.length();
+            return result;
+        }
+
+        public CharSequence advanceAndRestart(int numChars)
+        {
+            offset = startOffset + numChars; // Pointless, actually, since this is never reused
+            return null; // Return value (passed back via FortranLineScanner#scan) not used above
+        }
+
+        public void close()
+        {
+        }
     }
 }

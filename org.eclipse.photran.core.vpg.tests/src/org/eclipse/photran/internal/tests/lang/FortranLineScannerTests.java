@@ -10,12 +10,18 @@
  *******************************************************************************/
 package org.eclipse.photran.internal.tests.lang;
 
-import static org.eclipse.photran.internal.core.lang.linescanner.FortranLineType.*;
+import static org.eclipse.photran.internal.core.lang.linescanner.FortranLineType.COMMENT;
+import static org.eclipse.photran.internal.core.lang.linescanner.FortranLineType.INCLUDE_LINE;
+import static org.eclipse.photran.internal.core.lang.linescanner.FortranLineType.PREPROCESSOR_DIRECTIVE;
+import static org.eclipse.photran.internal.core.lang.linescanner.FortranLineType.STATEMENT;
+
+import java.io.IOException;
+
 import junit.framework.TestCase;
 
+import org.eclipse.photran.internal.core.lang.linescanner.CharSeqLookaheadLineReader;
 import org.eclipse.photran.internal.core.lang.linescanner.FortranLineScanner;
 import org.eclipse.photran.internal.core.lang.linescanner.FortranLineType;
-import org.eclipse.photran.internal.core.lang.linescanner.StringLookaheadLineReader;
 
 /**
  * Unit tests for {@link FortranLineScanner}.
@@ -28,7 +34,7 @@ public class FortranLineScannerTests extends TestCase
 
     private boolean preprocessed;
 
-    private void freeFormTests()
+    private void freeFormTests() throws IOException
     {
         //check(COMMENT, "");
         check(COMMENT, " ");
@@ -59,7 +65,7 @@ public class FortranLineScannerTests extends TestCase
         check(STATEMENT, "print *, \"Hello\"");
     }
 
-    public void testFreeFormPreprocessed()
+    public void testFreeFormPreprocessed() throws IOException
     {
         fixedForm = false;
         preprocessed = true;
@@ -69,9 +75,11 @@ public class FortranLineScannerTests extends TestCase
         check(PREPROCESSOR_DIRECTIVE, "#error");
         check(PREPROCESSOR_DIRECTIVE, " #  include  \"mpif.h\"");
         check(PREPROCESSOR_DIRECTIVE, "  ??= include  \"mpif.h\"");
+        check(PREPROCESSOR_DIRECTIVE, " #  include  \"C:\\Windows\\Windows.h\"");
+        check(PREPROCESSOR_DIRECTIVE, " #  include  \"C:\\Windows\\Windows.h\"\n!OK", " #  include  \"C:\\Windows\\Windows.h\"\n");
     }
 
-    public void testFreeFormUnpreprocessed()
+    public void testFreeFormUnpreprocessed() throws IOException
     {
         fixedForm = false;
         preprocessed = false;
@@ -83,7 +91,7 @@ public class FortranLineScannerTests extends TestCase
         check(STATEMENT, "  ??= include  \"mpif.h\"");
     }
 
-    private void fixedFormTests()
+    private void fixedFormTests() throws IOException
     {
         //check(COMMENT, "");
         check(COMMENT, " ");
@@ -142,7 +150,7 @@ public class FortranLineScannerTests extends TestCase
         check(STATEMENT, "print *, \"Hello\"");
     }
 
-    public void testFixedFormPreprocessed()
+    public void testFixedFormPreprocessed() throws IOException
     {
         fixedForm = true;
         preprocessed = true;
@@ -154,7 +162,7 @@ public class FortranLineScannerTests extends TestCase
         check(PREPROCESSOR_DIRECTIVE, "  ??= include  \"mpif.h\"");
     }
 
-    public void testFixedFormUnpreprocessed()
+    public void testFixedFormUnpreprocessed() throws IOException
     {
         fixedForm = true;
         preprocessed = false;
@@ -166,7 +174,7 @@ public class FortranLineScannerTests extends TestCase
         check(STATEMENT, "  ??= include  \"mpif.h\"");
     }
 
-    public void testPreprocessorContinuations()
+    public void testPreprocessorContinuations() throws IOException
     {
         fixedForm = false;
         preprocessed = true;
@@ -179,7 +187,7 @@ public class FortranLineScannerTests extends TestCase
             "print \"Hel\\\n");
     }
 
-    public void testFreeFormContinuations()
+    public void testFreeFormContinuations() throws IOException
     {
         fixedForm = false;
         preprocessed = false;
@@ -214,7 +222,7 @@ public class FortranLineScannerTests extends TestCase
         check(STATEMENT, "print *, & \n"); // No continuation line available
     }
 
-    public void testFixedFormContinuations()
+    public void testFixedFormContinuations() throws IOException
     {
         fixedForm = true;
         preprocessed = false;
@@ -236,21 +244,16 @@ public class FortranLineScannerTests extends TestCase
             "      if (a < b)\n"); // No continuation after comment
     }
 
-    private void check(FortranLineType expectedType, String string)
+    private void check(FortranLineType expectedType, String string) throws IOException
     {
         check(expectedType, string, string);
     }
 
     private void check(FortranLineType expectedType, String string, String expectedStmt)
     {
-        FortranLineScanner scanner = createScanner();
-        String actualStmt = scanner.scan(new StringLookaheadLineReader(string));
+        FortranLineScanner scanner = new FortranLineScanner(fixedForm, preprocessed);
+        CharSequence actualStmt = scanner.scan(new CharSeqLookaheadLineReader(string));
         assertEquals(expectedType, scanner.getLineType());
         assertEquals(expectedStmt, actualStmt);
-    }
-
-    private FortranLineScanner createScanner()
-    {
-        return new FortranLineScanner(fixedForm, preprocessed);
     }
 }
