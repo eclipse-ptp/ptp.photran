@@ -11,6 +11,8 @@
 package org.eclipse.photran.internal.core.sourceform;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +43,15 @@ import org.eclipse.photran.internal.core.FortranCorePlugin;
 public final class SourceForm
 {
     private static final String SOURCE_FORM_EXTENSION_POINT_ID = "org.eclipse.photran.core.sourceForms"; //$NON-NLS-1$
+
+    // This allows Photran to function, at least minimally, if no source forms are defined (e.g., VPG plug-ins disabled)
+    private static ISourceForm fallbackNullSourceForm = new ISourceForm()
+    {
+        public boolean isFixedForm() { return false; }
+        public boolean isCPreprocessed() { return false; }
+        public <T> T createLexer(Reader in, IFile file, String filename, boolean accumulateWhitetext) throws IOException { return null; }
+        public ISourceForm configuredWith(Object data) { return this; }
+    };
 
     private SourceForm() {;}
 
@@ -127,12 +138,20 @@ public final class SourceForm
     {
         try
         {
-            return (ISourceForm)findDefaultSourceFormExtension().createExecutableExtension("class"); //$NON-NLS-1$
+            IConfigurationElement config = findDefaultSourceFormExtension();
+            if (config != null)
+            {
+                return (ISourceForm)config.createExecutableExtension("class"); //$NON-NLS-1$
+            }
+            else
+            {
+                return fallbackNullSourceForm;
+            }
         }
         catch (CoreException e)
         {
             e.printStackTrace();
-            return null;
+            return fallbackNullSourceForm;
         }
     }
 
@@ -141,8 +160,8 @@ public final class SourceForm
         for (IConfigurationElement config : allSourceFormConfigs())
             if (isDefaultHandler(config))
                 return config;
-        
-        throw new IllegalStateException("No default source form defined"); //$NON-NLS-1$
+
+        return null;
     }
 
     private static boolean isDefaultHandler(IConfigurationElement config)
@@ -197,7 +216,10 @@ public final class SourceForm
 
     private static String nameOf(IConfigurationElement config)
     {
-        return config.getAttribute("name"); //$NON-NLS-1$
+        if (config != null)
+            return config.getAttribute("name"); //$NON-NLS-1$
+        else
+            return null;
     }
 
     /**
