@@ -310,6 +310,12 @@ public class Messages extends NLS
 
     public static String InterchangeLoopsRefactoring_UncheckedTransNotGuaranteedToPreserve;
 
+    public static String IntroduceCallTreeRefactoring_CannotParse;
+
+    public static String IntroduceCallTreeRefactoring_Name;
+
+    public static String IntroduceCallTreeRefactoring_OnLine;
+
     public static String IntroImplicitNoneRefactoring_Name;
 
     public static String IntroImplicitNoneRefactoring_SelectedFileCannotBeParsed;

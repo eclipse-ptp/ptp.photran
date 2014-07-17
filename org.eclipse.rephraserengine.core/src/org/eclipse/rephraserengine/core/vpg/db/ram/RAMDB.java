@@ -207,11 +207,21 @@ public abstract class RAMDB<A, T, R extends IVPGNode<T>>
     {
         File tempFile = File.createTempFile("rephraser-tmp", "db"); //$NON-NLS-1$ //$NON-NLS-2$
         tempFile.deleteOnExit();
-        FileChannel from = new FileInputStream(orig).getChannel();
-        FileChannel to = new FileOutputStream(tempFile).getChannel();
-        to.transferFrom(from, 0, from.size());
-        from.close();
-        to.close();
+        FileInputStream fromFile = new FileInputStream(orig);
+        FileOutputStream toFile = new FileOutputStream(tempFile);
+        FileChannel from = fromFile.getChannel();
+        FileChannel to = toFile.getChannel();
+        try
+        {
+            to.transferFrom(from, 0, from.size());
+        }
+        finally
+        {
+            to.close();
+            from.close();
+            toFile.close();
+            fromFile.close();
+        }
         return tempFile;
     }
 

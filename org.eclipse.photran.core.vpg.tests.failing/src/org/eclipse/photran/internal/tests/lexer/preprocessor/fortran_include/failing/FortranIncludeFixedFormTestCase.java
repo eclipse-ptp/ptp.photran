@@ -8,7 +8,7 @@
  * Contributors:
  *    UIUC - Initial API and implementation
  *******************************************************************************/
-package org.eclipse.photran.internal.tests.lexer.preprocessor.fortran_include;
+package org.eclipse.photran.internal.tests.lexer.preprocessor.fortran_include.failing;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.photran.core.IFortranAST;
 import org.eclipse.photran.internal.core.refactoring.infrastructure.SourcePrinter;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.photran.internal.tests.Activator;
+import org.eclipse.photran.internal.tests.failing.Activator;
 import org.eclipse.photran.internal.tests.PhotranWorkspaceTestCase;
 
 /**

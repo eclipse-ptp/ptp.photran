@@ -10,9 +10,7 @@
  *******************************************************************************/
 package org.eclipse.photran.internal.core.lexer.preprocessor.fortran_include;
 
-
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Reader;
 
 import org.eclipse.core.resources.IFile;

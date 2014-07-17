@@ -30,7 +30,6 @@ import org.eclipse.photran.internal.core.parser.ASTNamedConstantDefNode;
 import org.eclipse.photran.internal.core.parser.ASTObjectNameNode;
 import org.eclipse.photran.internal.core.parser.ASTSubroutineParNode;
 import org.eclipse.photran.internal.core.parser.ASTVarOrFnRefNode;
-import org.eclipse.photran.internal.core.parser.GenericASTVisitor;
 import org.eclipse.photran.internal.core.parser.IASTNode;
 import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranResourceRefactoring;
 
