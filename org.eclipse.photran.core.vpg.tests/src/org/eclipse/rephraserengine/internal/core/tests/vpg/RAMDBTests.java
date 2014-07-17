@@ -88,6 +88,7 @@ public class RAMDBTests extends TestCase
     public void testDependencies() throws CoreException
     {
         assertNotNull(db);
+        this.db.clearDatabase();
         assertNotNull(db.dependencies());
         
         VPGDependency d1 = new VPGDependency("A.txt", "B.txt");
@@ -121,6 +122,7 @@ public class RAMDBTests extends TestCase
     public void testEdges() throws CoreException
     {
         assertNotNull(db);
+        this.db.clearDatabase();
         assertNotNull(db.outgoingEdges());
         
         VPGEdge e1 = new VPGEdge(new TestTokenRef(db, "C.txt", 0, 0), new TestTokenRef(db, "D.txt", 0, 0), Integer.MIN_VALUE);
@@ -151,6 +153,7 @@ public class RAMDBTests extends TestCase
     public void testAnnotations() throws CoreException
     {
         assertNotNull(db);
+        this.db.clearDatabase();
         assertNotNull(db.annotations());
         
         //SET ANNOTATION
@@ -200,16 +203,8 @@ public class RAMDBTests extends TestCase
     
     public void testFiles()
     {
-        //reset the database for convenience
-        try
-        {
-            this.setUp();
-        }catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-       
         assertNotNull(db);
+        this.db.clearDatabase();
         assertNotNull(db.files());
        
         //MODIFICATION STAMP
@@ -267,10 +262,8 @@ public class RAMDBTests extends TestCase
     
     public void testFlush() throws Exception
     {
-        //reset the database for convenience
-        this.setUp();
-       
         assertNotNull(db);
+        this.db.clearDatabase();
         assertNotNull(db.files());
         assertNotNull(db.dependencies());
         assertNotNull(db.outgoingEdges());
