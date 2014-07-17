@@ -692,18 +692,6 @@
    <!-- Debugging Actions in Refactoring Menu -->
    <!--=======================================-->
 
-   <!-- Contribution to the Rephraser Engine UI -->
-   <!--     This will automatically add some actions to the (Debugging) sub-menu of the Refactor -->
-   <!--     menu in the menu bar, such as Display VPG Database, Refresh VPG Database, etc.       -->
-   <!--     All of these actions are language-independent.                                       -->
-   <extension
-         point="org.eclipse.photran.ui.vpg.internal.vpg">
-      <vpg
-         id="org.eclipse.photran.ui.vpg"
-         name="Fortran"
-         class="org.eclipse.photran.internal.ui.vpg.PhotranVPGContribution" />
-   </extension>
-
    <!-- Fortran-specific debugging actions -->
    <!--     These actions (e.g., Display Symbol Table and Resolve INTERFACE Binding) are  -->
    <!--     Fortran-specific, but they are also contributed to the Refactor > (Debugging) -->
@@ -978,11 +966,6 @@
   </extension>
 
 <!-- VPG COMPONENT - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-   <!--===============================-->
-   <!-- VPG Extension Point -->
-   <!--===============================-->
-   <extension-point id="org.eclipse.photran.ui.vpg.internal.vpg" name="%rextension-point.name" schema="schema/vpg.exsd" />
 
    <!--=======================================-->
    <!-- Debugging Actions in Refactoring Menu -->
