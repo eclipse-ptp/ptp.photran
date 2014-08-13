@@ -27,7 +27,7 @@ Photran & Date & Platform & CDT & Notes \\
 8.0.0 & Jun 2012 & 4.2     & 8.1.0 & Juno release train \\
 8.1.0 & Jun 2013 & 4.3     & 8.2.0 & Kepler release train \\
 8.2.0 & Jun 2014 & 4.4     & 8.4.0 & Luna release train \\
-8.3.0 & Jun 2015 & 4.5     & ?     & (PLANNED) \\
+9.0.0 & Jun 2015 & 4.5     & ?     & Mars release train (PLANNED) \\
 %Vers & Mon Year & Platfrm & CDT   & \\
 \end{tabular}
 }
