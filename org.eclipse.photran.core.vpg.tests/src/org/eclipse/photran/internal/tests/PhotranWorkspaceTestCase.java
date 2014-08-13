@@ -43,8 +43,8 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextSelection;
 import org.eclipse.photran.internal.core.FProjectNature;
 import org.eclipse.photran.internal.core.util.LineCol;
+import org.eclipse.photran.internal.core.util.Spawner;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.util.Spawner;
 
 /**
  * Base class for a test case that imports files into the runtime workspace and then operates on the

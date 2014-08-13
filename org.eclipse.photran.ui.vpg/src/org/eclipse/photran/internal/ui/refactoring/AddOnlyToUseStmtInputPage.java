@@ -17,7 +17,6 @@ import java.util.Set;
 
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.photran.internal.core.refactoring.AddOnlyToUseStmtRefactoring;
-import org.eclipse.rephraserengine.ui.refactoring.CustomUserInputPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridLayout;

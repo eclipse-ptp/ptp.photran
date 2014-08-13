@@ -19,7 +19,7 @@ import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.parser.ASTSubroutineParNode;
 import org.eclipse.photran.internal.core.refactoring.AddSubroutineParameterRefactoring;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring;
+import org.eclipse.photran.internal.core.vpg.refactoring.VPGRefactoring;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;

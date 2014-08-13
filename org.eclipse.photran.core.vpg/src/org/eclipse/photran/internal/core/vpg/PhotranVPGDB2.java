@@ -7,8 +7,7 @@ import java.io.ObjectInputStream;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.photran.core.IFortranAST;
 import org.eclipse.photran.internal.core.lexer.Token;
-import org.eclipse.rephraserengine.core.vpg.VPGLog;
-import org.eclipse.rephraserengine.core.vpg.db.ram.RAMDB;
+import org.eclipse.photran.internal.core.vpg.db.ram.RAMDB;
 
 /**
  * Photran VPG database implemented as a persisted in-memory database.

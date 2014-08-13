@@ -48,7 +48,7 @@ public class RemovePauseStmtRefactoring extends FortranEditorRefactoring
      */
     @Override
     protected void doCheckInitialConditions(RefactoringStatus status, IProgressMonitor pm)
-        throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+        throws PreconditionFailure
     {
         ensureProjectHasRefactoringEnabled(status);
 
@@ -63,7 +63,7 @@ public class RemovePauseStmtRefactoring extends FortranEditorRefactoring
      */
     @Override
     protected void doCheckFinalConditions(RefactoringStatus status, IProgressMonitor pm)
-        throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+        throws PreconditionFailure
     {
     }
 

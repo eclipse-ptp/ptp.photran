@@ -33,7 +33,7 @@ import org.eclipse.photran.internal.core.parser.IASTListNode;
 import org.eclipse.photran.internal.core.parser.IProgramUnit;
 import org.eclipse.photran.internal.core.preferences.FortranPreferences;
 import org.eclipse.photran.internal.core.properties.SearchPathProperties;
-import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPG;
+import org.eclipse.photran.internal.core.vpg.eclipse.EclipseVPG;
 
 /**
  * Photran's Virtual Program Graph.

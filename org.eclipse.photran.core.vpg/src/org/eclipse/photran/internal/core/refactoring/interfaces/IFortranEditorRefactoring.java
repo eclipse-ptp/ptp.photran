@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.photran.internal.core.refactoring.interfaces;
 
+import org.eclipse.photran.internal.core.refactoring.IEditorRefactoring;
 import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranEditorRefactoring;
-import org.eclipse.rephraserengine.core.refactorings.IEditorRefactoring;
 
 /**
  * This is the interface implemented by all refactorings that subclass from

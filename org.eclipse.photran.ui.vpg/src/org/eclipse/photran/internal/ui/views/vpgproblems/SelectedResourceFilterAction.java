@@ -20,7 +20,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.rephraserengine.ui.WorkbenchSelectionInfo;
+import org.eclipse.photran.internal.ui.WorkbenchSelectionInfo;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 

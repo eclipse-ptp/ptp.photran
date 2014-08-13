@@ -25,8 +25,8 @@ import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.parser.IExpr;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
 import org.eclipse.photran.internal.tests.Activator;
+import org.eclipse.photran.internal.tests.GeneralTestSuiteFromMarkers;
 import org.eclipse.photran.internal.tests.PhotranWorkspaceTestCase;
-import org.eclipse.rephraserengine.testing.junit3.GeneralTestSuiteFromMarkers;
 
 /**
  * Unit tests for the type checker.

@@ -17,8 +17,6 @@ import java.io.IOException;
 
 import junit.framework.Test;
 
-import org.eclipse.rephraserengine.testing.junit3.GeneralTestSuiteFromFiles;
-
 /**
  * Base class for a test suite that contains one test for each file in a directory.
  * <p>

@@ -23,8 +23,8 @@ import org.eclipse.photran.internal.core.analysis.loops.ASTVisitorWithLoops;
 import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
 import org.eclipse.photran.internal.tests.failing.Activator;
+import org.eclipse.photran.internal.tests.GeneralTestSuiteFromMarkers;
 import org.eclipse.photran.internal.tests.PhotranWorkspaceTestCase;
-import org.eclipse.rephraserengine.testing.junit3.GeneralTestSuiteFromMarkers;
 
 /**
  * Test Suite for variable access marking (performed by the <code>ReferenceCollector</code>).

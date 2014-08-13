@@ -24,6 +24,8 @@ public class Messages extends NLS
 {
     private static final String BUNDLE_NAME = "org.eclipse.photran.internal.ui.refactoring.messages"; //$NON-NLS-1$
 
+    public static String CustomUserInputPage_RefactoringTitle;
+
     public static String RemoveAssignGotoInputPage_ClickOKMessage;
 
     public static String RemoveAssignGotoInputPage_Yes;

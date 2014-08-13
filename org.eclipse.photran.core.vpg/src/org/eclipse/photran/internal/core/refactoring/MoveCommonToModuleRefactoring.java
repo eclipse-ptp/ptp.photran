@@ -41,7 +41,6 @@ import org.eclipse.photran.internal.core.reindenter.Reindenter;
 import org.eclipse.photran.internal.core.reindenter.Reindenter.Strategy;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.refactorings.UserInputString;
 
 /**
  * Refactoring to move a COMMON block into a module.

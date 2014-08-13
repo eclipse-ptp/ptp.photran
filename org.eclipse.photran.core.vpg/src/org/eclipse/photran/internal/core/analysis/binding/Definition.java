@@ -48,10 +48,10 @@ import org.eclipse.photran.internal.core.parser.IASTNode;
 import org.eclipse.photran.internal.core.parser.ISpecificationStmt;
 import org.eclipse.photran.internal.core.vpg.EdgeType;
 import org.eclipse.photran.internal.core.vpg.IPhotranSerializable;
+import org.eclipse.photran.internal.core.vpg.IVPGNode;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
 import org.eclipse.photran.internal.core.vpg.PhotranVPGSerializer;
-import org.eclipse.rephraserengine.core.vpg.IVPGNode;
 
 /**
  * A declaration of a variable, subprogram, main program, interface,

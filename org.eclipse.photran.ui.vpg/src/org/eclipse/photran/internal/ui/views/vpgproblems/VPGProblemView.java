@@ -8,7 +8,6 @@
  * Contributors:
  *    UIUC - Initial API and implementation
  *******************************************************************************/
-
 package org.eclipse.photran.internal.ui.views.vpgproblems;
 
 import java.util.List;
@@ -30,8 +29,8 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.vpg.VPGLog;
-import org.eclipse.rephraserengine.core.vpg.eclipse.VPGSchedulingRule;
+import org.eclipse.photran.internal.core.vpg.VPGLog;
+import org.eclipse.photran.internal.core.vpg.eclipse.VPGSchedulingRule;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.events.MouseAdapter;
@@ -55,10 +54,10 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
  * for posting the tutorial
  * (http://www.vogella.de/articles/EclipseJFaceTable/aritcle.html)
  * <p>
- * Based on samples provided in The Java Developer’s Guide to Eclipse,
+ * Based on samples provided in The Java Developer's Guide to Eclipse,
  * Chapter 18 (http://www.jdg2e.com/ch18.views/doc/index.htm and
  * http://www.jdg2e.com/jdg2e_CD_for_eclipse321/plug-in_development/examples/com.ibm.jdg2e.view.marker/src-marker/com/ibm/jdg2e/view/marker/MarkerView.java)
- * © Copyright International Business Machines Corporation, 2003, 2004, 2006.
+ * (C) Copyright International Business Machines Corporation, 2003, 2004, 2006.
  * All Rights Reserved.
  * Code or samples provided therein are provided without warranty of any kind.
  *
@@ -66,7 +65,6 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
  * @author Esfar Huq, Rui Wang - Replaced setSorter() with setComparator(); added add'l filtering
  * @author Jeff Overbey - Refactoring/cleanup
  */
-
 public class VPGProblemView extends ViewPart implements VPGLog.ILogListener
 {
     static enum VPGViewColumn

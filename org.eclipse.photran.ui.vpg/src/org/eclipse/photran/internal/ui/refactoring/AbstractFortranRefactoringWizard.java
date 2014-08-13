@@ -14,7 +14,7 @@ import org.eclipse.ltk.ui.refactoring.RefactoringWizard;
 import org.eclipse.photran.core.IFortranAST;
 import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring;
+import org.eclipse.photran.internal.core.vpg.refactoring.VPGRefactoring;
 
 /**
  * This is the base class for most (all?) of the wizard dialogs for Fortran refactorings.

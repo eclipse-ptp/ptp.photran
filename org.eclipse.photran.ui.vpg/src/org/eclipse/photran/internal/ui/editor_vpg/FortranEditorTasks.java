@@ -33,10 +33,10 @@ import org.eclipse.photran.internal.core.properties.SearchPathProperties;
 import org.eclipse.photran.internal.core.sourceform.ISourceForm;
 import org.eclipse.photran.internal.core.sourceform.SourceForm;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
+import org.eclipse.photran.internal.core.vpg.eclipse.VPGJob;
+import org.eclipse.photran.internal.core.vpg.eclipse.VPGSchedulingRule;
 import org.eclipse.photran.internal.ui.FortranUIPlugin;
 import org.eclipse.photran.internal.ui.editor.FortranEditor;
-import org.eclipse.rephraserengine.core.vpg.eclipse.VPGJob;
-import org.eclipse.rephraserengine.core.vpg.eclipse.VPGSchedulingRule;
 
 /**
  * Dispatcher for a set of tasks to be run by the Fortran editor when its contents change (and

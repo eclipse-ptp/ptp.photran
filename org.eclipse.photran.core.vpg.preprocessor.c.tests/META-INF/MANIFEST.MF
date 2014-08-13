@@ -13,3 +13,4 @@ Require-Bundle: org.eclipse.cdt.core,
  org.eclipse.photran.core.vpg.tests,
  org.junit,
  org.eclipse.core.resources
+Import-Package: org.eclipse.photran.internal.tests

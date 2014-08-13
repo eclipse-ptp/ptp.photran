@@ -20,6 +20,8 @@ public class Messages extends NLS
     private static final String BUNDLE_NAME = "org.eclipse.photran.internal.core.util.messages"; //$NON-NLS-1$
 
     public static String LineCol_Description;
+    public static String Spawner_ProcessExitedAbnormally;
+
     static
     {
         // initialize resource bundle

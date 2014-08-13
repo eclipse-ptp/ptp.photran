@@ -14,9 +14,9 @@ import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.parser.GenericASTVisitor;
 import org.eclipse.photran.internal.core.parser.IASTNode;
-import org.eclipse.rephraserengine.core.preservation.PreservationAnalysis;
-import org.eclipse.rephraserengine.core.preservation.ResetOffsetLength;
-import org.eclipse.rephraserengine.core.util.OffsetLength;
+import org.eclipse.photran.internal.core.preservation.PreservationAnalysis;
+import org.eclipse.photran.internal.core.preservation.ResetOffsetLength;
+import org.eclipse.photran.internal.core.util.OffsetLength;
 
 /**
  * An adapter factory (registered in plugin.xml) that adapts {@link IASTNode} objects to:

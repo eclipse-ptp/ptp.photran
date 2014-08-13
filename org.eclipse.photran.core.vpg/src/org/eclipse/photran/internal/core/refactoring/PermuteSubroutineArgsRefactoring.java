@@ -83,7 +83,7 @@ public class PermuteSubroutineArgsRefactoring extends FortranEditorRefactoring
 
     @Override
     protected void doCheckFinalConditions(RefactoringStatus status, IProgressMonitor pm)
-    throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+    throws PreconditionFailure
     {
 
     }

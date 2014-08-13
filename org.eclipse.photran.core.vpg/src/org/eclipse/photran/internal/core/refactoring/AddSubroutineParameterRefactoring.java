@@ -145,17 +145,8 @@ public class AddSubroutineParameterRefactoring extends FortranEditorRefactoring
         defaultValue = defValue;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring#doCheckInitialConditions(
-     * org.eclipse.ltk.core.refactoring.RefactoringStatus,
-     * org.eclipse.core.runtime.IProgressMonitor)
-     */
     @Override
-    protected void doCheckInitialConditions(RefactoringStatus status, IProgressMonitor pm)
-        throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+    protected void doCheckInitialConditions(RefactoringStatus status, IProgressMonitor pm) throws PreconditionFailure
     {
         ensureProjectHasRefactoringEnabled(status);
 
@@ -172,8 +163,7 @@ public class AddSubroutineParameterRefactoring extends FortranEditorRefactoring
      * By looking at the AST tree, starting at the node supplied to the refactoring as the selected
      * node, this method determines if a subroutine node has been selected or not.
      */
-    private void ensureSubroutineIsSelected()
-        throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+    private void ensureSubroutineIsSelected() throws PreconditionFailure
     {
         IASTNode temporaryNode = findEnclosingNode(astOfFileInEditor, selectedRegionInEditor);
 
@@ -204,16 +194,9 @@ public class AddSubroutineParameterRefactoring extends FortranEditorRefactoring
         return true;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring#doCheckFinalConditions(org
-     * .eclipse.ltk.core.refactoring.RefactoringStatus, org.eclipse.core.runtime.IProgressMonitor)
-     */
     @Override
     protected void doCheckFinalConditions(RefactoringStatus status, IProgressMonitor pm)
-        throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+        throws PreconditionFailure
     {
         ensureDeclarationIsValid();
 
@@ -234,7 +217,7 @@ public class AddSubroutineParameterRefactoring extends FortranEditorRefactoring
      * the default value is not a variable name beginning with a number.
      */
     private void ensureDefaultValueIsValid()
-        throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+        throws PreconditionFailure
     {
         if (defaultValue == null || defaultValue.equals("") || //$NON-NLS-1$
             isWhiteSpace(defaultValue) || isVariableNameBeginningWithNumber(defaultValue)
@@ -324,7 +307,7 @@ public class AddSubroutineParameterRefactoring extends FortranEditorRefactoring
      * size of the list, and if not, fails the refactoring.
      */
     private void ensurePositionIsValid()
-        throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+        throws PreconditionFailure
     {
         if (position > oldParameterList.size() || position < 0)
             fail(Messages.AddSubroutineParameterRefactoring_InvalidParameterPosition);
@@ -335,7 +318,7 @@ public class AddSubroutineParameterRefactoring extends FortranEditorRefactoring
      * parser. If this node is returned as an error node, the refactoring fails.
      */
     private void ensureDeclarationIsValid()
-        throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+        throws PreconditionFailure
     {
         IBodyConstruct decl = parseLiteralStatementNoFail(declaration);
         if (decl == null || !(decl instanceof ASTTypeDeclarationStmtNode))
@@ -386,13 +369,6 @@ public class AddSubroutineParameterRefactoring extends FortranEditorRefactoring
         return str.replace(" ", "").replace("\t", "").equals(""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring#doCreateChange(org.eclipse
-     * .core.runtime.IProgressMonitor)
-     */
     @Override
     protected void doCreateChange(IProgressMonitor pm) throws CoreException,
         OperationCanceledException

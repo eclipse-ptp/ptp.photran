@@ -21,8 +21,8 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.photran.core.IFortranAST;
+import org.eclipse.photran.internal.core.refactoring.IEditorRefactoring;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.refactorings.IEditorRefactoring;
 
 /**
  * This is a base class for all Photran refactorings that apply to a single file

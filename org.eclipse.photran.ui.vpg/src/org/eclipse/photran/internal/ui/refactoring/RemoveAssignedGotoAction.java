@@ -20,7 +20,7 @@ import org.eclipse.photran.core.IFortranAST;
 import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.refactoring.RemoveAssignedGotoRefactoring;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring;
+import org.eclipse.photran.internal.core.vpg.refactoring.VPGRefactoring;
 import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 

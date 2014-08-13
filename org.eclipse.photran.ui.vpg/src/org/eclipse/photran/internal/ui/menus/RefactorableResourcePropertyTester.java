@@ -1,0 +1,27 @@
+/*******************************************************************************
+ * Copyright (c) 2011 University of Illinois at Urbana-Champaign and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    UIUC - Initial API and implementation
+ *******************************************************************************/
+package org.eclipse.photran.internal.ui.menus;
+
+import org.eclipse.core.expressions.PropertyTester;
+
+/**
+ * A property tester that returns true iff the Refactor menu for the current selection is non-empty.
+ * 
+ * @author Jeff Overbey
+ */
+public class RefactorableResourcePropertyTester extends PropertyTester
+{
+    public boolean test(Object receiver, String property, Object[] args, Object expectedValue)
+    {
+        // This is run every time the workbench selection changes, so it needs to be very fast
+        return !new RefactorMenu().isEmpty();
+    }
+}

@@ -22,8 +22,6 @@ import org.eclipse.photran.internal.core.parser.IASTListNode;
 import org.eclipse.photran.internal.core.parser.IASTNode;
 import org.eclipse.photran.internal.core.parser.IExpr;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.analysis.dependence.DependenceTestFailure;
-import org.eclipse.rephraserengine.core.analysis.dependence.IVariableReference;
 
 /**
  * Describes a reference to a scalar variable or a reference into an array variable where

@@ -18,11 +18,8 @@ import org.eclipse.photran.internal.core.Activator;
 import org.eclipse.photran.internal.core.FortranCorePlugin;
 import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.preferences.FortranPreferences;
-import org.eclipse.rephraserengine.core.vpg.IVPGComponentFactory;
-import org.eclipse.rephraserengine.core.vpg.VPGDB;
-import org.eclipse.rephraserengine.core.vpg.VPGLog;
-import org.eclipse.rephraserengine.core.vpg.db.profiling.ProfilingDB;
-import org.eclipse.rephraserengine.core.vpg.eclipse.IEclipseVPGComponentFactory;
+import org.eclipse.photran.internal.core.vpg.db.profiling.ProfilingDB;
+import org.eclipse.photran.internal.core.vpg.eclipse.IEclipseVPGComponentFactory;
 
 /**
  * Photran's {@link IVPGComponentFactory}, which creates the log, database, etc. used by {@link PhotranVPG}.

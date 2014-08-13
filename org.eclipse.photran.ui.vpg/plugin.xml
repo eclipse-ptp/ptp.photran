@@ -850,9 +850,9 @@
    <extension
          point="org.eclipse.search.searchResultViewPages">
       <viewPage
-            class="org.eclipse.rephraserengine.internal.ui.search.SearchViewPage"
+            class="org.eclipse.photran.internal.ui.search.SearchViewPage"
             id="org.eclipse.rephraserengine.ui.searchViewPage"
-            searchResultClass="org.eclipse.rephraserengine.ui.search.SearchResult"/>
+            searchResultClass="org.eclipse.photran.internal.ui.search.SearchResult"/>
    </extension>
 
    <!-- Search menu from org.eclipse.search
@@ -924,7 +924,7 @@
                <reference definitionId="org.eclipse.rephraserengine.ui.refactoring.isRefactorableResource" />
             </visibleWhen>
             <dynamic
-                  class="org.eclipse.rephraserengine.ui.menus.RefactorMenu"
+                  class="org.eclipse.photran.internal.ui.menus.RefactorMenu"
                   id="org.eclipse.rephraserengine.ui.menus.refactor">
             </dynamic>
          </menu>
@@ -944,7 +944,7 @@
                <reference definitionId="org.eclipse.rephraserengine.ui.refactoring.isRefactorableResource" />
             </visibleWhen>
             <dynamic
-                  class="org.eclipse.rephraserengine.ui.menus.RefactorMenu"
+                  class="org.eclipse.photran.internal.ui.menus.RefactorMenu"
                   id="org.eclipse.rephraserengine.ui.menus.refactor">
             </dynamic>
          </menu>
@@ -959,7 +959,7 @@
         point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
            id="org.eclipse.rephraserengine.ui.refactoring.isRefactorable"
-           class="org.eclipse.rephraserengine.internal.ui.menus.RefactorableResourcePropertyTester"
+           class="org.eclipse.photran.internal.ui.menus.RefactorableResourcePropertyTester"
            namespace="org.eclipse.rephraserengine.ui.refactoring"
            properties="isRefactorable"
            type="java.lang.Object"/>
@@ -1036,45 +1036,45 @@
             <separator name="vpgdb"/>
          </menu>
          <action
-               class="org.eclipse.rephraserengine.internal.ui.actions.DisplayVPGErrorLogAction"
+               class="org.eclipse.photran.internal.ui.actions.DisplayVPGErrorLogAction"
                id="org.eclipse.rephraserengine.ui.DisplayVPGErrorLogAction"
                label="%raction.label"
                menubarPath="org.eclipse.jdt.ui.refactoring.menu/debugging/debugging"/>
          <!-- -->
          <action
-               class="org.eclipse.rephraserengine.internal.ui.actions.ResetDBStatisticsAction"
+               class="org.eclipse.photran.internal.ui.actions.ResetDBStatisticsAction"
                id="org.eclipse.rephraserengine.ui.ResetVPGStatisticsAction"
                label="%raction.label.0"
                menubarPath="org.eclipse.jdt.ui.refactoring.menu/debugging/vpgstats"/>
          <action
-               class="org.eclipse.rephraserengine.internal.ui.actions.DisplayDBStatisticsAction"
+               class="org.eclipse.photran.internal.ui.actions.DisplayDBStatisticsAction"
                id="org.eclipse.rephraserengine.ui.DisplayVPGStatisticsAction"
                label="%raction.label.1"
                menubarPath="org.eclipse.jdt.ui.refactoring.menu/debugging/vpgstats"/>
          <!-- -->
          <action
-               class="org.eclipse.rephraserengine.internal.ui.actions.ClearDBAction"
+               class="org.eclipse.photran.internal.ui.actions.ClearDBAction"
                id="org.eclipse.rephraserengine.ui.ClearVPGDatabaseAction"
                label="%raction.label.2"
                menubarPath="org.eclipse.jdt.ui.refactoring.menu/debugging/vpgdb"/>
          <action
-               class="org.eclipse.rephraserengine.internal.ui.actions.EnsureDBUpToDateAction"
+               class="org.eclipse.photran.internal.ui.actions.EnsureDBUpToDateAction"
                id="org.eclipse.rephraserengine.ui.RefreshVPGDatabaseAction"
                label="%raction.label.3"
                menubarPath="org.eclipse.jdt.ui.refactoring.menu/debugging/vpgdb"/>
          <action
-               class="org.eclipse.rephraserengine.internal.ui.actions.DisplayModelAction"
+               class="org.eclipse.photran.internal.ui.actions.DisplayModelAction"
                id="org.eclipse.rephraserengine.ui.DisplayVPGModelAction"
                label="%raction.label.4"
                menubarPath="org.eclipse.jdt.ui.refactoring.menu/debugging/vpgdb"/>
          <action
-               class="org.eclipse.rephraserengine.internal.ui.actions.DisplayDBAction"
+               class="org.eclipse.photran.internal.ui.actions.DisplayDBAction"
                id="org.eclipse.rephraserengine.ui.DisplayVPGDatabaseAction"
                label="%raction.label.5"
                menubarPath="org.eclipse.jdt.ui.refactoring.menu/debugging/vpgdb"/>
          <!-- -->
          <action
-               class="org.eclipse.rephraserengine.internal.ui.browser.BrowseDBAction"
+               class="org.eclipse.photran.internal.ui.browser.BrowseDBAction"
                id="org.eclipse.rephraserengine.ui.BrowseVPGDatabaseAction"
                definitionId="org.eclipse.rephraserengine.ui.BrowseCommand"
                label="Browse VPG Database"
@@ -1096,10 +1096,10 @@
    <extension
          point="org.eclipse.ltk.ui.refactoring.statusContextViewers">
       <statusContextViewer
-            class="org.eclipse.rephraserengine.internal.ui.preservation.PostTransformationStatusContextViewer"
+            class="org.eclipse.photran.internal.ui.preservation.PostTransformationStatusContextViewer"
             id="org.eclipse.rephraserengine.ui.vpg.postTransformationStatusContextViewer">
          <enablement>
-            <instanceof value="org.eclipse.rephraserengine.core.preservation.PostTransformationContext"/>
+            <instanceof value="org.eclipse.photran.internal.core.preservation.PostTransformationContext"/>
          </enablement>
       </statusContextViewer>
    </extension>

@@ -18,9 +18,9 @@ import org.eclipse.photran.internal.core.parser.ASTExecutableProgramNode;
  * token at a particular offset.
  * 
  * @author Jeff Overbey
- * @see org.eclipse.rephraserengine.core.util.TokenList
+ * @see org.eclipse.photran.internal.core.util.TokenList
  */
-public final class TokenList extends org.eclipse.rephraserengine.core.util.TokenList<Token>
+public final class TokenList extends org.eclipse.photran.internal.core.util.TokenList<Token>
 {
     public TokenList()
     {

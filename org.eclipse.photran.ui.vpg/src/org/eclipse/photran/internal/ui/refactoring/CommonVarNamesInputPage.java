@@ -13,7 +13,6 @@ package org.eclipse.photran.internal.ui.refactoring;
 import java.util.ArrayList;
 
 import org.eclipse.photran.internal.core.refactoring.CommonVarNamesRefactoring;
-import org.eclipse.rephraserengine.ui.refactoring.CustomUserInputPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;

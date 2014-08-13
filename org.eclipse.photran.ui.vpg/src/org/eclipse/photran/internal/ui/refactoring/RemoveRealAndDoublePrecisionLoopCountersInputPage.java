@@ -15,7 +15,6 @@
 package org.eclipse.photran.internal.ui.refactoring;
 
 import org.eclipse.photran.internal.core.refactoring.RemoveRealAndDoublePrecisionLoopCountersRefactoring;
-import org.eclipse.rephraserengine.ui.refactoring.CustomUserInputPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

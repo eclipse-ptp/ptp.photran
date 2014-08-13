@@ -16,7 +16,6 @@ import java.util.List;
 import org.eclipse.photran.internal.core.analysis.binding.Definition;
 import org.eclipse.photran.internal.core.parser.ASTSubroutineParNode;
 import org.eclipse.photran.internal.core.refactoring.PermuteSubroutineArgsRefactoring;
-import org.eclipse.rephraserengine.ui.refactoring.CustomUserInputPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

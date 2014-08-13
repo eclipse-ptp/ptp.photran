@@ -51,8 +51,6 @@ import org.eclipse.photran.internal.core.reindenter.Reindenter;
 import org.eclipse.photran.internal.core.reindenter.Reindenter.Strategy;
 import org.eclipse.photran.internal.core.sourceform.SourceForm;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
-import org.eclipse.rephraserengine.core.refactorings.UserInputBoolean;
-import org.eclipse.rephraserengine.core.refactorings.UserInputString;
 
 /**
  * Refactoring to create getter and setter subprograms for a module variable and replace variable

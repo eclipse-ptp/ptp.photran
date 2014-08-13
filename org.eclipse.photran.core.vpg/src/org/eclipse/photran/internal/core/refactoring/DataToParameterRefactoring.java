@@ -282,7 +282,7 @@ public class DataToParameterRefactoring extends FortranResourceRefactoring
         }
 
         protected void transformToParameters(ASTDatalistNode dataList, List<String> assignedVars, RefactoringStatus status)
-            throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+            throws PreconditionFailure
         {
             for (int i = 0; i < dataList.getDataStmtSet().getDataStmtObjectList().size(); i++)
             {

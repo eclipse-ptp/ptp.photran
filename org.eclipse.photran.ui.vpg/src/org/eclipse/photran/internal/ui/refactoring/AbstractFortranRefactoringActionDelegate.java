@@ -22,15 +22,15 @@ import org.eclipse.ltk.ui.refactoring.RefactoringWizard;
 import org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation;
 import org.eclipse.photran.core.IFortranAST;
 import org.eclipse.photran.internal.core.lexer.Token;
+import org.eclipse.photran.internal.core.refactoring.IEditorRefactoring;
+import org.eclipse.photran.internal.core.refactoring.IResourceRefactoring;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
+import org.eclipse.photran.internal.core.vpg.refactoring.VPGRefactoring;
+import org.eclipse.photran.internal.ui.UIUtil;
+import org.eclipse.photran.internal.ui.WorkbenchSelectionInfo;
 import org.eclipse.photran.internal.ui.actions.FortranEditorActionDelegate;
 import org.eclipse.photran.internal.ui.editor.FortranEditor;
 import org.eclipse.photran.internal.ui.vpg.PhotranResourceFilter;
-import org.eclipse.rephraserengine.core.refactorings.IEditorRefactoring;
-import org.eclipse.rephraserengine.core.refactorings.IResourceRefactoring;
-import org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring;
-import org.eclipse.rephraserengine.ui.UIUtil;
-import org.eclipse.rephraserengine.ui.WorkbenchSelectionInfo;
 import org.eclipse.swt.widgets.Shell;
 
 /**

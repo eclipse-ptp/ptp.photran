@@ -9,9 +9,8 @@ import java.io.Serializable;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.photran.core.IFortranAST;
 import org.eclipse.photran.internal.core.lexer.Token;
-import org.eclipse.rephraserengine.core.vpg.VPGLog;
-import org.eclipse.rephraserengine.core.vpg.db.caching.CachingDB;
-import org.eclipse.rephraserengine.core.vpg.db.cdt.CDTDB;
+import org.eclipse.photran.internal.core.vpg.db.caching.CachingDB;
+import org.eclipse.photran.internal.core.vpg.db.cdt.CDTDB;
 
 /**
  * Photran VPG database based on CDT's B-tree infrastructure and a caching decorator.

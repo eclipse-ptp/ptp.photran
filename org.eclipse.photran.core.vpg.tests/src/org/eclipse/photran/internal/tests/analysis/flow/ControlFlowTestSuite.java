@@ -18,6 +18,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.photran.core.IFortranAST;
+import org.eclipse.photran.internal.core.analysis.flow.FlowGraphNode;
+import org.eclipse.photran.internal.core.analysis.flow.VPGFlowGraph;
 import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.parser.IActionStmt;
 import org.eclipse.photran.internal.core.parser.IExecutableConstruct;
@@ -25,10 +27,8 @@ import org.eclipse.photran.internal.core.vpg.EdgeType;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
 import org.eclipse.photran.internal.tests.Activator;
+import org.eclipse.photran.internal.tests.GeneralTestSuiteFromMarkers;
 import org.eclipse.photran.internal.tests.PhotranWorkspaceTestCase;
-import org.eclipse.rephraserengine.core.analysis.flow.FlowGraphNode;
-import org.eclipse.rephraserengine.core.analysis.flow.VPGFlowGraph;
-import org.eclipse.rephraserengine.testing.junit3.GeneralTestSuiteFromMarkers;
 
 /**
  * Unit tests for the control flow graph constructor.

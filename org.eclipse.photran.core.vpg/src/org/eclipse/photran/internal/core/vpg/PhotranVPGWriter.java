@@ -55,14 +55,8 @@ import org.eclipse.photran.internal.core.parser.ASTNodeWithErrorRecoverySymbols;
 import org.eclipse.photran.internal.core.parser.Parser;
 import org.eclipse.photran.internal.core.sourceform.ISourceForm;
 import org.eclipse.photran.internal.core.sourceform.SourceForm;
-import org.eclipse.rephraserengine.core.util.LRUCache;
-import org.eclipse.rephraserengine.core.vpg.ILazyVPGPopulator;
-import org.eclipse.rephraserengine.core.vpg.VPGDB;
-import org.eclipse.rephraserengine.core.vpg.VPGDependency;
-import org.eclipse.rephraserengine.core.vpg.VPGEdge;
-import org.eclipse.rephraserengine.core.vpg.VPGLog;
-import org.eclipse.rephraserengine.core.vpg.VPGWriter;
-import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPGWriter;
+import org.eclipse.photran.internal.core.util.LRUCache;
+import org.eclipse.photran.internal.core.vpg.eclipse.EclipseVPGWriter;
 
 /**
  * Photran's {@link VPGWriter}; provides methods for manipulating the VPG database.

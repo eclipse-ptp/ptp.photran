@@ -89,7 +89,7 @@ public class SafeDeleteInternalSubprogramRefactoring extends FortranEditorRefact
 
     @Override
     protected void doCheckFinalConditions(RefactoringStatus status, IProgressMonitor pm)
-        throws org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring.PreconditionFailure
+        throws PreconditionFailure
     {
     }
 

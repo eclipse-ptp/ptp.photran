@@ -33,8 +33,6 @@ import org.eclipse.photran.internal.core.parser.IExpr;
 import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranEditorRefactoring;
 import org.eclipse.photran.internal.core.reindenter.Reindenter;
 import org.eclipse.photran.internal.core.reindenter.Reindenter.Strategy;
-import org.eclipse.rephraserengine.core.refactorings.UserInputBoolean;
-import org.eclipse.rephraserengine.core.refactorings.UserInputString;
 
 /**
  * Refactoring used to unroll a loop a certain number of times or completely.

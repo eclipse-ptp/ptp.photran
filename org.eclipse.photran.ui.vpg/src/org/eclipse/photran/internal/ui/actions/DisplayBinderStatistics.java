@@ -13,8 +13,7 @@ package org.eclipse.photran.internal.ui.actions;
 import java.io.PrintStream;
 
 import org.eclipse.photran.internal.core.analysis.binding.Binder;
-import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPG;
-import org.eclipse.rephraserengine.ui.actions.VPGOutputWindowAction;
+import org.eclipse.photran.internal.core.vpg.eclipse.EclipseVPG;
 
 /**
  * Implements the Display Binder Statistics action in the Refactor/(Debugging) menu

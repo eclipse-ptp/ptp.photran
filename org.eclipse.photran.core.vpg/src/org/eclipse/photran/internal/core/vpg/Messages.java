@@ -19,6 +19,24 @@ public class Messages extends NLS
 {
     private static final String BUNDLE_NAME = "org.eclipse.photran.internal.core.vpg.messages"; //$NON-NLS-1$
 
+    public static String VPG_AnnotationOfType;
+
+    public static String VPG_EdgeOfType;
+
+    public static String VPG_PostTransformAnalysis;
+
+    public static String VPGDB_AnnotationOfType;
+
+    public static String VPGDB_EdgeOfType;
+
+    public static String VPGDB_FilenameOffsetLength;
+
+    public static String VPGLog_ErrorLabel;
+
+    public static String VPGLog_FilenameOffsetLength;
+
+    public static String VPGLog_WarningLabel;
+
     public static String PhotranVPG_AnalysisRefactoringNotEnabled;
 
     public static String PhotranVPG_ControlFlow;

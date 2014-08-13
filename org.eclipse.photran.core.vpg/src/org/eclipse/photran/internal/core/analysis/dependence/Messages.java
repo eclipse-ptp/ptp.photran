@@ -19,6 +19,11 @@ public class Messages extends NLS
 {
     private static final String BUNDLE_NAME = "org.eclipse.photran.internal.core.analysis.dependence.messages"; //$NON-NLS-1$
 
+    public static String Dependence_Anti;
+    public static String Dependence_Flow;
+    public static String Dependence_Output;
+    public static String Dependence_Description;
+
     public static String LoopDependences_LoopContains;
 
     public static String LoopDependences_LoopContainsAnAssignmentToADerivedTypeComponent;

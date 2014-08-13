@@ -23,21 +23,20 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.photran.cdtinterface,
  org.eclipse.photran.ui
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.photran.internal.ui.actions;x-internal:=true,
+Export-Package: org.eclipse.photran.internal.ui;x-internal:=true,
+ org.eclipse.photran.internal.ui.actions;x-internal:=true,
+ org.eclipse.photran.internal.ui.browser;x-internal:=true,
  org.eclipse.photran.internal.ui.editor_vpg;x-internal:=true,
  org.eclipse.photran.internal.ui.editor_vpg.contentassist;x-internal:=true,
  org.eclipse.photran.internal.ui.editor_vpg.folding;x-internal:=true,
  org.eclipse.photran.internal.ui.editor_vpg.hover;x-internal:=true,
+ org.eclipse.photran.internal.ui.menus;x-internal:=true,
+ org.eclipse.photran.internal.ui.preservation;x-internal:=true,
  org.eclipse.photran.internal.ui.properties;x-internal:=true,
  org.eclipse.photran.internal.ui.refactoring;x-internal:=true,
  org.eclipse.photran.internal.ui.search;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.core.vpg.tests.failing",
  org.eclipse.photran.internal.ui.views.declaration;x-internal:=true,
  org.eclipse.photran.internal.ui.views.vpgproblems;x-internal:=true,
- org.eclipse.photran.internal.ui.vpg;x-internal:=true,
- org.eclipse.rephraserengine.ui;x-internal:=true,
- org.eclipse.rephraserengine.ui.actions;x-internal:=true,
- org.eclipse.rephraserengine.ui.menus;x-internal:=true,
- org.eclipse.rephraserengine.ui.refactoring;x-internal:=true,
- org.eclipse.rephraserengine.ui.search;x-friends:="org.eclipse.photran.core.vpg.tests"
+ org.eclipse.photran.internal.ui.vpg;x-internal:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Localization: plugin

@@ -61,13 +61,14 @@ import org.eclipse.photran.internal.core.parser.IExpr;
 import org.eclipse.photran.internal.core.parser.IProgramUnit;
 import org.eclipse.photran.internal.core.parser.ISpecificationPartConstruct;
 import org.eclipse.photran.internal.core.parser.Parser;
+import org.eclipse.photran.internal.core.refactoring.IResourceRefactoring;
 import org.eclipse.photran.internal.core.util.IterableWrapper;
 import org.eclipse.photran.internal.core.util.Notification;
+import org.eclipse.photran.internal.core.util.OffsetLength;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.refactorings.IResourceRefactoring;
-import org.eclipse.rephraserengine.core.util.OffsetLength;
-import org.eclipse.rephraserengine.core.vpg.refactoring.VPGResourceRefactoring;
+import org.eclipse.photran.internal.core.vpg.refactoring.VPGRefactoring.PreconditionFailure;
+import org.eclipse.photran.internal.core.vpg.refactoring.VPGResourceRefactoring;
 
 /**
  * This is a base class for all Photran refactorings that apply to multiple files

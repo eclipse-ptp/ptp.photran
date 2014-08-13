@@ -13,13 +13,13 @@ package org.eclipse.photran.internal.tests.analysis.dependence;
 import java.io.IOException;
 
 import org.eclipse.photran.internal.core.SyntaxException;
+import org.eclipse.photran.internal.core.analysis.dependence.GCDTest;
+import org.eclipse.photran.internal.core.analysis.dependence.GeneralizedGCDTest;
 import org.eclipse.photran.internal.core.analysis.dependence.LoopDependences;
 import org.eclipse.photran.internal.core.analysis.loops.ASTProperLoopConstructNode;
 import org.eclipse.photran.internal.core.lexer.LexerException;
 import org.eclipse.photran.internal.core.parser.ASTAssignmentStmtNode;
 import org.eclipse.photran.internal.tests.PhotranTestCase;
-import org.eclipse.rephraserengine.core.analysis.dependence.GCDTest;
-import org.eclipse.rephraserengine.core.analysis.dependence.GeneralizedGCDTest;
 
 /**
  * Base class for unit tests for dependence testing classes.

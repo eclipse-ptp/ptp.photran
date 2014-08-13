@@ -92,9 +92,9 @@ import org.eclipse.photran.internal.core.parser.ASTWaitSpecNode;
 import org.eclipse.photran.internal.core.parser.ASTWaitStmtNode;
 import org.eclipse.photran.internal.core.parser.IASTListNode;
 import org.eclipse.photran.internal.core.parser.IASTNode;
+import org.eclipse.photran.internal.core.util.Pair;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.util.Pair;
 
 /**
  * Phase 7 of name-binding analysis.

@@ -15,7 +15,7 @@ import org.eclipse.photran.core.IFortranAST;
 import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.refactoring.TransformToDerivedDataTypeRefactoring;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.vpg.refactoring.VPGRefactoring;
+import org.eclipse.photran.internal.core.vpg.refactoring.VPGRefactoring;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;

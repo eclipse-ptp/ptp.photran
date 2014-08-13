@@ -19,7 +19,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.photran.internal.core.analysis.binding.VariableAccess;
 import org.eclipse.photran.internal.core.lexer.IPreprocessorReplacement;
 import org.eclipse.photran.internal.core.lexer.Token;
-import org.eclipse.rephraserengine.ui.UIUtil;
+import org.eclipse.photran.internal.ui.UIUtil;
 
 /**
  * The Highlight Variable Accesses action in the Refactoring/(Debugging) menu.

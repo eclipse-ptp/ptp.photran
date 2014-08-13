@@ -24,11 +24,11 @@ import org.eclipse.photran.internal.core.analysis.binding.VariableAccess;
 import org.eclipse.photran.internal.core.parser.ASTNodeUtil;
 import org.eclipse.photran.internal.core.parser.IASTNode;
 import org.eclipse.photran.internal.core.parser.IASTVisitor;
+import org.eclipse.photran.internal.core.util.OffsetLength;
 import org.eclipse.photran.internal.core.vpg.AnnotationType;
 import org.eclipse.photran.internal.core.vpg.EdgeType;
 import org.eclipse.photran.internal.core.vpg.PhotranTokenRef;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.util.OffsetLength;
 
 /**
  * Tokens are returned by the lexical analyzer and serve as leaf nodes in the AST.

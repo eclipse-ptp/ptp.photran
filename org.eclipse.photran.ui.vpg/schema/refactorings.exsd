@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.rephraserengine.ui.refactoring" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.photran.ui.vpg" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.rephraserengine.ui.refactoring" id="refactorings" name="Refactorings"/>
+         <meta.schema plugin="org.eclipse.photran.ui.vpg" id="refactorings" name="Refactorings"/>
       </appInfo>
       <documentation>
          Allows plug-ins to contribute to the Refactor menu.
@@ -64,7 +64,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.rephraserengine.core.refactorings.IResourceRefactoring"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.photran.internal.core.refactoring.IResourceRefactoring"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -91,7 +91,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.rephraserengine.ui.refactoring.CustomUserInputPage:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.photran.internal.ui.refactoring.CustomUserInputPage:"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -113,7 +113,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.rephraserengine.core.refactorings.IEditorRefactoring"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.photran.internal.core.refactoring.IEditorRefactoring"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -140,7 +140,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.rephraserengine.ui.refactoring.CustomUserInputPage:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.photran.internal.ui.refactoring.CustomUserInputPage:"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -214,7 +214,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.rephraserengine.core.refactorings.IResourceFilter"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.photran.internal.core.resources.IResourceFilter"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -226,63 +226,10 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         1.0
+         9.0
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="examples"/>
-      </appInfo>
-      <documentation>
-         &lt;extension
-         point=&quot;org.eclipse.rephraserengine.ui.refactoring.refactorings&quot;&gt;
-
-      &lt;!-- The resource filter determines what must be selected for these refactorings to be visible --&gt;
-      &lt;resourceFilter class=&quot;org.eclipse.rephraserengine.examples.text.TextFileResourceFilter&quot; /&gt;
-
-      &lt;!-- Each group defines a new (separated) section in the Refactor menu --&gt;
-      &lt;group&gt;
-
-         &lt;!-- A resource refactoring which uses an auto-generated user interface --&gt;
-         &lt;resourceRefactoring
-            class=&quot;org.eclipse.rephraserengine.examples.text.ConvertTabsToSpacesRefactoring&quot; /&gt;
-
-         &lt;!-- An editor refactoring which uses an auto-generated user interface --&gt;
-         &lt;editorRefactoring
-             class=&quot;org.eclipse.photran.internal.core.refactoring.MakePrivateEntityPublicRefactoring&quot; /&gt;
-
-         &lt;!-- Same as previous, except the given label (&quot;Increase Visibility&quot;) will appear in the menu;
-              when the label attribute is absent, the label will be whatever is returned by the refactoring&apos;s
-              #getName method --&gt;
-         &lt;editorRefactoring
-             label=&quot;Increase Visibility&quot;
-             class=&quot;org.eclipse.photran.internal.core.refactoring.MakePrivateEntityPublicRefactoring&quot; /&gt;
-
-         &lt;!-- An editor refactoring which uses a custom user interface --&gt;
-         &lt;editorRefactoring
-             class=&quot;org.eclipse.photran.internal.core.refactoring.AddOnlyToUseStmtRefactoring&quot;
-             inputPage=&quot;org.eclipse.photran.internal.refactoring.ui.AddOnlyToUseStmtInputPage&quot; /&gt;
-
-         &lt;!-- A command which is contributed as an editor refactoring --&gt;
-         &lt;!-- Note that this is the only way to give a refactoring a key binding --&gt;
-         &lt;editorRefactoring command=&quot;org.eclipse.photran.ui.RenameRefactoringCommand&quot; /&gt;
-
-         &lt;!-- An editor refactoring which only appears in the menu when the
-              PHOTRAN_INCLUDE_TEST_REFACTORINGS environment variable is set to a non-null value --&gt;
-         &lt;editorRefactoring
-             require_env=&quot;PHOTRAN_INCLUDE_TEST_REFACTORINGS&quot;
-             class=&quot;org.eclipse.photran.internal.core.refactoring.AddEmptySubprogramRefactoring&quot; /&gt;
-
-      &lt;/group&gt;
-      &lt;!-- A submenu defines a pop-out menu with the given name --&gt;
-      &lt;submenu name=&quot;&amp;amp;Submenu&quot;&gt;
-         &lt;resourceRefactoring
-            class=&quot;org.eclipse.rephraserengine.examples.text.ConvertTabsToSpacesRefactoring&quot; /&gt;
-      &lt;/submenu&gt;
-   &lt;/extension&gt;
-      </documentation>
-   </annotation>
 
 
 

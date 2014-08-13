@@ -34,8 +34,7 @@ import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranEditorRefactoring;
 import org.eclipse.photran.internal.core.refactoring.infrastructure.FortranResourceRefactoring;
 import org.eclipse.photran.internal.core.vpg.PhotranVPG;
-import org.eclipse.rephraserengine.core.vpg.refactoring.VPGResourceRefactoring;
-import org.eclipse.rephraserengine.testing.junit3.GeneralTestSuiteFromMarkers;
+import org.eclipse.photran.internal.core.vpg.refactoring.VPGResourceRefactoring;
 
 /**
  * A test suite constructed by importing files from a directory in the source tree, searching its

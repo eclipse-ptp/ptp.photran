@@ -12,8 +12,7 @@ package org.eclipse.photran.internal.ui.actions;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.photran.internal.core.analysis.binding.Binder;
-import org.eclipse.rephraserengine.core.vpg.eclipse.EclipseVPG;
-import org.eclipse.rephraserengine.ui.actions.VPGWindowActionDelegate;
+import org.eclipse.photran.internal.core.vpg.eclipse.EclipseVPG;
 
 /**
  * Implements the Reset VPG Statistics action in the Refactor/(Debugging) menu

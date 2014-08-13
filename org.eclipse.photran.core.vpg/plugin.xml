@@ -31,8 +31,8 @@
        <factory
              adaptableType="org.eclipse.photran.internal.core.parser.IASTNode"
              class="org.eclipse.photran.internal.core.refactoring.infrastructure.ASTNodeAdapterFactory">
-          <adapter type="org.eclipse.rephraserengine.core.util.OffsetLength" />
-          <adapter type="org.eclipse.rephraserengine.core.preservation.ResetOffsetLength" />
+          <adapter type="org.eclipse.photran.internal.core.util.OffsetLength" />
+          <adapter type="org.eclipse.photran.internal.core.preservation.ResetOffsetLength" />
        </factory>
    </extension>
    

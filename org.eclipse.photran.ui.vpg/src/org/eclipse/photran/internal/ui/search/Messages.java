@@ -19,6 +19,46 @@ public class Messages extends NLS
 {
     private static final String BUNDLE_NAME = "org.eclipse.photran.internal.ui.search.messages"; //$NON-NLS-1$
 
+    public static String SearchLabelProvider_nMatches;
+
+    public static String SearchLabelProvider_OneMatch;
+
+    public static String SearchPage_11;
+
+    public static String SearchPage_AnyStringAnyCharLabel;
+
+    public static String SearchPage_IllegalCharacterInPatternString;
+
+    public static String SearchPage_InvalidSearchPatternTitle;
+
+    public static String SearchPage_LimitToLabel;
+
+    public static String SearchPage_RegularExpressionLabel;
+
+    public static String SearchPage_ScopeDescription_EnclosingProjects;
+
+    public static String SearchPage_ScopeDescription_SelectedResources;
+
+    public static String SearchPage_ScopeDescription_WorkingSet;
+
+    public static String SearchPage_ScopeDescription_Workspace;
+
+    public static String SearchPage_SearchForLabel;
+
+    public static String SearchPage_SearchPatternIsInvalid;
+
+    public static String SearchPage_SearchPatternLabel;
+
+    public static String SearchQuery_nMatches;
+
+    public static String SearchQuery_OneMatch;
+
+    public static String SearchQuery_Searching;
+
+    public static String SearchQuery_SearchingFor;
+
+    public static String SearchResult_SearchResultTooltip;
+
     public static String FortranFindReferencesActionDelegate_DefinitionCouldNotBeFound;
 
     public static String FortranFindReferencesActionDelegate_ErrorTitle;

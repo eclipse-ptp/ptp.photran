@@ -76,6 +76,30 @@ public class Messages extends NLS
     public static String SelectEnclosingScope_PleaseSelectAKeywordOrIdentifier;
     public static String SelectEnclosingScope_WaitingForBackgroundWorkToComplete;
 
+    public static String RefactoringAction_ClickOKToRunTheRefactoring;
+
+    public static String RefactoringAction_UnhandledExceptionTitle;
+
+    public static String ClearDBAction_ClearingAndRebuildingDatabase;
+
+    public static String DisplayModelAction_AnErrorOccurred;
+
+    public static String DisplayModelAction_EditorMustBeOpen;
+
+    public static String EnsureDBUpToDateAction_RefreshingDatabase;
+
+    public static String VPGOutputWindowAction_PreparingTextForDisplay;
+
+    public static String VPGWindowActionDelegate_ErrorTitle;
+
+    public static String VPGWindowActionDelegate_NoVPGsAvailable;
+
+    public static String VPGWindowActionDelegate_SelectDatabaseToUse;
+
+    public static String VPGWindowActionDelegate_SelectVPGTitle;
+
+    public static String VPGWindowActionDelegate_UnhandledExceptionTitle;
+
     static
     {
         // initialize resource bundle

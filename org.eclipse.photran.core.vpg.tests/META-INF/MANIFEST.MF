@@ -27,10 +27,5 @@ Export-Package: org.eclipse.photran.internal.tests;x-friends:="org.eclipse.photr
  org.eclipse.photran.internal.tests.refactoring.infrastructure;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
  org.eclipse.photran.internal.tests.refactoring.rename;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
  org.eclipse.photran.internal.tests.search;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
- org.eclipse.photran.internal.tests.vpg;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
- org.eclipse.rephraserengine.internal.core.tests.dependence,
- org.eclipse.rephraserengine.internal.core.tests.flow,
- org.eclipse.rephraserengine.internal.core.tests.vpg,
- org.eclipse.rephraserengine.testing.combinatorial,
- org.eclipse.rephraserengine.testing.junit3
+ org.eclipse.photran.internal.tests.vpg;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

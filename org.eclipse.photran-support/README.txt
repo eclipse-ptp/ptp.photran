@@ -6,7 +6,7 @@ This project is used to build JARs containing the database infrastructure used
 in CDT's indexer.  These JARs are:
 
 cdtdb-4.0.3-eclipse.jar
-    Copied into org.eclipse.rephraserengine.core; used by the Rephraser engine
+    Copied into org.eclipse.photran.core
     Depends on the Eclipse Platform to provide CoreException and similar classes
 
 cdtdb-4.0.3-cmdline.jar
@@ -17,9 +17,9 @@ To build the JAR files:
 1. Make sure the code has compiled successfully within the Eclipse IDE.  (The build script simply JARs the .class files
    from the project's bin directory; it does not recompile them.)
 2. Right-click build/cdtdb-4.0.3.xml in the Package Explorer, and choose Run As > Ant Build
-3. Right click the org.eclipse.rephraserengine-support project, and click Refresh.
+3. Right click the org.eclipse.photran-support project, and click Refresh.
 4. Right-click distrib/cdtdb-4.0.3-eclipse.jar, and click Copy.
-5. Right-click on the org.eclipse.rephraserengine.core project, and click Paste to paste it into the project root,
+5. Right-click on the org.eclipse.photran.core.vpg/lib folder, and click Paste to paste it into that folder,
    overwriting the existing JAR.
 
 

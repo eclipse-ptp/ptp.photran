@@ -16,9 +16,7 @@ import java.util.List;
 
 import org.eclipse.cdt.core.model.ICElement;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.rephraserengine.core.util.Pair;
-import org.eclipse.rephraserengine.ui.search.OpenSearchPageAction;
-import org.eclipse.rephraserengine.ui.search.SearchPage;
+import org.eclipse.photran.internal.core.util.Pair;
 import org.eclipse.search.ui.ISearchPage;
 import org.eclipse.search.ui.ISearchQuery;
 

@@ -22,10 +22,10 @@
           includes="license.html"
         />
         <fileset dir="../bin"
-          includes="org/eclipse/rephraserengine/internal/db/org/eclipse/cdt/**/*"
+          includes="org/eclipse/photran/internal/db/org/eclipse/cdt/**/*"
         />
         <fileset dir="../src-cdtdb-4.0.3"
-          includes="org/eclipse/rephraserengine/internal/db/org/eclipse/cdt/**/*.java"
+          includes="org/eclipse/photran/internal/db/org/eclipse/cdt/**/*.java"
         />
       </jar>
 
