@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.photran.ui.vpg;singleton:=true
-Bundle-Version: 8.0.0.qualifier
+Bundle-Version: 9.0.0.qualifier
 Bundle-Activator: org.eclipse.photran.internal.ui.vpg.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
@@ -18,8 +18,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.editors,
  org.eclipse.cdt.core,
  org.eclipse.cdt.ui,
- org.eclipse.rephraserengine.core,
- org.eclipse.rephraserengine.ui,
  org.eclipse.photran.core,
  org.eclipse.photran.core.vpg,
  org.eclipse.photran.cdtinterface,
@@ -35,6 +33,11 @@ Export-Package: org.eclipse.photran.internal.ui.actions;x-internal:=true,
  org.eclipse.photran.internal.ui.search;x-friends:="org.eclipse.photran.core.vpg.tests,org.eclipse.photran.core.vpg.tests.failing",
  org.eclipse.photran.internal.ui.views.declaration;x-internal:=true,
  org.eclipse.photran.internal.ui.views.vpgproblems;x-internal:=true,
- org.eclipse.photran.internal.ui.vpg;x-internal:=true
+ org.eclipse.photran.internal.ui.vpg;x-internal:=true,
+ org.eclipse.rephraserengine.ui;x-internal:=true,
+ org.eclipse.rephraserengine.ui.actions;x-internal:=true,
+ org.eclipse.rephraserengine.ui.menus;x-internal:=true,
+ org.eclipse.rephraserengine.ui.refactoring;x-internal:=true,
+ org.eclipse.rephraserengine.ui.search;x-friends:="org.eclipse.photran.core.vpg.tests"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Localization: plugin

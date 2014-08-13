@@ -14,9 +14,6 @@ Require-Bundle: org.eclipse.photran.core.vpg,
  org.eclipse.cdt.core,
  org.eclipse.jface,
  org.eclipse.search,
- org.eclipse.rephraserengine.core,
- org.eclipse.rephraserengine.testing.junit3,
- org.eclipse.rephraserengine.ui,
  org.eclipse.photran.core
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.photran.internal.tests.Activator
@@ -30,5 +27,10 @@ Export-Package: org.eclipse.photran.internal.tests;x-friends:="org.eclipse.photr
  org.eclipse.photran.internal.tests.refactoring.infrastructure;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
  org.eclipse.photran.internal.tests.refactoring.rename;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
  org.eclipse.photran.internal.tests.search;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
- org.eclipse.photran.internal.tests.vpg;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests"
+ org.eclipse.photran.internal.tests.vpg;x-friends:="org.eclipse.photran.core.vpg.tests.failing,org.eclipse.photran.core.vpg.preprocessor.c.tests",
+ org.eclipse.rephraserengine.internal.core.tests.dependence,
+ org.eclipse.rephraserengine.internal.core.tests.flow,
+ org.eclipse.rephraserengine.internal.core.tests.vpg,
+ org.eclipse.rephraserengine.testing.combinatorial,
+ org.eclipse.rephraserengine.testing.junit3
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -85,35 +85,26 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
     private Document fDocument;
     /**
      * The optional status field.
-     *
-     * @since 3.0
      */
     private Label fStatusField;
     /**
      * The separator for the optional status field.
-     *
-     * @since 3.0
      */
     private Label fSeparator;
     /**
      * The font of the optional status text label.
-     *
-     * @since 3.0
      */
     private Font fStatusTextFont;
     /**
      * The width size constraint.
-     * @since 4.0
      */
     private int fMaxWidth= SWT.DEFAULT;
     /**
      * The height size constraint.
-     * @since 4.0
      */
     private int fMaxHeight= SWT.DEFAULT;
     /**
      * The orientation of the shell
-     * @since 3.4
      */
     private final int fOrientation;
 
@@ -269,8 +260,6 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
 
     /**
      * Initialize the font to the editor font.
-     *
-     * @since 4.0
      */
     private void initializeFont() 
     {
@@ -314,7 +303,6 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
 
     /**
      * {@inheritDoc}
-     * @since 3.0
      */
     public void widgetDisposed(DisposeEvent event) 
     {
@@ -466,7 +454,6 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
 
     /*
      * @see org.eclipse.jface.text.IInformationControlExtension3#computeTrim()
-     * @since 5.0
      */
     public Rectangle computeTrim()
     {
@@ -479,7 +466,6 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
      * Adds the internal trimmings to the given trim of the shell.
      * 
      * @param trim the shell's trim, will be updated
-     * @since 5.0
      */
     private void addInternalTrim(Rectangle trim) 
     {
@@ -499,7 +485,6 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
 
     /*
      * @see org.eclipse.jface.text.IInformationControlExtension3#getBounds()
-     * @since 5.0
      */
     public Rectangle getBounds() 
     {
@@ -508,7 +493,6 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
 
     /*
      * @see org.eclipse.jface.text.IInformationControlExtension3#restoresLocation()
-     * @since 5.0
      */
     public boolean restoresLocation() 
     {
@@ -517,7 +501,6 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
 
     /*
      * @see org.eclipse.jface.text.IInformationControlExtension3#restoresSize()
-     * @since 5.0
      */
     public boolean restoresSize() 
     {
@@ -526,7 +509,6 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
 
     /*
      * @see org.eclipse.jface.text.IInformationControlExtension5#getInformationPresenterControlCreator()
-     * @since 5.0
      */
     public IInformationControlCreator getInformationPresenterControlCreator() 
     {
@@ -541,7 +523,6 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
 
     /*
      * @see org.eclipse.jface.text.IInformationControlExtension5#containsControl(org.eclipse.swt.widgets.Control)
-     * @since 5.0
      */
     public boolean containsControl(Control control) 
     {
@@ -557,7 +538,6 @@ public class SourceViewerInformationControl implements IInformationControl, IInf
 
     /*
      * @see org.eclipse.jface.text.IInformationControlExtension5#isVisible()
-     * @since 5.0
      */
     public boolean isVisible() 
     {

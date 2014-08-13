@@ -62,8 +62,6 @@ public abstract class AbstractFortranPreferencePage
      * 
      * Adapts {@link org.eclipse.core.runtime.Preferences} to
      * {@link org.eclipse.jface.preference.IPreferenceStore}
-     * 
-     * @since 3.0
      */
     public static class PreferencesAdapter implements IPreferenceStore {
 

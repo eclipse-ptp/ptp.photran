@@ -334,7 +334,6 @@ public class FortranKeywordRuleBasedScanner extends RuleBasedScanner
         private StringBuffer fBuffer= new StringBuffer();
         /**
          * Tells whether this rule is case sensitive.
-         * @since 3.3
          */
         private boolean fIgnoreCase= false;
 
@@ -377,7 +376,6 @@ public class FortranKeywordRuleBasedScanner extends RuleBasedScanner
          *          if nothing else is specified, may not be <code>null</code>
          * @param ignoreCase the case sensitivity associated with this rule
          * @see #addWord(String, IToken)
-         * @since 3.3
          */
         public Eclipse33WordRule(IWordDetector detector, IToken defaultToken, boolean ignoreCase) {
             Assert.isNotNull(detector);
