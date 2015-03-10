@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2007, 2015 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -531,6 +531,7 @@ public class SalesScanKeywordRule extends WordRule implements IRule
         {
             if (column < 0) return false;
             if (salesRetainAsKeyword(column)) return true;
+            if (keyword.equals("")) return false; //$NON-NLS-1$
             return applyKeywordRules(column, keyword);
         }
 
@@ -560,6 +561,10 @@ public class SalesScanKeywordRule extends WordRule implements IRule
                 || keyword.equalsIgnoreCase("write")) //$NON-NLS-1$
                 return lineContainsColonColon;
             // END FORTRAN 2003
+            // BEGIN HP EXTENSIONS (%FILL)
+            else if (keyword.equalsIgnoreCase("fill")) //$NON-NLS-1$
+                return column > 0 && line.charAt(column-1) == '%' && isType(firstTokenLetterString());
+            // END HP EXTENSIONS
             else
             {
                 if (isType(keyword) && match("implicit", firstTokenPos)) //$NON-NLS-1$
@@ -571,6 +576,21 @@ public class SalesScanKeywordRule extends WordRule implements IRule
                 if (!internalRetainAsKeyword(precedingKeywordOffset, precedingKeyword)) return false;
                 return applyPrecedingKeywordRules(keyword, precedingKeyword);
             }
+        }
+
+        private String firstTokenLetterString()
+        {
+            String lineFromFirstToken = line.substring(findFirstToken());
+            StringBuilder sb = new StringBuilder(16);
+            for (int pos = 0, len = lineFromFirstToken.length(); pos < len; pos++)
+            {
+                char ch = lineFromFirstToken.charAt(pos);
+                if (Character.isLetter(ch))
+                    sb.append(ch);
+                else
+                    break;
+            }
+            return sb.toString();
         }
 
         private boolean applyPrecedingKeywordRules(String keyword, String precedingKeyword)
@@ -651,7 +671,12 @@ public class SalesScanKeywordRule extends WordRule implements IRule
             else if (openContextEquals && !openContextComma)
                 return !lineContainsColonColon
                     && letterFollowsParenthetical
-                    && (match("if", firstTokenPos) || match("where", firstTokenPos) || match("forall", firstTokenPos)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                    && (match("if", firstTokenPos) //$NON-NLS-1$
+                        || match("where", firstTokenPos) //$NON-NLS-1$
+                        || match("forall", firstTokenPos) //$NON-NLS-1$
+                        || match("structure") //$NON-NLS-1$
+                        || match("union") //$NON-NLS-1$
+                        || match("map")); //$NON-NLS-1$
             else if (openContextComma)
                 return true;
             else if (letterFollowsParenthetical)
