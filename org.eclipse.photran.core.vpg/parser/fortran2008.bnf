@@ -37,6 +37,7 @@
 ## DEALINGS IN THE SOFTWARE.
 ##
 ## Changes:
+## 14 Mar 2015 Jeff Overbey: Added support for record structures (HP extensions)
 ## 08 Dec 2009 Jeff Overbey: Finished Fortran 2008 support
 ## 01 Dec 2009 Jeff Overbey: Started Fortran 2008 support
 ## 26 May 2009 Jeff Overbey: Bug fixes in Fortran 2003 support
@@ -267,6 +268,8 @@
 
 # R207 also see R204
 (superclass):<DeclarationConstruct> ::=
+  | <HPStructureDecl> # HP extension
+  | <HPRecordStmt> # HP extension
   | <DerivedTypeDef>
   | <EnumDef> # F03
   | <InterfaceBlock>
@@ -584,6 +587,62 @@ ASTLogicalConstNode:<LogicalConstant> ::=
   | isFalse(bool):T_FALSE
   |  isTrue(bool):T_TRUE  -:T_UNDERSCORE (inline):<KindParam>
   | isFalse(bool):T_FALSE -:T_UNDERSCORE (inline):<KindParam>
+
+# BEGIN HP EXTENSIONS
+
+<HPStructureDecl> ::=
+    (inline):<HPStructureStmt> fields:<HPFieldDecls> -:<HPEndStructureStmt>
+
+<HPStructureStmt> ::=
+  | (inline):<LblDef> -:T_STRUCTURE name(inline):<HPStructureName> fieldNamelist:<EntityDeclList> -:T_EOS
+  | (inline):<LblDef> -:T_STRUCTURE                                fieldNamelist:<EntityDeclList> -:T_EOS
+  | (inline):<LblDef> -:T_STRUCTURE name(inline):<HPStructureName>                                -:T_EOS
+  | (inline):<LblDef> -:T_STRUCTURE                                                               -:T_EOS
+
+<HPStructureName> ::= -:T_SLASH name:T_IDENT -:T_SLASH
+
+(list):<HPFieldDecls> ::= <HPFieldDecls> <HPField> | <HPField>
+
+(superclass):<HPField> ::=
+  | <TypeDeclarationStmt>
+  | <HPStructureDecl>
+  | <HPUnionDecl>
+  | <ParameterStmt>
+  | <HPRecordStmt>
+
+<HPEndStructureStmt> ::=
+    (inline):<LblDef> -:T_END -:T_STRUCTURE -:T_EOS
+  | (inline):<LblDef> -:T_ENDSTRUCTURE      -:T_EOS
+
+<HPUnionDecl> ::= -:<HPUnionStmt> maps:<HPMapDecls> -:<HPEndUnionStmt>
+
+<HPUnionStmt> ::= (inline):<LblDef> -:T_UNION -:T_EOS
+
+(list):<HPMapDecls> ::= <HPMapDecls> <HPMapDecl> | <HPMapDecl>
+
+<HPEndUnionStmt> ::=
+    (inline):<LblDef> -:T_END -:T_UNION -:T_EOS
+  | (inline):<LblDef> -:T_ENDUNION      -:T_EOS
+
+<HPMapDecl> ::= -:<HPMapStmt> fields:<HPFieldDecls> -:<HPEndMapStmt>
+
+<HPMapStmt> ::= (inline):<LblDef> -:T_MAP -:T_EOS
+
+<HPEndMapStmt> ::=
+    (inline):<LblDef> -:T_END -:T_MAP -:T_EOS
+  | (inline):<LblDef> -:T_ENDMAP      -:T_EOS
+
+# Technically should allow >1 HPRecordDecl, but this requires 2 tokens of lookahead
+<HPRecordStmt> ::= (inline):<LblDef> -:T_RECORD <HPRecordDecl> -:T_EOS
+
+#(list):<HPRecordDecls> ::= <HPRecordDecls> -:T_COMMA <HPRecordDecl> | <HPRecordDecl>
+
+# B-21: "record-namelist is a list of one or more variable names, array names,
+# or array specifications, separated by commas."
+# JO -- I'm not certain that <EntityDeclList> is really what we want
+<HPRecordDecl> ::= -:T_SLASH structureName:T_IDENT -:T_SLASH recordNamelist:<EntityDeclList>
+
+# END HP EXTENSIONS
 
 # R422 This does not enforce the required sequence
 #<DerivedTypeDef> ::=
@@ -940,6 +999,7 @@ ASTTypeSpecNode:<TypeSpec> ::=
   | isDerivedType(bool):T_TYPE  -:T_LPAREN (inline):<DerivedTypeSpec>  -:T_RPAREN
   | isDerivedType(bool):T_CLASS -:T_LPAREN (inline):<DerivedTypeSpec>  -:T_RPAREN
   | isDerivedType(bool):T_CLASS -:T_LPAREN isAsterisk(bool):T_ASTERISK -:T_RPAREN
+  |        isByte(bool):T_BYTE                 # JO Is this an HP extension?
 
 # F03 R401 -- see notes above for <TypeSpec>
 ASTTypeSpecNode:<TypeSpecNoPrefix> ::=

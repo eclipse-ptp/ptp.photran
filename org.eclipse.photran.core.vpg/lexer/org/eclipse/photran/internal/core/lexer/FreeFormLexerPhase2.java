@@ -400,6 +400,13 @@ public class FreeFormLexerPhase2 implements ILexer
             new MustBePrecededByOneOf(Terminal.T_END, Terminal.T_ABSTRACT));
         // END FORTRAN 2003 ///////////////////////////////////////////////////////////////////////
 
+        // BEGIN HP EXTENSIONS ///////////////////////////////////////////////////////////////////////
+        addRule(Terminal.T_STRUCTURE,
+            new MustBePrecededBy(Terminal.T_END));
+        applySameRulesTo(Terminal.T_MAP);
+        applySameRulesTo(Terminal.T_UNION);
+        // END HP EXTENSIONS ///////////////////////////////////////////////////////////////////////
+
         // R506, R507
         addRules(Terminal.T_KINDEQ,
                 new MustBePartOfTypeDeclOrStmtMustStartWith(Terminal.T_IMPLICIT),

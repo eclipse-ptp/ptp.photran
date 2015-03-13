@@ -274,6 +274,16 @@ public final class Terminal
 
     // Intel extension
     public static final Terminal T_CONVERTEQ = new Terminal("convert=");
+
+    // HP extensions
+    public static final Terminal T_STRUCTURE = new Terminal("structure");
+    public static final Terminal T_ENDSTRUCTURE = new Terminal("endstructure");
+    public static final Terminal T_UNION = new Terminal("union");
+    public static final Terminal T_ENDUNION = new Terminal("endunion");
+    public static final Terminal T_MAP = new Terminal("map");
+    public static final Terminal T_ENDMAP = new Terminal("endmap");
+    public static final Terminal T_RECORD = new Terminal("record");
+    public static final Terminal T_BYTE = new Terminal("byte");
     
     private String description;
 

@@ -362,8 +362,19 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{LineTerminator}
 
 
 <YYSTANDARD_NOHOLLERITH,YYSTANDARD,YYINITIAL,IMPLICIT,OPERATORorFORMAT> {
+// HP Extensions
+"STRUCTURE"                                     { wantEos = true;                      return token(Terminal.T_STRUCTURE); }
+"ENDSTRUCTURE"                                  { wantEos = true; yybegin(YYSTANDARD); return token(Terminal.T_ENDSTRUCTURE); }
+"UNION"                                         { wantEos = true;                      return token(Terminal.T_UNION); }
+"ENDUNION"                                      { wantEos = true; yybegin(YYSTANDARD); return token(Terminal.T_ENDUNION); }
+"MAP"                                           { wantEos = true;                      return token(Terminal.T_MAP); }
+"ENDMAP"                                        { wantEos = true; yybegin(YYSTANDARD); return token(Terminal.T_ENDMAP); }
+"RECORD"                                        { wantEos = true;                      return token(Terminal.T_RECORD); }
+"."                                             { wantEos = true; yybegin(YYSTANDARD); return token(Terminal.T_PERCENT); }
+"%"[Ff][Ii][Ll][Ll]                             { wantEos = true; yybegin(YYSTANDARD); return token(Terminal.T_IDENT); }
+"BYTE"                                          { wantEos = true;                      return token(Terminal.T_BYTE); }
 // Intel Extension
-"CONVERT"[ \t]*"="/[^>]                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_CONVERTEQ); }
+"CONVERT"[ \t]*"="/[^>]                         { wantEos = true; yybegin(YYSTANDARD); return token(Terminal.T_CONVERTEQ); }
 // New for Fortran 2008 //////////////////////////////////
 "CONCURRENT"                                    { wantEos = true; yybegin(YYSTANDARD); return token(Terminal.T_CONCURRENT); }
 "NEWUNIT="/[^>]                                 { wantEos = true; yybegin(YYSTANDARD); return token(Terminal.T_NEWUNITEQ); }

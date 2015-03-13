@@ -274,6 +274,17 @@ FortranInclude="INCLUDE"[ \t]*[\'\"][^\r\n]*[\'\"]{Comment}?{LineTerminator}
 /* Lexical rules */
 
 <YYINITIAL,IMPLICIT,OPERATORorFORMAT> {
+// HP Extensions
+"STRUCTURE"                                     { wantEos = true;                     return token(Terminal.T_STRUCTURE); }
+"ENDSTRUCTURE"                                  { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDSTRUCTURE); }
+"UNION"                                         { wantEos = true;                     return token(Terminal.T_UNION); }
+"ENDUNION"                                      { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDUNION); }
+"MAP"                                           { wantEos = true;                     return token(Terminal.T_MAP); }
+"ENDMAP"                                        { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_ENDMAP); }
+"RECORD"                                        { wantEos = true;                     return token(Terminal.T_RECORD); }
+"."                                             { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_PERCENT); }
+"%"[Ff][Ii][Ll][Ll]                             { wantEos = true;                     return token(Terminal.T_IDENT); }
+"BYTE"                                          { wantEos = true;                     return token(Terminal.T_BYTE); }
 // Intel Extension
 "CONVERT"[ \t]*"="/[^>]                         { wantEos = true; yybegin(YYINITIAL); return token(Terminal.T_CONVERTEQ); }
 // New for Fortran 2008 //////////////////////////////////
