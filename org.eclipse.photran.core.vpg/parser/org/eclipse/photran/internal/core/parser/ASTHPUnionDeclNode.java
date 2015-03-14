@@ -26,31 +26,20 @@ import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.lexer.*;                   import org.eclipse.photran.internal.core.analysis.binding.ScopingNode;                   import org.eclipse.photran.internal.core.SyntaxException;                   import java.io.IOException;
 
 @SuppressWarnings("all")
-public class ASTTypeParamAttrSpecNode extends ASTNode
+public class ASTHPUnionDeclNode extends ASTNode implements IHPField
 {
-    org.eclipse.photran.internal.core.lexer.Token isKind; // in ASTTypeParamAttrSpecNode
-    org.eclipse.photran.internal.core.lexer.Token isLen; // in ASTTypeParamAttrSpecNode
+    ASTHPUnionStmtNode hiddenHPUnionStmt; // in ASTHPUnionDeclNode
+    IASTListNode<ASTHPMapDeclNode> maps; // in ASTHPUnionDeclNode
+    ASTHPEndUnionStmtNode hiddenHPEndUnionStmt; // in ASTHPUnionDeclNode
 
-    public boolean isKind()
+    public IASTListNode<ASTHPMapDeclNode> getMaps()
     {
-        return this.isKind != null;
+        return this.maps;
     }
 
-    public void setIsKind(org.eclipse.photran.internal.core.lexer.Token newValue)
+    public void setMaps(IASTListNode<ASTHPMapDeclNode> newValue)
     {
-        this.isKind = newValue;
-        if (newValue != null) newValue.setParent(this);
-    }
-
-
-    public boolean isLen()
-    {
-        return this.isLen != null;
-    }
-
-    public void setIsLen(org.eclipse.photran.internal.core.lexer.Token newValue)
-    {
-        this.isLen = newValue;
+        this.maps = newValue;
         if (newValue != null) newValue.setParent(this);
     }
 
@@ -58,21 +47,23 @@ public class ASTTypeParamAttrSpecNode extends ASTNode
     @Override
     public void accept(IASTVisitor visitor)
     {
-        visitor.visitASTTypeParamAttrSpecNode(this);
+        visitor.visitASTHPUnionDeclNode(this);
+        visitor.visitIHPField(this);
         visitor.visitASTNode(this);
     }
 
     @Override protected int getNumASTFields()
     {
-        return 2;
+        return 3;
     }
 
     @Override protected IASTNode getASTField(int index)
     {
         switch (index)
         {
-        case 0:  return this.isKind;
-        case 1:  return this.isLen;
+        case 0:  return this.hiddenHPUnionStmt;
+        case 1:  return this.maps;
+        case 2:  return this.hiddenHPEndUnionStmt;
         default: throw new IllegalArgumentException("Invalid index");
         }
     }
@@ -81,8 +72,9 @@ public class ASTTypeParamAttrSpecNode extends ASTNode
     {
         switch (index)
         {
-        case 0:  this.isKind = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 1:  this.isLen = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 0:  this.hiddenHPUnionStmt = (ASTHPUnionStmtNode)value; if (value != null) value.setParent(this); return;
+        case 1:  this.maps = (IASTListNode<ASTHPMapDeclNode>)value; if (value != null) value.setParent(this); return;
+        case 2:  this.hiddenHPEndUnionStmt = (ASTHPEndUnionStmtNode)value; if (value != null) value.setParent(this); return;
         default: throw new IllegalArgumentException("Invalid index");
         }
     }

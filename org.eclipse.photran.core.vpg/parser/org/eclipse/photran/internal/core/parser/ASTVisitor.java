@@ -206,6 +206,18 @@ public class ASTVisitor implements IASTVisitor
     public void visitASTGenericSpecNode(ASTGenericSpecNode node) { traverseChildren(node); }
     public void visitASTGoToKwNode(ASTGoToKwNode node) { traverseChildren(node); }
     public void visitASTGotoStmtNode(ASTGotoStmtNode node) { traverseChildren(node); }
+    public void visitASTHPEndMapStmtNode(ASTHPEndMapStmtNode node) { traverseChildren(node); }
+    public void visitASTHPEndStructureStmtNode(ASTHPEndStructureStmtNode node) { traverseChildren(node); }
+    public void visitASTHPEndUnionStmtNode(ASTHPEndUnionStmtNode node) { traverseChildren(node); }
+    public void visitASTHPMapDeclNode(ASTHPMapDeclNode node) { traverseChildren(node); }
+    public void visitASTHPMapStmtNode(ASTHPMapStmtNode node) { traverseChildren(node); }
+    public void visitASTHPRecordDeclNode(ASTHPRecordDeclNode node) { traverseChildren(node); }
+    public void visitASTHPRecordStmtNode(ASTHPRecordStmtNode node) { traverseChildren(node); }
+    public void visitASTHPStructureDeclNode(ASTHPStructureDeclNode node) { traverseChildren(node); }
+    public void visitASTHPStructureNameNode(ASTHPStructureNameNode node) { traverseChildren(node); }
+    public void visitASTHPStructureStmtNode(ASTHPStructureStmtNode node) { traverseChildren(node); }
+    public void visitASTHPUnionDeclNode(ASTHPUnionDeclNode node) { traverseChildren(node); }
+    public void visitASTHPUnionStmtNode(ASTHPUnionStmtNode node) { traverseChildren(node); }
     public void visitASTIfConstructNode(ASTIfConstructNode node) { traverseChildren(node); }
     public void visitASTIfStmtNode(ASTIfStmtNode node) { traverseChildren(node); }
     public void visitASTIfThenErrorNode(ASTIfThenErrorNode node) { traverseChildren(node); }
@@ -422,6 +434,7 @@ public class ASTVisitor implements IASTVisitor
     public void visitIExecutionPartConstruct(IExecutionPartConstruct node) {}
     public void visitIExpr(IExpr node) {}
     public void visitIForallBodyConstruct(IForallBodyConstruct node) {}
+    public void visitIHPField(IHPField node) {}
     public void visitIInputItem(IInputItem node) {}
     public void visitIInterfaceSpecification(IInterfaceSpecification node) {}
     public void visitIInternalSubprogram(IInternalSubprogram node) {}

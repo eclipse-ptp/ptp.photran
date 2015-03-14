@@ -206,6 +206,18 @@ public class GenericASTVisitor implements IASTVisitor
     public void visitASTGenericSpecNode(ASTGenericSpecNode node) {}
     public void visitASTGoToKwNode(ASTGoToKwNode node) {}
     public void visitASTGotoStmtNode(ASTGotoStmtNode node) {}
+    public void visitASTHPEndMapStmtNode(ASTHPEndMapStmtNode node) {}
+    public void visitASTHPEndStructureStmtNode(ASTHPEndStructureStmtNode node) {}
+    public void visitASTHPEndUnionStmtNode(ASTHPEndUnionStmtNode node) {}
+    public void visitASTHPMapDeclNode(ASTHPMapDeclNode node) {}
+    public void visitASTHPMapStmtNode(ASTHPMapStmtNode node) {}
+    public void visitASTHPRecordDeclNode(ASTHPRecordDeclNode node) {}
+    public void visitASTHPRecordStmtNode(ASTHPRecordStmtNode node) {}
+    public void visitASTHPStructureDeclNode(ASTHPStructureDeclNode node) {}
+    public void visitASTHPStructureNameNode(ASTHPStructureNameNode node) {}
+    public void visitASTHPStructureStmtNode(ASTHPStructureStmtNode node) {}
+    public void visitASTHPUnionDeclNode(ASTHPUnionDeclNode node) {}
+    public void visitASTHPUnionStmtNode(ASTHPUnionStmtNode node) {}
     public void visitASTIfConstructNode(ASTIfConstructNode node) {}
     public void visitASTIfStmtNode(ASTIfStmtNode node) {}
     public void visitASTIfThenErrorNode(ASTIfThenErrorNode node) {}
@@ -422,6 +434,7 @@ public class GenericASTVisitor implements IASTVisitor
     public void visitIExecutionPartConstruct(IExecutionPartConstruct node) {}
     public void visitIExpr(IExpr node) {}
     public void visitIForallBodyConstruct(IForallBodyConstruct node) {}
+    public void visitIHPField(IHPField node) {}
     public void visitIInputItem(IInputItem node) {}
     public void visitIInterfaceSpecification(IInterfaceSpecification node) {}
     public void visitIInternalSubprogram(IInternalSubprogram node) {}

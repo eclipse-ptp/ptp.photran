@@ -26,31 +26,33 @@ import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.lexer.*;                   import org.eclipse.photran.internal.core.analysis.binding.ScopingNode;                   import org.eclipse.photran.internal.core.SyntaxException;                   import java.io.IOException;
 
 @SuppressWarnings("all")
-public class ASTTypeParamAttrSpecNode extends ASTNode
+public class ASTHPRecordStmtNode extends ASTNode implements IBlockDataBodyConstruct, IBodyConstruct, IDeclarationConstruct, IHPField, IModuleBodyConstruct, ISpecificationPartConstruct
 {
-    org.eclipse.photran.internal.core.lexer.Token isKind; // in ASTTypeParamAttrSpecNode
-    org.eclipse.photran.internal.core.lexer.Token isLen; // in ASTTypeParamAttrSpecNode
+    org.eclipse.photran.internal.core.lexer.Token label; // in ASTHPRecordStmtNode
+    org.eclipse.photran.internal.core.lexer.Token hiddenTRecord; // in ASTHPRecordStmtNode
+    ASTHPRecordDeclNode HPRecordDecl; // in ASTHPRecordStmtNode
+    org.eclipse.photran.internal.core.lexer.Token hiddenTEos; // in ASTHPRecordStmtNode
 
-    public boolean isKind()
+    public org.eclipse.photran.internal.core.lexer.Token getLabel()
     {
-        return this.isKind != null;
+        return this.label;
     }
 
-    public void setIsKind(org.eclipse.photran.internal.core.lexer.Token newValue)
+    public void setLabel(org.eclipse.photran.internal.core.lexer.Token newValue)
     {
-        this.isKind = newValue;
+        this.label = newValue;
         if (newValue != null) newValue.setParent(this);
     }
 
 
-    public boolean isLen()
+    public ASTHPRecordDeclNode getHPRecordDecl()
     {
-        return this.isLen != null;
+        return this.HPRecordDecl;
     }
 
-    public void setIsLen(org.eclipse.photran.internal.core.lexer.Token newValue)
+    public void setHPRecordDecl(ASTHPRecordDeclNode newValue)
     {
-        this.isLen = newValue;
+        this.HPRecordDecl = newValue;
         if (newValue != null) newValue.setParent(this);
     }
 
@@ -58,21 +60,29 @@ public class ASTTypeParamAttrSpecNode extends ASTNode
     @Override
     public void accept(IASTVisitor visitor)
     {
-        visitor.visitASTTypeParamAttrSpecNode(this);
+        visitor.visitASTHPRecordStmtNode(this);
+        visitor.visitIBlockDataBodyConstruct(this);
+        visitor.visitIBodyConstruct(this);
+        visitor.visitIDeclarationConstruct(this);
+        visitor.visitIHPField(this);
+        visitor.visitIModuleBodyConstruct(this);
+        visitor.visitISpecificationPartConstruct(this);
         visitor.visitASTNode(this);
     }
 
     @Override protected int getNumASTFields()
     {
-        return 2;
+        return 4;
     }
 
     @Override protected IASTNode getASTField(int index)
     {
         switch (index)
         {
-        case 0:  return this.isKind;
-        case 1:  return this.isLen;
+        case 0:  return this.label;
+        case 1:  return this.hiddenTRecord;
+        case 2:  return this.HPRecordDecl;
+        case 3:  return this.hiddenTEos;
         default: throw new IllegalArgumentException("Invalid index");
         }
     }
@@ -81,8 +91,10 @@ public class ASTTypeParamAttrSpecNode extends ASTNode
     {
         switch (index)
         {
-        case 0:  this.isKind = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 1:  this.isLen = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 0:  this.label = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 1:  this.hiddenTRecord = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 2:  this.HPRecordDecl = (ASTHPRecordDeclNode)value; if (value != null) value.setParent(this); return;
+        case 3:  this.hiddenTEos = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
         default: throw new IllegalArgumentException("Invalid index");
         }
     }

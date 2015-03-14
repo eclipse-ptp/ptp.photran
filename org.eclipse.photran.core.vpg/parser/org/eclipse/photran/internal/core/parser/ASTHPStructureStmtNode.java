@@ -26,14 +26,15 @@ import org.eclipse.photran.internal.core.lexer.Token;
 import org.eclipse.photran.internal.core.lexer.*;                   import org.eclipse.photran.internal.core.analysis.binding.ScopingNode;                   import org.eclipse.photran.internal.core.SyntaxException;                   import java.io.IOException;
 
 @SuppressWarnings("all")
-public class ASTParameterStmtNode extends ASTNode implements IBlockDataBodyConstruct, IBodyConstruct, IHPField, IModuleBodyConstruct, ISpecificationPartConstruct
+public class ASTHPStructureStmtNode extends ASTNode
 {
-    org.eclipse.photran.internal.core.lexer.Token label; // in ASTParameterStmtNode
-    org.eclipse.photran.internal.core.lexer.Token hiddenTParameter; // in ASTParameterStmtNode
-    org.eclipse.photran.internal.core.lexer.Token hiddenTLparen; // in ASTParameterStmtNode
-    IASTListNode<ASTNamedConstantDefNode> namedConstantDefList; // in ASTParameterStmtNode
-    org.eclipse.photran.internal.core.lexer.Token hiddenTRparen; // in ASTParameterStmtNode
-    org.eclipse.photran.internal.core.lexer.Token hiddenTEos; // in ASTParameterStmtNode
+    org.eclipse.photran.internal.core.lexer.Token label; // in ASTHPStructureStmtNode
+    org.eclipse.photran.internal.core.lexer.Token hiddenTStructure; // in ASTHPStructureStmtNode
+    org.eclipse.photran.internal.core.lexer.Token hiddenTSlash; // in ASTHPStructureStmtNode
+    org.eclipse.photran.internal.core.lexer.Token name; // in ASTHPStructureStmtNode
+    org.eclipse.photran.internal.core.lexer.Token hiddenTSlash2; // in ASTHPStructureStmtNode
+    IASTListNode<ASTEntityDeclNode> fieldNamelist; // in ASTHPStructureStmtNode
+    org.eclipse.photran.internal.core.lexer.Token hiddenTEos; // in ASTHPStructureStmtNode
 
     public org.eclipse.photran.internal.core.lexer.Token getLabel()
     {
@@ -47,14 +48,26 @@ public class ASTParameterStmtNode extends ASTNode implements IBlockDataBodyConst
     }
 
 
-    public IASTListNode<ASTNamedConstantDefNode> getNamedConstantDefList()
+    public org.eclipse.photran.internal.core.lexer.Token getName()
     {
-        return this.namedConstantDefList;
+        return this.name;
     }
 
-    public void setNamedConstantDefList(IASTListNode<ASTNamedConstantDefNode> newValue)
+    public void setName(org.eclipse.photran.internal.core.lexer.Token newValue)
     {
-        this.namedConstantDefList = newValue;
+        this.name = newValue;
+        if (newValue != null) newValue.setParent(this);
+    }
+
+
+    public IASTListNode<ASTEntityDeclNode> getFieldNamelist()
+    {
+        return this.fieldNamelist;
+    }
+
+    public void setFieldNamelist(IASTListNode<ASTEntityDeclNode> newValue)
+    {
+        this.fieldNamelist = newValue;
         if (newValue != null) newValue.setParent(this);
     }
 
@@ -62,18 +75,13 @@ public class ASTParameterStmtNode extends ASTNode implements IBlockDataBodyConst
     @Override
     public void accept(IASTVisitor visitor)
     {
-        visitor.visitASTParameterStmtNode(this);
-        visitor.visitIBlockDataBodyConstruct(this);
-        visitor.visitIBodyConstruct(this);
-        visitor.visitIHPField(this);
-        visitor.visitIModuleBodyConstruct(this);
-        visitor.visitISpecificationPartConstruct(this);
+        visitor.visitASTHPStructureStmtNode(this);
         visitor.visitASTNode(this);
     }
 
     @Override protected int getNumASTFields()
     {
-        return 6;
+        return 7;
     }
 
     @Override protected IASTNode getASTField(int index)
@@ -81,11 +89,12 @@ public class ASTParameterStmtNode extends ASTNode implements IBlockDataBodyConst
         switch (index)
         {
         case 0:  return this.label;
-        case 1:  return this.hiddenTParameter;
-        case 2:  return this.hiddenTLparen;
-        case 3:  return this.namedConstantDefList;
-        case 4:  return this.hiddenTRparen;
-        case 5:  return this.hiddenTEos;
+        case 1:  return this.hiddenTStructure;
+        case 2:  return this.hiddenTSlash;
+        case 3:  return this.name;
+        case 4:  return this.hiddenTSlash2;
+        case 5:  return this.fieldNamelist;
+        case 6:  return this.hiddenTEos;
         default: throw new IllegalArgumentException("Invalid index");
         }
     }
@@ -95,11 +104,12 @@ public class ASTParameterStmtNode extends ASTNode implements IBlockDataBodyConst
         switch (index)
         {
         case 0:  this.label = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 1:  this.hiddenTParameter = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 2:  this.hiddenTLparen = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 3:  this.namedConstantDefList = (IASTListNode<ASTNamedConstantDefNode>)value; if (value != null) value.setParent(this); return;
-        case 4:  this.hiddenTRparen = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
-        case 5:  this.hiddenTEos = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 1:  this.hiddenTStructure = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 2:  this.hiddenTSlash = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 3:  this.name = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 4:  this.hiddenTSlash2 = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
+        case 5:  this.fieldNamelist = (IASTListNode<ASTEntityDeclNode>)value; if (value != null) value.setParent(this); return;
+        case 6:  this.hiddenTEos = (org.eclipse.photran.internal.core.lexer.Token)value; if (value != null) value.setParent(this); return;
         default: throw new IllegalArgumentException("Invalid index");
         }
     }

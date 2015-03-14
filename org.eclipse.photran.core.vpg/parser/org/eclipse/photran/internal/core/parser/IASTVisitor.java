@@ -200,6 +200,18 @@ public interface IASTVisitor
     void visitASTGenericSpecNode(ASTGenericSpecNode node);
     void visitASTGoToKwNode(ASTGoToKwNode node);
     void visitASTGotoStmtNode(ASTGotoStmtNode node);
+    void visitASTHPEndMapStmtNode(ASTHPEndMapStmtNode node);
+    void visitASTHPEndStructureStmtNode(ASTHPEndStructureStmtNode node);
+    void visitASTHPEndUnionStmtNode(ASTHPEndUnionStmtNode node);
+    void visitASTHPMapDeclNode(ASTHPMapDeclNode node);
+    void visitASTHPMapStmtNode(ASTHPMapStmtNode node);
+    void visitASTHPRecordDeclNode(ASTHPRecordDeclNode node);
+    void visitASTHPRecordStmtNode(ASTHPRecordStmtNode node);
+    void visitASTHPStructureDeclNode(ASTHPStructureDeclNode node);
+    void visitASTHPStructureNameNode(ASTHPStructureNameNode node);
+    void visitASTHPStructureStmtNode(ASTHPStructureStmtNode node);
+    void visitASTHPUnionDeclNode(ASTHPUnionDeclNode node);
+    void visitASTHPUnionStmtNode(ASTHPUnionStmtNode node);
     void visitASTIfConstructNode(ASTIfConstructNode node);
     void visitASTIfStmtNode(ASTIfStmtNode node);
     void visitASTIfThenErrorNode(ASTIfThenErrorNode node);
@@ -416,6 +428,7 @@ public interface IASTVisitor
     void visitIExecutionPartConstruct(IExecutionPartConstruct node);
     void visitIExpr(IExpr node);
     void visitIForallBodyConstruct(IForallBodyConstruct node);
+    void visitIHPField(IHPField node);
     void visitIInputItem(IInputItem node);
     void visitIInterfaceSpecification(IInterfaceSpecification node);
     void visitIInternalSubprogram(IInternalSubprogram node);
