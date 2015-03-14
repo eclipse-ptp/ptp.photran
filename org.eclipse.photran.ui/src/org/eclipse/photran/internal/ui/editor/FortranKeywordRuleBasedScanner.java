@@ -91,7 +91,7 @@ public class FortranKeywordRuleBasedScanner extends RuleBasedScanner
                                           "ALL", "ALLSTOP", "SYNC", "SYNCALL", "SYNCIMAGES", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
                                           "IMAGES", "SYNCMEMORY", "MEMORY", "LOCK", "UNLOCK", "CONCURRENT", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
                                           // HP language extension keywords to highlight
-                                          "STRUCTURE", "RECORD", "FILL", "UNION", "MAP" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+                                          "STRUCTURE", "RECORD", "FILL", "UNION", "MAP", "BYTE" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
 
     //private static String[] fgTextualOperators = { ".AND.", ".EQ.", ".EQV.", ".FALSE.", ".GE.", ".GT.", ".LE.", ".LT.", ".NE.", ".NEQV.", ".NOT.", ".OR.", ".TRUE." };
     private static String[] fgTextualOperators = { "AND", "EQ", "EQV", "FALSE", "GE", "GT", "LE", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$

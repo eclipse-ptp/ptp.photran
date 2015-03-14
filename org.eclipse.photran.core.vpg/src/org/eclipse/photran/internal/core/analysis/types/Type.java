@@ -73,7 +73,7 @@ public abstract class Type implements IPhotranSerializable, Serializable
     
     public static Type parse(ASTTypeSpecNode node)
     {
-        if (node.isInteger())
+        if (node.isInteger() || node.isByte())
             return Type.INTEGER;
         else if (node.isReal())
             return Type.REAL;

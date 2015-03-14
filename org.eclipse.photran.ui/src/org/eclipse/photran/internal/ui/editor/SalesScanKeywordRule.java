@@ -702,7 +702,8 @@ public class SalesScanKeywordRule extends WordRule implements IRule
                 || kw.equalsIgnoreCase("integer") //$NON-NLS-1$
                 || kw.equalsIgnoreCase("logical") //$NON-NLS-1$
                 || kw.equalsIgnoreCase("real") //$NON-NLS-1$
-                || kw.equalsIgnoreCase("type"); //$NON-NLS-1$
+                || kw.equalsIgnoreCase("type") //$NON-NLS-1$
+                || kw.equalsIgnoreCase("byte"); //$NON-NLS-1$
         }
 
         private boolean isPrefixSpec(String kw)
