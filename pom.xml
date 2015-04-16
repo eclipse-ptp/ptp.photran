@@ -17,10 +17,10 @@
 	<properties>
 		<tycho-version>0.19.0</tycho-version>
 		<tycho-extras-version>${tycho-version}</tycho-extras-version>
-		<platform-version>4.4milestones</platform-version>
+		<platform-version>4.5milestones</platform-version>
 		<platform-site>http://download.eclipse.org/eclipse/updates/${platform-version}</platform-site>
-		<cdt-version>8.4</cdt-version>
-		<cdt-site>http://download.eclipse.org/tools/cdt/builds/${cdt-version}/nightly</cdt-site>
+		<cdt-version>mars</cdt-version>
+		<cdt-site>http://download.eclipse.org/tools/cdt/builds/${cdt-version}/milestones</cdt-site>
 		<license-site>http://download.eclipse.org/cbi/updates/license</license-site>
 		<photran-install-dir>/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-nightly-photran</photran-install-dir>
 	</properties>
