@@ -285,16 +285,31 @@ public class TileLoopRefactoring extends FortranEditorRefactoring
     @UserInputString(label = "Enter tile size ", defaultValueMethod= "getSuggestedTilingSize")
     public void setLoopTilingStepNumber(String input)
     {
-        tilingSize = Integer.parseInt(input.trim());
+        try
+        {
+            tilingSize = Integer.parseInt(input.trim());
+        }
+        catch (NumberFormatException e)
+        {
+            tilingSize = -1; // Will raise an error in doCheckFinalConditions
+        }
     }
     public String getSuggestedTilingSize()
     {
-        return "1"; //$NON-NLS-1$
+        return "4"; //$NON-NLS-1$
     }
+
     @UserInputString(label = "Enter tile offset ", defaultValueMethod = "getSuggestedTilingOffset")
     public void setLoopTilingOffsetNumber(String input)
     {
-        tilingOffset = Integer.parseInt(input.trim());
+        try
+        {
+            tilingOffset = Integer.parseInt(input.trim());
+        }
+        catch (NumberFormatException e)
+        {
+            tilingOffset = -1; // Will raise an error in doCheckFinalConditions
+        }
     }
     public String getSuggestedTilingOffset()
     {
