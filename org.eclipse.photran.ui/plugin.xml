@@ -177,9 +177,7 @@
                id="org.eclipse.jdt.ui.source.menu">
             <visibleWhen checkEnabled="false">
                <iterate operator="or">
-                   <adapt type="org.eclipse.jface.text.ITextSelection">
-                     <test property="org.eclipse.rephraserengine.ui.refactoring.isRefactorable"/>
-                   </adapt>
+                   <adapt type="org.eclipse.jface.text.ITextSelection" />
                </iterate>
             </visibleWhen>
          <!-- Menu mimicks org.eclipse.jdt.ui's (as does CDT's Refactor menu)
@@ -188,11 +186,15 @@
             <separator name="editGroup" />
             <command
                   commandId="org.eclipse.ui.edit.text.shiftRight"
+                  disabledIcon="icons/dlcl16/shift_r_edit.gif"
+                  icon="icons/elcl16/shift_r_edit.gif"
                   label="&amp;Shift Right"
                   style="push">
             </command>
             <command
                   commandId="org.eclipse.ui.edit.text.shiftLeft"
+                  disabledIcon="icons/dlcl16/shift_l_edit.gif"
+                  icon="icons/elcl16/shift_l_edit.gif"
                   label="S&amp;hift Left"
                   style="push">
             </command>

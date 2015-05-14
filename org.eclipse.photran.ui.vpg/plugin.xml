@@ -501,6 +501,32 @@
             name="%command.name.reindent">
       </command>
    </extension>
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=edit">
+         <menu
+               label="&amp;Source"
+               id="org.eclipse.jdt.ui.source.menu">
+            <visibleWhen checkEnabled="false">
+               <iterate operator="or">
+                   <adapt type="org.eclipse.jface.text.ITextSelection">
+                     <test property="org.eclipse.rephraserengine.ui.refactoring.isRefactorable"/>
+                   </adapt>
+               </iterate>
+            </visibleWhen>
+         <!-- Menu mimicks org.eclipse.jdt.ui's (as does CDT's Refactor menu)
+              http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.jdt.ui/plugin.xml?view=markup -->
+            <separator name="commentGroup" />
+            <separator name="editGroup" />
+            <separator name="importGroup" />
+            <separator name="generateGroup" />
+            <separator name="codeGroup" />
+            <separator name="externalizeGroup" />
+            <separator name="convertGroup" />
+            <separator name="additions" />
+         </menu>
+      </menuContribution>
+   </extension>
    <extension point="org.eclipse.ui.actionSets">
       <actionSet
             label="%actionSet.label.reindent"
