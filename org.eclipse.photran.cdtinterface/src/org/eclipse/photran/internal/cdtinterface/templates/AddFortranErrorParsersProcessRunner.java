@@ -33,11 +33,11 @@ public class AddFortranErrorParsersProcessRunner extends PhotranBaseProcessRunne
      * in addition to Photran's error parsers.
      */
     private static final String DEFAULT_ERROR_PARSERS =
-        "org.eclipse.cdt.core.MakeErrorParser;" +         //$NON-NLS-1$
         "org.eclipse.photran.core.GFortranErrorParser;" + //$NON-NLS-1$
         "org.eclipse.cdt.core.GCCErrorParser;" +          //$NON-NLS-1$
         "org.eclipse.cdt.core.GLDErrorParser;" +          //$NON-NLS-1$
-        "org.eclipse.cdt.core.GASErrorParser";            //$NON-NLS-1$
+        "org.eclipse.cdt.core.GASErrorParser" +           //$NON-NLS-1$
+        "org.eclipse.cdt.core.MakeErrorParser;";          //$NON-NLS-1$
 
     @Override
     protected void modify(IProject proj, IConfiguration cf)

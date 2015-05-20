@@ -587,7 +587,7 @@
                name="%ConfigName.Dbg"
                id="photran.managedbuild.config.gnu.fortran.exe.debug"
                cleanCommand="rm -rf"
-               errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser">
+               errorParsers="org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GmakeErrorParser">
                <toolChain
                      archList="all"
                      osList="solaris,linux,hpux,aix,qnx"
@@ -648,7 +648,7 @@
                name="%ConfigName.Rel"
                id="photran.managedbuild.config.gnu.fortran.exe.release"
                cleanCommand="rm -rf"
-			   errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser">
+			   errorParsers="org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GmakeErrorParser">
                <toolChain
                      archList="all"
                      osList="solaris,linux,hpux,aix,qnx"
@@ -720,7 +720,7 @@
          <configuration
                name="%ConfigName.Dbg"
                cleanCommand="rm -rf"
-               errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"
+               errorParsers="org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GmakeErrorParser"
                id="photran.managedbuild.config.gnu.fortran.macosx.exe.debug">
                <toolChain
                      archList="all"
@@ -781,7 +781,7 @@
          <configuration
                name="%ConfigName.Rel"
                cleanCommand="rm -rf"
-			   errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"
+			   errorParsers="org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GmakeErrorParser"
                id="photran.managedbuild.config.gnu.fortran.macosx.exe.release">
                <toolChain
                      archList="all"
@@ -854,7 +854,7 @@
          <configuration
                name="%ConfigName.Dbg"
                cleanCommand="rm -rf"
-               errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"
+               errorParsers="org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GmakeErrorParser"
                id="photran.managedbuild.config.gnu.fortran.win32.exe.debug">
                <toolChain
                      archList="all"
@@ -915,7 +915,7 @@
          <configuration
                name="%ConfigName.Rel"
                cleanCommand="rm -rf"
-			   errorParsers="org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"
+			   errorParsers="org.eclipse.photran.core.GFortranErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GmakeErrorParser"
                id="photran.managedbuild.config.gnu.fortran.win32.exe.release">
                <toolChain
                      archList="all"
