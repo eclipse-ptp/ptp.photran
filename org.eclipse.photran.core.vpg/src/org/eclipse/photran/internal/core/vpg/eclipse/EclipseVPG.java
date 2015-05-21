@@ -33,6 +33,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.MultiRule;
+import org.eclipse.photran.internal.core.FortranCorePlugin;
 import org.eclipse.photran.internal.core.vpg.IVPGNode;
 import org.eclipse.photran.internal.core.vpg.VPG;
 import org.eclipse.ui.IWorkbench;
@@ -127,7 +128,7 @@ public abstract class EclipseVPG<A, T, R extends IVPGNode<T>>
             }
             catch (Throwable e)
             {
-                return new Status(IStatus.ERROR, null, e.getMessage(), e);
+                return new Status(IStatus.ERROR, FortranCorePlugin.PLUGIN_ID, e.getMessage(), e);
             }
         }
     }
