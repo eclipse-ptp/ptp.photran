@@ -976,6 +976,24 @@
          </menu>
       </menuContribution>
 
+      <!-- Refactor sub-menu in Fortran editor popup menu -->
+      <!-- ============================================== -->
+      <menuContribution
+            locationURI="popup:#FortranEditorContextMenu?after=group.edit">
+         <menu
+               label="%rmenu.label"
+               id="org.eclipse.jdt.ui.refactoring.menu">
+            <!-- http://wiki.eclipse.org/Command_Core_Expressions -->
+            <visibleWhen checkEnabled="false">
+               <reference definitionId="org.eclipse.rephraserengine.ui.refactoring.isRefactorableResource" />
+            </visibleWhen>
+            <dynamic
+                  class="org.eclipse.photran.internal.ui.menus.RefactorMenu"
+                  id="org.eclipse.rephraserengine.ui.menus.refactor">
+            </dynamic>
+         </menu>
+      </menuContribution>
+
    </extension>
 
    <!--=================-->

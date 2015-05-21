@@ -231,32 +231,6 @@ public class FortranEditor extends CDTBasedTextEditor implements ISelectionChang
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
-    // Context Menu Contribution
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-
-    // see org.eclipse.ui.texteditor.AbstractTextEditor#editorContextMenuAboutToShow(org.eclipse.jface.action.IMenuManager)
-    @Override public void editorContextMenuAboutToShow(IMenuManager menu)
-    {
-        super.editorContextMenuAboutToShow(menu);
-
-        try
-        {
-            // Instantiate RefactorMenu using reflection since it's in an optional dependency
-            IContributionItem refactorMenu = (IContributionItem)Class.forName("org.eclipse.rephraserengine.ui.menus.RefactorMenu").newInstance(); //$NON-NLS-1$
-            
-            MenuManager refactorSubmenu = new MenuManager("Refactor"); //$NON-NLS-1$
-            refactorSubmenu.add(refactorMenu);
-            menu.appendToGroup(ITextEditorActionConstants.GROUP_EDIT, refactorSubmenu); // cf. CEditor#createActions()
-            //menu.add(refactorSubmenu);
-        }
-        catch (Throwable x)
-        {
-            // The RefactorMenu class is contributed through an optional dependency;
-            // if it's not present, it's not a problem
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////
     // Matching Parenthesis/Bracket Highlighting
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
