@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 University of Illinois at Urbana-Champaign and others.
+ * Copyright (c) 2007, 2015 University of Illinois at Urbana-Champaign and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,11 +7,13 @@
  *
  * Contributors:
  *     UIUC - Initial API and implementation
+ *     Jeff Overbey (Auburn) - Handle variables like real_allocaed (Bug 351082)
  *******************************************************************************/
 package org.eclipse.photran.internal.core.lexer;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 
@@ -25,6 +27,8 @@ import org.eclipse.core.resources.IFile;
  */
 public class FixedFormLexerPhase2 implements ILexer
 {
+    private static final Pattern IDENTIFIER = Pattern.compile("[A-Za-z$][A-Za-z0-9$_]*"); //$NON-NLS-1$
+
     private FreeFormLexerPhase2 freeLexer2;
 
     private IToken nextToken = null;
@@ -100,6 +104,9 @@ public class FixedFormLexerPhase2 implements ILexer
         IToken t = nextToken;
         nextToken = freeLexer2.yylex();
 
+        if (nextToken.getTerminal() == Terminal.T_UNDERSCORE && couldBeIdentifier(t))
+            t.setTerminal(Terminal.T_IDENT);
+
         if (t.getTerminal() == Terminal.T_IDENT)
         {
             while ((nextToken.getTerminal() == Terminal.T_IDENT)
@@ -114,6 +121,11 @@ public class FixedFormLexerPhase2 implements ILexer
             }
         }
         return t;
+    }
+
+    private boolean couldBeIdentifier(IToken t)
+    {
+        return t.getTerminal() == Terminal.T_IDENT || IDENTIFIER.matcher(t.getText()).matches();
     }
 
     public String getFilename()

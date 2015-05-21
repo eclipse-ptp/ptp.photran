@@ -16,7 +16,7 @@ import java.io.IOException;
 import junit.framework.Test;
 
 
-public class ParseRegressionTestFiles
+public class ParseRegressionTestFilesFree
 {
     public static Test suite() throws FileNotFoundException, IOException
     {

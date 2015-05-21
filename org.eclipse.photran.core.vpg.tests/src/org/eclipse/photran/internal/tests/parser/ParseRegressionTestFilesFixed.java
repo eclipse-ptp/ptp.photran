@@ -1,0 +1,24 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Auburn University and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     UIUC - Initial API and implementation
+ *******************************************************************************/
+package org.eclipse.photran.internal.tests.parser;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import junit.framework.Test;
+
+public class ParseRegressionTestFilesFixed
+{
+    public static Test suite() throws FileNotFoundException, IOException
+    {
+        return new MultiTestSuite("reg_tests", true, true) {};
+    }
+}
