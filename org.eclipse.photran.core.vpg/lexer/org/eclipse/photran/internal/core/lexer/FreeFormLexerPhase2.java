@@ -398,6 +398,9 @@ public class FreeFormLexerPhase2 implements ILexer
         addRules(Terminal.T_INTERFACE,
             new StmtMustStartWithOneOf(Terminal.T_END, Terminal.T_ABSTRACT),
             new MustBePrecededByOneOf(Terminal.T_END, Terminal.T_ABSTRACT));
+
+        addRule(Terminal.T_IMPORT,
+            new StmtMustStartWith(Terminal.T_IMPORT));
         // END FORTRAN 2003 ///////////////////////////////////////////////////////////////////////
 
         // BEGIN HP EXTENSIONS ///////////////////////////////////////////////////////////////////////
@@ -453,7 +456,7 @@ public class FreeFormLexerPhase2 implements ILexer
 
         // R746
         addRules(Terminal.T_WHERE,
-                new StmtMustStartWith(Terminal.T_END),
+                new StmtMustStartWithOneOf(Terminal.T_END, Terminal.T_ELSE),
                 new MustBePrecededByOneOf(Terminal.T_END, Terminal.T_ELSE));
 
         // R748
@@ -788,6 +791,22 @@ public class FreeFormLexerPhase2 implements ILexer
                 }
             }
         }
+        else if (((IToken)tokenStream.elementAt(firstTokenPos)).getTerminal() == Terminal.T_ENUMERATOR)
+        {
+            if (!openContextEquals)
+            {
+                retainAsKeyword[firstTokenPos] = true;
+            }
+            else if (tokenStream.size() > firstTokenPos + 2)
+            {
+                Terminal la1 = ((IToken)tokenStream.elementAt(firstTokenPos+1)).getTerminal();
+                Terminal la2 = ((IToken)tokenStream.elementAt(firstTokenPos+2)).getTerminal();
+                if (la1 == Terminal.T_COLON && la2 == Terminal.T_COLON)
+                {
+                    retainAsKeyword[firstTokenPos] = true;
+                }
+            }
+        }
         else if (((IToken)tokenStream.elementAt(firstTokenPos)).getTerminal() == Terminal.T_END)
         {
             for (int i = firstTokenPos+1; i < tokenStream.size(); i++)
@@ -798,10 +817,6 @@ public class FreeFormLexerPhase2 implements ILexer
                     retainAsKeyword[i] = (parenDepth[i] == 0 && i != idPos);
                 }
             }
-        }
-        else if (((IToken)tokenStream.elementAt(firstTokenPos)).getTerminal() == Terminal.T_IMPORT)
-        {
-            retainAsKeyword[firstTokenPos] = true;
         }
         else if (((IToken)tokenStream.elementAt(firstTokenPos)).getTerminal() == Terminal.T_GENERIC
             && tokenStream.size() > 1

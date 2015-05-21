@@ -623,6 +623,8 @@ public class SalesScanKeywordRule extends WordRule implements IRule
                 return precedingKeyword.equalsIgnoreCase("double"); //$NON-NLS-1$
             else if (keyword.equalsIgnoreCase("precision")) //$NON-NLS-1$
                 return precedingKeyword.equalsIgnoreCase("double"); //$NON-NLS-1$
+            else if (keyword.equalsIgnoreCase("where")) //$NON-NLS-1$
+                return precedingKeyword.equalsIgnoreCase("else") || precedingKeyword.equalsIgnoreCase("end"); //$NON-NLS-1$ //$NON-NLS-2$
             else if (keyword.equalsIgnoreCase("while")) //$NON-NLS-1$
                 return precedingKeyword.equalsIgnoreCase("do"); //$NON-NLS-1$
             // BEGIN FORTRAN 2003
