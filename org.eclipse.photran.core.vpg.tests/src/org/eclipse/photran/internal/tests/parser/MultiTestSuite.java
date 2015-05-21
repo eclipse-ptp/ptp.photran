@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.photran.internal.tests.parser;
 
+import static org.junit.Assert.fail;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,17 +19,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Set;
 
-import junit.framework.Assert;
-import junit.framework.TestSuite;
-
 import org.eclipse.photran.internal.core.analysis.loops.LoopReplacer;
 import org.eclipse.photran.internal.core.lexer.Token;
+import org.eclipse.photran.internal.core.parser.ASTErrorConstructNode;
+import org.eclipse.photran.internal.core.parser.ASTErrorProgramUnitNode;
 import org.eclipse.photran.internal.core.parser.ASTExecutableProgramNode;
+import org.eclipse.photran.internal.core.parser.ASTFormatStmtNode;
+import org.eclipse.photran.internal.core.parser.ASTNodeWithErrorRecoverySymbols;
 import org.eclipse.photran.internal.core.parser.GenericASTVisitor;
 import org.eclipse.photran.internal.core.parser.IASTNode;
 import org.eclipse.photran.internal.core.refactoring.infrastructure.SourcePrinter;
 import org.eclipse.photran.internal.tests.PhotranASTTestCase;
 import org.eclipse.photran.internal.tests.PhotranTestSuiteFromFiles;
+import org.junit.Assert;
+
+import junit.framework.TestSuite;
 
 /**
  * An aggregate test suite that tests the parser, source reproduction, and loop replacement.
@@ -78,8 +84,39 @@ public abstract class MultiTestSuite extends TestSuite
             {
                 if (token.getParent() == null)
                     System.err.println("!"); // Set breakpoint here
-                
+
                 Assert.assertEquals(expectedParent, token.getParent());
+            }
+        });
+    }
+
+    private static void checkNoErrorNodes(final ASTExecutableProgramNode ast)
+    {
+        ast.accept(new GenericASTVisitor()
+        {
+            @Override
+            public void visitASTNode(IASTNode node)
+            {
+                if (node instanceof ASTNodeWithErrorRecoverySymbols
+                    && !(node instanceof ASTFormatStmtNode)) // Lots of problems with FORMAT; ignore for now
+                {
+                    ASTNodeWithErrorRecoverySymbols errorNode = (ASTNodeWithErrorRecoverySymbols)node;
+                    if (errorNode.getErrorToken() != null)
+                        fail(node.getClass().getSimpleName() + ": Error on " + errorNode.getErrorToken() + "; discarded " + errorNode.getSymbolsDiscardedDuringErrorRecovery());
+                }
+                super.visitASTNode(node);
+            }
+
+            @Override
+            public void visitASTErrorConstructNode(ASTErrorConstructNode node)
+            {
+                fail("ErrorConstructNode: " + node);
+            }
+
+            @Override
+            public void visitASTErrorProgramUnitNode(ASTErrorProgramUnitNode node)
+            {
+                fail("ErrorProgramUnitNode: " + node);
             }
         });
     }
@@ -135,8 +172,9 @@ public abstract class MultiTestSuite extends TestSuite
         protected void handleAST(ASTExecutableProgramNode ast)
         {
             checkCorrectParenting(ast);
+            checkNoErrorNodes(ast);
         }
-        
+
         public ParserTestCase() { super(null, false, ""); } // to keep JUnit quiet
     }
 
@@ -165,6 +203,7 @@ public abstract class MultiTestSuite extends TestSuite
         protected void handleAST(ASTExecutableProgramNode ast) throws IOException
         {
             checkCorrectParenting(ast);
+            // FIXME Add this back in: checkNoErrorNodes(ast);
             
             String originalSourceCode = getSourceCodeFromFile(file).replaceAll("\r", "");
             transform(ast);

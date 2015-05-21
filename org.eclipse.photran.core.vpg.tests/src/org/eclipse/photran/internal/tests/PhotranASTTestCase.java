@@ -73,7 +73,7 @@ public abstract class PhotranASTTestCase extends PhotranTestCase
         catch (Throwable t)
         {
             System.err.println(file.getName());
-            throw new Exception(fileDescription, t);
+            throw new Exception(fileDescription + ": " + t.getMessage(), t);
         }
     }
 
