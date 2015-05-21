@@ -1021,9 +1021,13 @@ public class FreeFormLexerPhase2 implements ILexer
             }
 
             // We didn't follow a comma or :: and we're at paren level 0:
-            // This is the identifier!
             else
             {
+                // If this is an assignment like "double = 5", there is no declaration
+                if (openContextEquals)
+                    return null;
+
+                // This is the identifier!
                 declIdentifierPos = i;
                 break;
             }
