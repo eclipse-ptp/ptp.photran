@@ -414,9 +414,12 @@ public class FreeFormLexerPhase2 implements ILexer
         applySameRulesTo(Terminal.T_LENEQ);
 
         // R512
-        addRules(Terminal.T_IN,
+        addRule(Terminal.T_IN,
+            new And(
                 new MustBePartOfTypeDeclOrStmtMustStartWith(Terminal.T_INTENT),
-                new MustBePrecededByOneOf(Terminal.T_LPAREN, Terminal.T_IN, Terminal.T_OUT));
+                new Or(
+                    new MustBePrecededBy(Terminal.T_INTENT, Terminal.T_LPAREN),
+                    new MustBePrecededByOneOf(Terminal.T_IN, Terminal.T_OUT))));
         applySameRulesTo(Terminal.T_OUT);
         applySameRulesTo(Terminal.T_INOUT);
 
@@ -1187,7 +1190,6 @@ public class FreeFormLexerPhase2 implements ILexer
             firstTokenPriorId = tokenTerminal;
         }
 
-        @SuppressWarnings("unused")
         public MustBePrecededBy(Terminal tokenTerminal1, Terminal tokenTerminal2)
         {
             secondTokenPriorId = tokenTerminal1;
