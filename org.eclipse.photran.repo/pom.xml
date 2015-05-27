@@ -46,9 +46,7 @@
 									<tasks>
 										<!--mkdir dir="${photran-install-dir}" /-->
 										<delete includeemptydirs="true">
-											<fileset dir="${photran-install-dir}">
-												<include name="**" />
-											</fileset>
+											<fileset dir="${photran-install-dir}" includes="**/*"/>
 										</delete>
 										<unzip
 											src="${project.build.directory}/${project.build.finalName}.zip"
