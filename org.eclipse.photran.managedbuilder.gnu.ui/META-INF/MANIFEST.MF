@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.photran.managedbuilder.gnu.ui;singleton:=true
 Bundle-Version: 9.0.0.qualifier
-Bundle-ClassPath: gnuui.jar
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
