@@ -102,42 +102,13 @@
 
    <!-- Fortran Launch Configuration (visible in "Run..." dialog)-->
    <extension
-         point="org.eclipse.debug.core.launchConfigurationTypes">
-      <launchConfigurationType
-            sourceLocatorId="org.eclipse.cdt.debug.core.sourceLocator"
-            delegate="org.eclipse.photran.internal.cdtinterface.launch.FortranCDILaunchDelegate"
-            public="true"
-            sourcePathComputerId="org.eclipse.cdt.debug.core.sourcePathComputer"
-            name="%launchConfigurationType.name"
-            id="org.eclipse.photran.launch.localCLaunch"
-            modes="run,debug">
-      </launchConfigurationType>
-   </extension>
-   <extension
-         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
-      <launchConfigurationTypeImage
-            icon="icons/obj16/f_app.gif"
-            configTypeID="org.eclipse.photran.launch.localCLaunch"
-            id="org.eclipse.photran.launch.localRunLaunchImage">
-      </launchConfigurationTypeImage>
-   </extension>
-   <extension
-         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
-      <launchConfigurationTabGroup
-            type="org.eclipse.photran.launch.localCLaunch"
-            class="org.eclipse.photran.internal.cdtinterface.launch.FortranLocalRunLaunchConfigurationTabGroup"
-            id="org.eclipse.photran.launch.localRunLaunchTabGroup">
-      </launchConfigurationTabGroup>
-   </extension>
-   <!-- Fortran Application Launch Shortcut (Run As > Local Fortran Application) -->
-   <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
-            label="%shortcut.label"
+            label="%CApplicationShortcut.label"
             icon="icons/obj16/f_app.gif"
             modes="run, debug"
-            class="org.eclipse.photran.internal.cdtinterface.launch.CApplicationLaunchShortcut"
-            id="org.eclipse.photran.debug.ui.localCShortcut">
+            class="org.eclipse.cdt.debug.internal.ui.launch.CApplicationLaunchShortcut"
+            id="org.eclipse.cdt.debug.ui.localCShortcut">
          <contextualLaunch>
            <enablement>
              <with variable="selection">
@@ -165,14 +136,14 @@
          </contextualLaunch>
          <description
              mode="run"
-             description="%description.description"/>
+             description="%ContextualRunCApplication.description"/>
           <description
              mode="debug"
-             description="%description.description.0"/>
+             description="%ContextualDebugCApplication.description"/>
          <configurationType
-               id="org.eclipse.photran.launch.localCLaunch">
+               id="org.eclipse.cdt.launch.applicationLaunchType">
          </configurationType>
-       </shortcut>
+	</shortcut>
    </extension>
 
    <!--==============-->
