@@ -90,7 +90,7 @@
          point="org.eclipse.cdt.core.language">
       <language
             class="org.eclipse.photran.internal.cdtinterface.core.FortranLanguage"
-            id="org.eclipse.photran.cdtinterface.fortran"
+            id="fortran"
             name="%language.name">
          <contentType id="org.eclipse.photran.core.fortranSource"/>
       </language>
