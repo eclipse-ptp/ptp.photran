@@ -66,6 +66,13 @@ class SubprogramTypeCollector extends BindingCollector
     private void updateDefinitionWithSubParameters(PhotranTokenRef tokenRef, FunctionType type, IASTListNode<ASTSubroutineParNode> subParams)
     {
         Definition def = vpg.getDefinitionFor(tokenRef);
+        
+        // This is coming back null sometimes if a previous DB request
+        // was made with a block size too large.  For now, ignore
+        // the error and move on.  
+        // https://bugs.eclipse.org/bugs/show_bug.cgi?id=500007
+        if (def == null) return;
+        
         // Populate subroutines auto-completion with parameters
         StringBuilder fullId = new StringBuilder(40);
         fullId.append(def.getDeclaredName());
