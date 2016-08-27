@@ -15,7 +15,7 @@
 	<name>PTP Photran Parent</name>
 
 	<properties>
-		<tycho-version>0.24.0</tycho-version>
+		<tycho-version>0.26.0</tycho-version>
 		<tycho-extras-version>${tycho-version}</tycho-extras-version>
 		<photran-install-dir>/home/data/httpd/download.eclipse.org/tools/ptp/builds/hudson/ptp-nightly-photran</photran-install-dir>
 	</properties>
@@ -103,7 +103,7 @@
 						<artifact>
 							<groupId>org.eclipse.photran</groupId>
 							<artifactId>org.eclipse.photran.target</artifactId>
-							<version>9.1.0-SNAPSHOT</version>
+							<version>9.1.1-SNAPSHOT</version>
 							<classifier>neon</classifier>
 						</artifact>
 					</target>
