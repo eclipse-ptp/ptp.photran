@@ -32,7 +32,7 @@
 								<artifact>
 									<file>oxygen.target</file>
 									<type>target</type>
-									<classifier>oxygen</classifier>
+									<classifier>photran-oxygen</classifier>
 								</artifact>
 							</artifacts>
 						</configuration>
