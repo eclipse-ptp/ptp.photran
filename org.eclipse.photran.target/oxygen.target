@@ -3,11 +3,11 @@
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.launchbar.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/tools/cdt/launchbar/neon.1/"/>
+<repository location="http://download.eclipse.org/tools/cdt/launchbar/neon.2/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.google.gson" version="0.0.0"/>
-<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20150124073747/repository/"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/S20161205183421/repository/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.license.feature.group" version="0.0.0"/>
@@ -19,10 +19,10 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.cdt.sdk.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/tools/cdt/builds/neon/milestones/ur1-rc4/"/>
+<repository location="http://download.eclipse.org/tools/cdt/builds/master/nightly/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.tm.terminal.control.feature.feature.group" version="4.2.0.201609201752"/>
+<unit id="org.eclipse.tm.terminal.control" version="0.0.0"/>
 <repository location="http://download.eclipse.org/tm/terminal/updates/4.2milestones/"/>
 </location>
 </locations>
