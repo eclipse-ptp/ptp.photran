@@ -42,7 +42,7 @@ class DerivedTypeCollector extends BindingCollector
         String compText = null;
         //
         ArrayList<Definition> intDefs = vpg.findAllDeclarationsInInterfacesForExternalSubprogram(bindingInterface.getText());
-        if (intDefs != null) {
+        if (!intDefs.isEmpty()) {
             Definition subDef = intDefs.get(0);
             compText = subDef.getCompletionText();
         }
