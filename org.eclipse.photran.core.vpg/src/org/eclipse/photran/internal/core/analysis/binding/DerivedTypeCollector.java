@@ -78,45 +78,46 @@ class DerivedTypeCollector extends BindingCollector
             }
         }
         Token bindingInterface = node.getInterfaceName();
-        PhotranTokenRef tokenRef = null;
+        List<PhotranTokenRef> possParents;
         if (bindingInterface != null) {
             ScopingNode enclosingScope = bindingInterface.getEnclosingScope().getGlobalScope();
-            List<PhotranTokenRef> possParents = enclosingScope.manuallyResolve(bindingInterface);
-            tokenRef = possParents.get(0);
+            possParents = enclosingScope.manuallyResolve(bindingInterface);
         } else {
             Token proToken = node.getProcedureName();
             if (proToken == null)
                 return;
             ScopingNode enclosingScope = proToken.getEnclosingScope();
-            List<PhotranTokenRef> possParents = enclosingScope.manuallyResolve(proToken);
-            tokenRef = possParents.get(0);
+            possParents = enclosingScope.manuallyResolve(proToken);
         }
-        Definition subDef = tokenRef.getAnnotation(AnnotationType.DEFINITION_ANNOTATION_TYPE);
-        String compText = subDef.getCompletionText();
-        if (compText!=null) { 
-            int argStart = compText.indexOf('(');
-            if (argStart>=0) {
-                compText = compText.substring(argStart);
+        if (!possParents.isEmpty()) {
+            PhotranTokenRef tokenRef = possParents.get(0);
+            Definition subDef = tokenRef.getAnnotation(AnnotationType.DEFINITION_ANNOTATION_TYPE);
+            String compText = subDef.getCompletionText();
+            if (compText!=null) { 
+                int argStart = compText.indexOf('(');
+                if (argStart>=0) {
+                    compText = compText.substring(argStart);
+                } else {
+                    compText = "()"; //$NON-NLS-1$
+                }
+                if (skipFirst) {
+                    argStart = compText.indexOf(',');
+                    if (argStart>=0) {
+                        compText = compText.substring(argStart+1);
+                    } else {
+                        compText = ")"; //$NON-NLS-1$
+                    }
+                    compText = "(" + compText; //$NON-NLS-1$
+                }
             } else {
                 compText = "()"; //$NON-NLS-1$
             }
-            if (skipFirst) {
-                argStart = compText.indexOf(',');
-                if (argStart>=0) {
-                    compText = compText.substring(argStart+1);
-                } else {
-                    compText = ")"; //$NON-NLS-1$
-                }
-                compText = "(" + compText; //$NON-NLS-1$
-            }
-        } else {
-            compText = "()"; //$NON-NLS-1$
+            
+            Definition def = vpg.getDefinitionFor(procRef);
+            compText = def.getDeclaredName() + compText;
+            def.setCompletionText(compText.toString());
+            vpgProvider.setDefinitionFor(procRef, def);
         }
-        
-        Definition def = vpg.getDefinitionFor(procRef);
-        compText = def.getDeclaredName() + compText;
-        def.setCompletionText(compText.toString());
-        vpgProvider.setDefinitionFor(procRef, def);
 
     }
 }
