@@ -10,7 +10,7 @@
 
 	<groupId>org.eclipse.photran</groupId>
 	<artifactId>photran-parent</artifactId>
-	<version>9.1.1-SNAPSHOT</version>
+	<version>9.1.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>PTP Photran Parent</name>
 
@@ -103,7 +103,7 @@
 						<artifact>
 							<groupId>org.eclipse.photran</groupId>
 							<artifactId>org.eclipse.photran.target</artifactId>
-							<version>9.1.1-SNAPSHOT</version>
+							<version>9.1.2-SNAPSHOT</version>
 							<classifier>oxygen</classifier>
 						</artifact>
 					</target>
