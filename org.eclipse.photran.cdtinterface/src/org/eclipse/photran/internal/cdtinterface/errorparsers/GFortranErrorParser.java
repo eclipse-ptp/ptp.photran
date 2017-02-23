@@ -106,13 +106,11 @@ public class GFortranErrorParser implements IErrorParser
         public boolean processLine(String line, ErrorParserManager eoParser)
         {
             Matcher startLineMatcher = startLine.matcher(line);
-            System.out.println("matching "+line);
             if (startLineMatcher.matches())
             {
                 String filename = startLineMatcher.group(2);
                 int lineNumber = Integer.parseInt(startLineMatcher.group(3));
                 currentState = new AccumulateErrorMessageLines(filename, lineNumber, line);
-                System.out.println("matched! " + filename + "#" + lineNumber);
            }
             return false;
         }
