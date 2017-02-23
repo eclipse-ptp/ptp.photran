@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     UIUC - Initial API and implementation
+ *     Greg Watson - GFortran 5.x support
  *******************************************************************************/
 package org.eclipse.photran.internal.cdtinterface.errorparsers;
 
@@ -20,7 +21,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 
 /**
- * An error parser for GNU Fortran 4.x
+ * An error parser for GNU Fortran 4.x and 5.x
  *
  * @author Jeff Overbey
  */
@@ -29,6 +30,9 @@ public class GFortranErrorParser implements IErrorParser
     private static final int MAX_LINES_IN_ERROR_MESSAGE = 10;
 
     /*================================================================================
+    Gfortran 4.x
+    ------------
+    
     cray-pointers.f90:56.21:
 
     subroutine example3()
@@ -43,13 +47,22 @@ public class GFortranErrorParser implements IErrorParser
         real    :: pointee
                          1
     Error: Array 'pointee' at (1) cannot have a deferred shape
+    
+    GFortran 5.x:
+    -------------
+    
+    delme.f90:4:2:
+
+    i = i + 1
+    1
+    Error: Named constant 'i' in variable definition context (assignment) at (1)
     ================================================================================*/
 
     //                                                                     Filename
     //                                                                     |    Line        Column
     //                                                                     |    |           |
     //                                    Regex group number    1          2    3       4   5
-    private static final Pattern startLine = Pattern.compile("^(In file )?(.+):([0-9]+)(\\.([0-9]+))?:$"); //$NON-NLS-1$
+    private static final Pattern startLine = Pattern.compile("^(In file )?([^:]+):([0-9]+)([\\.:]([0-9]+))?:$"); //$NON-NLS-1$
     private static final Pattern errorLine = Pattern.compile("^(Fatal )?Error: .*"); //$NON-NLS-1$
     private static final Pattern warningLine = Pattern.compile("^Warning: .*"); //$NON-NLS-1$
 
@@ -93,12 +106,14 @@ public class GFortranErrorParser implements IErrorParser
         public boolean processLine(String line, ErrorParserManager eoParser)
         {
             Matcher startLineMatcher = startLine.matcher(line);
+            System.out.println("matching "+line);
             if (startLineMatcher.matches())
             {
                 String filename = startLineMatcher.group(2);
                 int lineNumber = Integer.parseInt(startLineMatcher.group(3));
                 currentState = new AccumulateErrorMessageLines(filename, lineNumber, line);
-            }
+                System.out.println("matched! " + filename + "#" + lineNumber);
+           }
             return false;
         }
     }
