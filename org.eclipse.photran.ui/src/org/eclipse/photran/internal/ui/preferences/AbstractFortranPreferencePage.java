@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2005 IBM Corporation and others.
+ * Copyright (c) 2000, 2017 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,12 @@
  *******************************************************************************/
 package org.eclipse.photran.internal.ui.preferences;
 
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.ListenerList;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.photran.internal.core.FortranCorePlugin;
 import org.eclipse.photran.internal.core.preferences.FortranPreferences;
@@ -82,7 +82,7 @@ public abstract class AbstractFortranPreferencePage
         }
         
         /** Listeners on the adapter */
-        private ListenerList fListeners= new ListenerList();
+        private ListenerList<IPropertyChangeListener> fListeners= new ListenerList<IPropertyChangeListener>();
         
         /** Listener on the adapted Preferences */
         private PropertyChangeListener fListener= new PropertyChangeListener();
@@ -139,9 +139,8 @@ public abstract class AbstractFortranPreferencePage
         public void firePropertyChangeEvent(String name, Object oldValue, Object newValue) {
             if (!fSilent) {
                 PropertyChangeEvent event= new PropertyChangeEvent(this, name, oldValue, newValue);
-                Object[] listeners= fListeners.getListeners();
-                for (int i= 0; i < listeners.length; i++)
-                    ((IPropertyChangeListener) listeners[i]).propertyChange(event);
+                for (IPropertyChangeListener listener : fListeners)
+                    listener.propertyChange(event);
             }
         }
 
