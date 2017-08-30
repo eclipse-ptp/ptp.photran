@@ -10,12 +10,12 @@
  *******************************************************************************/
 package org.eclipse.photran.internal.ui.preferences;
 
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.ListenerList;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.photran.internal.core.FortranCorePlugin;
 import org.eclipse.photran.internal.core.preferences.FortranPreferences;
@@ -82,7 +82,7 @@ public abstract class AbstractFortranPreferencePage
         }
         
         /** Listeners on the adapter */
-        private ListenerList fListeners= new ListenerList();
+        private ListenerList<IPropertyChangeListener> fListeners= new ListenerList<>();
         
         /** Listener on the adapted Preferences */
         private PropertyChangeListener fListener= new PropertyChangeListener();
