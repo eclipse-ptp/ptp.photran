@@ -450,7 +450,7 @@
           activeByDefault="true"
           id="org.eclipse.photran.ui.navigator.content"
           contentProvider="org.eclipse.cdt.internal.ui.navigator.CNavigatorContentProvider"
-          labelProvider="org.eclipse.cdt.internal.ui.navigator.CNavigatorLabelProvider"
+          labelProvider="org.eclipse.photran.internal.cdtinterface.ui.FNavigatorLabelProvider"
           name="Fortran Elements"
           priority="high">
          <triggerPoints>
