@@ -21,14 +21,13 @@
    </license>
 
    <requires>
-      <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.cdt.managedbuilder.core"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.cdt.core"/>
+      <import plugin="org.eclipse.cdt.managedbuilder.core"/>
       <import plugin="org.eclipse.photran.core"/>
       <import plugin="org.eclipse.photran.cdtinterface"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import feature="org.eclipse.photran" version="9.0.0" match="compatible"/>
    </requires>
 
    <plugin

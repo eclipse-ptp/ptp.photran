@@ -30,9 +30,9 @@
 						<configuration>
 							<artifacts>
 								<artifact>
-									<file>oxygen.target</file>
+									<file>photon.target</file>
 									<type>target</type>
-									<classifier>photran-oxygen</classifier>
+									<classifier>photran-photon</classifier>
 								</artifact>
 							</artifacts>
 						</configuration>
