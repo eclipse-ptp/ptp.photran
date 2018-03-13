@@ -3,7 +3,7 @@
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.launchbar.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/tools/cdt/launchbar/neon.2/"/>
+<repository location="http://download.eclipse.org/tools/cdt/launchbar/milestones/oxygen.2/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.google.gson" version="0.0.0"/>
@@ -19,7 +19,7 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.cdt.platform.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/tools/cdt/builds/master/nightly/"/>
+<repository location="http://download.eclipse.org/tools/cdt/builds/9.5/cdt-9.5.0-photon-m6"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.tm.terminal.control" version="0.0.0"/>
