@@ -10,7 +10,7 @@
 
 	<groupId>org.eclipse.photran</groupId>
 	<artifactId>photran-parent</artifactId>
-	<version>9.2.1-SNAPSHOT</version>
+	<version>9.3.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>PTP Photran Parent</name>
 
@@ -76,17 +76,7 @@
 						<environment>
 							<os>linux</os>
 							<ws>gtk</ws>
-							<arch>x86</arch>
-						</environment>
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
 							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86</arch>
 						</environment>
 						<environment>
 							<os>win32</os>
@@ -103,7 +93,7 @@
 						<artifact>
 							<groupId>org.eclipse.photran</groupId>
 							<artifactId>org.eclipse.photran.target</artifactId>
-							<version>9.2.1-SNAPSHOT</version>
+							<version>9.3.0-SNAPSHOT</version>
 							<classifier>photon</classifier>
 						</artifact>
 					</target>
