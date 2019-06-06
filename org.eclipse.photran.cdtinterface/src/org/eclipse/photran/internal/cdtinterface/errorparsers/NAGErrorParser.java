@@ -34,8 +34,15 @@ public class NAGErrorParser implements IErrorParser
           if (line.startsWith("Info:") ||  //$NON-NLS-1$
               line.startsWith("Warning:") || //$NON-NLS-1$
               line.startsWith("Extension:") || //$NON-NLS-1$
-              line.startsWith("Error:") || //$NON-NLS-1$
+              line.startsWith("Obsolescent:") || //$NON-NLS-1$
+              line.startsWith("Option error:") || //$NON-NLS-1$
+              line.startsWith("Option warning:") || //$NON-NLS-1$
+              line.startsWith("Questionable:") || //$NON-NLS-1$
               line.startsWith("Fatal:") || //$NON-NLS-1$
+              line.startsWith("Fatal Error:") || //$NON-NLS-1$
+              line.startsWith("Sequence Error:") || //$NON-NLS-1$
+              line.startsWith("Deleted feature used:") || //$NON-NLS-1$
+              line.startsWith("Error:") || //$NON-NLS-1$
               line.startsWith("Panic:")) // shouldn't happen, but ... //$NON-NLS-1$
           {
               String[] tokens = line.split(" "); //$NON-NLS-1$
@@ -53,6 +60,8 @@ public class NAGErrorParser implements IErrorParser
                IFile file = epm.findFilePath(fileNameString);
                int severity = (line.startsWith("Error:") ||  //$NON-NLS-1$
                                line.startsWith("Fatal:") || //$NON-NLS-1$
+                               line.startsWith("Fatal Error:") || //$NON-NLS-1$
+                               line.startsWith("Sequence Error:") || //$NON-NLS-1$
                                line.startsWith("Panic:")) //$NON-NLS-1$
                     ? IMarkerGenerator.SEVERITY_ERROR_RESOURCE
                     : IMarkerGenerator.SEVERITY_WARNING;
