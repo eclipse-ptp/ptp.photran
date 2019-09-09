@@ -226,6 +226,9 @@
          <description>
              %wizard.description
          </description>
+         <selection
+               class="org.eclipse.core.resources.IProject">
+         </selection>
       </wizard>
 
       <!-- New File Wizards -->
