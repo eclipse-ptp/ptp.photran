@@ -3,11 +3,11 @@
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.launchbar.feature.group" version="0.0.0"/>
-<repository location="https://download.eclipse.org/tools/cdt/launchbar/2.4/launchbar-2.4.0-simrel-2019-09-m1/"/>
+<repository location="https://download.eclipse.org/tools/cdt/launchbar/2.4/launchbar-2.4.1-simrel-2019-12-m3/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.google.gson" version="0.0.0"/>
-<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20170818183741/repository/"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20190827152740/repository/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.license.feature.group" version="0.0.0"/>
@@ -15,11 +15,11 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.sdk.ide" version="0.0.0"/>
-<repository location="http://download.eclipse.org/eclipse/updates/4.13milestones/"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.14milestones/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.cdt.platform.feature.group" version="0.0.0"/>
-<repository location="https://download.eclipse.org/tools/cdt/builds/9.9/cdt-9.9.0-simrel-2019-09-m3"/>
+<repository location="https://download.eclipse.org/tools/cdt/releases/9.10/"/>
 </location>
 </locations>
 </target>
