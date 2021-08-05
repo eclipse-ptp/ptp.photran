@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.photran"
       label="%featureName"
-      version="9.4.0.qualifier"
+      version="9.4.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.photran.core"
       license-feature="org.eclipse.license"
