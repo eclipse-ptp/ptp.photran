@@ -63,6 +63,13 @@
 		<module>org.eclipse.photran.repo</module>
 	</modules>
 
+	<pluginRepositories>
+   		<pluginRepository>
+			<id>cbi</id>
+			<url>https://repo.eclipse.org/content/repositories/cbi-releases/</url>
+		</pluginRepository>
+  	</pluginRepositories>
+  	
 	<build>
 		<plugins>
 			<plugin>
